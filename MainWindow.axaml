@@ -3,24 +3,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xamlade="clr-namespace:Xamlade"
-        Height="450" Width="800" 
+        Height="800" Width="800" 
         x:Class="Xamlade.MainWindow"
-        Title="Xamlade" >
+        Title="Xamlade">
    <DockPanel>
-       <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center"> NOBUTTON</Button>
-       <Button DockPanel.Dock="Top" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center">NOBUTTON</Button>
        
-       <Button DockPanel.Dock="Left" Height="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">DEBUG/TESTS </Button>
-       <Canvas Name="myCanvas" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="MyCanvas_OnPointerPressed" Background="Bisque">
-           <!-- <Button Name="Button1" Click="Button1_OnClick" PointerEntered="Button1_OnPointerEntered" PointerExited="Button1_OnPointerExited" Canvas.Left="150" Canvas.Top="150">Test</Button> -->
-           <!-- <Button Name="Button2" Click="Button1_OnClick" PointerEntered="Button1_OnPointerEntered" PointerExited="Button1_OnPointerExited"  Canvas.Left="190" Canvas.Top="190">Test2</Button> -->
-       <!-- <TextBlock Name="MousePosition">Text</TextBlock> -->
-        <!-- <TextBlock Name="Info" Canvas.Left="150" Canvas.Top="50">Text</TextBlock> -->
-           <!-- <xamlade:TestButton Name="TestButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</xamlade:TestButton> -->
-      </Canvas>
-       <StackPanel HorizontalAlignment="Right" Name="StackPanel" Width="100" Orientation="Vertical" Background="DodgerBlue">
+       <Button DockPanel.Dock="Top" Height="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">DEBUG/TESTS </Button>
+       <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center" Click="RemoveElement"> REMOVE</Button>
+       <!-- Тут будет расположена иерархия объектов -->
+       <StackPanel Name = "HierarchyPanel" Background="SlateBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" Width="300">
+           <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="20" > Иерархия проекта</TextBlock>
+           <TreeView Name = "MainHierarchyTree" SelectionChanged="MainHierarchyTree_OnSelectionChanged">
+           </TreeView>
+
+       </StackPanel>
+       
+       <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Name="StackPanel" Width="100" Orientation="Vertical" Background="DodgerBlue">
            <Button Name="GenerateButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</Button>
            <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>
        </StackPanel>
+       
+       <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="MainCanvas_OnPointerPressed" Background="Bisque">
+           <!-- Здесь наступает власть объектов JControl -->
+       </xamlade:jCanvas>
+       
    </DockPanel>
 </Window>
