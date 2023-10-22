@@ -36,7 +36,7 @@ public enum ControlType
     ToggleButton
 }
 
-
+// Для контейнеров
 public interface IChildContainer
 {
     List<JControl> jChildren { get; }
@@ -44,7 +44,7 @@ public interface IChildContainer
     public void RemoveChild(JControl child);
     
 }
-
+//Для простых объектов
 public interface JControl
 {
     public IChildContainer jParent { get; set; }
@@ -62,6 +62,7 @@ public class mTreeViewItem : TreeViewItem
     {
         this.element = element;
         this.Header = element.Name;
+        //Обратная связь с jElement
         element.mTreeItem = this;
     }
 }

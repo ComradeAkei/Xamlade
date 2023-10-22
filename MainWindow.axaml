@@ -10,6 +10,7 @@
        
        <Button DockPanel.Dock="Top" Height="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">DEBUG/TESTS </Button>
        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center" Click="RemoveElement"> REMOVE</Button>
+      
        <!-- Тут будет расположена иерархия объектов -->
        <StackPanel Name = "HierarchyPanel" Background="SlateBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" Width="300">
            <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="20" > Иерархия проекта</TextBlock>
@@ -17,7 +18,7 @@
            </TreeView>
 
        </StackPanel>
-       
+       <!-- Панелька с генераторами -->
        <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Name="StackPanel" Width="100" Orientation="Vertical" Background="DodgerBlue">
            <Button Name="GenerateButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</Button>
            <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>

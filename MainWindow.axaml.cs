@@ -105,7 +105,8 @@ public partial class MainWindow : Window
 
     private void GenerateButton_OnClick(object? sender, RoutedEventArgs e)
     {
-        Button btn = new jButton
+        if(selectedTreeItem.element is not IChildContainer) return;
+        var btn = new jButton
         {
             Name = $"Button{i++}",
             Content = $"Button{i}",
@@ -116,7 +117,10 @@ public partial class MainWindow : Window
         btn.PointerExited += Button1_OnPointerExited;
         Canvas.SetLeft(btn, 0);
         Canvas.SetTop(btn, 0);
-        currentCanvas.Children.Add(btn);
+        
+        selectedTreeItem.Items.Add(new mTreeViewItem(btn));
+        var parentCanvas = selectedTreeItem.element as jCanvas;
+        parentCanvas.AddChild(btn);
     }
 
 
@@ -142,6 +146,7 @@ public partial class MainWindow : Window
     
     private void GenerateCanvas_OnClick(object? sender, RoutedEventArgs e)
     {
+        if(selectedTreeItem.element is not IChildContainer) return;
         // Генерация случайного цвета в формате HEX
         string randomHexColor = $"#{random.Next(0x1000000):X6}";
 
