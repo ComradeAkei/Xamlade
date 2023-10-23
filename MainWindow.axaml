@@ -22,6 +22,8 @@
        <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Name="StackPanel" Width="100" Orientation="Vertical" Background="DodgerBlue">
            <Button Name="GenerateButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</Button>
            <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>
+           <TextBox Name="CanvasHeight">400</TextBox>
+           <TextBox Name="CanvasWidth">400</TextBox>
        </StackPanel>
        
        <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="OnjControlPressed" Background="Bisque">

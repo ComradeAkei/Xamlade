@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Xamlade;
 
@@ -94,7 +96,10 @@ public interface JControl
 
     // Устанавливает уникальное имя элемента
     public string? Name { get; set; }
-
+    
+    public bool IsPressed { get; set; }
+    
+    public Rect Bounds { get; }
     // Позволяет присваивать один или несколько CSS-классов элементу
    // Classes Classes { get; set; }
    
@@ -121,6 +126,13 @@ public class jButton : Button, JControl
     private ControlType controlType => ControlType.Button;
     public object Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
+    
+    public new bool IsPressed
+    {
+        get => base.IsPressed;
+        set => base.SetValue(IsPressedProperty, value);
+    }
+   
 }
 
 
@@ -150,7 +162,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
         child.jParent = this;
         Canvas.SetTop((Control)child,0);
         Canvas.SetLeft((Control)child, 0);
-        Console.WriteLine(child.GetType().ToString());
+     //   Console.WriteLine(child.GetType().ToString());
         this.Children.Add((Control)child);
     }
     public void RemoveChild(JControl child)
