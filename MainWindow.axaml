@@ -24,7 +24,7 @@
            <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>
        </StackPanel>
        
-       <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="MainCanvas_OnPointerPressed" Background="Bisque">
+       <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="OnjControlPressed" Background="Bisque">
            <!-- Здесь наступает власть объектов JControl -->
        </xamlade:jCanvas>
        

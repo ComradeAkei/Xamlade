@@ -11,6 +11,8 @@ namespace Xamlade;
 
 public partial class MainWindow : Window
 {
+    #region  Globals
+    
     private int i = 2;
     private double mouseX;
     private double mouseY;
@@ -22,8 +24,14 @@ public partial class MainWindow : Window
     private Canvas? currentCanvas;
     
     //Выбранный в дереве элемент
-    private mTreeViewItem selectedTreeItem;
+    private mTreeViewItem? selectedTreeItem;
+    
+    
+    //Оригинальный фон выбранного элемента
+    private IBrush? selectedOriginalBackground;
 
+    //Костыль для кнопки
+    private IBrush? trueButtonBackground;
     // Половина ширины
     private double mov_hw;
 
@@ -32,6 +40,7 @@ public partial class MainWindow : Window
 
     private static Random random;
     
+    #endregion
     
     
     public MainWindow()
@@ -39,8 +48,10 @@ public partial class MainWindow : Window
         InitializeComponent();
         WindowState = WindowState.Maximized;
         currentCanvas = MainCanvas;
+        selectedOriginalBackground = MainCanvas.Background;
         MainHierarchyTree.Items.Add(new mTreeViewItem(MainCanvas));
         selectedTreeItem = MainCanvas.mTreeItem;
+        MainHierarchyTree.SelectedItem = selectedTreeItem;
         random = new Random();
     }
 
@@ -91,17 +102,7 @@ public partial class MainWindow : Window
         if (mvbl is jCanvas) return ((jCanvas)mvbl).IsPressed;
         return false;
     }
-
-    private void Button1_OnPointerEntered(object? sender, PointerEventArgs e)
-    {
-
-        InitMovable((Control)sender);
-    }
-
-    private void Button1_OnPointerExited(object? sender, PointerEventArgs e)
-    {
-        movable = null;
-    }
+    
 
     private void GenerateButton_OnClick(object? sender, RoutedEventArgs e)
     {
@@ -115,6 +116,7 @@ public partial class MainWindow : Window
         };
         btn.PointerEntered += Button1_OnPointerEntered;
         btn.PointerExited += Button1_OnPointerExited;
+        btn.Click += jButtonClick;
         Canvas.SetLeft(btn, 0);
         Canvas.SetTop(btn, 0);
         
@@ -134,14 +136,18 @@ public partial class MainWindow : Window
 
     private void DEBUG(object? sender, RoutedEventArgs e)
     {
-        // TreeViewItem selectedNode = tree.SelectedItem as TreeViewItem;
-        // selectedNode.Items.Add(new TreeViewItem { Header = $"Debug {i}" });
-        // i++;
+      
     }
 
-    
-
-
+    // Выбрать редактируемый элемент
+   private void SelectjElement(JControl element)
+    {
+        selectedTreeItem.element.Background = selectedOriginalBackground;
+        selectedTreeItem = element.mTreeItem;
+        MainHierarchyTree.SelectedItem = selectedTreeItem;
+        selectedOriginalBackground = selectedTreeItem.element.Background;
+        selectedTreeItem.element.Background = Brushes.LightBlue;
+    }
     
     
     private void GenerateCanvas_OnClick(object? sender, RoutedEventArgs e)
@@ -161,11 +167,12 @@ public partial class MainWindow : Window
             Width = 400-20*i,
             Name = $"Canvas{i++}"
         };
-        cnv1.PointerPressed += MainCanvas_OnPointerPressed;
+        // cnv1.PointerPressed += MainCanvas_OnPointerPressed;
         cnv1.PointerMoved += InputElement_OnPointerMoved;
-        cnv1.PointerReleased += MainCanvas_OnPointerReleased;
-        cnv1.PointerEntered += Button1_OnPointerEntered;
-        cnv1.PointerExited += Button1_OnPointerExited;
+      //  cnv1.PointerReleased += OnjControlReleased;
+        cnv1.PointerPressed += OnjControlPressed;
+       // cnv1.PointerEntered += Button1_OnPointerEntered;
+     //   cnv1.PointerExited += Button1_OnPointerExited;
         Canvas.SetTop(cnv1, 0);
         Canvas.SetLeft(cnv1, 0);
         //Тут главное потом сделать проверку на принадлежность IChildContainer
@@ -192,14 +199,43 @@ public partial class MainWindow : Window
 
     private void MainHierarchyTree_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        selectedTreeItem = ((TreeView)sender).SelectedItem as mTreeViewItem;
-       e.Handled = true;
+        var item = ((TreeView)sender).SelectedItem as mTreeViewItem;
+   //     if(item == selectedTreeItem) return;
+        if(item != null)
+            SelectjElement(item.element);
+        e.Handled = true;
+    }
+
+    private void jButtonClick(object? sender, RoutedEventArgs e)
+    {
+     MainHierarchyTree.SelectedItem = ((jButton)sender).mTreeItem;
+
+    }
+    private void Button1_OnPointerEntered(object? sender, PointerEventArgs e)
+    {
+        trueButtonBackground=((jButton)sender).Background;
+        InitMovable((Control)sender);
+        
+    }
+
+    private void Button1_OnPointerExited(object? sender, PointerEventArgs e)
+    {
+        Console.WriteLine(((jButton)sender).Background);
+        movable = null;
     }
 
     private void RemoveElement(object? sender, RoutedEventArgs e)
     {
+        if(selectedTreeItem == MainCanvas.mTreeItem) return;
         selectedTreeItem.element.jParent.RemoveChild(selectedTreeItem.element);
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
+    }
+    
+    private void OnjControlPressed(object? sender, PointerPressedEventArgs e)
+    {
+        e.Handled = true;
+        var element = sender as JControl;
+        MainHierarchyTree.SelectedItem = (element).mTreeItem;
     }
 }
