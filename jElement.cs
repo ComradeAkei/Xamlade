@@ -135,7 +135,30 @@ public class jButton : Button, JControl
    
 }
 
+public class jCheckBox : CheckBox, JControl
+{
+    protected override Type StyleKeyOverride => typeof(CheckBox);
+    public IChildContainer? jParent { get; set; }
+    
+    private ControlType controlType => ControlType.CheckBox;
+    public object Type => controlType;
+    public mTreeViewItem? mTreeItem { get; set; }
+    public new bool IsPressed
+    {
+        get => base.IsPressed;
+        set => base.SetValue(IsPressedProperty, value);
+    }
+}
 
+public class jTextBlock : TextBlock, JControl
+{
+    protected override Type StyleKeyOverride => typeof(TextBlock);
+    public IChildContainer? jParent { get; set; }
+    private ControlType controlType => ControlType.TextBox;
+    public object Type => controlType;
+    public mTreeViewItem? mTreeItem { get; set; }
+    public bool IsPressed { get; set; }
+}
 public class jCanvas : Canvas, IChildContainer, JControl
 { 
     protected override Type StyleKeyOverride => typeof(Canvas); 

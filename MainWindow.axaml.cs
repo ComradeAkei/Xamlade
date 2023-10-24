@@ -79,7 +79,7 @@ public partial class MainWindow : Window
             mouseY = position.Y;
             var element = movable as Control;
             if (movable != null)
-                if (IS_PRESSED(movable))
+                if (movable.IsPressed)
                 {
                     Canvas.SetLeft(element, mouseX - mov_hw);
                     Canvas.SetTop(element, mouseY - mov_hh);
@@ -96,13 +96,7 @@ public partial class MainWindow : Window
 
         }
     }
-
-    private bool IS_PRESSED(JControl mvbl)
-    {
-        if (mvbl is jButton) return ((jButton)mvbl).IsPressed;
-        if (mvbl is jCanvas) return ((jCanvas)mvbl).IsPressed;
-        return false;
-    }
+    
     
 
     private void GenerateButton_OnClick(object? sender, RoutedEventArgs e)
@@ -111,7 +105,7 @@ public partial class MainWindow : Window
         var btn = new jButton
         {
             Name = $"Button{i++}",
-            Content = $"Button{i}",
+            Content = TEXT.Text,
             Background = Brushes.Blue,
             Foreground = Brushes.White
         }; 
@@ -196,19 +190,17 @@ public partial class MainWindow : Window
 
     private void jButtonClick(object? sender, RoutedEventArgs e)
     {
-     MainHierarchyTree.SelectedItem = ((jButton)sender).mTreeItem;
+     MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
 
     }
     private void Button1_OnPointerEntered(object? sender, PointerEventArgs e)
     {
-        trueButtonBackground=((jButton)sender).Background;
         InitMovable((JControl)sender);
         
     }
 
     private void Button1_OnPointerExited(object? sender, PointerEventArgs e)
     {
-        Console.WriteLine(((jButton)sender).Background);
         movable = null;
     }
 
@@ -234,5 +226,53 @@ public partial class MainWindow : Window
         e.Handled = true;
         var element = sender as JControl;
         element.IsPressed = false;
+    }
+
+    private void GenerateCheckBox_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if(selectedTreeItem.element is not IChildContainer) return;
+        var checkBox = new jCheckBox
+        {
+            Name = $"Checkbox {i++}",
+            Background = Brushes.Blue,
+            Content = TEXT.Text,
+            FontSize = 20,
+            Foreground = Brushes.White
+        }; 
+        checkBox.PointerEntered += Button1_OnPointerEntered;
+        checkBox.PointerExited += Button1_OnPointerExited;
+        checkBox.Click += jButtonClick;
+        // btn.PointerPressed += OnjControlPressed;
+        //    btn.PointerReleased += OnjControlReleased;
+        Canvas.SetLeft(checkBox, 0);
+        Canvas.SetTop(checkBox, 0);
+        
+        selectedTreeItem.Items.Add(new mTreeViewItem(checkBox));
+        var parentCanvas = selectedTreeItem.element as jCanvas;
+        parentCanvas.AddChild(checkBox);
+    }
+
+    private void GenerateTextBlock_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if(selectedTreeItem.element is not IChildContainer) return;
+        var textBlock = new jTextBlock
+        {
+            Name = $"Textblock {i++}",
+            Background = Brushes.Blue,
+            Text = TEXT.Text,
+            FontSize = 20,
+            Foreground = Brushes.White
+        }; 
+       // textBlock.PointerEntered += Button1_OnPointerEntered;
+      //  textBlock.PointerExited += Button1_OnPointerExited;
+       //  textBlock.Click += jButtonClick;
+         textBlock.PointerPressed += OnjControlPressed;
+         textBlock.PointerReleased += OnjControlReleased;
+        Canvas.SetLeft(textBlock, 0);
+        Canvas.SetTop(textBlock, 0);
+        
+        selectedTreeItem.Items.Add(new mTreeViewItem(textBlock));
+        var parentCanvas = selectedTreeItem.element as jCanvas;
+        parentCanvas.AddChild(textBlock);
     }
 }

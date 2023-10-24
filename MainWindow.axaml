@@ -19,11 +19,14 @@
 
        </StackPanel>
        <!-- Панелька с генераторами -->
-       <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Name="StackPanel" Width="100" Orientation="Vertical" Background="DodgerBlue">
+       <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Name="StackPanel" Width="160" Orientation="Vertical" Background="DodgerBlue">
            <Button Name="GenerateButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</Button>
            <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>
+           <Button Name="GenerateCheckBox" Click="GenerateCheckBox_OnClick">New CheckBox</Button>
+           <Button Name="GenerateTextBlock" Click="GenerateTextBlock_OnClick">New TextBlock</Button>
            <TextBox Name="CanvasHeight">400</TextBox>
            <TextBox Name="CanvasWidth">400</TextBox>
+           <TextBox Name="TEXT">text</TextBox>
        </StackPanel>
        
        <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="OnjControlPressed" Background="Bisque">
