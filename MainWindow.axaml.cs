@@ -1,27 +1,36 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 
 namespace Xamlade;
 
+public class KeyValue
+{
+    public string Key { get; set; }
+    public string? Value { get; set; }
+}
 
 public partial class MainWindow : Window
 {
+    
+    
     #region  Globals
     
+    //Отладочный итератор
     private int i = 2;
-    private double mouseX;
-    private double mouseY;
-
-    //Перемещаемый объект
+    
+    //Случайное число
+    private static Random random;
+    
+    //Перемещаемый по холсту объект
     private JControl movable;
-
-    //Current canvas
-    private Canvas? currentCanvas;
     
     //Выбранный в дереве элемент
     private mTreeViewItem? selectedTreeItem;
@@ -29,70 +38,63 @@ public partial class MainWindow : Window
     
     //Оригинальный фон выбранного элемента
     private IBrush? selectedOriginalBackground;
-
-    //Костыль для кнопки
-    private IBrush? trueButtonBackground;
-    // Половина ширины
+    
+    // Половина ширины перемещаемого элемента
     private double mov_hw;
 
-    // Половина высоты
+    // Половина высоты перемещаемого элемента 
     private double mov_hh;
 
-    private static Random random;
+
     
     #endregion
     
     
+    public ObservableCollection<KeyValue> KeyValueList { get; set; }
     public MainWindow()
     {
+        KeyValueList = new ObservableCollection<KeyValue>();
         InitializeComponent();
+        DataContext = this;
         WindowState = WindowState.Maximized;
-        currentCanvas = MainCanvas;
         selectedOriginalBackground = MainCanvas.Background;
         MainHierarchyTree.Items.Add(new mTreeViewItem(MainCanvas));
         selectedTreeItem = MainCanvas.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         random = new Random();
     }
-
     
     
 //Переписать с привязкой к родителю
 
     //Всё к хуям заново
-    private void InputElement_OnPointerMoved(object? sender, PointerEventArgs e)
+    private void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
     {
+        if (movable == null) return;
         if(Equals((JControl)sender!, movable)) return;
         if(Equals(movable, MainCanvas)) return;
+        
         e.Handled = true;
-        var jc = (JControl)sender;
-        if (e.GetCurrentPoint((jCanvas)sender!).Properties.PointerUpdateKind == PointerUpdateKind.Other)
+        var ParentCanvas = (jCanvas)sender!;
+        if (e.GetCurrentPoint(ParentCanvas).Properties.PointerUpdateKind == PointerUpdateKind.Other)
         {
-
-            // if (movable != null)
-            // {
-            // Info.Text = movable.Name;
-            // }
-
-            Point position = e.GetPosition((Canvas)sender!);
-            mouseX = position.X;
-            mouseY = position.Y;
+            Point mousePosition = e.GetPosition(ParentCanvas);
             var element = movable as Control;
-            if (movable != null)
-                if (movable.IsPressed)
-                {
-                    Canvas.SetLeft(element, mouseX - mov_hw);
-                    Canvas.SetTop(element, mouseY - mov_hh);
+            
+            if (movable.IsPressed)
+            {
+                Canvas.SetLeft(element, mousePosition.X - mov_hw);
+                Canvas.SetTop(element, mousePosition.Y - mov_hh);
 
-                    if (Canvas.GetLeft(element) < 0) Canvas.SetLeft(element, 0);
-                    if (Canvas.GetTop(element) < 0) Canvas.SetTop(element, 0);
+                if (Canvas.GetLeft(element) < 0) Canvas.SetLeft(element, 0);
+                if (Canvas.GetTop(element) < 0) Canvas.SetTop(element, 0);
 
-                    if (Canvas.GetLeft(element) + 2 * mov_hw > ((Canvas)sender!).Bounds.Width)
-                        Canvas.SetLeft(element, ((Canvas)sender!).Bounds.Width - 2 * mov_hw);
+                if (Canvas.GetLeft(element) + 2 * mov_hw > ParentCanvas.Bounds.Width)
+                    Canvas.SetLeft(element, ParentCanvas.Bounds.Width - 2 * mov_hw);
 
-                    if (Canvas.GetTop(element) + 2 * mov_hh > ((Canvas)sender!).Bounds.Height)
-                        Canvas.SetTop(element, ((Canvas)sender!).Bounds.Height - 2 * mov_hh);
-                }
+                if (Canvas.GetTop(element) + 2 * mov_hh > ParentCanvas.Bounds.Height)
+                    Canvas.SetTop(element, ParentCanvas.Bounds.Height - 2 * mov_hh);
+            }
 
         }
     }
@@ -109,8 +111,8 @@ public partial class MainWindow : Window
             Background = Brushes.Blue,
             Foreground = Brushes.White
         }; 
-         btn.PointerEntered += Button1_OnPointerEntered;
-        btn.PointerExited += Button1_OnPointerExited;
+         btn.PointerEntered += OnjControlPointerEntered;
+        btn.PointerExited += OnjControlPointerExited;
         btn.Click += jButtonClick;
        // btn.PointerPressed += OnjControlPressed;
     //    btn.PointerReleased += OnjControlReleased;
@@ -131,13 +133,23 @@ public partial class MainWindow : Window
     }
 
 
-    private void DEBUG(object? sender, RoutedEventArgs e)
+    private void DEBUG(object? sender, RoutedEventArgs? e)
     {
-        var a = new jButton();
-        Console.WriteLine(a.Bounds.GetType());
-
+        
     }
 
+    private void ShowProperties()
+    {
+        KeyValueList.Clear();
+        Type type = selectedTreeItem.element.GetType();
+        var props = type.GetProperties();
+        foreach (var prop in props)
+        {
+            if(prop.PropertyType == typeof(string) || prop.PropertyType == typeof(int) || prop.PropertyType == typeof(double) || prop.PropertyType == typeof(bool))
+                KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
+        }
+    }
+    
     // Выбрать редактируемый элемент
    private void SelectjElement(JControl element)
     {
@@ -147,6 +159,7 @@ public partial class MainWindow : Window
         selectedOriginalBackground = selectedTreeItem.element.Background;
         selectedTreeItem.element.Background = Brushes.LightBlue;
         InitMovable(selectedTreeItem.element);
+        ShowProperties();
     }
     
     
@@ -167,7 +180,7 @@ public partial class MainWindow : Window
             Width = Convert.ToInt32(CanvasWidth.Text),
             Name = $"Canvas{i++}"
         };
-        cnv1.PointerMoved += InputElement_OnPointerMoved;
+        cnv1.PointerMoved += jCanvas_OnPointerMoved;
         cnv1.PointerReleased += OnjControlReleased;
         cnv1.PointerPressed += OnjControlPressed;
         Canvas.SetTop(cnv1, 0);
@@ -193,18 +206,17 @@ public partial class MainWindow : Window
      MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
 
     }
-    private void Button1_OnPointerEntered(object? sender, PointerEventArgs e)
+    private void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         InitMovable((JControl)sender);
-        
     }
 
-    private void Button1_OnPointerExited(object? sender, PointerEventArgs e)
+    private void OnjControlPointerExited(object? sender, PointerEventArgs e)
     {
         movable = null;
     }
 
-    private void RemoveElement(object? sender, RoutedEventArgs e)
+    private void RemovejElement(object? sender, RoutedEventArgs e)
     {
         if(selectedTreeItem == MainCanvas.mTreeItem) return;
         selectedTreeItem.element.jParent.RemoveChild(selectedTreeItem.element);
@@ -239,11 +251,11 @@ public partial class MainWindow : Window
             FontSize = 20,
             Foreground = Brushes.White
         }; 
-        checkBox.PointerEntered += Button1_OnPointerEntered;
-        checkBox.PointerExited += Button1_OnPointerExited;
-        checkBox.Click += jButtonClick;
-        // btn.PointerPressed += OnjControlPressed;
-        //    btn.PointerReleased += OnjControlReleased;
+        checkBox.PointerEntered += OnjControlPointerEntered;
+        checkBox.PointerExited += OnjControlPointerExited;
+        // checkBox.Click += jButtonClick;
+        checkBox.PointerPressed += OnjControlPressed;
+        checkBox.PointerReleased += OnjControlReleased;
         Canvas.SetLeft(checkBox, 0);
         Canvas.SetTop(checkBox, 0);
         
@@ -275,4 +287,27 @@ public partial class MainWindow : Window
         var parentCanvas = selectedTreeItem.element as jCanvas;
         parentCanvas.AddChild(textBlock);
     }
+    
+    private void OnPropertyChanged(object? sender, KeyEventArgs e)
+    {
+        if(e.Key != Key.Enter) return;
+        var textBox = sender as TextBox;
+        var parentPanel = textBox.Parent as DockPanel;
+        var txt_blc = parentPanel.Children[0] as TextBlock;
+        var prop_name = txt_blc.Text;
+        Type jElement_type = selectedTreeItem.element.GetType();
+        var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
+        var prop = jElement_type.GetProperty(prop_name);
+        
+        if (prop_type == typeof(string))
+            prop.SetValue(selectedTreeItem.element, textBox.Text);
+        else if (prop_type == typeof(int))
+            prop.SetValue(selectedTreeItem.element, Convert.ToInt32(textBox.Text));
+        else if (prop_type == typeof(double))
+            prop.SetValue(selectedTreeItem.element, Convert.ToDouble(textBox.Text));
+        else if (prop_type == typeof(bool))
+            prop.SetValue(selectedTreeItem.element, Convert.ToBoolean(textBox.Text));
+    }
+
+    
 }

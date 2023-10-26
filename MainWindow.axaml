@@ -5,14 +5,16 @@
         xmlns:xamlade="clr-namespace:Xamlade"
         Height="800" Width="800" 
         x:Class="Xamlade.MainWindow"
+        x:DataType="xamlade:MainWindow"
         Title="Xamlade">
-   <DockPanel>
+    
+    <DockPanel>
        
        <Button DockPanel.Dock="Top" Height="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">DEBUG/TESTS </Button>
-       <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center" Click="RemoveElement"> REMOVE</Button>
+       <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center" Click="RemovejElement"> REMOVE</Button>
       
        <!-- Тут будет расположена иерархия объектов -->
-       <StackPanel Name = "HierarchyPanel" Background="SlateBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" Width="300">
+       <StackPanel Name = "HierarchyPanel" Background="SlateBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" Width="250">
            <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="20" > Иерархия проекта</TextBlock>
            <TreeView Name = "MainHierarchyTree" SelectionChanged="MainHierarchyTree_OnSelectionChanged">
            </TreeView>
@@ -28,8 +30,30 @@
            <TextBox Name="CanvasWidth">400</TextBox>
            <TextBox Name="TEXT">text</TextBox>
        </StackPanel>
+       <!-- Панелька свойств -->
+       <StackPanel Name="PropertyPanel" Width="200" Height="600" Background="Pink">
+           <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="20">Свойства</TextBlock>
+           <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+               <ListBox ItemsSource="{Binding KeyValueList}" Width="180" Height="580">
+                   <ListBox.Styles>
+                       <Style Selector="ListBoxItem">
+                           <Setter Property="Padding" Value="0"/>
+                       </Style>
+                   </ListBox.Styles>
+                   <ListBox.ItemTemplate>
+                       <DataTemplate>
+                           <DockPanel Height="50">
+                               <TextBlock DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding Key}" Margin="10,0,0,0" />
+                               <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Left" Text="{Binding Value}" Margin="5,0,0,0" KeyDown="OnPropertyChanged" />
+                           </DockPanel>
+                       </DataTemplate>
+                   </ListBox.ItemTemplate>
+               </ListBox>
+           </ScrollViewer>
+       </StackPanel>
+
        
-       <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="InputElement_OnPointerMoved" PointerPressed="OnjControlPressed" Background="Bisque">
+       <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="jCanvas_OnPointerMoved" PointerPressed="OnjControlPressed" Background="Bisque">
            <!-- Здесь наступает власть объектов JControl -->
        </xamlade:jCanvas>
        
