@@ -145,7 +145,7 @@ public partial class MainWindow : Window
         var props = type.GetProperties();
         foreach (var prop in props)
         {
-            if(prop.PropertyType == typeof(string) || prop.PropertyType == typeof(int) || prop.PropertyType == typeof(double) || prop.PropertyType == typeof(bool))
+            if(prop.PropertyType == typeof(string) || prop.PropertyType == typeof(int) || prop.PropertyType == typeof(double) || prop.PropertyType == typeof(bool) || prop.PropertyType == typeof(IBrush))
                 KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
         }
     }
@@ -307,6 +307,13 @@ public partial class MainWindow : Window
             prop.SetValue(selectedTreeItem.element, Convert.ToDouble(textBox.Text));
         else if (prop_type == typeof(bool))
             prop.SetValue(selectedTreeItem.element, Convert.ToBoolean(textBox.Text));
+        else if (prop_type == typeof(IBrush))
+        {
+            var brush = new SolidColorBrush(Color.Parse(textBox.Text));
+            prop.SetValue(selectedTreeItem.element, brush);
+        }
+        
+        
     }
 
     
