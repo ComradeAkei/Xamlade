@@ -40,6 +40,7 @@ public enum ControlType
     ToggleButton
 }
 
+
 // Для контейнеров
 public interface IChildContainer
 {
@@ -131,6 +132,12 @@ public class jButton : Button, JControl
     {
         get => base.IsPressed;
         set => base.SetValue(IsPressedProperty, value);
+    }
+
+    public new string? Name
+    {
+        get => base.Name;
+        set => base.SetValue(NameProperty, value);
     }
    
 }

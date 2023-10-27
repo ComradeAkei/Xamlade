@@ -1,7 +1,5 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xamlade="clr-namespace:Xamlade"
         Height="800" Width="800" 
         x:Class="Xamlade.MainWindow"
@@ -11,7 +9,7 @@
     <DockPanel>
        
        <Button DockPanel.Dock="Top" Height="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">DEBUG/TESTS </Button>
-       <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="100" VerticalContentAlignment="Center" Click="RemovejElement"> REMOVE</Button>
+       <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="50" VerticalContentAlignment="Center" Click="RemovejElement"> REMOVE</Button>
       
        <!-- Тут будет расположена иерархия объектов -->
        <StackPanel Name = "HierarchyPanel" Background="SlateBlue" DockPanel.Dock="Left" HorizontalAlignment="Center" Width="250">
@@ -20,21 +18,27 @@
            </TreeView>
 
        </StackPanel>
-       <!-- Панелька с генераторами -->
-       <StackPanel DockPanel.Dock="Right" HorizontalAlignment="Right" Name="StackPanel" Width="160" Orientation="Vertical" Background="DodgerBlue">
-           <Button Name="GenerateButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</Button>
-           <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>
-           <Button Name="GenerateCheckBox" Click="GenerateCheckBox_OnClick">New CheckBox</Button>
-           <Button Name="GenerateTextBlock" Click="GenerateTextBlock_OnClick">New TextBlock</Button>
-           <TextBox Name="CanvasHeight">400</TextBox>
-           <TextBox Name="CanvasWidth">400</TextBox>
-           <TextBox Name="TEXT">text</TextBox>
-       </StackPanel>
+       
+       <TabControl DockPanel.Dock="Right">
+           <TabItem Header="Элементы">
+           <!-- Панелька с генераторами -->
+               <StackPanel Name="StackPanel" Width="300" Orientation="Vertical" Background="DodgerBlue">
+                   <Button Name="GenerateButton" Background = "Moccasin" Click="GenerateButton_OnClick">New button</Button>
+                   <Button Name="GenerateCanvas" Background = "DarkTurquoise" Click="GenerateCanvas_OnClick">New Canvas</Button>
+                   <Button Name="GenerateCheckBox" Click="GenerateCheckBox_OnClick">New CheckBox</Button>
+                   <Button Name="GenerateTextBlock" Click="GenerateTextBlock_OnClick">New TextBlock</Button>
+                   <TextBox Name="CanvasHeight">400</TextBox>
+                   <TextBox Name="CanvasWidth">400</TextBox>
+                   <TextBox Name="TEXT">text</TextBox>
+               </StackPanel>
+           </TabItem>
+           
+           <TabItem Header="Свойства"> 
        <!-- Панелька свойств -->
-       <StackPanel Name="PropertyPanel" Width="200" Height="600" Background="Pink">
-           <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="20">Свойства</TextBlock>
+       <StackPanel Name="PropertyPanel" Width="300" Height="550" Background="Pink">
+           <TextBlock> </TextBlock>
            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-               <ListBox ItemsSource="{Binding KeyValueList}" Width="180" Height="580">
+               <ListBox ItemsSource="{Binding KeyValueList}" Width="300" Height="500">
                    <ListBox.Styles>
                        <Style Selector="ListBoxItem">
                            <Setter Property="Padding" Value="0"/>
@@ -42,16 +46,17 @@
                    </ListBox.Styles>
                    <ListBox.ItemTemplate>
                        <DataTemplate>
-                           <DockPanel Height="50">
-                               <TextBlock DockPanel.Dock="Top" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{Binding Key}" Margin="10,0,0,0" />
-                               <TextBox DockPanel.Dock="Bottom" HorizontalAlignment="Left" Text="{Binding Value}" Margin="5,0,0,0" KeyDown="OnPropertyChanged" />
+                           <DockPanel Height="35">
+                               <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding Key}" Margin="10,0,0,0" />
+                               <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" Text="{Binding Value}" Margin="5,0,0,0" KeyDown="OnPropertyChanged" />
                            </DockPanel>
                        </DataTemplate>
                    </ListBox.ItemTemplate>
                </ListBox>
            </ScrollViewer>
        </StackPanel>
-
+       </TabItem>
+       </TabControl>
        
        <xamlade:jCanvas Name="MainCanvas" DockPanel.Dock="Right" Width="700" PointerMoved="jCanvas_OnPointerMoved" PointerPressed="OnjControlPressed" Background="Bisque">
            <!-- Здесь наступает власть объектов JControl -->

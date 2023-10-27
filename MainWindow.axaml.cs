@@ -2,12 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
+using Avalonia.Styling;
+using Avalonia.Controls.Primitives;
 
 namespace Xamlade;
 
@@ -28,6 +32,7 @@ public partial class MainWindow : Window
     
     //Случайное число
     private static Random random;
+    
     
     //Перемещаемый по холсту объект
     private JControl movable;
@@ -136,17 +141,53 @@ public partial class MainWindow : Window
     private void DEBUG(object? sender, RoutedEventArgs? e)
     {
         
+        Type type = selectedTreeItem.element.GetType();
+        var props = type.GetProperties();
+        ConstructorInfo? constructor = type.GetConstructor(new Type[] { });
+        var DefaultObject = constructor.Invoke(new object[] { });
+        
+        StreamWriter sw = new StreamWriter("out.txt");
+        foreach (var prop in props)
+        {
+           // if(prop.PropertyType == typeof(string) || prop.PropertyType == typeof(int) || prop.PropertyType == typeof(double) || prop.PropertyType == typeof(bool) || prop.PropertyType == typeof(IBrush))
+           if(prop.Name=="Item") continue;
+           if(prop.GetValue(selectedTreeItem.element)?.ToString() == prop.GetValue(DefaultObject)?.ToString())
+               sw.WriteLine($"{prop.Name};{prop.GetValue(selectedTreeItem.element)};{prop.GetValue(DefaultObject)}");
+        }
+        sw.Close();
     }
 
+
+    readonly List<string> excludedWords = new List<string>
+    {
+        "jParent", "mTreeItem", "Content", "Presenter", "Template", "IsLoaded", 
+        "DesiredSize", "IsMeasureValid", "IsArrangeValid", "RenderTransform", 
+        "DataContext", "IsInitialized", "Parent", "ActualThemeVariant", 
+        "Transitions", "Item", "Type", "IsPressed", "ClickMode", "IsDefault", "IsCancel", 
+        "DataTemplates", "Focusable", "IsEnabled", "IsKeyboardFocusWithin", 
+        "IsFocused", "IsHitTestVisible", "IsPointerOver", "IsTabStop", 
+        "IsEffectivelyEnabled", "TabIndex", "KeyBindings", "GestureRecognizers", 
+        "UseLayoutRounding", "ClipToBounds", "IsEffectivelyVisible", 
+        "HasMirrorTransform", "RenderTransformOrigin", "ZIndex", "Classes", 
+        "Styles", "StyleKey", "Resources", "Command", "HotKey", 
+        "CommandParameter", "Flyout","Theme", "Clip","TemplatedParent","Effect",
+        "OpacityMask","Bounds", "Cursor","Tag", "ContextFlyout","ContextMenu","FocusAdorner","IsItemsHost",
+        "Children","jChildren","FontFamily", "TextDecoration","ContentTemplate","FlowDirection","Inlines","TextLayout"
+    };
+    
     private void ShowProperties()
     {
         KeyValueList.Clear();
+        if(selectedTreeItem.element == MainCanvas) return;
         Type type = selectedTreeItem.element.GetType();
         var props = type.GetProperties();
+        
         foreach (var prop in props)
         {
-            if(prop.PropertyType == typeof(string) || prop.PropertyType == typeof(int) || prop.PropertyType == typeof(double) || prop.PropertyType == typeof(bool) || prop.PropertyType == typeof(IBrush))
+            if (!excludedWords.Contains(prop.Name))
+            {
                 KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
+            }
         }
     }
     
@@ -292,28 +333,63 @@ public partial class MainWindow : Window
     {
         if(e.Key != Key.Enter) return;
         var textBox = sender as TextBox;
+        textBox.Foreground = Brushes.Black;
         var parentPanel = textBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
         Type jElement_type = selectedTreeItem.element.GetType();
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
-        
-        if (prop_type == typeof(string))
-            prop.SetValue(selectedTreeItem.element, textBox.Text);
-        else if (prop_type == typeof(int))
-            prop.SetValue(selectedTreeItem.element, Convert.ToInt32(textBox.Text));
-        else if (prop_type == typeof(double))
-            prop.SetValue(selectedTreeItem.element, Convert.ToDouble(textBox.Text));
-        else if (prop_type == typeof(bool))
-            prop.SetValue(selectedTreeItem.element, Convert.ToBoolean(textBox.Text));
-        else if (prop_type == typeof(IBrush))
+
+        if(textBox.Text == "не число") return;
+        try
         {
-            var brush = new SolidColorBrush(Color.Parse(textBox.Text));
-            prop.SetValue(selectedTreeItem.element, brush);
+            
+
+            if (prop.Name == "Name")
+            {
+                FieldInfo privateField =
+                    typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
+                privateField.SetValue(selectedTreeItem.element, textBox.Text);
+                selectedTreeItem.Header = textBox.Text;
+            }
+            else if (prop_type == typeof(string))
+                prop.SetValue(selectedTreeItem.element, textBox.Text);
+            else if (prop_type == typeof(int))
+                prop.SetValue(selectedTreeItem.element, Convert.ToInt32(textBox.Text));
+            else if (prop_type == typeof(double))
+            {
+                textBox.Text = textBox.Text.Replace('.', ',');
+                prop.SetValue(selectedTreeItem.element, Convert.ToDouble(textBox.Text));
+            }
+            else if (prop_type == typeof(bool))
+                prop.SetValue(selectedTreeItem.element, Convert.ToBoolean(textBox.Text));
+            else if (prop_type == typeof(IBrush))
+            {
+                var brush = new SolidColorBrush(Color.Parse(textBox.Text));
+                prop.SetValue(selectedTreeItem.element, brush);
+            }
+            else if (prop_type == typeof(Thickness))
+            {
+                var values = textBox.Text.Split(',');
+                var rect = new Thickness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
+                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
+                prop.SetValue(selectedTreeItem.element, rect);
+            }
+            else if (prop_type == typeof(CornerRadius))
+            {
+                var values = textBox.Text.Split(',');
+                var rect = new CornerRadius(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
+                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
+                prop.SetValue(selectedTreeItem.element, rect);
+            }
         }
-        
-        
+        catch
+        {
+            textBox.Text = "Некорректное значение";
+            textBox.Foreground = Brushes.Red;
+        }
+
     }
 
     
