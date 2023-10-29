@@ -8,7 +8,7 @@
     
     <DockPanel>
        
-       <Button DockPanel.Dock="Top" Height="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">DEBUG/TESTS </Button>
+       <Button DockPanel.Dock="Top" Height="100" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Click="DEBUG">XAMLize! </Button>
        <Button DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="50" VerticalContentAlignment="Center" Click="RemovejElement"> REMOVE</Button>
       
        <!-- Тут будет расположена иерархия объектов -->

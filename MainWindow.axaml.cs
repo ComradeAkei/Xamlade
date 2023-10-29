@@ -21,6 +21,17 @@ public class KeyValue
     public string? Value { get; set; }
 }
 
+public static class Broadcast
+{
+    public delegate void EventHandler(int mode);
+
+    public static event EventHandler OnBroadcast;
+
+    public static void InitXAML()=> OnBroadcast?.Invoke(0);
+    public static void XAMLize()=> OnBroadcast?.Invoke(1);
+    
+}
+
 public partial class MainWindow : Window
 {
     
@@ -140,8 +151,22 @@ public partial class MainWindow : Window
 
     private void DEBUG(object? sender, RoutedEventArgs? e)
     {
+        ((Button)sender).Content = "   XAMLize   ";
+      
         
-        Type type = selectedTreeItem.element.GetType();
+        Broadcast.InitXAML();
+        while (MainCanvas.XAMLRating > -1)
+        {
+            Broadcast.XAMLize();
+        }
+        string filePath = "output.XAML";
+        File.WriteAllLines(filePath, MainCanvas.XAMLPiece);
+        
+        
+        
+        
+        
+    /*    Type type = selectedTreeItem.element.GetType();
         var props = type.GetProperties();
         ConstructorInfo? constructor = type.GetConstructor(new Type[] { });
         var DefaultObject = constructor.Invoke(new object[] { });
@@ -155,6 +180,8 @@ public partial class MainWindow : Window
                sw.WriteLine($"{prop.Name};{prop.GetValue(selectedTreeItem.element)};{prop.GetValue(DefaultObject)}");
         }
         sw.Close();
+        */
+    
     }
 
 

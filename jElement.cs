@@ -55,7 +55,10 @@ public interface JControl
     public IChildContainer? jParent { get; set; }
     public object Type { get; }
     public mTreeViewItem? mTreeItem { get; set; }
-   
+    
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+
     // Устанавливает фон элемента
     IBrush? Background { get; set; }
     
@@ -115,7 +118,7 @@ public class mTreeViewItem : TreeViewItem
     public mTreeViewItem(JControl element)
     {
         this.element = element;
-        this.Header = element.Name;
+        Header = element.Name;
         //Обратная связь с jElement
         element.mTreeItem = this;
     }
@@ -127,43 +130,90 @@ public class jButton : Button, JControl
     private ControlType controlType => ControlType.Button;
     public object Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
-    
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+
+
     public new bool IsPressed
     {
         get => base.IsPressed;
-        set => base.SetValue(IsPressedProperty, value);
+        set => SetValue(IsPressedProperty, value);
     }
 
     public new string? Name
     {
         get => base.Name;
-        set => base.SetValue(NameProperty, value);
+        set => SetValue(NameProperty, value);
+    }
+
+    public jButton()
+    {
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+    
+    private void XAMLize(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
     }
    
 }
 
 public class jCheckBox : CheckBox, JControl
 {
+    public jCheckBox()
+    {
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+
     protected override Type StyleKeyOverride => typeof(CheckBox);
     public IChildContainer? jParent { get; set; }
     
     private ControlType controlType => ControlType.CheckBox;
     public object Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
+    
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+
     public new bool IsPressed
     {
         get => base.IsPressed;
-        set => base.SetValue(IsPressedProperty, value);
+        set => SetValue(IsPressedProperty, value);
     }
+    private void XAMLize(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+    
 }
 
 public class jTextBlock : TextBlock, JControl
 {
+    public jTextBlock()
+    {
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+
     protected override Type StyleKeyOverride => typeof(TextBlock);
     public IChildContainer? jParent { get; set; }
     private ControlType controlType => ControlType.TextBox;
     public object Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
+    
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+
+    private void XAMLize(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+ 
     public bool IsPressed { get; set; }
 }
 public class jCanvas : Canvas, IChildContainer, JControl
@@ -174,31 +224,60 @@ public class jCanvas : Canvas, IChildContainer, JControl
     private ContainerType containerType => ContainerType.Canvas;
     public object Type => containerType;
     public mTreeViewItem? mTreeItem { get; set; }
+  
+    public List<string> XAMLPiece { get; set; }
     public IChildContainer? jParent { get; set; }
     public List<JControl> jChildren { get; }
-
     public jCanvas()
     {
         jChildren = new List<JControl>();
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
     }
-    public jCanvas(IChildContainer jParent)
-    {
-        this.jParent = jParent;
-        jChildren = new List<JControl>();
-    }
+
     public void AddChild(JControl child)
     {
         jChildren.Add(child);
         child.jParent = this;
-        Canvas.SetTop((Control)child,0);
-        Canvas.SetLeft((Control)child, 0);
+        SetTop((Control)child,0);
+        SetLeft((Control)child, 0);
      //   Console.WriteLine(child.GetType().ToString());
-        this.Children.Add((Control)child);
+        Children.Add((Control)child);
     }
     public void RemoveChild(JControl child)
     {
         jChildren.Remove(child);
-        this.Children.Remove((Control)child);
+        Children.Remove((Control)child);
+    }
+    public int XAMLRating { get; set; }
+    private void XAMLize(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+    
+    
+
+}
+
+public static class XAMLGenerator
+{
+    public static void XAMLRatingInit(JControl element)
+    {
+        element.XAMLPiece.Clear();
+        element.XAMLRating = element is IChildContainer container ? container.jChildren.Count : 0;
+        element.XAMLPiece.Add($"<{element.Type} Name = \"{element.Name}\">");
+    }
+    public static void XAMLize(JControl element)
+    {
+        if (element.XAMLRating == 0)
+        {
+            element.XAMLPiece.Add($"</{element.Type}>");
+            element.XAMLRating--;
+            if (element.jParent is not JControl parent) return;
+            parent.XAMLPiece.AddRange(element.XAMLPiece);
+            parent.XAMLRating--;
+        }
     }
 
 }

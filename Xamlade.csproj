@@ -22,4 +22,9 @@
     <ItemGroup>
       <None Remove="Xamlade.png" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <Content Include="bin\Debug\net7.0\output.XAML" />
+    </ItemGroup>
 </Project>
