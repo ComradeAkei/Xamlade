@@ -21,10 +21,7 @@
 
     <ItemGroup>
       <None Remove="Xamlade.png" />
+      <None Remove="Avalonia.AXAML.LanguageServer.Log20231031.txt" />
     </ItemGroup>
 
-
-    <ItemGroup>
-      <Content Include="bin\Debug\net7.0\output.XAML" />
-    </ItemGroup>
 </Project>

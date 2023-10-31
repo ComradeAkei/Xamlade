@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -262,11 +263,36 @@ public class jCanvas : Canvas, IChildContainer, JControl
 
 public static class XAMLGenerator
 {
+    public static string GetProperties(JControl element)
+    {
+        string getProperties = "";
+        Type type = element.GetType();
+        var props = type.GetProperties();
+        ConstructorInfo? constructor = type.GetConstructor(new Type[] { });
+        var DefaultObject = constructor.Invoke(new object[] { });
+        
+        foreach (var prop in props)
+        {
+            if(!MainWindow.ExcludedWords.Contains(prop.Name))
+                if(prop.GetValue(element)?.ToString() != prop.GetValue(DefaultObject)?.ToString()
+                   && prop.GetValue(element)!=null)
+                    getProperties+=($"{prop.Name}=\"{prop.GetValue(element)}\" ");
+        }
+        if (element.Name == "MainCanvas") return getProperties;
+        if ((ContainerType)(element.jParent as JControl).Type == ContainerType.Canvas)
+        {
+            getProperties+=$"Canvas.Left=\"{Convert.ToInt32(Canvas.GetLeft((Control)element))}\" ";
+            getProperties+=$"Canvas.Top=\"{Convert.ToInt32(Canvas.GetTop((Control)element))}\" ";
+        }
+
+        return getProperties;
+
+    }
     public static void XAMLRatingInit(JControl element)
     {
         element.XAMLPiece.Clear();
         element.XAMLRating = element is IChildContainer container ? container.jChildren.Count : 0;
-        element.XAMLPiece.Add($"<{element.Type} Name = \"{element.Name}\">");
+        element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
     }
     public static void XAMLize(JControl element)
     {

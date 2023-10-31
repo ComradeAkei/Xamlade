@@ -134,7 +134,6 @@ public partial class MainWindow : Window
     //    btn.PointerReleased += OnjControlReleased;
         Canvas.SetLeft(btn, 0);
         Canvas.SetTop(btn, 0);
-        
         selectedTreeItem.Items.Add(new mTreeViewItem(btn));
         var parentCanvas = selectedTreeItem.element as jCanvas;
         parentCanvas.AddChild(btn);
@@ -159,9 +158,19 @@ public partial class MainWindow : Window
         {
             Broadcast.XAMLize();
         }
-        string filePath = "output.XAML";
-        File.WriteAllLines(filePath, MainCanvas.XAMLPiece);
-        
+        string filePath = @"/home/akei/Projects/Xamlade/Xamlade/TestWindow.axaml";
+        var outputXAML = new List<string>();
+        outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
+        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+        xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
+        xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+        mc:Ignorable=""d"" d:DesignWidth=""800"" d:DesignHeight=""450""
+        x:Class=""Xamlade.TestWindow""
+        Title=""TestWindow"">");
+        outputXAML.AddRange(MainCanvas.XAMLPiece);
+        outputXAML.Add(@"</Window>");
+        File.WriteAllLines(filePath, outputXAML);
+      
         
         
         
@@ -185,9 +194,9 @@ public partial class MainWindow : Window
     }
 
 
-    readonly List<string> excludedWords = new List<string>
+    public static readonly List<string> ExcludedWords = new List<string>
     {
-        "jParent", "mTreeItem", "Content", "Presenter", "Template", "IsLoaded", 
+        "jParent", "mTreeItem", "Presenter", "Template", "IsLoaded", 
         "DesiredSize", "IsMeasureValid", "IsArrangeValid", "RenderTransform", 
         "DataContext", "IsInitialized", "Parent", "ActualThemeVariant", 
         "Transitions", "Item", "Type", "IsPressed", "ClickMode", "IsDefault", "IsCancel", 
@@ -199,7 +208,8 @@ public partial class MainWindow : Window
         "Styles", "StyleKey", "Resources", "Command", "HotKey", 
         "CommandParameter", "Flyout","Theme", "Clip","TemplatedParent","Effect",
         "OpacityMask","Bounds", "Cursor","Tag", "ContextFlyout","ContextMenu","FocusAdorner","IsItemsHost",
-        "Children","jChildren","FontFamily", "TextDecoration","ContentTemplate","FlowDirection","Inlines","TextLayout"
+        "Children","jChildren","FontFamily", "TextDecoration","ContentTemplate","FlowDirection","Inlines","TextLayout",
+        "XAMLRating", "XAMLPiece"
     };
     
     private void ShowProperties()
@@ -211,7 +221,7 @@ public partial class MainWindow : Window
         
         foreach (var prop in props)
         {
-            if (!excludedWords.Contains(prop.Name))
+            if (!ExcludedWords.Contains(prop.Name))
             {
                 KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
             }
@@ -313,7 +323,7 @@ public partial class MainWindow : Window
         if(selectedTreeItem.element is not IChildContainer) return;
         var checkBox = new jCheckBox
         {
-            Name = $"Checkbox {i++}",
+            Name = $"Checkbox{i++}",
             Background = Brushes.Blue,
             Content = TEXT.Text,
             FontSize = 20,
@@ -337,7 +347,7 @@ public partial class MainWindow : Window
         if(selectedTreeItem.element is not IChildContainer) return;
         var textBlock = new jTextBlock
         {
-            Name = $"Textblock {i++}",
+            Name = $"Textblock{i++}",
             Background = Brushes.Blue,
             Text = TEXT.Text,
             FontSize = 20,
@@ -419,5 +429,10 @@ public partial class MainWindow : Window
 
     }
 
-    
+
+    private void RUN_WINDOW(object? sender, RoutedEventArgs e)
+    {
+        TestWindow window = new TestWindow();
+        window.Show();
+    }
 }

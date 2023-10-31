@@ -1,0 +1,31 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Xamlade.TestWindow"
+        Title="TestWindow">
+    <Canvas Background="Bisque" Width="700" Name="MainCanvas">
+        <CheckBox IsChecked="True" Content="text" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                  Background="Blue" BorderBrush="Transparent" CornerRadius="3,3,3,3" FontSize="20" Foreground="White"
+                  Padding="8,0,0,0" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center"
+                  Name="Checkbox2" Canvas.Left="585" Canvas.Top="77">
+        </CheckBox>
+        <Canvas Background="LightBlue" Width="400" Height="400" Name="Canvas7" Canvas.Left="300" Canvas.Top="191">
+        </Canvas>
+        <Canvas Background="#ff43743a" Width="400" Height="400" Name="Canvas3" Canvas.Left="0" Canvas.Top="0">
+            <CheckBox Content="text" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                      Background="Blue" BorderBrush="Transparent" CornerRadius="3,3,3,3" FontSize="20"
+                      Foreground="White" Padding="8,0,0,0" MinHeight="32" HorizontalAlignment="Left"
+                      VerticalAlignment="Center" Name="Checkbox4" Canvas.Left="0" Canvas.Top="0">
+            </CheckBox>
+            <TextBox Background="Blue" Text="text" FontSize="20" Foreground="White" Name="Textblock5" Canvas.Left="100"
+                     Canvas.Top="236">
+            </TextBox>
+            <Button Name="Button6" Content="text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1"
+                    CornerRadius="3,3,3,3" FontSize="14" Foreground="White" Padding="8,5,8,6"
+                    HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="264" Canvas.Top="176">
+            </Button>
+        </Canvas>
+    </Canvas>
+</Window>
