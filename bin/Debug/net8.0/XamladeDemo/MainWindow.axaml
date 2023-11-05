@@ -1,0 +1,13 @@
+<Window xmlns="https://github.com/avaloniaui"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         mc:Ignorable="d" Width="700" Height="600"
+         x:Class="XamladeDemo.MainWindow"
+         Title="TestWindow">
+<Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+<Button Name="Button2" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="14" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="128" Canvas.Top="180" >
+</Button>
+</Canvas>
+</Window>

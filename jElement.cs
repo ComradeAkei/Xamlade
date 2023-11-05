@@ -38,7 +38,8 @@ public enum ControlType
     RadioButton,
     Slider,
     TextBox,
-    ToggleButton
+    ToggleButton,
+    TextBlock
 }
 
 
@@ -107,6 +108,17 @@ public interface JControl
     public Rect Bounds { get; }
     // Позволяет присваивать один или несколько CSS-классов элементу
    // Classes Classes { get; set; }
+   private void XAMLize(int mode)
+   {
+       if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+       else if (mode == 1) XAMLGenerator.XAMLize(this);
+   }
+   public void Dispose()
+   {
+       FieldInfo privateField =
+           typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
+       privateField.SetValue(this, null);
+   }
    
     
 }
@@ -202,7 +214,7 @@ public class jTextBlock : TextBlock, JControl
 
     protected override Type StyleKeyOverride => typeof(TextBlock);
     public IChildContainer? jParent { get; set; }
-    private ControlType controlType => ControlType.TextBox;
+    private ControlType controlType => ControlType.TextBlock;
     public object Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     
@@ -215,6 +227,36 @@ public class jTextBlock : TextBlock, JControl
         else if (mode == 1) XAMLGenerator.XAMLize(this);
     }
  
+    public bool IsPressed { get; set; }
+}
+
+public class jTextBox : TextBox, JControl
+{
+    public jTextBox()
+    {
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+
+    protected override Type StyleKeyOverride => typeof(TextBox);
+    public IChildContainer? jParent { get; set; }
+    private ControlType controlType => ControlType.TextBox;
+    public object Type => controlType;
+    public mTreeViewItem? mTreeItem { get; set; }
+
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+
+    private void XAMLize(int mode)
+    {
+        if (mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+
+    protected override void OnPointerPressed(PointerPressedEventArgs e) { }
+    protected override void OnPointerMoved(PointerEventArgs e) { }
+    protected override void OnPointerReleased(PointerReleasedEventArgs e) { }
+
     public bool IsPressed { get; set; }
 }
 public class jCanvas : Canvas, IChildContainer, JControl
@@ -253,57 +295,10 @@ public class jCanvas : Canvas, IChildContainer, JControl
     public int XAMLRating { get; set; }
     private void XAMLize(int mode)
     {
+        if (this.Name == null) return;
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
     }
-    
-    
 
 }
 
-public static class XAMLGenerator
-{
-    public static string GetProperties(JControl element)
-    {
-        string getProperties = "";
-        Type type = element.GetType();
-        var props = type.GetProperties();
-        ConstructorInfo? constructor = type.GetConstructor(new Type[] { });
-        var DefaultObject = constructor.Invoke(new object[] { });
-        
-        foreach (var prop in props)
-        {
-            if(!MainWindow.ExcludedWords.Contains(prop.Name))
-                if(prop.GetValue(element)?.ToString() != prop.GetValue(DefaultObject)?.ToString()
-                   && prop.GetValue(element)!=null)
-                    getProperties+=($"{prop.Name}=\"{prop.GetValue(element)}\" ");
-        }
-        if (element.Name == "MainCanvas") return getProperties;
-        if ((ContainerType)(element.jParent as JControl).Type == ContainerType.Canvas)
-        {
-            getProperties+=$"Canvas.Left=\"{Convert.ToInt32(Canvas.GetLeft((Control)element))}\" ";
-            getProperties+=$"Canvas.Top=\"{Convert.ToInt32(Canvas.GetTop((Control)element))}\" ";
-        }
-
-        return getProperties;
-
-    }
-    public static void XAMLRatingInit(JControl element)
-    {
-        element.XAMLPiece.Clear();
-        element.XAMLRating = element is IChildContainer container ? container.jChildren.Count : 0;
-        element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
-    }
-    public static void XAMLize(JControl element)
-    {
-        if (element.XAMLRating == 0)
-        {
-            element.XAMLPiece.Add($"</{element.Type}>");
-            element.XAMLRating--;
-            if (element.jParent is not JControl parent) return;
-            parent.XAMLPiece.AddRange(element.XAMLPiece);
-            parent.XAMLRating--;
-        }
-    }
-
-}

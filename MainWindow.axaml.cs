@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -21,16 +23,6 @@ public class KeyValue
     public string? Value { get; set; }
 }
 
-public static class Broadcast
-{
-    public delegate void EventHandler(int mode);
-
-    public static event EventHandler OnBroadcast;
-
-    public static void InitXAML()=> OnBroadcast?.Invoke(0);
-    public static void XAMLize()=> OnBroadcast?.Invoke(1);
-    
-}
 
 public partial class MainWindow : Window
 {
@@ -123,7 +115,7 @@ public partial class MainWindow : Window
         var btn = new jButton
         {
             Name = $"Button{i++}",
-            Content = TEXT.Text,
+            Content = "Text",
             Background = Brushes.Blue,
             Foreground = Brushes.White
         }; 
@@ -151,24 +143,24 @@ public partial class MainWindow : Window
     private void DEBUG(object? sender, RoutedEventArgs? e)
     {
         ((Button)sender).Content = "   XAMLize   ";
-      
-        
+
+       // selectedTreeItem.element.Background = selectedOriginalBackground;
         Broadcast.InitXAML();
         while (MainCanvas.XAMLRating > -1)
         {
             Broadcast.XAMLize();
         }
-        string filePath = @"/home/akei/Projects/Xamlade/Xamlade/TestWindow.axaml";
+        string filePath = @"XamladeDemo/MainWindow.axaml";
         var outputXAML = new List<string>();
-        outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
-        xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
-        xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
-        xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
-        mc:Ignorable=""d"" d:DesignWidth=""800"" d:DesignHeight=""450""
-        x:Class=""Xamlade.TestWindow""
-        Title=""TestWindow"">");
+         outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
+         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
+         xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+         mc:Ignorable=""d"" Width=""700"" Height=""600""
+         x:Class=""XamladeDemo.MainWindow""
+         Title=""TestWindow"">");
         outputXAML.AddRange(MainCanvas.XAMLPiece);
-        outputXAML.Add(@"</Window>");
+         outputXAML.Add(@"</Window>");
         File.WriteAllLines(filePath, outputXAML);
       
         
@@ -209,7 +201,7 @@ public partial class MainWindow : Window
         "CommandParameter", "Flyout","Theme", "Clip","TemplatedParent","Effect",
         "OpacityMask","Bounds", "Cursor","Tag", "ContextFlyout","ContextMenu","FocusAdorner","IsItemsHost",
         "Children","jChildren","FontFamily", "TextDecoration","ContentTemplate","FlowDirection","Inlines","TextLayout",
-        "XAMLRating", "XAMLPiece"
+        "XAMLRating", "XAMLPiece","CanPaste","CanUndo"
     };
     
     private void ShowProperties()
@@ -231,11 +223,11 @@ public partial class MainWindow : Window
     // Выбрать редактируемый элемент
    private void SelectjElement(JControl element)
     {
-        selectedTreeItem.element.Background = selectedOriginalBackground;
+     //   selectedTreeItem.element.Background = selectedOriginalBackground;
         selectedTreeItem = element.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         selectedOriginalBackground = selectedTreeItem.element.Background;
-        selectedTreeItem.element.Background = Brushes.LightBlue;
+        //selectedTreeItem.element.Background = Brushes.LightBlue;
         InitMovable(selectedTreeItem.element);
         ShowProperties();
     }
@@ -254,8 +246,8 @@ public partial class MainWindow : Window
         jCanvas cnv1 = new jCanvas
         {
             Background = new SolidColorBrush(randomColor),
-            Height = Convert.ToInt32(CanvasHeight.Text),
-            Width = Convert.ToInt32(CanvasWidth.Text),
+            Height = 400,
+            Width = 400,
             Name = $"Canvas{i++}"
         };
         cnv1.PointerMoved += jCanvas_OnPointerMoved;
@@ -297,6 +289,8 @@ public partial class MainWindow : Window
     private void RemovejElement(object? sender, RoutedEventArgs e)
     {
         if(selectedTreeItem == MainCanvas.mTreeItem) return;
+        var element = selectedTreeItem.element;
+        element.Dispose();
         selectedTreeItem.element.jParent.RemoveChild(selectedTreeItem.element);
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
@@ -325,15 +319,15 @@ public partial class MainWindow : Window
         {
             Name = $"Checkbox{i++}",
             Background = Brushes.Blue,
-            Content = TEXT.Text,
+            Content = "Text",
             FontSize = 20,
             Foreground = Brushes.White
         }; 
         checkBox.PointerEntered += OnjControlPointerEntered;
         checkBox.PointerExited += OnjControlPointerExited;
-        // checkBox.Click += jButtonClick;
+        checkBox.Click += jButtonClick;
         checkBox.PointerPressed += OnjControlPressed;
-        checkBox.PointerReleased += OnjControlReleased;
+       // checkBox.PointerReleased += OnjControlReleased;
         Canvas.SetLeft(checkBox, 0);
         Canvas.SetTop(checkBox, 0);
         
@@ -347,9 +341,9 @@ public partial class MainWindow : Window
         if(selectedTreeItem.element is not IChildContainer) return;
         var textBlock = new jTextBlock
         {
-            Name = $"Textblock{i++}",
+            Name = $"TextBlock{i++}",
             Background = Brushes.Blue,
-            Text = TEXT.Text,
+            Text = "Text",
             FontSize = 20,
             Foreground = Brushes.White
         }; 
@@ -370,7 +364,7 @@ public partial class MainWindow : Window
     {
         if(e.Key != Key.Enter) return;
         var textBox = sender as TextBox;
-        textBox.Foreground = Brushes.Black;
+        textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
         var parentPanel = textBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
@@ -390,6 +384,8 @@ public partial class MainWindow : Window
                 privateField.SetValue(selectedTreeItem.element, textBox.Text);
                 selectedTreeItem.Header = textBox.Text;
             }
+            else if(prop.Name=="Content")
+                prop.SetValue(selectedTreeItem.element, textBox.Text);
             else if (prop_type == typeof(string))
                 prop.SetValue(selectedTreeItem.element, textBox.Text);
             else if (prop_type == typeof(int))
@@ -430,9 +426,67 @@ public partial class MainWindow : Window
     }
 
 
-    private void RUN_WINDOW(object? sender, RoutedEventArgs e)
+    private async void RUN_WINDOW(object? sender, RoutedEventArgs e)
     {
-        TestWindow window = new TestWindow();
-        window.Show();
+        await ExecuteLinuxCommandAsync("XamladeDemo/RUN.sh");
     }
+    
+    static async Task ExecuteLinuxCommandAsync(string command)
+    {
+        using (Process process = new Process())
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "bash",
+                RedirectStandardInput = true,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+
+            process.StartInfo = startInfo;
+            process.Start();
+
+            StreamWriter streamWriter = process.StandardInput;
+            StreamReader streamReader = process.StandardOutput;
+
+            await streamWriter.WriteLineAsync(command); // Асинхронная запись команды
+
+            string result = await streamReader.ReadToEndAsync(); // Асинхронное чтение результата
+
+            Console.WriteLine("Результат выполнения команды: ");
+            Console.WriteLine(result);
+
+            await process.WaitForExitAsync();
+            process.Close();
+        }
+    }
+
+    private void GenerateTextBox_OnClick(object? sender, RoutedEventArgs e)
+    {
+        if(selectedTreeItem.element is not IChildContainer) return;
+        var textBox = new jTextBox
+        {
+            Name = $"TextBox{i++}",
+            Background = Brushes.Transparent,
+            Text = "Text",
+            FontSize = 20,
+        };
+        textBox.Cursor = new Cursor(StandardCursorType.Arrow);
+        textBox.Foreground=Brushes.Blue;
+
+      //  textBox.PointerEntered += TextBox_PointerMoved;
+        //textBox.PointerExited += Button1_OnPointerExited;
+        textBox.PointerPressed += OnjControlPressed;
+        textBox.PointerReleased += OnjControlReleased;
+        Canvas.SetLeft(textBox, 0);
+        Canvas.SetTop(textBox, 0);
+        
+        selectedTreeItem.Items.Add(new mTreeViewItem(textBox));
+        var parentCanvas = selectedTreeItem.element as jCanvas;
+        parentCanvas.AddChild(textBox);
+    }
+
+    
 }
