@@ -28,14 +28,17 @@
         <TabControl Name="MainTabControl" Background="#2B2B2B" Margin="0,2,0,2">
             <TabItem Header="Элементы">
                 <StackPanel Width="300" Orientation="Vertical" Background="#2B2B2B">
-                    <Button Name="GenerateButton" Content="New Button" Click="GenerateButton_OnClick"
+                    <Button Name="GenerateButton" Content="Button" Click="GenerateElement"
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateCanvas" Content="New Canvas" Click="GenerateCanvas_OnClick" Margin="0,0,0,10" />
-                    <Button Name="GenerateCheckBox" Content="New CheckBox" Click="GenerateCheckBox_OnClick"
+                    <Button Name="GenerateCanvas" Content="Canvas" Click="GenerateElement" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateTextBlock" Content="New TextBlock" Click="GenerateTextBlock_OnClick"
+                    <Button Name="GenerateCheckBox" Content="CheckBox" Click="GenerateElement"
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateTextBox" Content="New TextBox" Click="GenerateTextBox_OnClick"
+                    <Button Name="GenerateTextBlock" Content="TextBlock" Click="GenerateElement"
+                            Margin="10,0,10,10" />
+                    <Button Name="GenerateTextBox" Content="TextBox" Click="GenerateElement"
+                            Margin="10,0,10,10" />
+                    <Button Name="GenerateStackPanel" Content="StackPanel" Click="GenerateElement"
                             Margin="10,0,10,10" />
                 </StackPanel>
             </TabItem>

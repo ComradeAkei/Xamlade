@@ -14,6 +14,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Controls.Primitives;
+using Avalonia.Layout;
 
 namespace Xamlade;
 
@@ -109,27 +110,7 @@ public partial class MainWindow : Window
     
     
 
-    private void GenerateButton_OnClick(object? sender, RoutedEventArgs e)
-    {
-        if(selectedTreeItem.element is not IChildContainer) return;
-        var btn = new jButton
-        {
-            Name = $"Button{i++}",
-            Content = "Text",
-            Background = Brushes.Blue,
-            Foreground = Brushes.White
-        }; 
-         btn.PointerEntered += OnjControlPointerEntered;
-        btn.PointerExited += OnjControlPointerExited;
-        btn.Click += jButtonClick;
-       // btn.PointerPressed += OnjControlPressed;
-    //    btn.PointerReleased += OnjControlReleased;
-        Canvas.SetLeft(btn, 0);
-        Canvas.SetTop(btn, 0);
-        selectedTreeItem.Items.Add(new mTreeViewItem(btn));
-        var parentCanvas = selectedTreeItem.element as jCanvas;
-        parentCanvas.AddChild(btn);
-    }
+   
 
 
     private void InitMovable(JControl obj)
@@ -232,34 +213,7 @@ public partial class MainWindow : Window
         ShowProperties();
     }
     
-    
-    private void GenerateCanvas_OnClick(object? sender, RoutedEventArgs e)
-    {
-        if(selectedTreeItem.element is not IChildContainer) return;
-        // Генерация случайного цвета в формате HEX
-        string randomHexColor = $"#{random.Next(0x1000000):X6}";
-
-        // Преобразование HEX строки в Color объект
-        Color randomColor = Color.Parse(randomHexColor);
-        
-        
-        jCanvas cnv1 = new jCanvas
-        {
-            Background = new SolidColorBrush(randomColor),
-            Height = 400,
-            Width = 400,
-            Name = $"Canvas{i++}"
-        };
-        cnv1.PointerMoved += jCanvas_OnPointerMoved;
-        cnv1.PointerReleased += OnjControlReleased;
-        cnv1.PointerPressed += OnjControlPressed;
-        Canvas.SetTop(cnv1, 0);
-        Canvas.SetLeft(cnv1, 0);
-        selectedTreeItem.Items.Add(new mTreeViewItem(cnv1));
-        var parentCanvas = selectedTreeItem.element as jCanvas;
-        parentCanvas.AddChild(cnv1);
-
-    }
+   
     
 
     private void MainHierarchyTree_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -271,7 +225,7 @@ public partial class MainWindow : Window
         e.Handled = true;
     }
 
-    private void jButtonClick(object? sender, RoutedEventArgs e)
+    private void jElementClick(object? sender, RoutedEventArgs e)
     {
      MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
 
@@ -312,53 +266,9 @@ public partial class MainWindow : Window
         element.IsPressed = false;
     }
 
-    private void GenerateCheckBox_OnClick(object? sender, RoutedEventArgs e)
-    {
-        if(selectedTreeItem.element is not IChildContainer) return;
-        var checkBox = new jCheckBox
-        {
-            Name = $"Checkbox{i++}",
-            Background = Brushes.Blue,
-            Content = "Text",
-            FontSize = 20,
-            Foreground = Brushes.White
-        }; 
-        checkBox.PointerEntered += OnjControlPointerEntered;
-        checkBox.PointerExited += OnjControlPointerExited;
-        checkBox.Click += jButtonClick;
-        checkBox.PointerPressed += OnjControlPressed;
-       // checkBox.PointerReleased += OnjControlReleased;
-        Canvas.SetLeft(checkBox, 0);
-        Canvas.SetTop(checkBox, 0);
-        
-        selectedTreeItem.Items.Add(new mTreeViewItem(checkBox));
-        var parentCanvas = selectedTreeItem.element as jCanvas;
-        parentCanvas.AddChild(checkBox);
-    }
+    
 
-    private void GenerateTextBlock_OnClick(object? sender, RoutedEventArgs e)
-    {
-        if(selectedTreeItem.element is not IChildContainer) return;
-        var textBlock = new jTextBlock
-        {
-            Name = $"TextBlock{i++}",
-            Background = Brushes.Blue,
-            Text = "Text",
-            FontSize = 20,
-            Foreground = Brushes.White
-        }; 
-       // textBlock.PointerEntered += Button1_OnPointerEntered;
-      //  textBlock.PointerExited += Button1_OnPointerExited;
-       //  textBlock.Click += jButtonClick;
-         textBlock.PointerPressed += OnjControlPressed;
-         textBlock.PointerReleased += OnjControlReleased;
-        Canvas.SetLeft(textBlock, 0);
-        Canvas.SetTop(textBlock, 0);
-        
-        selectedTreeItem.Items.Add(new mTreeViewItem(textBlock));
-        var parentCanvas = selectedTreeItem.element as jCanvas;
-        parentCanvas.AddChild(textBlock);
-    }
+   
     
     private void OnPropertyChanged(object? sender, KeyEventArgs e)
     {
@@ -416,6 +326,13 @@ public partial class MainWindow : Window
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
                 prop.SetValue(selectedTreeItem.element, rect);
             }
+            else if (prop_type == typeof(Orientation))
+            {
+                if ((textBox.Text).ToLower() == "vertical")
+                    prop.SetValue(selectedTreeItem.element,Orientation.Vertical);
+                else if ((textBox.Text).ToLower() == "horizontal")
+                    prop.SetValue(selectedTreeItem.element,Orientation.Horizontal);
+            }
         }
         catch
         {
@@ -463,30 +380,7 @@ public partial class MainWindow : Window
         }
     }
 
-    private void GenerateTextBox_OnClick(object? sender, RoutedEventArgs e)
-    {
-        if(selectedTreeItem.element is not IChildContainer) return;
-        var textBox = new jTextBox
-        {
-            Name = $"TextBox{i++}",
-            Background = Brushes.Transparent,
-            Text = "Text",
-            FontSize = 20,
-        };
-        textBox.Cursor = new Cursor(StandardCursorType.Arrow);
-        textBox.Foreground=Brushes.Blue;
-
-      //  textBox.PointerEntered += TextBox_PointerMoved;
-        //textBox.PointerExited += Button1_OnPointerExited;
-        textBox.PointerPressed += OnjControlPressed;
-        textBox.PointerReleased += OnjControlReleased;
-        Canvas.SetLeft(textBox, 0);
-        Canvas.SetTop(textBox, 0);
-        
-        selectedTreeItem.Items.Add(new mTreeViewItem(textBox));
-        var parentCanvas = selectedTreeItem.element as jCanvas;
-        parentCanvas.AddChild(textBox);
-    }
+    
 
     
 }

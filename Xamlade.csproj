@@ -29,11 +29,13 @@
 
     <ItemGroup>
       <AvaloniaXaml Remove="bin\**" />
+      <AvaloniaXaml Remove="TestWindow.axaml" />
     </ItemGroup>
 
 
     <ItemGroup>
       <Compile Remove="bin\**" />
+      <Compile Remove="TestWindow.axaml.cs" />
     </ItemGroup>
 
 

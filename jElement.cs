@@ -4,6 +4,7 @@ using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -108,6 +109,13 @@ public interface JControl
     public Rect Bounds { get; }
     // Позволяет присваивать один или несколько CSS-классов элементу
    // Classes Classes { get; set; }
+
+   public event EventHandler<PointerEventArgs>? PointerEntered;
+   public event EventHandler<PointerEventArgs>? PointerExited;
+   public event EventHandler<RoutedEventArgs>? Click;
+   public event EventHandler<PointerPressedEventArgs>? PointerPressed;
+   public event EventHandler<PointerReleasedEventArgs>? PointerReleased;
+   
    private void XAMLize(int mode)
    {
        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
@@ -228,6 +236,7 @@ public class jTextBlock : TextBlock, JControl
     }
  
     public bool IsPressed { get; set; }
+    public event EventHandler<RoutedEventArgs>? Click;
 }
 
 public class jTextBox : TextBox, JControl
@@ -258,12 +267,14 @@ public class jTextBox : TextBox, JControl
     protected override void OnPointerReleased(PointerReleasedEventArgs e) { }
 
     public bool IsPressed { get; set; }
+    public event EventHandler<RoutedEventArgs>? Click;
 }
 public class jCanvas : Canvas, IChildContainer, JControl
 { 
     protected override Type StyleKeyOverride => typeof(Canvas); 
     
     public bool IsPressed { get; set; }
+    public event EventHandler<RoutedEventArgs>? Click;
     private ContainerType containerType => ContainerType.Canvas;
     public object Type => containerType;
     public mTreeViewItem? mTreeItem { get; set; }
@@ -302,3 +313,42 @@ public class jCanvas : Canvas, IChildContainer, JControl
 
 }
 
+public class jStackPanel : StackPanel, JControl, IChildContainer
+{
+    protected override Type StyleKeyOverride => typeof(StackPanel); 
+    public IChildContainer? jParent { get; set; }
+    private ContainerType containerType => ContainerType.StackPanel;
+    public object Type => containerType;
+    public mTreeViewItem? mTreeItem { get; set; }
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+    public bool IsPressed { get; set; }
+    public event EventHandler<RoutedEventArgs>? Click;
+    public List<JControl> jChildren { get; }
+
+    public jStackPanel()
+    {
+        jChildren = new List<JControl>();
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+    public void AddChild(JControl child)
+    {
+        jChildren.Add(child);
+        child.jParent = this;
+        Children.Add((Control)child);
+    }
+
+    public void RemoveChild(JControl child)
+    {
+        jChildren.Remove(child);
+        Children.Remove((Control)child);
+    }
+    
+    private void XAMLize(int mode)
+    {
+        if (this.Name == null) return;
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+}
