@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xamlade="clr-namespace:Xamlade"
+        xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
         Height="800" Width="1200"
         x:Class="Xamlade.MainWindow"
         x:DataType="xamlade:MainWindow"
@@ -10,9 +11,12 @@
 
         <!-- Верхняя панель с кнопками -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="80" Margin="2,2,2,0">
-            <Button Width="150" Content="Run Window" Click="RUN_WINDOW" Margin="10" Background="SteelBlue" />
-            <Button Width="150" Content="XAMLize!" Click="DEBUG" Margin="10" Background="SteelBlue" />
-            <Button Width="150" Content="Remove" Click="RemovejElement" Margin="10" Background="SteelBlue" />
+            <Button Width="150" Content="Run Window" Click="RUN_WINDOW" Margin="10" Background="#3A8FB7" />
+            <Button Width="150" Content="XAMLize!" Click="DEBUG" Margin="10" Background="#3A8FB7" />
+            <Button Width="150" Content="Remove" Click="RemovejElement" Margin="10" Background="#3A8FB7" />
+            <gif:GifImage Name = "LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}" 
+                          Stretch="None"
+                          StretchDirection="Both" />
         </StackPanel>
 
         <!-- Левая панель с иерархией проекта -->

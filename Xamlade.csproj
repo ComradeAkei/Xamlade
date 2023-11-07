@@ -51,6 +51,16 @@
 
     <ItemGroup>
       <AvaloniaResource Remove="bin\**" />
+      <None Remove="RES\loading.gif" />
+      <AvaloniaResource Include="RES\loading.gif" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <Reference Include="Avalonia.Gif">
+        <HintPath>Avalonia.GIF\Avalonia.Gif.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    
 
 </Project>

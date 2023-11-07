@@ -13,7 +13,8 @@
           "Avalonia.Diagnostics": "11.0.5",
           "Avalonia.Fonts.Inter": "11.0.5",
           "Avalonia.Themes.Fluent": "11.0.5",
-          "Material.Avalonia": "3.0.2"
+          "Material.Avalonia": "3.0.2",
+          "Avalonia.Gif": "1.0.0.0"
         },
         "runtime": {
           "Xamlade.dll": {}
@@ -947,6 +948,14 @@
             "fileVersion": "0.15.0.0"
           }
         }
+      },
+      "Avalonia.Gif/1.0.0.0": {
+        "runtime": {
+          "Avalonia.Gif.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -1459,6 +1468,11 @@
       "sha512": "sha512-QVo/Y39nTYcCKBqrZuwHjXdwaky0yTQPIT3qUTEEK2MZfDtZWrJ2XyZ59zH8LBgB2fL5cWaTuP2pBTpGz/GeDQ==",
       "path": "tmds.dbus.protocol/0.15.0",
       "hashPath": "tmds.dbus.protocol.0.15.0.nupkg.sha512"
+    },
+    "Avalonia.Gif/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

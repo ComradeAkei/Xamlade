@@ -21,23 +21,23 @@ public partial class MainWindow
 {
     public void GenerateElement(object? sender, RoutedEventArgs e)
     {
-        if(selectedTreeItem.element is not IChildContainer) return;
-        var parent = (IChildContainer)selectedTreeItem.element;
-        var typeName = ((Button)sender).Content.ToString();
-        Type elementType = Type.GetType("Xamlade.j"+typeName);
-        JControl element = (JControl)Activator.CreateInstance(elementType);
-        
-        element.Name = typeName + (i++);
-        SetDefaultValues(element);
-        element.PointerEntered += OnjControlPointerEntered;
-        element.PointerExited += OnjControlPointerExited;
-        element.Click += jElementClick;
-        element.PointerPressed += OnjControlPressed;
-        element.PointerReleased += OnjControlReleased;
-        parent.AddChild(element);
-        selectedTreeItem.Items.Add(new mTreeViewItem(element));
-        
-
+            if (!(selectedTreeItem.element is IChildContainer parent)) return;
+    
+            string typeName = ((Button)sender).Content.ToString();
+            Type elementType = Type.GetType("Xamlade.j" + typeName);
+            JControl element = (JControl)Activator.CreateInstance(elementType);
+    
+            element.Name = typeName + (i++);
+            SetDefaultValues(element);
+    
+            element.PointerEntered += OnjControlPointerEntered;
+            element.PointerExited += OnjControlPointerExited;
+            element.Click += jElementClick;
+            element.PointerPressed += OnjControlPressed;
+            element.PointerReleased += OnjControlReleased;
+    
+            parent.AddChild(element);
+            selectedTreeItem.Items.Add(new mTreeViewItem(element));
     }
 
     public static void SetDefaultValues(JControl element)

@@ -7,15 +7,13 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<StackPanel Background="#ffa044fb" Width="400" Height="400" Name="StackPanel40" Canvas.Left="81" Canvas.Top="42" >
-<Button Name="Button41" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" >
+<Button Name="Button0" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="84" Canvas.Top="241" >
 </Button>
-<Button Name="Button42" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" >
+<Button Name="Button1" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="218" Canvas.Top="478" >
 </Button>
-<Button Name="Button43" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" >
+<TextBlock Background="Blue" Text="Text" FontSize="20" Foreground="White" Name="TextBlock2" Canvas.Left="436" Canvas.Top="162" >
+</TextBlock>
+<Button Name="Button3" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="253" Canvas.Top="192" >
 </Button>
-<Button Name="Button44" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" >
-</Button>
-</StackPanel>
 </Canvas>
 </Window>

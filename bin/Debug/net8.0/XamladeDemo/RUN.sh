@@ -1,3 +1,3 @@
 #!/bin/bash
 cd $(dirname $0)
-dotnet run
+exec ./bin/Debug/net7.0/XamladeDemo

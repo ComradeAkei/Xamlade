@@ -15,6 +15,7 @@ using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
+using Avalonia.Gif;
 
 namespace Xamlade;
 
@@ -27,12 +28,16 @@ public class KeyValue
 
 public partial class MainWindow : Window
 {
-    
+
+ 
+    public string SelectedGif => @"avares://Xamlade/RES/loading.gif";
+
+   
     
     #region  Globals
     
     //Отладочный итератор
-    private int i = 2;
+    private int i = 0;
     
     //Случайное число
     private static Random random;
@@ -79,32 +84,34 @@ public partial class MainWindow : Window
     //Всё к хуям заново
     private void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
     {
-        if (movable == null) return;
-        if(Equals((JControl)sender!, movable)) return;
-        if(Equals(movable, MainCanvas)) return;
-        
+        if (movable == null || Equals((JControl)sender!, movable) || Equals(movable, MainCanvas))
+            return;
+
         e.Handled = true;
-        var ParentCanvas = (jCanvas)sender!;
-        if (e.GetCurrentPoint(ParentCanvas).Properties.PointerUpdateKind == PointerUpdateKind.Other)
+
+        var parentCanvas = (jCanvas)sender!;
+        if (e.GetCurrentPoint(parentCanvas).Properties.PointerUpdateKind != PointerUpdateKind.Other)
+            return;
+
+        Point mousePosition = e.GetPosition(parentCanvas);
+        var element = movable as Control;
+
+        if (movable.IsPressed)
         {
-            Point mousePosition = e.GetPosition(ParentCanvas);
-            var element = movable as Control;
-            
-            if (movable.IsPressed)
-            {
-                Canvas.SetLeft(element, mousePosition.X - mov_hw);
-                Canvas.SetTop(element, mousePosition.Y - mov_hh);
+            Canvas.SetLeft(element, mousePosition.X - mov_hw);
+            Canvas.SetTop(element, mousePosition.Y - mov_hh);
 
-                if (Canvas.GetLeft(element) < 0) Canvas.SetLeft(element, 0);
-                if (Canvas.GetTop(element) < 0) Canvas.SetTop(element, 0);
+            if (Canvas.GetLeft(element) < 0)
+                Canvas.SetLeft(element, 0);
 
-                if (Canvas.GetLeft(element) + 2 * mov_hw > ParentCanvas.Bounds.Width)
-                    Canvas.SetLeft(element, ParentCanvas.Bounds.Width - 2 * mov_hw);
+            if (Canvas.GetTop(element) < 0)
+                Canvas.SetTop(element, 0);
 
-                if (Canvas.GetTop(element) + 2 * mov_hh > ParentCanvas.Bounds.Height)
-                    Canvas.SetTop(element, ParentCanvas.Bounds.Height - 2 * mov_hh);
-            }
+            if (Canvas.GetLeft(element) + 2 * mov_hw > parentCanvas.Bounds.Width)
+                Canvas.SetLeft(element, parentCanvas.Bounds.Width - 2 * mov_hw);
 
+            if (Canvas.GetTop(element) + 2 * mov_hh > parentCanvas.Bounds.Height)
+                Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
         }
     }
     
@@ -345,38 +352,36 @@ public partial class MainWindow : Window
 
     private async void RUN_WINDOW(object? sender, RoutedEventArgs e)
     {
+        LoadingGif.IsVisible = true;
+        await ExecuteLinuxCommandAsync("XamladeDemo/BUILD.sh");
+        LoadingGif.IsVisible = false;
         await ExecuteLinuxCommandAsync("XamladeDemo/RUN.sh");
+        
+        
     }
     
-    static async Task ExecuteLinuxCommandAsync(string command)
+    public static async Task<string> ExecuteLinuxCommandAsync(string command)
     {
         using (Process process = new Process())
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo
-            {
-                FileName = "bash",
-                RedirectStandardInput = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
+            process.StartInfo.FileName = "/bin/bash";
+            process.StartInfo.Arguments = $"-c \"{command}\"";
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
 
-            process.StartInfo = startInfo;
             process.Start();
 
-            StreamWriter streamWriter = process.StandardInput;
-            StreamReader streamReader = process.StandardOutput;
+            string result = await process.StandardOutput.ReadToEndAsync();
+            string error = await process.StandardError.ReadToEndAsync();
 
-            await streamWriter.WriteLineAsync(command); // Асинхронная запись команды
+            if (!string.IsNullOrEmpty(error))
+            {
+                throw new Exception($"Error: {error}");
+            }
 
-            string result = await streamReader.ReadToEndAsync(); // Асинхронное чтение результата
-
-            Console.WriteLine("Результат выполнения команды: ");
-            Console.WriteLine(result);
-
-            await process.WaitForExitAsync();
-            process.Close();
+            return result;
         }
     }
 
