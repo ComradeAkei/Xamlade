@@ -142,8 +142,10 @@ public class mTreeViewItem : TreeViewItem
         Header = element.Name;
         //Обратная связь с jElement
         element.mTreeItem = this;
+        
     }
 }
+
 public class jButton : Button, JControl
 {
     protected override Type StyleKeyOverride => typeof(Button);

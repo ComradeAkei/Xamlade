@@ -4,4 +4,6 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/citrus.avalonia/1.6.1/lib/netstandard2.0/Citrus.Avalonia.dll" /&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/semi.avalonia/11.0.1/lib/net6.0/Semi.Avalonia.dll" /&gt;
+  &lt;Assembly Path="/home/akei/.nuget/packages/material.avalonia/3.0.2/lib/netstandard2.0/Material.Styles.dll" /&gt;
+  &lt;Assembly Path="/home/akei/.nuget/packages/avalonia.themes.fluent/11.0.5/lib/net6.0/Avalonia.Themes.Fluent.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>

@@ -4,6 +4,7 @@
     <option name="projectPerEditor">
       <map>
         <entry key="App.axaml" value="Xamlade.csproj" />
+        <entry key="ComboboxStyle.axaml" value="Xamlade.csproj" />
         <entry key="MainWindow.axaml" value="Xamlade.csproj" />
         <entry key="TestWindow.axaml" value="Xamlade.csproj" />
         <entry key="bin/Debug/net7.0/TestWindow.axaml" value="Xamlade.csproj" />

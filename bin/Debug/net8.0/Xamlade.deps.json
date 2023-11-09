@@ -13,6 +13,7 @@
           "Avalonia.Diagnostics": "11.0.5",
           "Avalonia.Fonts.Inter": "11.0.5",
           "Avalonia.Themes.Fluent": "11.0.5",
+          "FluentAvaloniaUI": "2.0.4",
           "Material.Avalonia": "3.0.2",
           "Avalonia.Gif": "1.0.0.0"
         },
@@ -111,6 +112,17 @@
           "lib/net6.0/Avalonia.Controls.DataGrid.dll": {
             "assemblyVersion": "11.0.5.0",
             "fileVersion": "11.0.5.0"
+          }
+        }
+      },
+      "Avalonia.Controls.ItemsRepeater/11.0.4": {
+        "dependencies": {
+          "Avalonia": "11.0.5"
+        },
+        "runtime": {
+          "lib/net6.0/Avalonia.Controls.ItemsRepeater.dll": {
+            "assemblyVersion": "11.0.4.0",
+            "fileVersion": "11.0.4.0"
           }
         }
       },
@@ -260,6 +272,23 @@
           }
         }
       },
+      "FluentAvaloniaUI/2.0.4": {
+        "dependencies": {
+          "Avalonia": "11.0.5",
+          "Avalonia.Controls.ColorPicker": "11.0.5",
+          "Avalonia.Controls.DataGrid": "11.0.5",
+          "Avalonia.Controls.ItemsRepeater": "11.0.4",
+          "Avalonia.Skia": "11.0.5",
+          "MicroCom.CodeGenerator.MSBuild": "0.11.0",
+          "MicroCom.Runtime": "0.11.0"
+        },
+        "runtime": {
+          "lib/net6.0/FluentAvalonia.dll": {
+            "assemblyVersion": "2.0.4.0",
+            "fileVersion": "2.0.4.0"
+          }
+        }
+      },
       "HarfBuzzSharp/2.8.2.3": {
         "dependencies": {
           "HarfBuzzSharp.NativeAssets.Win32": "2.8.2.3",
@@ -352,6 +381,7 @@
           }
         }
       },
+      "MicroCom.CodeGenerator.MSBuild/0.11.0": {},
       "MicroCom.Runtime/0.11.0": {
         "runtime": {
           "lib/net5.0/MicroCom.Runtime.dll": {
@@ -1000,6 +1030,13 @@
       "path": "avalonia.controls.datagrid/11.0.5",
       "hashPath": "avalonia.controls.datagrid.11.0.5.nupkg.sha512"
     },
+    "Avalonia.Controls.ItemsRepeater/11.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wpohui8M3BHskyfZuyF1GorDyL4K/ShWBRvi1V2iH7Vj/YqgWTqGtxi8YEmlbOm9SG+hw8bblGAjmk0WvB4o2w==",
+      "path": "avalonia.controls.itemsrepeater/11.0.4",
+      "hashPath": "avalonia.controls.itemsrepeater.11.0.4.nupkg.sha512"
+    },
     "Avalonia.Desktop/11.0.5": {
       "type": "package",
       "serviceable": true,
@@ -1077,6 +1114,13 @@
       "path": "avalonia.x11/11.0.5",
       "hashPath": "avalonia.x11.11.0.5.nupkg.sha512"
     },
+    "FluentAvaloniaUI/2.0.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bFw0B4RJUuOba2FPOz4VIcj8CpFgkxTQCBWbMFYvY0zU9w4nrhnDptC8oSLZcFRTm7Wd5oaFgNexnrHhicC0Mg==",
+      "path": "fluentavaloniaui/2.0.4",
+      "hashPath": "fluentavaloniaui.2.0.4.nupkg.sha512"
+    },
     "HarfBuzzSharp/2.8.2.3": {
       "type": "package",
       "serviceable": true,
@@ -1118,6 +1162,13 @@
       "sha512": "sha512-Ae+wjMEAyWz2ajdd0DaRFlCMobiNcQDlhlcA7l5Y51s+ksT+Vl9Q0euG9m7clrq0WHzqGKiryXJnlFA0743PTQ==",
       "path": "material.avalonia/3.0.2",
       "hashPath": "material.avalonia.3.0.2.nupkg.sha512"
+    },
+    "MicroCom.CodeGenerator.MSBuild/0.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-CiRuIIvycn7RqT7p72+JdJsw1/No/1nc0Vs45Qkbvkn/uryWU57dGAUaqy9p2trRDvbsRBdQgF1hWLNUpgUSQw==",
+      "path": "microcom.codegenerator.msbuild/0.11.0",
+      "hashPath": "microcom.codegenerator.msbuild.0.11.0.nupkg.sha512"
     },
     "MicroCom.Runtime/0.11.0": {
       "type": "package",

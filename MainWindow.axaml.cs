@@ -180,6 +180,9 @@ public partial class MainWindow : Window
         if(PropListItems != null)
             PropListItems.Clear();
         if(selectedTreeItem.element == MainCanvas) return;
+      //  Type type = selectedTreeItem.element.GetType();
+      //   = type.GetProperties();
+        
         Type type = selectedTreeItem.element.GetType();
         var props = type.GetProperties();
         
@@ -187,7 +190,9 @@ public partial class MainWindow : Window
         {
             if (!ExcludedWords.Contains(prop.Name))
             { 
-                AddPropItem(prop.Name, prop.GetValue(selectedTreeItem.element));
+                
+                var prop_type = type.GetProperty(prop.Name).PropertyType;
+                AddPropItem(prop.Name, prop.GetValue(selectedTreeItem.element), prop_type);
              //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
             }
         }
@@ -264,24 +269,39 @@ public partial class MainWindow : Window
     
 
    
-    
+    private void OnEnumPropertyChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        var comboBox = sender as ComboBox;
+        var parentPanel = comboBox.Parent as DockPanel;
+        var txt_blc = parentPanel.Children[0] as TextBlock;
+        var prop_name = txt_blc.Text;
+        Type jElement_type = selectedTreeItem.element.GetType();
+        var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
+        var prop = jElement_type.GetProperty(prop_name);
+        object enumValue = Enum.Parse(prop_type, comboBox.SelectedItem.ToString());
+        prop.SetValue(selectedTreeItem.element, enumValue);
+        
+
+
+    }
     private void OnPropertyChanged(object? sender, KeyEventArgs e)
     {
         if(e.Key != Key.Enter) return;
         var textBox = sender as TextBox;
-        textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
+        
         var parentPanel = textBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
         Type jElement_type = selectedTreeItem.element.GetType();
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
+            textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
 
+        
+            
         if(textBox.Text == "не число") return;
         try
         {
-            
-
             if (prop.Name == "Name")
             {
                 FieldInfo privateField =
@@ -306,6 +326,8 @@ public partial class MainWindow : Window
             {
                 var brush = new SolidColorBrush(Color.Parse(textBox.Text));
                 prop.SetValue(selectedTreeItem.element, brush);
+                textBox.Foreground = new SolidColorBrush(Color.Parse(textBox.Text));
+                
             }
             else if (prop_type == typeof(Thickness))
             {
@@ -321,13 +343,6 @@ public partial class MainWindow : Window
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
                 prop.SetValue(selectedTreeItem.element, rect);
             }
-            else if (prop_type == typeof(Orientation))
-            {
-                if ((textBox.Text).ToLower() == "vertical")
-                    prop.SetValue(selectedTreeItem.element,Orientation.Vertical);
-                else if ((textBox.Text).ToLower() == "horizontal")
-                    prop.SetValue(selectedTreeItem.element,Orientation.Horizontal);
-            }
         }
         catch
         {
@@ -337,6 +352,7 @@ public partial class MainWindow : Window
 
     }
 
+    
 
     private async void RUN_WINDOW(object? sender, RoutedEventArgs e)
     {
@@ -373,7 +389,6 @@ public partial class MainWindow : Window
         }
     }
 
-    
 
     
 }
