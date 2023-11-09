@@ -76,6 +76,7 @@ public partial class MainWindow : Window
         selectedTreeItem = MainCanvas.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         random = new Random();
+        PropListItems = constructor.Invoke(new object[] { }) as ItemCollection;
     }
     
     
@@ -128,7 +129,7 @@ public partial class MainWindow : Window
     }
 
 
-    private void DEBUG(object? sender, RoutedEventArgs? e)
+    private void XAMLIZE(object? sender, RoutedEventArgs? e)
     {
         ((Button)sender).Content = "   XAMLize   ";
 
@@ -152,24 +153,6 @@ public partial class MainWindow : Window
         File.WriteAllLines(filePath, outputXAML);
       
         
-        
-        
-        
-    /*    Type type = selectedTreeItem.element.GetType();
-        var props = type.GetProperties();
-        ConstructorInfo? constructor = type.GetConstructor(new Type[] { });
-        var DefaultObject = constructor.Invoke(new object[] { });
-        
-        StreamWriter sw = new StreamWriter("out.txt");
-        foreach (var prop in props)
-        {
-           // if(prop.PropertyType == typeof(string) || prop.PropertyType == typeof(int) || prop.PropertyType == typeof(double) || prop.PropertyType == typeof(bool) || prop.PropertyType == typeof(IBrush))
-           if(prop.Name=="Item") continue;
-           if(prop.GetValue(selectedTreeItem.element)?.ToString() == prop.GetValue(DefaultObject)?.ToString())
-               sw.WriteLine($"{prop.Name};{prop.GetValue(selectedTreeItem.element)};{prop.GetValue(DefaultObject)}");
-        }
-        sw.Close();
-        */
     
     }
 
@@ -194,7 +177,8 @@ public partial class MainWindow : Window
     
     private void ShowProperties()
     {
-        KeyValueList.Clear();
+        if(PropListItems != null)
+            PropListItems.Clear();
         if(selectedTreeItem.element == MainCanvas) return;
         Type type = selectedTreeItem.element.GetType();
         var props = type.GetProperties();
@@ -202,20 +186,24 @@ public partial class MainWindow : Window
         foreach (var prop in props)
         {
             if (!ExcludedWords.Contains(prop.Name))
-            {
-                KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
+            { 
+                AddPropItem(prop.Name, prop.GetValue(selectedTreeItem.element));
+             //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
             }
         }
+
+            
+        FieldInfo privateField = typeof(ItemsControl).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
+        privateField.SetValue(PropListBox, PropListItems);
+    
     }
     
     // Выбрать редактируемый элемент
    private void SelectjElement(JControl element)
     {
-     //   selectedTreeItem.element.Background = selectedOriginalBackground;
         selectedTreeItem = element.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         selectedOriginalBackground = selectedTreeItem.element.Background;
-        //selectedTreeItem.element.Background = Brushes.LightBlue;
         InitMovable(selectedTreeItem.element);
         ShowProperties();
     }

@@ -12,7 +12,7 @@
         <!-- Верхняя панель с кнопками -->
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="80" Margin="2,2,2,0">
             <Button Width="150" Content="Run Window" Click="RUN_WINDOW" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="XAMLize!" Click="DEBUG" Margin="10" Background="#3A8FB7" />
+            <Button Width="150" Content="XAMLize!" Click="XAMLIZE" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="Remove" Click="RemovejElement" Margin="10" Background="#3A8FB7" />
             <gif:GifImage Name = "LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}" 
                           Stretch="None"
@@ -50,28 +50,28 @@
             <TabItem Header="Свойства">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel Name="PropertyPanel" Width="300" Background="#2B2B2B">
-                        <ListBox ItemsSource="{Binding KeyValueList}" Width="300">
+                        <ListBox Name = "PropListBox" ItemsSource="{Binding KeyValueList}" Width="300">
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="Padding" Value="0" />
                                 </Style>
                             </ListBox.Styles>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border BorderBrush="#3B46DC" BorderThickness="1">
-                                        <DockPanel Height="35">
-                                            <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center"
-                                                       Foreground="#88F1FF" FontWeight="DemiBold" FontSize="18"
-                                                       HorizontalAlignment="Left" Text="{Binding Key}"
-                                                       Margin="10,0,0,0" MaxWidth="150" />
-                                            <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right"
-                                                     Foreground="#88F1FF" FontWeight="DemiBold"
-                                                     Text="{Binding Value}" Margin="5,0,0,0"
-                                                     KeyDown="OnPropertyChanged" Width="100" />
-                                        </DockPanel>
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
+                            <!-- <ListBox.ItemTemplate> -->
+                            <!--     <DataTemplate> -->
+                            <!--         <Border BorderBrush="#3B46DC" BorderThickness="1"> -->
+                            <!--             <DockPanel Height="35"> -->
+                            <!--                 <TextBlock DockPanel.Dock="Left" VerticalAlignment="Center" -->
+                            <!--                            Foreground="#88F1FF" FontWeight="DemiBold" FontSize="18" -->
+                            <!--                            HorizontalAlignment="Left" Text="{Binding Key}" -->
+                            <!--                            Margin="10,0,0,0" MaxWidth="150" /> -->
+                            <!--                 <TextBox DockPanel.Dock="Right" HorizontalAlignment="Right" -->
+                            <!--                          Foreground="#88F1FF" FontWeight="DemiBold" -->
+                            <!--                          Text="{Binding Value}" Margin="5,0,0,0" -->
+                            <!--                          KeyDown="OnPropertyChanged" Width="100" /> -->
+                            <!--             </DockPanel> -->
+                            <!--         </Border> -->
+                            <!--     </DataTemplate> -->
+                            <!-- </ListBox.ItemTemplate> -->
                         </ListBox>
                     </StackPanel>
                 </ScrollViewer>
