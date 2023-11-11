@@ -7,13 +7,17 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Button Name="Button0" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="84" Canvas.Top="241" >
+<ToggleButton IsThreeState="True" Content="Text" Background="#ffe69f00" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="14" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Name="ToggleButton0" Canvas.Left="42" Canvas.Top="61" >
+</ToggleButton>
+<Button Name="Button1" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="246" Canvas.Top="3" >
 </Button>
-<Button Name="Button1" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="218" Canvas.Top="478" >
+<TextBox SelectionBrush="#ff0078d7" CaretBrush="Black" Text="Text" Background="Transparent" BorderBrush="#99000000" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="Blue" Padding="10,6,6,5" MinWidth="64" MinHeight="32" Name="TextBox5" Canvas.Left="188" Canvas.Top="82" >
+</TextBox>
+<StackPanel Background="#ff983ac6" Width="400" Height="400" Name="StackPanel2" Canvas.Left="66" Canvas.Top="136" >
+<Button Name="Button3" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" >
 </Button>
-<TextBlock Background="Blue" Text="Text" FontSize="20" Foreground="White" Name="TextBlock2" Canvas.Left="436" Canvas.Top="162" >
-</TextBlock>
-<Button Name="Button3" Content="Text" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Background="Blue" BorderBrush="#ff2196f3" CornerRadius="4,4,4,4" FontSize="20" FontWeight="Medium" Foreground="White" Padding="16,8,16,8" Canvas.Left="253" Canvas.Top="192" >
-</Button>
+<Canvas Background="#ff0c85ea" Width="400" Height="400" Name="Canvas4" >
+</Canvas>
+</StackPanel>
 </Canvas>
 </Window>

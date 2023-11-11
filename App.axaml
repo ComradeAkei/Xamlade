@@ -2,11 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              x:Class="Xamlade.App"
              xmlns:themes="clr-namespace:Material.Styles.Themes;assembly=Material.Styles"
+             xmlns:ui="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
              RequestedThemeVariant="Light">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+    <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="Purple" />
+    <themes:MaterialTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="Purple" />
     </Application.Styles>
 
 </Application>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
@@ -142,7 +143,6 @@ public class mTreeViewItem : TreeViewItem
         Header = element.Name;
         //Обратная связь с jElement
         element.mTreeItem = this;
-        
     }
 }
 
@@ -183,6 +183,34 @@ public class jButton : Button, JControl
    
 }
 
+public class jToggleButton : ToggleButton, JControl
+{
+    protected override Type StyleKeyOverride => typeof(ToggleButton);
+    public jToggleButton()
+    {
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+    private ControlType controlType => ControlType.ToggleButton;
+    public object Type => controlType;
+    public IChildContainer? jParent { get; set; }
+    public mTreeViewItem? mTreeItem { get; set; }
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+    public new bool IsPressed
+    {
+        get => base.IsPressed;
+        set => SetValue(IsPressedProperty, value);
+    }
+    
+    private void XAMLize(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+    protected override void OnClick() {}
+}
+
 public class jCheckBox : CheckBox, JControl
 {
     public jCheckBox()
@@ -211,7 +239,8 @@ public class jCheckBox : CheckBox, JControl
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
     }
-    
+
+    protected override void OnClick() {}
 }
 
 public class jTextBlock : TextBlock, JControl

@@ -16,6 +16,7 @@ using Avalonia.Styling;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Gif;
+using AvaloniaColorPicker;
 
 namespace Xamlade;
 
@@ -89,8 +90,10 @@ public partial class MainWindow : Window
             return;
 
         e.Handled = true;
+        
+        if(movable.jParent is not jCanvas) return;
 
-        var parentCanvas = (jCanvas)sender!;
+        var parentCanvas = movable.jParent as jCanvas;
         if (e.GetCurrentPoint(parentCanvas).Properties.PointerUpdateKind != PointerUpdateKind.Other)
             return;
 
@@ -115,10 +118,8 @@ public partial class MainWindow : Window
                 Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
         }
     }
-    
-    
 
-   
+
 
 
     private void InitMovable(JControl obj)
@@ -177,8 +178,16 @@ public partial class MainWindow : Window
     
     private void ShowProperties()
     {
-        if(PropListItems != null)
+        try
+        {
             PropListItems.Clear();
+        }
+        catch
+        {
+            return;
+        }
+        
+
         if(selectedTreeItem.element == MainCanvas) return;
       //  Type type = selectedTreeItem.element.GetType();
       //   = type.GetProperties();
@@ -233,6 +242,8 @@ public partial class MainWindow : Window
     private void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         InitMovable((JControl)sender);
+        var element = sender as JControl;
+        MainHierarchyTree.SelectedItem = (element).mTreeItem;
     }
 
     private void OnjControlPointerExited(object? sender, PointerEventArgs e)
@@ -280,9 +291,35 @@ public partial class MainWindow : Window
         var prop = jElement_type.GetProperty(prop_name);
         object enumValue = Enum.Parse(prop_type, comboBox.SelectedItem.ToString());
         prop.SetValue(selectedTreeItem.element, enumValue);
-        
-
-
+    }
+    
+    private void OnColorChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == AvaloniaColorPicker.ColorButton.ColorProperty)
+        {
+            var colorButton = sender as ColorButton;
+            var parentPanel = colorButton.Parent.Parent as DockPanel;
+            var txt_blc = parentPanel.Children[0] as TextBlock;
+            var prop_name = txt_blc.Text;
+            Type jElement_type = selectedTreeItem.element.GetType();
+            var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
+            var prop = jElement_type.GetProperty(prop_name);
+            prop.SetValue(selectedTreeItem.element, new SolidColorBrush(colorButton.Color));
+            var textBlock = ((StackPanel)(colorButton.Parent)).Children[0] as TextBlock;
+            textBlock.Text = colorButton.Color.ToString();
+        }
+    }
+    
+    private void OnBoolPropertyChanged(object? sender, RoutedEventArgs e)
+    {
+        var checkBox = sender as CheckBox;
+        var parentPanel = checkBox.Parent as DockPanel;
+        var txt_blc = parentPanel.Children[0] as TextBlock;
+        var prop_name = txt_blc.Text;
+        Type jElement_type = selectedTreeItem.element.GetType();
+        var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
+        var prop = jElement_type.GetProperty(prop_name);
+        prop.SetValue(selectedTreeItem.element, checkBox.IsChecked);
     }
     private void OnPropertyChanged(object? sender, KeyEventArgs e)
     {
@@ -320,8 +357,6 @@ public partial class MainWindow : Window
                 textBox.Text = textBox.Text.Replace('.', ',');
                 prop.SetValue(selectedTreeItem.element, Convert.ToDouble(textBox.Text));
             }
-            else if (prop_type == typeof(bool))
-                prop.SetValue(selectedTreeItem.element, Convert.ToBoolean(textBox.Text));
             else if (prop_type == typeof(IBrush))
             {
                 var brush = new SolidColorBrush(Color.Parse(textBox.Text));
@@ -343,6 +378,14 @@ public partial class MainWindow : Window
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
                 prop.SetValue(selectedTreeItem.element, rect);
             }
+            else if (prop_type == typeof(Rect))
+            {
+                var values = textBox.Text.Split(',');
+                var rect = new Rect(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
+                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
+                prop.SetValue(selectedTreeItem.element, rect);
+            }
+            
         }
         catch
         {
@@ -387,6 +430,12 @@ public partial class MainWindow : Window
 
             return result;
         }
+    }
+
+
+    private void DEBUG(object? sender, RoutedEventArgs e)
+    {
+        
     }
 
 

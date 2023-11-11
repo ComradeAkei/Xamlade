@@ -70,6 +70,15 @@ public partial class MainWindow
                 ((jTextBlock)element).Foreground = Brushes.White;
             } 
                 break;
+            case ControlType.ToggleButton:
+            {
+             //   ((jTextBlock)element).Background = Brushes.Blue;
+                    ((ToggleButton)element).Content = "Text";
+                    ((ToggleButton)element).IsChecked = false;
+             //   ((jTextBlock)element).FontSize = 20;
+             //   ((jTextBlock)element).Foreground = Brushes.White;
+            } 
+                break;
             case ControlType.CheckBox:
             {
                 ((jCheckBox)element).Background = Brushes.Blue;

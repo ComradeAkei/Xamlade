@@ -13,6 +13,7 @@
           "Avalonia.Diagnostics": "11.0.5",
           "Avalonia.Fonts.Inter": "11.0.5",
           "Avalonia.Themes.Fluent": "11.0.5",
+          "AvaloniaColorPicker": "1.4.0",
           "FluentAvaloniaUI": "2.0.4",
           "Material.Avalonia": "3.0.2",
           "Avalonia.Gif": "1.0.0.0"
@@ -272,6 +273,18 @@
           }
         }
       },
+      "AvaloniaColorPicker/1.4.0": {
+        "dependencies": {
+          "Avalonia": "11.0.5",
+          "System.Collections.Immutable": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AvaloniaColorPicker.dll": {
+            "assemblyVersion": "1.4.0.0",
+            "fileVersion": "1.4.0.0"
+          }
+        }
+      },
       "FluentAvaloniaUI/2.0.4": {
         "dependencies": {
           "Avalonia": "11.0.5",
@@ -394,10 +407,10 @@
       "Microsoft.CodeAnalysis.Common/3.8.0": {
         "dependencies": {
           "Microsoft.CodeAnalysis.Analyzers": "3.0.0",
-          "System.Collections.Immutable": "5.0.0",
+          "System.Collections.Immutable": "6.0.0",
           "System.Memory": "4.5.4",
           "System.Reflection.Metadata": "5.0.0",
-          "System.Runtime.CompilerServices.Unsafe": "4.7.1",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0",
           "System.Text.Encoding.CodePages": "4.5.1",
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
@@ -721,7 +734,11 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Collections.Immutable/5.0.0": {},
+      "System.Collections.Immutable/6.0.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        }
+      },
       "System.ComponentModel.Annotations/4.5.0": {},
       "System.Diagnostics.Debug/4.3.0": {
         "dependencies": {
@@ -916,7 +933,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.7.1": {},
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
       "System.Runtime.Extensions/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.2",
@@ -951,7 +968,7 @@
       "System.Text.Encoding.CodePages/4.5.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "2.1.2",
-          "System.Runtime.CompilerServices.Unsafe": "4.7.1"
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
       "System.Threading/4.3.0": {
@@ -1113,6 +1130,13 @@
       "sha512": "sha512-FhJU/SUT2QTEhutSr8B/8w4ZZnVmmTPaHm+Y9/QiyzpS2UKz0e2lt3v8U7GKUdYpJD34ZMf6tl4zDiCnRiztgw==",
       "path": "avalonia.x11/11.0.5",
       "hashPath": "avalonia.x11.11.0.5.nupkg.sha512"
+    },
+    "AvaloniaColorPicker/1.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tWIF3ysHIigae+g5vHBFInaOsQgTjgylWAjuaZb9gb4Pmf/nJD6yg0SMgoILxaicMDENJFPVkCdCIi+7oMegKA==",
+      "path": "avaloniacolorpicker/1.4.0",
+      "hashPath": "avaloniacolorpicker.1.4.0.nupkg.sha512"
     },
     "FluentAvaloniaUI/2.0.4": {
       "type": "package",
@@ -1282,12 +1306,12 @@
       "path": "system.collections/4.3.0",
       "hashPath": "system.collections.4.3.0.nupkg.sha512"
     },
-    "System.Collections.Immutable/5.0.0": {
+    "System.Collections.Immutable/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FXkLXiK0sVVewcso0imKQoOxjoPAj42R8HtjjbSjVPAzwDfzoyoznWxgA3c38LDbN9SJux1xXoXYAhz98j7r2g==",
-      "path": "system.collections.immutable/5.0.0",
-      "hashPath": "system.collections.immutable.5.0.0.nupkg.sha512"
+      "sha512": "sha512-l4zZJ1WU2hqpQQHXz1rvC3etVZN+2DLmQMO79FhOTZHMn8tDRr+WU287sbomD0BETlmKDn0ygUgVy9k5xkkJdA==",
+      "path": "system.collections.immutable/6.0.0",
+      "hashPath": "system.collections.immutable.6.0.0.nupkg.sha512"
     },
     "System.ComponentModel.Annotations/4.5.0": {
       "type": "package",
@@ -1450,12 +1474,12 @@
       "path": "system.runtime/4.3.0",
       "hashPath": "system.runtime.4.3.0.nupkg.sha512"
     },
-    "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zOHkQmzPCn5zm/BH+cxC1XbUS3P4Yoi3xzW7eRgVpDR2tPGSzyMZ17Ig1iRkfJuY0nhxkQQde8pgePNiA7z7TQ==",
-      "path": "system.runtime.compilerservices.unsafe/4.7.1",
-      "hashPath": "system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     },
     "System.Runtime.Extensions/4.3.0": {
       "type": "package",
