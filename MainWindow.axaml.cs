@@ -115,8 +115,8 @@ public partial class MainWindow : Window
 
         if (movable.IsPressed && !LCtrlPressed)
         {
-            Canvas.SetLeft(element, mousePosition.X - mov_hw);
-            Canvas.SetTop(element, mousePosition.Y - mov_hh);
+            Canvas.SetLeft(element, CorrectCoords(mousePosition.X - mov_hw));
+            Canvas.SetTop(element, CorrectCoords(mousePosition.Y - mov_hh));
 
             if (Canvas.GetLeft(element) < 0)
                 Canvas.SetLeft(element, 0);
@@ -138,8 +138,8 @@ public partial class MainWindow : Window
             mousePosition = e.GetPosition(element);
             if(mousePosition.X<5 || mousePosition.Y<5)
                 return;
-            element.Width = mousePosition.X;
-            element.Height = mousePosition.Y;
+            element.Width = CorrectSize(mousePosition.X);
+            element.Height = CorrectSize(mousePosition.Y);
         }
     }
 

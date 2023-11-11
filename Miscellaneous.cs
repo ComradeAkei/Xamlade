@@ -160,8 +160,33 @@ public partial class MainWindow
 
     private SolidColorBrush GetColor(string color)
         => new SolidColorBrush(Color.Parse(color));
-    
+
+    //Корректировка координат для перемещения и растяжения в строгом режиме
+    double CorrectCoords(double coord)
+    {
+        if ((bool)!StrictModeEnabled.IsChecked) return coord;
+        if(StrictModeValue.Text == "") return coord;
+        int step = Convert.ToInt32(StrictModeValue.Text);
+        if (step <= 0) return coord;
+        var _coord = (((int)coord)/step)*step;
+        return _coord;
+
+    }
+    double CorrectSize(double coord)
+        => CorrectCoords(coord)>0?CorrectCoords(coord):Convert.ToInt32(StrictModeValue.Text);
 
 
-
+    private void StrictModeEnabled_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (StrictModeValue == null) return;
+        try
+        {
+            var value = Convert.ToInt32(StrictModeValue.Text);
+            StrictModeValue.Text = Math.Abs(value).ToString();
+        }
+        catch 
+        {
+            StrictModeValue.Text = "";
+        }
+    }
 }

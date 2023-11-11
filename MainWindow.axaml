@@ -21,7 +21,10 @@
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
                           Stretch="None"
                           StretchDirection="Both" />
-            <TextBlock Name="TEST_text" Text=""/>
+            <CheckBox Name="StrictModeEnabled" IsChecked="False" >Строгий режим</CheckBox>
+            <TextBox Name="StrictModeValue" Text="1" Margin="5,0,0,0"
+                     PropertyChanged="StrictModeEnabled_OnPropertyChanged" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     VerticalContentAlignment="Center"/>
             
         </StackPanel>
 
