@@ -16,6 +16,7 @@ using Avalonia.Styling;
 using Avalonia.Controls.Primitives;
 using Avalonia.Layout;
 using Avalonia.Gif;
+using Avalonia.Media.Imaging;
 using AvaloniaColorPicker;
 
 namespace Xamlade;
@@ -194,7 +195,7 @@ public partial class MainWindow : Window
         "OpacityMask", "Bounds", "Cursor", "Tag", "ContextFlyout", "ContextMenu", "FocusAdorner", "IsItemsHost",
         "Children", "jChildren", "FontFamily", "TextDecoration", "ContentTemplate", "FlowDirection", "Inlines",
         "TextLayout",
-        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo"
+        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo","jImageSource"
     };
 
     private void ShowProperties()
@@ -297,7 +298,35 @@ public partial class MainWindow : Window
         element.IsPressed = false;
     }
 
+    private async void OnChooseImageClick(object? sender, RoutedEventArgs e)
+    {
+        OpenFileDialog dialog = new OpenFileDialog();
+        dialog.Title = "Выберите изображение";
+        dialog.AllowMultiple = false;
+        dialog.Filters.Add(new FileDialogFilter
+        {
+            Name = "Изображения",
+            Extensions = { "png", "jpg", "jpeg", "gif", "bmp" }
+        });
+        Task<string[]> task = dialog.ShowAsync(this);
+        
+        // Дожидаемся завершения задачи (await)
+        string[] result = await task;
 
+        // Обрабатываем результат
+        if (result != null && result.Length > 0)
+        {
+            string fileName = Path.GetFileName(result[0]);
+            string targetFilePath = Path.Combine("assets", fileName);
+            File.Copy(result[0], targetFilePath, true);
+            ((jImage)selectedTreeItem.element).jImageSource = @"assets/" + fileName;
+            ((jImage)selectedTreeItem.element).Source = new Bitmap(((jImage)selectedTreeItem.element).jImageSource);
+        }
+        else
+        {
+            return;
+        }
+    }
     private void OnEnumPropertyChanged(object? sender, SelectionChangedEventArgs e)
     {
         var comboBox = sender as ComboBox;
@@ -413,12 +442,30 @@ public partial class MainWindow : Window
 
     private async void RUN_WINDOW(object? sender, RoutedEventArgs e)
     {
+        CopyAssets();
         LoadingGif.IsVisible = true;
-        await ExecuteLinuxCommandAsync("XamladeDemo/BUILD.sh");
+        
+        await ExecuteLinuxCommandAsync(@"XamladeDemo/BUILD.sh");
         LoadingGif.IsVisible = false;
-        await ExecuteLinuxCommandAsync("XamladeDemo/RUN.sh");
+        await ExecuteLinuxCommandAsync(@"XamladeDemo/RUN.sh");
     }
 
+
+    public static void CopyAssets()
+    {
+        string[] files = Directory.GetFiles(@"assets");
+        string targetDirectory = @"XamladeDemo/assets";
+        if (!Directory.Exists(targetDirectory))
+        {
+            Directory.CreateDirectory(targetDirectory);
+        }
+        foreach (string file in files)
+        {
+            string fileName = Path.GetFileName(file);
+            string destFile = Path.Combine(targetDirectory, fileName);
+            File.Copy(file, destFile, true);
+        }
+    }
     public static async Task<string> ExecuteLinuxCommandAsync(string command)
     {
         using (Process process = new Process())
@@ -448,4 +495,6 @@ public partial class MainWindow : Window
     private void DEBUG(object? sender, RoutedEventArgs e)
     {
     }
+
+   
 }

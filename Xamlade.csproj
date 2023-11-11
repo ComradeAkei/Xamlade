@@ -64,6 +64,21 @@
         <HintPath>Avalonia.GIF\Avalonia.Gif.dll</HintPath>
       </Reference>
     </ItemGroup>
+
+    <ItemGroup>
+        <!-- Добавление всех файлов из папки assets в ресурсы -->
+        <AvaloniaResource Include="assets\**\*.*">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </AvaloniaResource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <MySourceFiles Include="assets\**\*.*"/>
+    </ItemGroup>
     
+    <Target Name="CopyAssets" BeforeTargets="Build">
+        <MakeDir Directories="$(OutputPath)\assets" />
+        <Copy SourceFiles="@(MySourceFiles)" DestinationFolder="$(OutputPath)\assets" SkipUnchangedFiles="true" />
+    </Target>
 
 </Project>

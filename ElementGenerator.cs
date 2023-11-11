@@ -14,6 +14,7 @@ using Avalonia.Markup.Xaml;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media.Imaging;
 
 namespace Xamlade;
 
@@ -68,6 +69,16 @@ public partial class MainWindow
                 ((jTextBlock)element).Text = "Text";
                 ((jTextBlock)element).FontSize = 20;
                 ((jTextBlock)element).Foreground = Brushes.White;
+            } 
+                break;
+            case ControlType.Image:
+            {
+                
+                ((jImage)element).Source = new Bitmap("assets/Xamlade.png");
+                ((jImage)element).Width = 400;
+                ((jImage)element).Height = 400;
+                ((jImage)element).jImageSource = @"assets/Xamlade.png";
+                ((jImage)element).Background = Brushes.Blue;
             } 
                 break;
             case ControlType.ToggleButton:

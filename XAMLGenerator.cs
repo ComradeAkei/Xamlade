@@ -28,10 +28,15 @@ public static class XAMLGenerator
         foreach (var prop in props)
         {
             if((element.Name == "MainCanvas") && prop.Name is "Width" or "Height") continue;
-            if(!MainWindow.ExcludedWords.Contains(prop.Name))
-                if(prop.GetValue(element)?.ToString() != prop.GetValue(DefaultObject)?.ToString()
-                   && prop.GetValue(element)!=null)
-                    getProperties+=($"{prop.Name}=\"{prop.GetValue(element)}\" ");
+            if (!MainWindow.ExcludedWords.Contains(prop.Name))
+            {
+                if (prop.Name == "Source")
+                    getProperties += ($"{prop.Name}=\"{((jImage)element).jImageSource}\" ");
+                else if (prop.Name == "Background" && element is jImage) continue;
+                else if (prop.GetValue(element)?.ToString() != prop.GetValue(DefaultObject)?.ToString()
+                    && prop.GetValue(element) != null)
+                    getProperties += ($"{prop.Name}=\"{prop.GetValue(element)}\" ");
+            }
         }
 
         if (element.Name == "MainCanvas")

@@ -7,17 +7,7 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<ToggleButton IsThreeState="True" Content="Text" Background="#ffe69f00" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="14" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Name="ToggleButton0" Canvas.Left="42" Canvas.Top="61" >
-</ToggleButton>
-<Button Name="Button1" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="246" Canvas.Top="3" >
-</Button>
-<TextBox SelectionBrush="#ff0078d7" CaretBrush="Black" Text="Text" Background="Transparent" BorderBrush="#99000000" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="Blue" Padding="10,6,6,5" MinWidth="64" MinHeight="32" Name="TextBox5" Canvas.Left="188" Canvas.Top="82" >
-</TextBox>
-<StackPanel Background="#ff983ac6" Width="400" Height="400" Name="StackPanel2" Canvas.Left="66" Canvas.Top="136" >
-<Button Name="Button3" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" >
-</Button>
-<Canvas Background="#ff0c85ea" Width="400" Height="400" Name="Canvas4" >
-</Canvas>
-</StackPanel>
+<Image Source="assets/photo_2021-12-13_00-44-53.jpg" Width="400" Height="400" Name="Image0" Canvas.Left="76" Canvas.Top="93" >
+</Image>
 </Canvas>
 </Window>

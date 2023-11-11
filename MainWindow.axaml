@@ -26,6 +26,7 @@
                      PropertyChanged="StrictModeEnabled_OnPropertyChanged" VerticalAlignment="Center" HorizontalAlignment="Center"
                      VerticalContentAlignment="Center"/>
             
+            
         </StackPanel>
 
         <!-- Левая панель с иерархией проекта -->
@@ -55,6 +56,8 @@
                             Margin="10,0,10,10" />
                     <Button Name="GenerateToggleButton" Content="ToggleButton" Click="GenerateElement"
                             Margin="10,0,10,10" />
+                    <Button Name="GenerateImage" Background="Chartreuse" Content="Image" Click="GenerateElement"
+                            Margin="10,0,10,10" />
                 </StackPanel>
             </TabItem>
 
@@ -79,6 +82,7 @@
             <xamlade:jCanvas.Styles>
                 <FluentTheme/>
             </xamlade:jCanvas.Styles>
+            <!-- <Image Source="assets/Xamlade.png" Width="500" Height="500"/> -->
             <!-- Здесь наступает власть объектов JControl -->
         </xamlade:jCanvas>
 

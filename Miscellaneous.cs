@@ -6,6 +6,7 @@ using Avalonia.Controls.Templates;
 using Avalonia.Data;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
 using AvaloniaColorPicker;
 
 namespace Xamlade;
@@ -131,6 +132,22 @@ public partial class MainWindow
             _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
             _propElement.Margin = new Thickness(5, 0, 0, 0);
             _propElement.IsCheckedChanged += OnBoolPropertyChanged;
+            DockPanel.SetDock(_propElement, Dock.Right);
+            dockPanel.Children.Add(_propElement);
+            
+        }
+        else if ( type == typeof(IImage))
+        {
+            var _propElement = new Button();
+            _propElement.Content = "Выбрать";
+            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
+            _propElement.Foreground = GetColor("#88F1FF");
+            _propElement.FontWeight = FontWeight.DemiBold;
+            _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
+            _propElement.VerticalAlignment = VerticalAlignment.Center;
+            _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
+            _propElement.Margin = new Thickness(5, 0, 0, 0);
+            _propElement.Click += OnChooseImageClick;
             DockPanel.SetDock(_propElement, Dock.Right);
             dockPanel.Children.Add(_propElement);
             

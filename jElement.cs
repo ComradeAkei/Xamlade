@@ -41,7 +41,8 @@ public enum ControlType
     Slider,
     TextBox,
     ToggleButton,
-    TextBlock
+    TextBlock,
+    Image
 }
 
 
@@ -187,6 +188,34 @@ public class jButton : Button, JControl
     }
    
 }
+
+public class jImage : Image, JControl
+{
+    protected override Type StyleKeyOverride => typeof(Image);
+    public jImage()
+    {
+        Broadcast.OnBroadcast += XAMLize;
+        XAMLPiece = new List<string>();
+    }
+    public IChildContainer? jParent { get; set; }
+    private ControlType controlType => ControlType.Image;
+    public object Type => controlType;
+    public mTreeViewItem? mTreeItem { get; set; }
+    public int XAMLRating { get; set; }
+    public List<string> XAMLPiece { get; set; }
+    public IBrush? Background { get; set; }
+    public bool IsPressed { get; set; }
+    public event EventHandler<RoutedEventArgs>? Click;
+    
+    public string? jImageSource { get; set; }
+    
+    private void XAMLize(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
+        else if (mode == 1) XAMLGenerator.XAMLize(this);
+    }
+}
+
 
 public class jToggleButton : ToggleButton, JControl
 {
