@@ -12,6 +12,7 @@ namespace Xamlade;
 
 public partial class MainWindow
 {
+    private static bool LCtrlPressed = false;
     private static ItemCollection PropListItems;
   //Принудительный вызов конструктора ItemCollection
   ConstructorInfo? constructor = typeof(ItemCollection).GetConstructor(

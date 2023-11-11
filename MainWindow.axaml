@@ -21,6 +21,7 @@
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
                           Stretch="None"
                           StretchDirection="Both" />
+            <TextBlock Name="TEST_text" Text=""/>
             
         </StackPanel>
 

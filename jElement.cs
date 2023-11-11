@@ -116,6 +116,11 @@ public interface JControl
    public event EventHandler<RoutedEventArgs>? Click;
    public event EventHandler<PointerPressedEventArgs>? PointerPressed;
    public event EventHandler<PointerReleasedEventArgs>? PointerReleased;
+   public event EventHandler<KeyEventArgs>? KeyDown;
+   public event EventHandler<KeyEventArgs>? KeyUp;
+
+   public bool Focus(NavigationMethod method = NavigationMethod.Unspecified,
+       KeyModifiers keyModifiers = KeyModifiers.None);
    
    private void XAMLize(int mode)
    {

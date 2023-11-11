@@ -26,46 +26,41 @@ public class KeyValue
     public string? Value { get; set; }
 }
 
-
 public partial class MainWindow : Window
 {
-
- 
     public string SelectedGif => @"avares://Xamlade/RES/loading.gif";
 
-   
-    
-    #region  Globals
-    
+
+    #region Globals
+
     //Отладочный итератор
     private int i = 0;
-    
+
     //Случайное число
     private static Random random;
-    
-    
+
+
     //Перемещаемый по холсту объект
     private JControl movable;
-    
+
     //Выбранный в дереве элемент
     private mTreeViewItem? selectedTreeItem;
-    
-    
+
+
     //Оригинальный фон выбранного элемента
     private IBrush? selectedOriginalBackground;
-    
+
     // Половина ширины перемещаемого элемента
     private double mov_hw;
 
     // Половина высоты перемещаемого элемента 
     private double mov_hh;
 
-
-    
     #endregion
-    
-    
+
+
     public ObservableCollection<KeyValue> KeyValueList { get; set; }
+
     public MainWindow()
     {
         KeyValueList = new ObservableCollection<KeyValue>();
@@ -78,10 +73,28 @@ public partial class MainWindow : Window
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         random = new Random();
         PropListItems = constructor.Invoke(new object[] { }) as ItemCollection;
+        var listener = new GlobalKeyListener(this);
+        listener.KeyPressed += GlobalKeyPressed;
+        listener.KeyReleased += GlobalKeyReleased;
+
     }
     
-    
-//Переписать с привязкой к родителю
+
+    private void GlobalKeyPressed(KeyEventArgs e)
+    {
+        if (e.Key == Key.LeftCtrl)
+            LCtrlPressed = true;
+    }
+    private void GlobalKeyReleased(KeyEventArgs e)
+    {
+        if (e.Key == Key.LeftCtrl)
+            LCtrlPressed = false;
+        else if(e.Key == Key.Delete)
+            RemovejElement(null,null);
+    }
+
+
+    //Переписать с привязкой к родителю
 
     //Всё к хуям заново
     private void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
@@ -90,8 +103,8 @@ public partial class MainWindow : Window
             return;
 
         e.Handled = true;
-        
-        if(movable.jParent is not jCanvas) return;
+
+        if (movable.jParent is not jCanvas) return;
 
         var parentCanvas = movable.jParent as jCanvas;
         if (e.GetCurrentPoint(parentCanvas).Properties.PointerUpdateKind != PointerUpdateKind.Other)
@@ -100,7 +113,7 @@ public partial class MainWindow : Window
         Point mousePosition = e.GetPosition(parentCanvas);
         var element = movable as Control;
 
-        if (movable.IsPressed)
+        if (movable.IsPressed && !LCtrlPressed)
         {
             Canvas.SetLeft(element, mousePosition.X - mov_hw);
             Canvas.SetTop(element, mousePosition.Y - mov_hh);
@@ -117,9 +130,18 @@ public partial class MainWindow : Window
             if (Canvas.GetTop(element) + 2 * mov_hh > parentCanvas.Bounds.Height)
                 Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
         }
+        else if (movable.IsPressed && LCtrlPressed)
+        {
+            Console.WriteLine();
+            if (double.IsNaN(element.Width))
+                element.Width = element.Bounds.Width;
+            mousePosition = e.GetPosition(element);
+            if(mousePosition.X<5 || mousePosition.Y<5)
+                return;
+            element.Width = mousePosition.X;
+            element.Height = mousePosition.Y;
+        }
     }
-
-
 
 
     private void InitMovable(JControl obj)
@@ -134,15 +156,16 @@ public partial class MainWindow : Window
     {
         ((Button)sender).Content = "   XAMLize   ";
 
-       // selectedTreeItem.element.Background = selectedOriginalBackground;
+        // selectedTreeItem.element.Background = selectedOriginalBackground;
         Broadcast.InitXAML();
         while (MainCanvas.XAMLRating > -1)
         {
             Broadcast.XAMLize();
         }
+
         string filePath = @"XamladeDemo/MainWindow.axaml";
         var outputXAML = new List<string>();
-         outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
+        outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
          xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
          xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
          xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
@@ -150,32 +173,30 @@ public partial class MainWindow : Window
          x:Class=""XamladeDemo.MainWindow""
          Title=""TestWindow"">");
         outputXAML.AddRange(MainCanvas.XAMLPiece);
-         outputXAML.Add(@"</Window>");
+        outputXAML.Add(@"</Window>");
         File.WriteAllLines(filePath, outputXAML);
-      
-        
-    
     }
 
 
     public static readonly List<string> ExcludedWords = new List<string>
     {
-        "jParent", "mTreeItem", "Presenter", "Template", "IsLoaded", 
-        "DesiredSize", "IsMeasureValid", "IsArrangeValid", "RenderTransform", 
-        "DataContext", "IsInitialized", "Parent", "ActualThemeVariant", 
-        "Transitions", "Item", "Type", "IsPressed", "ClickMode", "IsDefault", "IsCancel", 
-        "DataTemplates", "Focusable", "IsEnabled", "IsKeyboardFocusWithin", 
-        "IsFocused", "IsHitTestVisible", "IsPointerOver", "IsTabStop", 
-        "IsEffectivelyEnabled", "TabIndex", "KeyBindings", "GestureRecognizers", 
-        "UseLayoutRounding", "ClipToBounds", "IsEffectivelyVisible", 
-        "HasMirrorTransform", "RenderTransformOrigin", "ZIndex", "Classes", 
-        "Styles", "StyleKey", "Resources", "Command", "HotKey", 
-        "CommandParameter", "Flyout","Theme", "Clip","TemplatedParent","Effect",
-        "OpacityMask","Bounds", "Cursor","Tag", "ContextFlyout","ContextMenu","FocusAdorner","IsItemsHost",
-        "Children","jChildren","FontFamily", "TextDecoration","ContentTemplate","FlowDirection","Inlines","TextLayout",
-        "XAMLRating", "XAMLPiece","CanPaste","CanUndo"
+        "jParent", "mTreeItem", "Presenter", "Template", "IsLoaded",
+        "DesiredSize", "IsMeasureValid", "IsArrangeValid", "RenderTransform",
+        "DataContext", "IsInitialized", "Parent", "ActualThemeVariant",
+        "Transitions", "Item", "Type", "IsPressed", "ClickMode", "IsDefault", "IsCancel",
+        "DataTemplates", "Focusable", "IsEnabled", "IsKeyboardFocusWithin",
+        "IsFocused", "IsHitTestVisible", "IsPointerOver", "IsTabStop",
+        "IsEffectivelyEnabled", "TabIndex", "KeyBindings", "GestureRecognizers",
+        "UseLayoutRounding", "ClipToBounds", "IsEffectivelyVisible",
+        "HasMirrorTransform", "RenderTransformOrigin", "ZIndex", "Classes",
+        "Styles", "StyleKey", "Resources", "Command", "HotKey",
+        "CommandParameter", "Flyout", "Theme", "Clip", "TemplatedParent", "Effect",
+        "OpacityMask", "Bounds", "Cursor", "Tag", "ContextFlyout", "ContextMenu", "FocusAdorner", "IsItemsHost",
+        "Children", "jChildren", "FontFamily", "TextDecoration", "ContentTemplate", "FlowDirection", "Inlines",
+        "TextLayout",
+        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo"
     };
-    
+
     private void ShowProperties()
     {
         try
@@ -186,59 +207,59 @@ public partial class MainWindow : Window
         {
             return;
         }
-        
 
-        if(selectedTreeItem.element == MainCanvas) return;
-      //  Type type = selectedTreeItem.element.GetType();
-      //   = type.GetProperties();
-        
+
+        if (selectedTreeItem.element == MainCanvas) return;
+        //  Type type = selectedTreeItem.element.GetType();
+        //   = type.GetProperties();
+
         Type type = selectedTreeItem.element.GetType();
         var props = type.GetProperties();
-        
+
         foreach (var prop in props)
         {
             if (!ExcludedWords.Contains(prop.Name))
-            { 
-                
+            {
                 var prop_type = type.GetProperty(prop.Name).PropertyType;
                 AddPropItem(prop.Name, prop.GetValue(selectedTreeItem.element), prop_type);
-             //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
+                //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
             }
         }
 
-            
-        FieldInfo privateField = typeof(ItemsControl).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        FieldInfo privateField =
+            typeof(ItemsControl).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
         privateField.SetValue(PropListBox, PropListItems);
-    
     }
-    
+
     // Выбрать редактируемый элемент
-   private void SelectjElement(JControl element)
+    private void SelectjElement(JControl element)
     {
         selectedTreeItem = element.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         selectedOriginalBackground = selectedTreeItem.element.Background;
         InitMovable(selectedTreeItem.element);
+        selectedTreeItem.element.Focus();
         ShowProperties();
     }
-    
-   
-    
+
 
     private void MainHierarchyTree_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         var item = ((TreeView)sender).SelectedItem as mTreeViewItem;
-   //     if(item == selectedTreeItem) return;
-        if(item != null)
+        //     if(item == selectedTreeItem) return;
+        if (item != null)
             SelectjElement(item.element);
+        else
+            SelectjElement(MainCanvas);
         e.Handled = true;
     }
 
     private void jElementClick(object? sender, RoutedEventArgs e)
     {
-     MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
-
+        MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
     }
+
     private void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         InitMovable((JControl)sender);
@@ -251,17 +272,16 @@ public partial class MainWindow : Window
         movable = null;
     }
 
-    private void RemovejElement(object? sender, RoutedEventArgs e)
+    private void RemovejElement(object? sender, RoutedEventArgs? e)
     {
-        if(selectedTreeItem == MainCanvas.mTreeItem) return;
+        if (selectedTreeItem == MainCanvas.mTreeItem) return;
         var element = selectedTreeItem.element;
         element.Dispose();
         selectedTreeItem.element.jParent.RemoveChild(selectedTreeItem.element);
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
     }
-    
-    //КНОПКИ НА ЭТУ ХУЕТЕНЬ НЕ ПОДПИСЫВАТЬ!!!
+
     private void OnjControlPressed(object? sender, PointerPressedEventArgs e)
     {
         e.Handled = true;
@@ -269,7 +289,7 @@ public partial class MainWindow : Window
         element.IsPressed = true;
         MainHierarchyTree.SelectedItem = (element).mTreeItem;
     }
-    
+
     private void OnjControlReleased(object? sender, PointerReleasedEventArgs e)
     {
         e.Handled = true;
@@ -277,9 +297,7 @@ public partial class MainWindow : Window
         element.IsPressed = false;
     }
 
-    
 
-   
     private void OnEnumPropertyChanged(object? sender, SelectionChangedEventArgs e)
     {
         var comboBox = sender as ComboBox;
@@ -292,7 +310,7 @@ public partial class MainWindow : Window
         object enumValue = Enum.Parse(prop_type, comboBox.SelectedItem.ToString());
         prop.SetValue(selectedTreeItem.element, enumValue);
     }
-    
+
     private void OnColorChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
         if (e.Property == AvaloniaColorPicker.ColorButton.ColorProperty)
@@ -309,7 +327,7 @@ public partial class MainWindow : Window
             textBlock.Text = colorButton.Color.ToString();
         }
     }
-    
+
     private void OnBoolPropertyChanged(object? sender, RoutedEventArgs e)
     {
         var checkBox = sender as CheckBox;
@@ -321,22 +339,22 @@ public partial class MainWindow : Window
         var prop = jElement_type.GetProperty(prop_name);
         prop.SetValue(selectedTreeItem.element, checkBox.IsChecked);
     }
+
     private void OnPropertyChanged(object? sender, KeyEventArgs e)
     {
-        if(e.Key != Key.Enter) return;
+        if (e.Key != Key.Enter) return;
         var textBox = sender as TextBox;
-        
+
         var parentPanel = textBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
         Type jElement_type = selectedTreeItem.element.GetType();
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
-            textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
+        textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
 
-        
-            
-        if(textBox.Text == "не число") return;
+
+        if (textBox.Text == "не число") return;
         try
         {
             if (prop.Name == "Name")
@@ -346,7 +364,7 @@ public partial class MainWindow : Window
                 privateField.SetValue(selectedTreeItem.element, textBox.Text);
                 selectedTreeItem.Header = textBox.Text;
             }
-            else if(prop.Name=="Content")
+            else if (prop.Name == "Content")
                 prop.SetValue(selectedTreeItem.element, textBox.Text);
             else if (prop_type == typeof(string))
                 prop.SetValue(selectedTreeItem.element, textBox.Text);
@@ -362,7 +380,6 @@ public partial class MainWindow : Window
                 var brush = new SolidColorBrush(Color.Parse(textBox.Text));
                 prop.SetValue(selectedTreeItem.element, brush);
                 textBox.Foreground = new SolidColorBrush(Color.Parse(textBox.Text));
-                
             }
             else if (prop_type == typeof(Thickness))
             {
@@ -385,17 +402,14 @@ public partial class MainWindow : Window
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
                 prop.SetValue(selectedTreeItem.element, rect);
             }
-            
         }
         catch
         {
             textBox.Text = "Некорректное значение";
             textBox.Foreground = Brushes.Red;
         }
-
     }
 
-    
 
     private async void RUN_WINDOW(object? sender, RoutedEventArgs e)
     {
@@ -403,10 +417,8 @@ public partial class MainWindow : Window
         await ExecuteLinuxCommandAsync("XamladeDemo/BUILD.sh");
         LoadingGif.IsVisible = false;
         await ExecuteLinuxCommandAsync("XamladeDemo/RUN.sh");
-        
-        
     }
-    
+
     public static async Task<string> ExecuteLinuxCommandAsync(string command)
     {
         using (Process process = new Process())
@@ -435,9 +447,5 @@ public partial class MainWindow : Window
 
     private void DEBUG(object? sender, RoutedEventArgs e)
     {
-        
     }
-
-
-    
 }

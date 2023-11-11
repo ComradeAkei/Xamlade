@@ -35,7 +35,7 @@ public partial class MainWindow
             element.Click += jElementClick;
             element.PointerPressed += OnjControlPressed;
             element.PointerReleased += OnjControlReleased;
-    
+            
             parent.AddChild(element);
             selectedTreeItem.Items.Add(new mTreeViewItem(element));
     }
@@ -96,6 +96,7 @@ public partial class MainWindow
                 ((jCanvas)element).Background = new SolidColorBrush(randomColor);
                 ((jCanvas)element).Height = 400;
                 ((jCanvas)element).Width = 400;
+                
             }
                 break;
             case ContainerType.StackPanel:
