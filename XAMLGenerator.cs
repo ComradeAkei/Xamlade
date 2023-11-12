@@ -13,6 +13,14 @@ public static class Broadcast
     public static void InitXAML()=> OnBroadcast?.Invoke(0);
     public static void XAMLize()=> OnBroadcast?.Invoke(1);
     
+   //Восстановить поведение jElement после выгрузки из XAML
+    public static void RestoreBehavior()=> OnBroadcast?.Invoke(2);
+    //Убить все объекты
+    public static void KillAll()=> OnBroadcast?.Invoke(3);
+
+
+
+    public static void DisposeElement(JControl element) => element.Dispose();
 }
 
 public static class XAMLGenerator
@@ -32,7 +40,6 @@ public static class XAMLGenerator
             {
                 if (prop.Name == "Source")
                     getProperties += ($"{prop.Name}=\"{((jImage)element).jImageSource}\" ");
-                else if (prop.Name == "Background" && element is jImage) continue;
                 else if (prop.GetValue(element)?.ToString() != prop.GetValue(DefaultObject)?.ToString()
                     && prop.GetValue(element) != null)
                     getProperties += ($"{prop.Name}=\"{prop.GetValue(element)}\" ");
@@ -44,7 +51,7 @@ public static class XAMLGenerator
             getProperties += " HorizontalAlignment=\"Stretch\"\n            VerticalAlignment=\"Stretch\"";
             return getProperties;
         }
-        if ((ContainerType)(element.jParent as JControl).Type == ContainerType.Canvas)
+        if ((element.jParent as JControl).Type == jElementType.Canvas.ToString())
         {
             getProperties+=$"Canvas.Left=\"{Convert.ToInt32(Canvas.GetLeft((Control)element))}\" ";
             getProperties+=$"Canvas.Top=\"{Convert.ToInt32(Canvas.GetTop((Control)element))}\" ";

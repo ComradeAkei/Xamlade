@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:xamlade="clr-namespace:Xamlade"
+       
         xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
         xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:avaloniaColorPicker="clr-namespace:AvaloniaColorPicker;assembly=AvaloniaColorPicker"
@@ -17,6 +18,7 @@
             <Button Width="150" Content="Run Window" Click="RUN_WINDOW" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="XAMLize!" Click="XAMLIZE" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="Remove" Click="RemovejElement" Margin="10" Background="#3A8FB7" />
+            <Button Width="150" Content="DEXAMLIZE" Click="DEXAMLIZE" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="DEBUG" Click="DEBUG" Margin="10" Background="#3A8FB7" />
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
                           Stretch="None"
@@ -64,7 +66,7 @@
             <TabItem Header="Свойства">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel Name="PropertyPanel" Width="300" Background="#2B2B2B">
-                        <ListBox Name="PropListBox" ItemsSource="{Binding KeyValueList}" Width="300" Background="#2B2B2B">
+                        <ListBox Name="PropListBox" Width="300" Background="#2B2B2B">
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="Padding" Value="0" />

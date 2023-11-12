@@ -7,7 +7,11 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Image Source="assets/photo_2021-12-13_00-44-53.jpg" Width="400" Height="400" Name="Image0" Canvas.Left="76" Canvas.Top="93" >
-</Image>
+<Canvas Background="#ff167286" Width="400" Height="400" Name="Canvas0" Canvas.Left="55" Canvas.Top="193" >
+<CheckBox Content="Text" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Blue" BorderBrush="Transparent" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,0,0,0" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Name="CheckBox1" Canvas.Left="318" Canvas.Top="200" >
+</CheckBox>
+<Button Name="Button2" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="43" Canvas.Top="198" >
+</Button>
+</Canvas>
 </Canvas>
 </Window>

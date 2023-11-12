@@ -45,7 +45,7 @@ public partial class MainWindow
     {
         switch (element.Type)
         {
-            case ControlType.Button:
+            case "Button":
             {
                 ((jButton)element).Content = "Text";
                 ((jButton)element).Background = Brushes.Blue;
@@ -53,7 +53,7 @@ public partial class MainWindow
                 ((jButton)element).FontSize = 20;
             } 
                 break;
-            case ControlType.TextBox:
+            case "TextBox":
             {
                 ((jTextBox)element).Background = Brushes.Transparent;
                 ((jTextBox)element).Text = "Text";
@@ -63,7 +63,7 @@ public partial class MainWindow
                     
             } 
                 break;
-            case ControlType.TextBlock:
+            case "TextBlock":
             {
                 ((jTextBlock)element).Background = Brushes.Blue;
                 ((jTextBlock)element).Text = "Text";
@@ -71,17 +71,16 @@ public partial class MainWindow
                 ((jTextBlock)element).Foreground = Brushes.White;
             } 
                 break;
-            case ControlType.Image:
+            case "Image":
             {
                 
                 ((jImage)element).Source = new Bitmap("assets/Xamlade.png");
                 ((jImage)element).Width = 400;
                 ((jImage)element).Height = 400;
                 ((jImage)element).jImageSource = @"assets/Xamlade.png";
-                ((jImage)element).Background = Brushes.Blue;
             } 
                 break;
-            case ControlType.ToggleButton:
+            case "ToggleButton":
             {
              //   ((jTextBlock)element).Background = Brushes.Blue;
                     ((ToggleButton)element).Content = "Text";
@@ -90,7 +89,7 @@ public partial class MainWindow
              //   ((jTextBlock)element).Foreground = Brushes.White;
             } 
                 break;
-            case ControlType.CheckBox:
+            case "CheckBox":
             {
                 ((jCheckBox)element).Background = Brushes.Blue;
                 ((jCheckBox)element).Content = "Text";
@@ -98,7 +97,7 @@ public partial class MainWindow
                 ((jCheckBox)element).Foreground = Brushes.White;
             }
                 break;
-            case ContainerType.Canvas:
+            case "Canvas":
             {
                 // Генерация случайного цвета в формате HEX
                 string randomHexColor = $"#{random.Next(0x1000000):X6}";
@@ -110,7 +109,7 @@ public partial class MainWindow
                 
             }
                 break;
-            case ContainerType.StackPanel:
+            case "StackPanel":
             {
                 // Генерация случайного цвета в формате HEX
                 string randomHexColor = $"#{random.Next(0x1000000):X6}";

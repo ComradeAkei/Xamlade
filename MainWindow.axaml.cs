@@ -18,17 +18,15 @@ using Avalonia.Layout;
 using Avalonia.Gif;
 using Avalonia.Media.Imaging;
 using AvaloniaColorPicker;
+using Avalonia.Markup;
 
 namespace Xamlade;
 
-public class KeyValue
-{
-    public string Key { get; set; }
-    public string? Value { get; set; }
-}
+
 
 public partial class MainWindow : Window
 {
+    public static MainWindow _MainWindow;
     public string SelectedGif => @"avares://Xamlade/RES/loading.gif";
 
 
@@ -59,12 +57,11 @@ public partial class MainWindow : Window
 
     #endregion
 
-
-    public ObservableCollection<KeyValue> KeyValueList { get; set; }
+    
 
     public MainWindow()
     {
-        KeyValueList = new ObservableCollection<KeyValue>();
+        _MainWindow = this;
         InitializeComponent();
         DataContext = this;
         WindowState = WindowState.Maximized;
@@ -226,7 +223,6 @@ public partial class MainWindow : Window
                 //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
             }
         }
-
 
         FieldInfo privateField =
             typeof(ItemsControl).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -490,11 +486,16 @@ public partial class MainWindow : Window
             return result;
         }
     }
+ 
+
+    private async void DEXAMLIZE(object? sender, RoutedEventArgs e)
+    {
+       await RunDeXAMLIZE(this);
+    }
 
 
     private void DEBUG(object? sender, RoutedEventArgs e)
     {
+        
     }
-
-   
 }

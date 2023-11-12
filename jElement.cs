@@ -7,13 +7,14 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Xamlade;
 
 
-public enum ContainerType
+public enum jElementType
 {
     Border,
     Canvas,
@@ -23,11 +24,7 @@ public enum ContainerType
     ScrollViewer,
     StackPanel,
     TabControl,
-    TabItem
-}
-
-public enum ControlType
-{
+    TabItem,
     Button,
     CheckBox,
     ComboBox,
@@ -50,15 +47,17 @@ public enum ControlType
 public interface IChildContainer
 {
     List<JControl> jChildren { get; }
-    void AddChild(JControl child);
+    void AddChild(JControl child, double top = 0, double left = 0);
+
     public void RemoveChild(JControl child);
-    
+
 }
 //Для простых объектов
 public interface JControl
 {
     public IChildContainer? jParent { get; set; }
-    public object Type { get; }
+    public string Type { get; }
+    
     public mTreeViewItem? mTreeItem { get; set; }
     
     public int XAMLRating { get; set; }
@@ -120,19 +119,52 @@ public interface JControl
    public event EventHandler<KeyEventArgs>? KeyDown;
    public event EventHandler<KeyEventArgs>? KeyUp;
 
+   
+   public void SetParent(IChildContainer parent)
+   {
+       if(parent==null) return;
+       if(this.Name == "MainCanvas") return;
+       double top = 0;
+       double left = 0;
+
+       if (((Control)this).Parent != null)
+       {
+           if (((Control)this).Parent is Canvas)
+           {
+               top = Canvas.GetTop((Control)this);
+               left = Canvas.GetLeft((Control)this);
+           }
+
+           var _parent = ((Control)this).Parent as Panel;
+           _parent.Children.Remove((Control)this);
+       }
+
+       var oldParent = this.jParent;
+       if (oldParent != null)
+       {
+           oldParent.RemoveChild(this);
+       }
+       parent.AddChild(this,top,left);
+   }
+   
    public bool Focus(NavigationMethod method = NavigationMethod.Unspecified,
        KeyModifiers keyModifiers = KeyModifiers.None);
    
-   private void XAMLize(int mode)
+   private void HandleBroadcast(int mode)
    {
        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
        else if (mode == 1) XAMLGenerator.XAMLize(this);
+       else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+       else if (mode == 3) Broadcast.DisposeElement(this);
    }
    public void Dispose()
    {
+       if(this.Name == "MainCanvas") return;
+       mTreeItem = null;
        FieldInfo privateField =
            typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
        privateField.SetValue(this, null);
+       Broadcast.OnBroadcast -= HandleBroadcast;
    }
    
     
@@ -156,12 +188,12 @@ public class jButton : Button, JControl
 {
     protected override Type StyleKeyOverride => typeof(Button);
     public IChildContainer? jParent { get; set; }
-    private ControlType controlType => ControlType.Button;
-    public object Type => controlType;
+    private string controlType => jElementType.Button.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
-
+    
 
     public new bool IsPressed
     {
@@ -177,16 +209,19 @@ public class jButton : Button, JControl
 
     public jButton()
     {
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
     
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
-   
+    
 }
 
 public class jImage : Image, JControl
@@ -194,25 +229,31 @@ public class jImage : Image, JControl
     protected override Type StyleKeyOverride => typeof(Image);
     public jImage()
     {
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
+        
     }
     public IChildContainer? jParent { get; set; }
-    private ControlType controlType => ControlType.Image;
-    public object Type => controlType;
+    
+    private string controlType => jElementType.Image.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
-    public IBrush? Background { get; set; }
+    //Понизили доступ к свойству Background, лол. Хотя интерфейс регламентирует public
+    IBrush? JControl.Background { get; set; }
     public bool IsPressed { get; set; }
     public event EventHandler<RoutedEventArgs>? Click;
     
     public string? jImageSource { get; set; }
     
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
 }
 
@@ -222,11 +263,12 @@ public class jToggleButton : ToggleButton, JControl
     protected override Type StyleKeyOverride => typeof(ToggleButton);
     public jToggleButton()
     {
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
-    private ControlType controlType => ControlType.ToggleButton;
-    public object Type => controlType;
+    private string controlType => jElementType.ToggleButton.ToString();
+    public string Type => controlType;
     public IChildContainer? jParent { get; set; }
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
@@ -237,10 +279,12 @@ public class jToggleButton : ToggleButton, JControl
         set => SetValue(IsPressedProperty, value);
     }
     
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
     protected override void OnClick() {}
 }
@@ -249,15 +293,16 @@ public class jCheckBox : CheckBox, JControl
 {
     public jCheckBox()
     {
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
 
     protected override Type StyleKeyOverride => typeof(CheckBox);
     public IChildContainer? jParent { get; set; }
     
-    private ControlType controlType => ControlType.CheckBox;
-    public object Type => controlType;
+    private string controlType => jElementType.CheckBox.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     
     public int XAMLRating { get; set; }
@@ -268,10 +313,12 @@ public class jCheckBox : CheckBox, JControl
         get => base.IsPressed;
         set => SetValue(IsPressedProperty, value);
     }
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
 
     protected override void OnClick() {}
@@ -281,23 +328,26 @@ public class jTextBlock : TextBlock, JControl
 {
     public jTextBlock()
     {
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
 
     protected override Type StyleKeyOverride => typeof(TextBlock);
     public IChildContainer? jParent { get; set; }
-    private ControlType controlType => ControlType.TextBlock;
-    public object Type => controlType;
+    private string controlType => jElementType.TextBlock.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
 
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
  
     public bool IsPressed { get; set; }
@@ -308,23 +358,25 @@ public class jTextBox : TextBox, JControl
 {
     public jTextBox()
     {
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
 
     protected override Type StyleKeyOverride => typeof(TextBox);
     public IChildContainer? jParent { get; set; }
-    private ControlType controlType => ControlType.TextBox;
-    public object Type => controlType;
+    private string controlType => jElementType.TextBox.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
 
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
 
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
         if (mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e) { }
@@ -340,8 +392,8 @@ public class jCanvas : Canvas, IChildContainer, JControl
     
     public bool IsPressed { get; set; }
     public event EventHandler<RoutedEventArgs>? Click;
-    private ContainerType containerType => ContainerType.Canvas;
-    public object Type => containerType;
+    private string controlType => jElementType.Canvas.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
   
     public List<string> XAMLPiece { get; set; }
@@ -350,16 +402,17 @@ public class jCanvas : Canvas, IChildContainer, JControl
     public jCanvas()
     {
         jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcastast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
 
-    public void AddChild(JControl child)
+    public void AddChild(JControl child, double top = 0, double left = 0)
     {
         jChildren.Add(child);
         child.jParent = this;
-        SetTop((Control)child,0);
-        SetLeft((Control)child, 0);
+        SetTop((Control)child,top);
+        SetLeft((Control)child, left);
      //   Console.WriteLine(child.GetType().ToString());
         Children.Add((Control)child);
     }
@@ -369,11 +422,12 @@ public class jCanvas : Canvas, IChildContainer, JControl
         Children.Remove((Control)child);
     }
     public int XAMLRating { get; set; }
-    private void XAMLize(int mode)
+    private void HandleBroadcastast(int mode)
     {
-        if (this.Name == null) return;
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
 
 }
@@ -382,8 +436,8 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
 {
     protected override Type StyleKeyOverride => typeof(StackPanel); 
     public IChildContainer? jParent { get; set; }
-    private ContainerType containerType => ContainerType.StackPanel;
-    public object Type => containerType;
+    private string controlType => jElementType.StackPanel.ToString();
+    public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
@@ -394,10 +448,12 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
     public jStackPanel()
     {
         jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += XAMLize;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
+        mTreeItem = new mTreeViewItem(this);
     }
-    public void AddChild(JControl child)
+
+    public void AddChild(JControl child, double top = 0, double left = 0)
     {
         jChildren.Add(child);
         child.jParent = this;
@@ -410,10 +466,11 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
         Children.Remove((Control)child);
     }
     
-    private void XAMLize(int mode)
+    private void HandleBroadcast(int mode)
     {
-        if (this.Name == null) return;
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3) Broadcast.DisposeElement(this);
     }
 }

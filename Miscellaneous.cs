@@ -181,8 +181,8 @@ public partial class MainWindow
     //Корректировка координат для перемещения и растяжения в строгом режиме
     double CorrectCoords(double coord)
     {
-        if ((bool)!StrictModeEnabled.IsChecked) return coord;
-        if(StrictModeValue.Text == "") return coord;
+        if ((bool)!StrictModeEnabled.IsChecked) return Math.Round(coord);
+        if(StrictModeValue.Text == "") return Math.Round(coord);
         int step = Convert.ToInt32(StrictModeValue.Text);
         if (step <= 0) return coord;
         var _coord = (((int)coord)/step)*step;
