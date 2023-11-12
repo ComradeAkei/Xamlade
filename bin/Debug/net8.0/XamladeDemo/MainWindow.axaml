@@ -7,11 +7,17 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Canvas Background="#ff167286" Width="400" Height="400" Name="Canvas0" Canvas.Left="55" Canvas.Top="193" >
-<CheckBox Content="Text" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="Blue" BorderBrush="Transparent" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,0,0,0" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Name="CheckBox1" Canvas.Left="318" Canvas.Top="200" >
-</CheckBox>
-<Button Name="Button2" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="43" Canvas.Top="198" >
+<Button Name="Button1" Content="Ебач потерялся" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="612" Canvas.Top="594" >
 </Button>
+<Canvas Background="#fffc6bed" Width="522" Height="503" Name="Canvas0" Canvas.Left="43" Canvas.Top="57" >
+<TextBlock Background="Blue" Text="ПРИВЕТ ДУРДОМ!" FontSize="20" Foreground="White" TextAlignment="Center" Width="273" Height="31" HorizontalAlignment="Center" VerticalAlignment="Center" Name="TextBlock2" Canvas.Left="122" Canvas.Top="10" >
+</TextBlock>
+<Button Name="Button4" Content="Кнопка" Background="#ff009e73" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="108" Canvas.Top="128" >
+</Button>
+<Button Name="Button5" Content="Кнопка" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="342" Canvas.Top="231" >
+</Button>
+<CheckBox Content="Галочка" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Background="#ff2ee604" BorderBrush="Transparent" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,0,0,0" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Center" Name="CheckBox6" Canvas.Left="55" Canvas.Top="346" >
+</CheckBox>
 </Canvas>
 </Canvas>
 </Window>

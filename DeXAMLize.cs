@@ -96,7 +96,7 @@ public partial class MainWindow
             var container = (IChildContainer)element;
             foreach (var child in container.jChildren)
             {
-                element.mTreeItem.Items.Add(ref child.mTreeItem);
+                element.mTreeItem.Items.Add(child.mTreeItem);
             }
         }
 
