@@ -490,7 +490,10 @@ public partial class MainWindow : Window
 
     private async void DEXAMLIZE(object? sender, RoutedEventArgs e)
     {
-       await RunDeXAMLIZE(this);
+
+
+        await RunDeXAMLIZE(this);
+
     }
 
 

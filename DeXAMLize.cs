@@ -24,15 +24,6 @@ public partial class MainWindow
 
     public async Task RunDeXAMLIZE(Window window)
     {
-        // Удаляем элементы из MainCanvas
-        for (int i = MainCanvas.jChildren.Count - 1; i >= 0; i--)
-        {
-            MainCanvas.RemoveChild(MainCanvas.jChildren[i]);
-        }
-
-        //Радикальная операция
-        //УЧЁТНЫЙ НОМЕР: 1_KILLALL
-        Broadcast.KillAll();
         
         await OpenXAML(window);
         await CorrectXAML();
@@ -41,7 +32,7 @@ public partial class MainWindow
 
     private async Task LoadXAML()
     {
-       
+       if(filePathXAML == "") return;
 
 
         var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(MainWindow).Assembly) as Canvas;
@@ -124,11 +115,22 @@ public partial class MainWindow
         {
             filePathXAML = result[0];
             ExternalXAML = File.ReadAllText(filePathXAML);
+            // Удаляем элементы из MainCanvas
+            for (int i = MainCanvas.jChildren.Count - 1; i >= 0; i--)
+            {
+                MainCanvas.RemoveChild(MainCanvas.jChildren[i]);
+            }
+
+            //Радикальная операция
+            //УЧЁТНЫЙ НОМЕР: 1_KILLALL
+            Broadcast.KillAll();
         }
+        
     }
 
     public static async Task CorrectXAML()
     {
+        if (filePathXAML == "") return;
         ExternalXAML = ReplaceElements(ExternalXAML, elementsToReplace);
         ExternalXAML = RemoveWindowTags(ExternalXAML);
         ExternalXAML = ReplaceMainCanvasTag(ExternalXAML);

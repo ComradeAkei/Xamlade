@@ -154,9 +154,7 @@ public interface JControl
    {
        if(this.Name == "MainCanvas") return;
        mTreeItem = null;
-       FieldInfo privateField =
-           typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
-       privateField.SetValue(this, null);
+       Reflector.SetName(null, this);
    }
    
     
