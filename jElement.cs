@@ -150,13 +150,6 @@ public interface JControl
    public bool Focus(NavigationMethod method = NavigationMethod.Unspecified,
        KeyModifiers keyModifiers = KeyModifiers.None);
    
-   private void HandleBroadcast(int mode)
-   {
-       if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-       else if (mode == 1) XAMLGenerator.XAMLize(this);
-       else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-       else if (mode == 3) Broadcast.DisposeElement(this);
-   }
    public void Dispose()
    {
        if(this.Name == "MainCanvas") return;
@@ -164,7 +157,6 @@ public interface JControl
        FieldInfo privateField =
            typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
        privateField.SetValue(this, null);
-       Broadcast.OnBroadcast -= HandleBroadcast;
    }
    
     
@@ -219,7 +211,12 @@ public class jButton : Button, JControl
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
     
 }
@@ -253,7 +250,12 @@ public class jImage : Image, JControl
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
 }
 
@@ -284,7 +286,12 @@ public class jToggleButton : ToggleButton, JControl
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
     protected override void OnClick() {}
 }
@@ -318,7 +325,12 @@ public class jCheckBox : CheckBox, JControl
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
 
     protected override void OnClick() {}
@@ -347,7 +359,12 @@ public class jTextBlock : TextBlock, JControl
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
  
     public bool IsPressed { get; set; }
@@ -377,6 +394,11 @@ public class jTextBox : TextBox, JControl
         if (mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e) { }
@@ -402,7 +424,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
     public jCanvas()
     {
         jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += HandleBroadcastast;
+        Broadcast.OnBroadcast += HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
@@ -422,12 +444,19 @@ public class jCanvas : Canvas, IChildContainer, JControl
         Children.Remove((Control)child);
     }
     public int XAMLRating { get; set; }
-    private void HandleBroadcastast(int mode)
+    private void HandleBroadcast(int mode)
     {
+        
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            if(Name=="MainCanvas") return;
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
 
 }
@@ -471,6 +500,11 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLize(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
-        else if (mode == 3) Broadcast.DisposeElement(this);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this);
+        }
+        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
 }

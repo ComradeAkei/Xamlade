@@ -27,6 +27,10 @@
       <None Remove="Xamlade.png" />
       <None Remove="Avalonia.AXAML.LanguageServer.Log20231031.txt" />
       <None Remove="bin\**" />
+      <None Remove="googleca45d2d676594602.html" />
+      <None Remove="index.html" />
+      <None Remove="Xamlade2.png~" />
+      <None Remove="Xamlade2.png" />
     </ItemGroup>
 
 

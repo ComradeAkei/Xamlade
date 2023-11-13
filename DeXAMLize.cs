@@ -24,13 +24,6 @@ public partial class MainWindow
 
     public async Task RunDeXAMLIZE(Window window)
     {
-        await OpenXAML(window);
-        await CorrectXAML();
-        await LoadXAML();
-    }
-
-    private async Task LoadXAML()
-    {
         // Удаляем элементы из MainCanvas
         for (int i = MainCanvas.jChildren.Count - 1; i >= 0; i--)
         {
@@ -40,6 +33,15 @@ public partial class MainWindow
         //Радикальная операция
         //УЧЁТНЫЙ НОМЕР: 1_KILLALL
         Broadcast.KillAll();
+        
+        await OpenXAML(window);
+        await CorrectXAML();
+        await LoadXAML();
+    }
+
+    private async Task LoadXAML()
+    {
+       
 
 
         var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(MainWindow).Assembly) as Canvas;
@@ -66,17 +68,21 @@ public partial class MainWindow
             Canvas.SetTop(MainCanvas.Children[i], canv_top[i]);
             Canvas.SetLeft(MainCanvas.Children[i], canv_left[i]);
         }
+        MainCanvas.mTreeItem.Items.Clear();
 
         Broadcast.RestoreBehavior();
+        Broadcast.RestoreTree();
     }
 
     public void CorrectLoadedjElement(JControl element)
     {
+        Console.WriteLine();
         element.Name ??= element.Type + "_" + (i++);
 
 
-        if (element.Name != "MainCanvas")
-        {
+        if (element.Name == "MainCanvas") return;
+        
+            element.mTreeItem.Header =element.Name;
             var parent = ((Control)element).Parent;
 
             element.SetParent((IChildContainer)parent);
@@ -89,18 +95,8 @@ public partial class MainWindow
             element.Click += jElementClick;
             element.PointerPressed += OnjControlPressed;
             element.PointerReleased += OnjControlReleased;
-        }
-
-        if (element is IChildContainer)
-        {
-            var container = (IChildContainer)element;
-            foreach (var child in container.jChildren)
-            {
-                element.mTreeItem.Items.Add(child.mTreeItem);
-            }
-        }
-
-        selectedTreeItem = MainCanvas.mTreeItem;
+        
+        
 
     }
 
@@ -220,5 +216,19 @@ public partial class MainWindow
         }
 
         return input;
+    }
+
+    public void CorrectTree(JControl element)
+    {
+        if (element is IChildContainer)
+        {
+            var container = (IChildContainer)element;
+            foreach (var child in container.jChildren)
+            {
+                element.mTreeItem.Items.Add(child.mTreeItem);
+            }
+        }
+
+        selectedTreeItem = MainCanvas.mTreeItem;
     }
 }

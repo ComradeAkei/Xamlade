@@ -17,6 +17,8 @@ public static class Broadcast
     public static void RestoreBehavior()=> OnBroadcast?.Invoke(2);
     //Убить все объекты
     public static void KillAll()=> OnBroadcast?.Invoke(3);
+    //Восстановить дерево объектов
+    public static void RestoreTree()=> OnBroadcast?.Invoke(4);
 
 
 
