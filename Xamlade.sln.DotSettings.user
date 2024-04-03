@@ -1,6 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fakei_002FProjects_002FXamlade_002FXamlade_002FAvalonia_002EGIF_002FAvaloniaGif_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fakei_002FProjects_002FXamlade_002FXamlade_002FAvalonia_002EGIF_002FAvalonia_002EGif_002Edll/@EntryIndexedValue">True</s:Boolean>
+	
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/citrus.avalonia/1.6.1/lib/netstandard2.0/Citrus.Avalonia.dll" /&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/semi.avalonia/11.0.1/lib/net6.0/Semi.Avalonia.dll" /&gt;

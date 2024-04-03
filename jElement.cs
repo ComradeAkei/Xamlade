@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Text.Json.Serialization;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Xamlade;
 
@@ -153,12 +155,17 @@ public interface JControl
    public void Dispose()
    {
        if(this.Name == "MainCanvas") return;
+       mTreeItem.element=null;
        mTreeItem = null;
+       var parent = this.jParent;
+       if(jParent != null)
+           jParent.RemoveChild(this);
        Reflector.SetName(null, this);
    }
    
     
 }
+
 
 //Модифицированные элементы дерева со встроенными jControl
 public class mTreeViewItem : TreeViewItem
@@ -174,14 +181,19 @@ public class mTreeViewItem : TreeViewItem
     }
 }
 
+[Serializable]
 public class jButton : Button, JControl
 {
+    public int ID = 0;
     protected override Type StyleKeyOverride => typeof(Button);
+    [field: NonSerialized]
     public IChildContainer? jParent { get; set; }
     private string controlType => jElementType.Button.ToString();
     public string Type => controlType;
+    [JsonIgnore]
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
+    [field: NonSerialized]
     public List<string> XAMLPiece { get; set; }
     
 
@@ -255,6 +267,7 @@ public class jImage : Image, JControl
         }
         else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
     }
+    
 }
 
 

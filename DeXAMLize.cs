@@ -35,7 +35,7 @@ public partial class MainWindow
        if(filePathXAML == "") return;
 
 
-        var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(MainWindow).Assembly) as Canvas;
+       var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(MainWindow).Assembly) as Canvas;
 
 
         var buf = new List<JControl>();

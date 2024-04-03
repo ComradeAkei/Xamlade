@@ -4,10 +4,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
@@ -19,6 +23,7 @@ using Avalonia.Gif;
 using Avalonia.Media.Imaging;
 using AvaloniaColorPicker;
 using Avalonia.Markup;
+using Microsoft.Diagnostics.Runtime;
 
 namespace Xamlade;
 
@@ -91,10 +96,8 @@ public partial class MainWindow : Window
             RemovejElement(null,null);
     }
 
-
-    //Переписать с привязкой к родителю
-
-    //Всё к хуям заново
+    
+    
     private void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
     {
         if (movable == null || Equals((JControl)sender!, movable) || Equals(movable, MainCanvas))
@@ -232,6 +235,7 @@ public partial class MainWindow : Window
     // Выбрать редактируемый элемент
     private void SelectjElement(JControl element)
     {
+        if ((element is null) || (element.Name == null)) return;
         selectedTreeItem = element.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         selectedOriginalBackground = selectedTreeItem.element.Background;
@@ -273,10 +277,15 @@ public partial class MainWindow : Window
     {
         if (selectedTreeItem == MainCanvas.mTreeItem) return;
         var element = selectedTreeItem.element;
-        element.Dispose();
-        selectedTreeItem.element.jParent.RemoveChild(selectedTreeItem.element);
+        var jparent = selectedTreeItem.element.jParent;
+        jparent.RemoveChild(selectedTreeItem.element);
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
+        //FIXME поставить поочередное удаление детей
+        MainHierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
+        
+       // MainHierarchyTree.SelectedItem=selectedTreeItem.element.mTreeItem;
+        element.Dispose();
     }
 
     private void OnjControlPressed(object? sender, PointerPressedEventArgs e)
@@ -360,7 +369,6 @@ public partial class MainWindow : Window
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
         Type jElement_type = selectedTreeItem.element.GetType();
-        var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
         prop.SetValue(selectedTreeItem.element, checkBox.IsChecked);
     }
@@ -496,9 +504,23 @@ public partial class MainWindow : Window
 
     }
 
+    public System.String ass;
 
     private void DEBUG(object? sender, RoutedEventArgs e)
     {
+        Console.WriteLine(selectedTreeItem.element.Name);
+     /*   var ignoredTypes = new HashSet<Type> { typeof(ContentPresenter) };
+
+        var options = new JsonSerializerOptions
+        {
+            ReferenceHandler = ReferenceHandler.Preserve,
+            NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals
+        };
+        options.Converters.Add(new IgnoredTypesConverter<jButton>(ignoredTypes));
         
+        string json = JsonSerializer.Serialize((jButton)selectedTreeItem.element, options);
+        var t = new jButton();
+        Console.WriteLine(json);
+        */
     }
 }

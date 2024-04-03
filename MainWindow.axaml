@@ -3,7 +3,6 @@
         xmlns:xamlade="clr-namespace:Xamlade"
        
         xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
-        xmlns:controls="clr-namespace:FluentAvalonia.UI.Controls;assembly=FluentAvalonia"
         xmlns:avaloniaColorPicker="clr-namespace:AvaloniaColorPicker;assembly=AvaloniaColorPicker"
         Height="800" Width="1200"
         x:Class="Xamlade.MainWindow"

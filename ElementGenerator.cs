@@ -38,7 +38,11 @@ public partial class MainWindow
             element.PointerReleased += OnjControlReleased;
             
             parent.AddChild(element);
-            selectedTreeItem.Items.Add(new mTreeViewItem(element));
+            var item = new mTreeViewItem(element);
+            selectedTreeItem.Items.Add(item);
+            (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
+            
+
     }
 
     public static void SetDefaultValues(JControl element)
