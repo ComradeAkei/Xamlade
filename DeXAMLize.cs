@@ -192,7 +192,7 @@ public partial class MainWindow
 
     static string ReplaceMainCanvasTag(string input)
     {
-        Match match = Regex.Match(input, @"<xamlade:jCanvas", RegexOptions.Singleline);
+        var match = Regex.Match(input, @"<xamlade:jCanvas", RegexOptions.Singleline);
 
         // Если найдено, заменяем его
         if (match.Success)

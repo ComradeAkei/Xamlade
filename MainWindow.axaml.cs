@@ -46,6 +46,9 @@ public partial class MainWindow : Window
 
     //Перемещаемый по холсту объект
     private JControl movable;
+    
+    //Кандидат на перемещение
+    private JControl premovable;
 
     //Выбранный в дереве элемент
     private mTreeViewItem? selectedTreeItem;
@@ -152,6 +155,14 @@ public partial class MainWindow : Window
         mov_hh = obj.Bounds.Height / 2;
     }
 
+    public void InitPremovable()
+    {
+        if(premovable is null) return;
+        InitMovable(premovable);
+        MainHierarchyTree.SelectedItem = (premovable).mTreeItem;
+        
+    }
+
 
     private void XAMLIZE(object? sender, RoutedEventArgs? e)
     {
@@ -179,7 +190,7 @@ public partial class MainWindow : Window
     }
 
 
-    public static readonly List<string> ExcludedWords = new List<string>
+    public static readonly List<string> ExcludedWords = new()
     {
         "jParent", "mTreeItem", "Presenter", "Template", "IsLoaded",
         "DesiredSize", "IsMeasureValid", "IsArrangeValid", "RenderTransform",
@@ -258,19 +269,28 @@ public partial class MainWindow : Window
 
     private void jElementClick(object? sender, RoutedEventArgs e)
     {
+        e.Handled = true;
+        InitMovable((JControl)sender);
         MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
     }
 
     private void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
-        InitMovable((JControl)sender);
-        var element = sender as JControl;
-        MainHierarchyTree.SelectedItem = (element).mTreeItem;
+        e.Handled = true;
+      //  Console.WriteLine(((JControl)sender).Type);
+        if (!((JControl)sender).Type.Contains("Button")) return;
+      //  Console.WriteLine("Ok");
+        premovable = sender as JControl;
+     //   InitMovable((JControl)sender);
+       // var element = sender as JControl;
+       // MainHierarchyTree.SelectedItem = (element).mTreeItem;
     }
 
     private void OnjControlPointerExited(object? sender, PointerEventArgs e)
     {
-        movable = null;
+        e.Handled = true;
+        premovable = null;
+     //   movable = null;
     }
 
     private void RemovejElement(object? sender, RoutedEventArgs? e)
@@ -281,7 +301,7 @@ public partial class MainWindow : Window
         jparent.RemoveChild(selectedTreeItem.element);
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
-        //FIXME поставить поочередное удаление детей
+       
         MainHierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
         
        // MainHierarchyTree.SelectedItem=selectedTreeItem.element.mTreeItem;
@@ -291,6 +311,8 @@ public partial class MainWindow : Window
     private void OnjControlPressed(object? sender, PointerPressedEventArgs e)
     {
         e.Handled = true;
+        
+        InitMovable((JControl)sender);
         var element = sender as JControl;
         element.IsPressed = true;
         MainHierarchyTree.SelectedItem = (element).mTreeItem;

@@ -37,7 +37,7 @@ public partial class MainWindow
             Text = name,
             //  DockPanel.Dock="Left" VerticalAlignment="Center"
             Foreground = GetColor("#88F1FF"),
-            FontWeight = FontWeight.DemiBold,
+            FontWeight = FontWeight.Normal,
             FontSize = 18,
             HorizontalAlignment = HorizontalAlignment.Right,
             VerticalAlignment = VerticalAlignment.Center,
@@ -56,7 +56,7 @@ public partial class MainWindow
             var _propElement = new TextBox();
             _propElement.Text = value?.ToString();
             _propElement.Foreground = GetColor("#88F1FF");
-            _propElement.FontWeight = FontWeight.DemiBold;
+            _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
             _propElement.VerticalAlignment = VerticalAlignment.Center;
             _propElement.Margin = new Thickness(5, 0, 0, 0);
@@ -80,7 +80,7 @@ public partial class MainWindow
                 _textBlock.Text = colorButton.Color.ToString();
                 _textBlock.VerticalAlignment = VerticalAlignment.Center;
                 _textBlock.Foreground = GetColor("#88F1FF");
-                _textBlock.FontWeight = FontWeight.DemiBold;
+                _textBlock.FontWeight = FontWeight.Normal;
                 stackPanel.HorizontalAlignment = HorizontalAlignment.Right;
                 stackPanel.Children.Add(_textBlock);
                 stackPanel.Children.Add(colorButton);
@@ -105,7 +105,7 @@ public partial class MainWindow
             _propElement.ItemTemplate = dataTemplate;
             
            _propElement.Foreground = GetColor("#88F1FF");
-           _propElement.FontWeight = FontWeight.DemiBold;
+           _propElement.FontWeight = FontWeight.Normal;
            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
            _propElement.VerticalAlignment = VerticalAlignment.Center;
            _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
@@ -126,7 +126,7 @@ public partial class MainWindow
             _propElement.Width = 30;
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
             _propElement.Foreground = GetColor("#88F1FF");
-            _propElement.FontWeight = FontWeight.DemiBold;
+            _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
             _propElement.VerticalAlignment = VerticalAlignment.Center;
             _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
@@ -142,7 +142,7 @@ public partial class MainWindow
             _propElement.Content = "Выбрать";
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
             _propElement.Foreground = GetColor("#88F1FF");
-            _propElement.FontWeight = FontWeight.DemiBold;
+            _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
             _propElement.VerticalAlignment = VerticalAlignment.Center;
             _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
@@ -157,7 +157,7 @@ public partial class MainWindow
             var _propElement = new TextBox();
             _propElement.Text = value?.ToString();
             _propElement.Foreground = Brushes.Red;
-            _propElement.FontWeight = FontWeight.DemiBold;
+            _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
             _propElement.Margin = new Thickness(5, 0, 0, 0);
             _propElement.Width = 100;
@@ -189,7 +189,7 @@ public partial class MainWindow
         return _coord;
 
     }
-    double CorrectSize(double coord)
+   private double CorrectSize(double coord)
         => CorrectCoords(coord)>0?CorrectCoords(coord):Convert.ToInt32(StrictModeValue.Text);
 
 
