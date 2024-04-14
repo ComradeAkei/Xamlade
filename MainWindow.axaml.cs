@@ -70,6 +70,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         _MainWindow = this;
+        //
         InitializeComponent();
         DataContext = this;
         WindowState = WindowState.Maximized;
