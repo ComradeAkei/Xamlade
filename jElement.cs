@@ -155,12 +155,15 @@ public interface JControl
    public void Dispose()
    {
        if(this.Name == "MainCanvas") return;
-       mTreeItem.element=null;
-       mTreeItem = null;
+       
+    //   mTreeItem.element=null;
+       this.mTreeItem = null;
        var parent = this.jParent;
        if(jParent != null)
            jParent.RemoveChild(this);
+       Console.WriteLine(this.Name+" Disposed");
        Reflector.SetName(null, this);
+       
    }
    
     

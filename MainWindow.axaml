@@ -18,6 +18,8 @@
             <Button Width="150" Content="XAMLize!" Click="XAMLIZE" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="Remove" Click="RemovejElement" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="DEXAMLIZE" Click="DEXAMLIZE" Margin="10" Background="#3A8FB7" />
+            <Button Width="150" Content="Отмена" Click="UNDO" Margin="10" Background="#3A8FB7" />
+            <Button Width="150" Content="Повтор" Click="REDO" Margin="10" Background="#3A8FB7" />
             <Button Width="150" Content="DEBUG" Click="DEBUG" Margin="10" Background="#3A8FB7" />
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
                           Stretch="None"

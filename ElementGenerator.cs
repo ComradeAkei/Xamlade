@@ -30,6 +30,7 @@ public partial class MainWindow
     
             element.Name = typeName + (i++);
             SetDefaultValues(element);
+            AddHistoryItem(new Change(element,"Created","successfuly"));
     
               element.PointerEntered += OnjControlPointerEntered;
               element.PointerExited += OnjControlPointerExited;

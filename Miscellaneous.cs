@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
@@ -21,10 +22,10 @@ public partial class MainWindow
       null,
       Type.EmptyTypes,
       null);
-  
-      
 
-    public void AddPropItem(string name, object? value,Type type)
+
+    
+    private void AddPropItem(string name, object? value,Type type)
     {
         var listItem = new ListBoxItem();
         var dockPanel = new DockPanel
@@ -112,10 +113,10 @@ public partial class MainWindow
            _propElement.Margin = new Thickness(5, 0, 0, 0);
             var enumValues = Enum.GetValues(type);
             
-            foreach (var _value in enumValues)
+            foreach (var _value in enumValues) 
                 _propElement.Items.Add(_value.ToString());
             _propElement.SelectedItem = value?.ToString();
-             _propElement.SelectionChanged+= OnEnumPropertyChanged;
+            _propElement.SelectionChanged+= OnEnumPropertyChanged;
             DockPanel.SetDock(_propElement, Dock.Right);
             dockPanel.Children.Add(_propElement); 
         }
@@ -206,4 +207,6 @@ public partial class MainWindow
             StrictModeValue.Text = "";
         }
     }
+
+   
 }

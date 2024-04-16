@@ -66,7 +66,6 @@ public partial class MainWindow : Window
     #endregion
 
     
-
     public MainWindow()
     {
         _MainWindow = this;
@@ -151,6 +150,10 @@ public partial class MainWindow : Window
 
     private void InitMovable(JControl obj)
     {
+        if (obj is null) return;
+        AddHistoryItem(new Change(obj, 
+            "Coordinates",
+            new Coordinates(Canvas.GetLeft(obj as Control),Canvas.GetTop(obj as Control))));
         movable = obj;
         mov_hw = obj.Bounds.Width / 2;
         mov_hh = obj.Bounds.Height / 2;
@@ -228,7 +231,7 @@ public partial class MainWindow : Window
 
         Type type = selectedTreeItem.element.GetType();
         var props = type.GetProperties();
-
+    
         foreach (var prop in props)
         {
             if (!ExcludedWords.Contains(prop.Name))
@@ -291,24 +294,27 @@ public partial class MainWindow : Window
     {
         e.Handled = true;
         premovable = null;
-     //   movable = null;
     }
 
+    
+    
     private void RemovejElement(object? sender, RoutedEventArgs? e)
     {
         if (selectedTreeItem == MainCanvas.mTreeItem) return;
         var element = selectedTreeItem.element;
         var jparent = selectedTreeItem.element.jParent;
         jparent.RemoveChild(selectedTreeItem.element);
+        
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
-       
         MainHierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
         
+        var data = new Object[] {jparent,element,element.mTreeItem};
+        AddHistoryItem(new Change(element,"Removed",data));
        // MainHierarchyTree.SelectedItem=selectedTreeItem.element.mTreeItem;
         element.Dispose();
     }
-
+    
     private void OnjControlPressed(object? sender, PointerPressedEventArgs e)
     {
         e.Handled = true;
@@ -365,6 +371,10 @@ public partial class MainWindow : Window
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
         object enumValue = Enum.Parse(prop_type, comboBox.SelectedItem.ToString());
+        
+        object prevalue = prop.GetValue(selectedTreeItem.element);
+        AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+        
         prop.SetValue(selectedTreeItem.element, enumValue);
     }
 
@@ -376,9 +386,14 @@ public partial class MainWindow : Window
             var parentPanel = colorButton.Parent.Parent as DockPanel;
             var txt_blc = parentPanel.Children[0] as TextBlock;
             var prop_name = txt_blc.Text;
+           
             Type jElement_type = selectedTreeItem.element.GetType();
             var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
             var prop = jElement_type.GetProperty(prop_name);
+           
+            object prevalue = prop.GetValue(selectedTreeItem.element);
+            AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+           
             prop.SetValue(selectedTreeItem.element, new SolidColorBrush(colorButton.Color));
             var textBlock = ((StackPanel)(colorButton.Parent)).Children[0] as TextBlock;
             textBlock.Text = colorButton.Color.ToString();
@@ -393,6 +408,10 @@ public partial class MainWindow : Window
         var prop_name = txt_blc.Text;
         Type jElement_type = selectedTreeItem.element.GetType();
         var prop = jElement_type.GetProperty(prop_name);
+       
+        object prevalue = prop.GetValue(selectedTreeItem.element);
+        AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+        
         prop.SetValue(selectedTreeItem.element, checkBox.IsChecked);
     }
 
@@ -408,7 +427,9 @@ public partial class MainWindow : Window
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
         textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
-
+        
+        object prevalue = prop.GetValue(selectedTreeItem.element);
+        AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
 
         if (textBox.Text == "не число") return;
         try
@@ -531,19 +552,6 @@ public partial class MainWindow : Window
 
     private void DEBUG(object? sender, RoutedEventArgs e)
     {
-        Console.WriteLine(selectedTreeItem.element.Name);
-     /*   var ignoredTypes = new HashSet<Type> { typeof(ContentPresenter) };
-
-        var options = new JsonSerializerOptions
-        {
-            ReferenceHandler = ReferenceHandler.Preserve,
-            NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals
-        };
-        options.Converters.Add(new IgnoredTypesConverter<jButton>(ignoredTypes));
-        
-        string json = JsonSerializer.Serialize((jButton)selectedTreeItem.element, options);
-        var t = new jButton();
-        Console.WriteLine(json);
-        */
+       
     }
 }
