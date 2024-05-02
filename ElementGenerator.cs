@@ -30,8 +30,6 @@ public partial class MainWindow
     
             element.Name = typeName + (i++);
             SetDefaultValues(element);
-            AddHistoryItem(new Change(element,"Created","successfuly"));
-    
               element.PointerEntered += OnjControlPointerEntered;
               element.PointerExited += OnjControlPointerExited;
           //  element.Click += jElementClick;
@@ -42,8 +40,8 @@ public partial class MainWindow
             var item = new mTreeViewItem(element);
             selectedTreeItem.Items.Add(item);
             (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
-            
-
+            var data = new Object[] {parent,element,element.mTreeItem};
+            AddHistoryItem(new Change(element,"Created",data));
     }
 
     public static void SetDefaultValues(JControl element)
@@ -125,7 +123,8 @@ public partial class MainWindow
                 ((jStackPanel)element).Width = 400;
             }
                 break;
-            
+
         }
+        
     }
 }

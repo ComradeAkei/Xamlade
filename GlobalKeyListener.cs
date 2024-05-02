@@ -36,6 +36,7 @@ public class GlobalKeyListener
         if (e.Key == Key.LeftCtrl)
         {
             KeyPressed?.Invoke(e);
+            MainWindow.ResizeFlag = true;
         }
     }
     private void KeyUpHandler(object sender, KeyEventArgs e)

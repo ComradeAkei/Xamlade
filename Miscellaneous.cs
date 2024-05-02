@@ -15,6 +15,7 @@ namespace Xamlade;
 public partial class MainWindow
 {
     private static bool LCtrlPressed = false;
+    public static bool ResizeFlag = false;
     private static ItemCollection PropListItems;
   //Принудительный вызов конструктора ItemCollection
   ConstructorInfo? constructor = typeof(ItemCollection).GetConstructor(

@@ -136,7 +136,13 @@ public partial class MainWindow : Window
         }
         else if (movable.IsPressed && LCtrlPressed)
         {
-            Console.WriteLine();
+            if (ResizeFlag)
+            {
+                UndoList.Remove(UndoList.Last());
+                AddHistoryItem(new Change(movable, "Size", new Size(element.Bounds.Width, element.Bounds.Height)));
+            }
+
+            ResizeFlag = false;
             if (double.IsNaN(element.Width))
                 element.Width = element.Bounds.Width;
             mousePosition = e.GetPosition(element);
