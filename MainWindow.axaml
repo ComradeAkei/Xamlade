@@ -13,36 +13,92 @@
     <DockPanel LastChildFill="True">
 
         <!-- Верхняя панель с кнопками -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="80" Margin="2,2,2,0">
-            <Button Width="150" Content="Run Window" Click="RUN_WINDOW" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="XAMLize!" Click="XAMLIZE" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="Remove" Click="RemovejElement" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="DEXAMLIZE" Click="DEXAMLIZE" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="Отмена" Click="UNDO" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="Повтор" Click="REDO" Margin="10" Background="#3A8FB7" />
-            <Button Width="150" Content="DEBUG" Click="DEBUG" Margin="10" Background="#3A8FB7" />
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="42" Margin="2,2,2,0">
+           
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
+                <Button Width="40" Height="40" Click="XAMLIZE" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/xamlize.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
+                <Button Width="40" Height="40" Click="RUN_WINDOW" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/run.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
+                <Button Width="40" Height="40" Click="DEXAMLIZE" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/dexamlize.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" Margin="10,0,0,0" >
+                <Button Width="40" Height="40" Click="UNDO" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/undo.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
+                <Button Width="40" Height="40" Click="REDO" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/redo.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
+                <Button Width="40" Height="40" Click="RemovejElement" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/remove.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" Margin="10,0,0,0" >
+                <Button Width="40" Height="40" Click="DEBUG" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/settings.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            
+            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
+                <Button Width="40" Height="40" Click="DEBUG" Margin="0" Background="Transparent" >
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Image Source="avares://Xamlade/assets/debug.png" Width="25" Height="25" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Border>
+            
+            
+            
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
                           Stretch="None"
                           StretchDirection="Both" />
-            <CheckBox Name="StrictModeEnabled" IsChecked="False" >Строгий режим</CheckBox>
-            <TextBox Name="StrictModeValue" Text="1" Margin="5,0,0,0"
+            <CheckBox Name="StrictModeEnabled" IsChecked="False" Opacity="0">Строгий режим</CheckBox>
+            <TextBox Name="StrictModeValue" Text="1" Margin="5,0,0,0" Opacity="0"
                      PropertyChanged="StrictModeEnabled_OnPropertyChanged" VerticalAlignment="Center" HorizontalAlignment="Center"
                      VerticalContentAlignment="Center"/>
             
             
         </StackPanel>
 
-        <!-- Левая панель с иерархией проекта -->
-        <StackPanel DockPanel.Dock="Left" Width="250" Background="#1D1D1D" Margin="2">
-            <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="20" Margin="10" Foreground="#CB33F2">Иерархия проекта</TextBlock>
+        <!-- Панель с иерархией проекта -->
+        <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="180" Background="#1D1D1D" Margin="2" >
+            <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Margin="10" Foreground="#0ab076">$NAME$</TextBlock>
             <TreeView Name="MainHierarchyTree" SelectionChanged="MainHierarchyTree_OnSelectionChanged"
-                      Foreground="#C978EC">
+                      Foreground="#0ab076">
                 <!-- Ваши узлы дерева добавляются здесь -->
             </TreeView>
         </StackPanel>
 
         <!-- Центральная область с вкладками -->
-        <TabControl Name="MainTabControl" Background="#2B2B2B" Margin="0,2,0,2">
+        <TabControl Name="MainTabControl" Background="#2B2B2B" Margin="0,2,0,2" DockPanel.Dock="Left">
             <TabItem Header="Элементы">
                 <StackPanel Width="300" Orientation="Vertical" Background="#2B2B2B">
                     <Button Name="GenerateButton" Content="Button" Click="GenerateElement"

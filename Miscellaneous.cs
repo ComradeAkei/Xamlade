@@ -38,7 +38,7 @@ public partial class MainWindow
         {
             Text = name,
             //  DockPanel.Dock="Left" VerticalAlignment="Center"
-            Foreground = GetColor("#88F1FF"),
+            Foreground = GetColor("#0ab076"),
             FontWeight = FontWeight.Normal,
             FontSize = 18,
             HorizontalAlignment = HorizontalAlignment.Right,
@@ -57,7 +57,7 @@ public partial class MainWindow
         {
             var _propElement = new TextBox();
             _propElement.Text = value?.ToString();
-            _propElement.Foreground = GetColor("#88F1FF");
+            _propElement.Foreground = GetColor("#0ab076");
             _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
             _propElement.VerticalAlignment = VerticalAlignment.Center;
@@ -81,7 +81,7 @@ public partial class MainWindow
                 colorButton.PropertyChanged += OnColorChanged;
                 _textBlock.Text = colorButton.Color.ToString();
                 _textBlock.VerticalAlignment = VerticalAlignment.Center;
-                _textBlock.Foreground = GetColor("#88F1FF");
+                _textBlock.Foreground = GetColor("#0ab076");
                 _textBlock.FontWeight = FontWeight.Normal;
                 stackPanel.HorizontalAlignment = HorizontalAlignment.Right;
                 stackPanel.Children.Add(_textBlock);
@@ -106,7 +106,7 @@ public partial class MainWindow
             });
             _propElement.ItemTemplate = dataTemplate;
             
-           _propElement.Foreground = GetColor("#88F1FF");
+           _propElement.Foreground = GetColor("#0ab076");
            _propElement.FontWeight = FontWeight.Normal;
            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
            _propElement.VerticalAlignment = VerticalAlignment.Center;
@@ -127,7 +127,7 @@ public partial class MainWindow
             _propElement.IsChecked = (bool)value;
             _propElement.Width = 30;
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-            _propElement.Foreground = GetColor("#88F1FF");
+            _propElement.Foreground = GetColor("#0ab076");
             _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
             _propElement.VerticalAlignment = VerticalAlignment.Center;
@@ -143,7 +143,7 @@ public partial class MainWindow
             var _propElement = new Button();
             _propElement.Content = "Выбрать";
             _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-            _propElement.Foreground = GetColor("#88F1FF");
+            _propElement.Foreground = GetColor("#0ab076");
             _propElement.FontWeight = FontWeight.Normal;
             _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
             _propElement.VerticalAlignment = VerticalAlignment.Center;
