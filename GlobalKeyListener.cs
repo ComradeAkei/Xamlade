@@ -28,7 +28,7 @@ public class GlobalKeyListener
     private void PointerPressedHandler(object? sender, PointerPressedEventArgs e)
     {
         MousePressed = true;
-        MainWindow._MainWindow.InitPremovable();
+        Workspace.InitPremovable();
     }
 
     private void KeyDownHandler(object sender, KeyEventArgs e)

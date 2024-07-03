@@ -81,9 +81,9 @@ public partial class MainWindow
             
 
             //  element.SetParent(element);
-            element.PointerEntered += OnjControlPointerEntered;
-            element.PointerExited += OnjControlPointerExited;
-            element.Click += jElementClick;
+            element.PointerEntered += Workspace.OnjControlPointerEntered;
+            element.PointerExited += Workspace.OnjControlPointerExited;
+            element.Click += Workspace.jElementClick;
             element.PointerPressed += OnjControlPressed;
             element.PointerReleased += OnjControlReleased;
         
