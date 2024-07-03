@@ -16,7 +16,7 @@ namespace Xamlade;
 
 public partial class MainWindow
 {
-    private bool HistoryOperationFlag = false;
+    private static bool HistoryOperationFlag = false;
     public record Coordinates(double X, double Y)
     {
         public double X { get; set; } = X;
@@ -67,13 +67,13 @@ public partial class MainWindow
         
     }
     
-    private List<Change> UndoList = new();
-    private List<Change> RedoList = new();
+    public static List<Change> UndoList = new();
+    public static List<Change> RedoList = new();
     
     
     
     //Добавить изменение в очередь отмены
-    private void AddHistoryItem(Change change)
+    public static void AddHistoryItem(Change change)
     {
         if (change.jObject.Name == "MainCanvas") return;
         if(HistoryOperationFlag) return;
@@ -89,7 +89,7 @@ public partial class MainWindow
     }
 
 
-    private void HistoryOperation(bool mode)
+    private static void HistoryOperation(bool mode)
     {
         Change state;
         HistoryOperationFlag = true;
@@ -179,7 +179,7 @@ public partial class MainWindow
         Console.WriteLine("History: "+ tst+" " + state.jObject.Name + " " + state.FieldName + " " + state.Value.ToString());
         
        
-        MainHierarchyTree.SelectedItem = state.jObject.mTreeItem;
+        MainWindow._MainHierarchyTree.SelectedItem = state.jObject.mTreeItem;
         selectedTreeItem = state.jObject.mTreeItem;
         
         switch (state.FieldName)
@@ -228,7 +228,7 @@ public partial class MainWindow
     }
 
 
-    private void ResurrectElement(IChildContainer parent, JControl element, mTreeViewItem mtree)
+    private static void ResurrectElement(IChildContainer parent, JControl element, mTreeViewItem mtree)
     {
         //Блок реанимации
         Reflector.SetName(mtree.Header.ToString(),element);
@@ -236,7 +236,7 @@ public partial class MainWindow
         element.jParent = parent;
         (parent as JControl).mTreeItem.Items.Add(mtree);
         parent.AddChild(element,Canvas.GetTop(element as Control),Canvas.GetLeft(element as Control));
-        MainHierarchyTree.SelectedItem = element.mTreeItem;
+        HierarchyControl.HierarchyTree.SelectedItem = element.mTreeItem;
         selectedTreeItem = element.mTreeItem;
     }
     private void REDO(object? sender, RoutedEventArgs e)

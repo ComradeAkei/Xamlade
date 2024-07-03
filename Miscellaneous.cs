@@ -14,7 +14,7 @@ namespace Xamlade;
 
 public partial class MainWindow
 {
-    private static bool LCtrlPressed = false;
+    public static bool LCtrlPressed = false;
     public static bool ResizeFlag = false;
     private static ItemCollection PropListItems;
   //Принудительный вызов конструктора ItemCollection
@@ -181,18 +181,20 @@ public partial class MainWindow
         => new SolidColorBrush(Color.Parse(color));
 
     //Корректировка координат для перемещения и растяжения в строгом режиме
-    double CorrectCoords(double coord)
+    public static double CorrectCoords(double coord)
     {
-        if ((bool)!StrictModeEnabled.IsChecked) return Math.Round(coord);
-        if(StrictModeValue.Text == "") return Math.Round(coord);
-        int step = Convert.ToInt32(StrictModeValue.Text);
+        ///ВАЖНО///
+       // if ((bool)!StrictModeEnabled.IsChecked) return Math.Round(coord);
+       // if(StrictModeValue.Text == "") return Math.Round(coord);
+       int step = Convert.ToInt32("0");//StrictModeValue.Text);
         if (step <= 0) return coord;
-        var _coord = (((int)coord)/step)*step;
+        var _coord = ( ( (int)coord) / step) *step;
         return _coord;
 
     }
-   private double CorrectSize(double coord)
-        => CorrectCoords(coord)>0?CorrectCoords(coord):Convert.ToInt32(StrictModeValue.Text);
+
+    public static double CorrectSize(double coord)
+        => CorrectCoords(coord) > 0 ? CorrectCoords(coord) : Convert.ToInt32("0");//StrictModeValue.Text);
 
 
     private void StrictModeEnabled_OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)

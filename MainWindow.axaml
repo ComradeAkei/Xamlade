@@ -13,7 +13,7 @@
     <DockPanel LastChildFill="True">
 
         <!-- Верхняя панель с кнопками -->
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="42" Margin="2,2,2,0">
+        <StackPanel Name="Toolbar" DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="42" Margin="2,2,2,0">
            
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
                 <Button Width="40" Height="40" Click="XAMLIZE" Margin="0" Background="Transparent" >
@@ -53,7 +53,7 @@
                 </Button>
             </Border>
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
-                <Button Width="40" Height="40" Click="RemovejElement" Margin="0" Background="Transparent" >
+                <Button Name = "RemoveButton" Width="40" Height="40" Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/remove.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -75,8 +75,6 @@
                 </Button>
             </Border>
             
-            
-            
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
                           Stretch="None"
                           StretchDirection="Both" />
@@ -84,10 +82,11 @@
             <TextBox Name="StrictModeValue" Text="1" Margin="5,0,0,0" Opacity="0"
                      PropertyChanged="StrictModeEnabled_OnPropertyChanged" VerticalAlignment="Center" HorizontalAlignment="Center"
                      VerticalContentAlignment="Center"/>
-            
-            
         </StackPanel>
 
+        
+        
+        
         <!-- Панель с иерархией проекта -->
         <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="180" Background="#1D1D1D" Margin="2" >
             <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Margin="10" Foreground="#0ab076">$NAME$</TextBlock>
@@ -137,7 +136,7 @@
 
         <!-- Правая область с холстом -->
         <xamlade:jCanvas Name="MainCanvas" Background="#1E1E1E"
-                         PointerMoved="jCanvas_OnPointerMoved" PointerPressed="OnjControlPressed" Margin="2">
+                          PointerPressed="OnjControlPressed" Margin="2">
             <xamlade:jCanvas.Styles>
                 <FluentTheme/>
             </xamlade:jCanvas.Styles>
