@@ -71,6 +71,7 @@ public partial class MainWindow : Window
         _MainWindow = this;
         //
         InitializeComponent();
+        this.Icon = new WindowIcon(@"assets/Icon.png");
         DataContext = this;
         WindowState = WindowState.Maximized;
         selectedOriginalBackground = MainCanvas.Background;
