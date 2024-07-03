@@ -3,20 +3,18 @@
         xmlns:xamlade="clr-namespace:Xamlade"
        
         xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
-        xmlns:avaloniaColorPicker="clr-namespace:AvaloniaColorPicker;assembly=AvaloniaColorPicker"
-        Height="800" Width="1200"
         x:Class="Xamlade.MainWindow"
         x:DataType="xamlade:MainWindow"
         Title="Xamlade" Background="DimGray">
 
-    
+   
     <DockPanel LastChildFill="True">
 
         <!-- Верхняя панель с кнопками -->
         <StackPanel Name="Toolbar" DockPanel.Dock="Top" Orientation="Horizontal" Background="#271E25" Height="42" Margin="2,2,2,0">
            
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
-                <Button Width="40" Height="40" Click="XAMLIZE" Margin="0" Background="Transparent" >
+                <Button Name="XamlizeButton" Width="40" Height="40" Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/xamlize.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -135,8 +133,7 @@
         </TabControl>
 
         <!-- Правая область с холстом -->
-        <xamlade:jCanvas Name="MainCanvas" Background="#1E1E1E"
-                          PointerPressed="OnjControlPressed" Margin="2">
+        <xamlade:jCanvas Name="MainCanvas" Background="#1E1E1E" Margin="2">
             <xamlade:jCanvas.Styles>
                 <FluentTheme/>
             </xamlade:jCanvas.Styles>

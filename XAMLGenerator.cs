@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace Xamlade;
 
@@ -38,7 +41,7 @@ public static class XAMLGenerator
         foreach (var prop in props)
         {
             if((element.Name == "MainCanvas") && prop.Name is "Width" or "Height") continue;
-            if (!MainWindow.ExcludedWords.Contains(prop.Name))
+            if (!Constants.ExcludedWords.Contains(prop.Name))
             {
                 if (prop.Name == "Source")
                     getProperties += ($"{prop.Name}=\"{((jImage)element).jImageSource}\" ");
@@ -69,7 +72,7 @@ public static class XAMLGenerator
         element.XAMLRating = element is IChildContainer container ? container.jChildren.Count : 0;
         element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
     }
-    public static void XAMLize(JControl element)
+    public static void XAMLizeElement(JControl element)
     {
         if(element.Name==null) return;
         if (element.XAMLRating == 0)
@@ -80,6 +83,33 @@ public static class XAMLGenerator
             parent.XAMLPiece.AddRange(element.XAMLPiece);
             parent.XAMLRating--;
         }
+    }
+    
+    public static void XAMLIZE(object? sender, RoutedEventArgs? e)
+    {
+        
+
+        // selectedTreeItem.element.Background = selectedOriginalBackground;
+        Broadcast.InitXAML();
+        while (Workspace.MainCanvas.XAMLRating > -1)
+        {
+            Broadcast.XAMLize();
+        }
+        var wWidth = (int)Workspace.MainCanvas.Bounds.Width;
+        var wHeight = (int)Workspace.MainCanvas.Bounds.Height;
+        
+        string filePath = @"XamladeDemo/MainWindow.axaml";
+        var outputXAML = new List<string>();
+        outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
+         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
+         xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+         mc:Ignorable=""d"" Width="""+wWidth+@""" Height="""+wHeight+@"""
+         x:Class=""XamladeDemo.MainWindow""
+         Title=""TestWindow"">");
+        outputXAML.AddRange(Workspace.MainCanvas.XAMLPiece);
+        outputXAML.Add(@"</Window>");
+        File.WriteAllLines(filePath, outputXAML);
     }
 
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
@@ -124,6 +125,40 @@ public static class Workspace
     {
         e.Handled = true;
         premovable = null;
+    }
+    
+    public static void RemoveSelectedjElement(object? sender, RoutedEventArgs? e)
+    {
+        if (HierarchyControl.selectedTreeItem == Workspace.MainCanvas.mTreeItem) return;
+        var element = HierarchyControl.selectedTreeItem.element;
+        var jparent = HierarchyControl.selectedTreeItem.element.jParent;
+        jparent.RemoveChild(HierarchyControl.selectedTreeItem.element);
+        
+        var parent = HierarchyControl.selectedTreeItem.Parent as mTreeViewItem;
+        parent.Items.Remove(HierarchyControl.selectedTreeItem);
+        HierarchyControl.HierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
+        
+        var data = new Object[] {jparent,element,element.mTreeItem};
+        MainWindow.AddHistoryItem(new MainWindow.Change(element,"Removed",data));
+        // MainHierarchyTree.SelectedItem=selectedTreeItem.element.mTreeItem;
+        element.Dispose();
+    }
+    
+    public static void OnjControlPressed(object? sender, PointerPressedEventArgs e)
+    {
+        e.Handled = true;
+        
+        Workspace.InitMovable((JControl)sender);
+        var element = sender as JControl;
+        element.IsPressed = true;
+        HierarchyControl.HierarchyTree.SelectedItem = (element).mTreeItem;
+    }
+
+    public static void OnjControlReleased(object? sender, PointerReleasedEventArgs e)
+    {
+        e.Handled = true;
+        var element = sender as JControl;
+        element.IsPressed = false;
     }
     
 }

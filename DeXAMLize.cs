@@ -84,8 +84,8 @@ public partial class MainWindow
             element.PointerEntered += Workspace.OnjControlPointerEntered;
             element.PointerExited += Workspace.OnjControlPointerExited;
             element.Click += Workspace.jElementClick;
-            element.PointerPressed += OnjControlPressed;
-            element.PointerReleased += OnjControlReleased;
+            element.PointerPressed += Workspace.OnjControlPressed;
+            element.PointerReleased += Workspace.OnjControlReleased;
         
         
 
@@ -231,6 +231,6 @@ public partial class MainWindow
             }
         }
 
-        selectedTreeItem = MainCanvas.mTreeItem;
+        HierarchyControl.selectedTreeItem = MainCanvas.mTreeItem;
     }
 }

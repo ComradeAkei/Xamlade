@@ -22,7 +22,7 @@ public partial class MainWindow
 {
     public void GenerateElement(object? sender, RoutedEventArgs e)
     {
-            if (!(selectedTreeItem.element is IChildContainer parent)) return;
+            if (!(HierarchyControl.selectedTreeItem.element is IChildContainer parent)) return;
     
             string typeName = ((Button)sender).Content.ToString();
             Type elementType = Type.GetType("Xamlade.j" + typeName);
@@ -33,12 +33,12 @@ public partial class MainWindow
               element.PointerEntered += Workspace.OnjControlPointerEntered;
               element.PointerExited += Workspace.OnjControlPointerExited;
           //  element.Click += jElementClick;
-            element.PointerPressed += OnjControlPressed;
-            element.PointerReleased += OnjControlReleased;
+            element.PointerPressed += Workspace.OnjControlPressed;
+            element.PointerReleased += Workspace.OnjControlReleased;
             
             parent.AddChild(element);
             var item = new mTreeViewItem(element);
-            selectedTreeItem.Items.Add(item);
+            HierarchyControl.selectedTreeItem.Items.Add(item);
             (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
             var data = new Object[] {parent,element,element.mTreeItem};
             AddHistoryItem(new Change(element,"Created",data));

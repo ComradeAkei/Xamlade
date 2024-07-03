@@ -222,7 +222,7 @@ public class jButton : Button, JControl
     private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -261,7 +261,7 @@ public class jImage : Image, JControl
     private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -298,7 +298,7 @@ public class jToggleButton : ToggleButton, JControl
     private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -337,7 +337,7 @@ public class jCheckBox : CheckBox, JControl
     private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -371,7 +371,7 @@ public class jTextBlock : TextBlock, JControl
     private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -406,7 +406,7 @@ public class jTextBox : TextBox, JControl
     private void HandleBroadcast(int mode)
     {
         if (mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -462,7 +462,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
     {
         
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
@@ -512,7 +512,7 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
     private void HandleBroadcast(int mode)
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLize(this);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
         else if (mode == 3)
         {

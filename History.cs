@@ -180,7 +180,7 @@ public partial class MainWindow
         
        
         MainWindow._MainHierarchyTree.SelectedItem = state.jObject.mTreeItem;
-        selectedTreeItem = state.jObject.mTreeItem;
+        HierarchyControl.selectedTreeItem = state.jObject.mTreeItem;
         
         switch (state.FieldName)
         {
@@ -196,8 +196,8 @@ public partial class MainWindow
                 return;
             case "Created" when (!mode):
             case "Removed" when (mode):
-                selectedTreeItem.element = state.jObject;
-                RemovejElement(null,null);
+                HierarchyControl.selectedTreeItem.element = state.jObject;
+                Workspace.RemoveSelectedjElement(null,null);
                 HistoryOperationFlag = false;
                 return;
             case "Created" when (mode):
@@ -213,7 +213,7 @@ public partial class MainWindow
             }
         }
 
-        var jElement_type = selectedTreeItem.element.GetType();
+        var jElement_type = HierarchyControl.selectedTreeItem.element.GetType();
         var prop = jElement_type.GetProperty(state.FieldName);
         prop.SetValue(state.jObject, state.Value);
         HistoryOperationFlag = false;
@@ -237,7 +237,7 @@ public partial class MainWindow
         (parent as JControl).mTreeItem.Items.Add(mtree);
         parent.AddChild(element,Canvas.GetTop(element as Control),Canvas.GetLeft(element as Control));
         HierarchyControl.HierarchyTree.SelectedItem = element.mTreeItem;
-        selectedTreeItem = element.mTreeItem;
+        HierarchyControl.selectedTreeItem = element.mTreeItem;
     }
     private void REDO(object? sender, RoutedEventArgs e)
     {

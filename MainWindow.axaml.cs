@@ -43,11 +43,10 @@ public partial class MainWindow : Window
     //Случайное число
     private static Random random;
 
+    private PixelPoint _initialPosition;
+    
 
-   
-
-    //Выбранный в дереве элемент
-    private static mTreeViewItem? selectedTreeItem;
+    
 
 
     //Оригинальный фон выбранного элемента
@@ -58,28 +57,28 @@ public partial class MainWindow : Window
     #endregion
 
     
+    
     public MainWindow()
     {
+        //Дырку закрыть
         _MainWindow = this;
-        //Incostylation
-        //Incostylation
-        //
+        
         InitializeComponent();
-        this.Icon = new WindowIcon(@"assets/Icon.png");
+        WindowInit();
         DataContext = this;
         
         
         Workspace.Init(MainCanvas);
         HierarchyControl.Init(MainHierarchyTree);
-        RemoveButton.Click+= RemovejElement;
+        ButtonEventsInit();
         
         
         
         WindowState = WindowState.Maximized;
         selectedOriginalBackground = MainCanvas.Background;
         MainHierarchyTree.Items.Add(new mTreeViewItem(MainCanvas));
-        selectedTreeItem = MainCanvas.mTreeItem;
-        MainHierarchyTree.SelectedItem = selectedTreeItem;
+        HierarchyControl.selectedTreeItem = MainCanvas.mTreeItem;
+        MainHierarchyTree.SelectedItem = HierarchyControl.selectedTreeItem;
         random = new Random();
         PropListItems = constructor.Invoke(new object[] { }) as ItemCollection;
         var listener = new GlobalKeyListener(this);
@@ -87,7 +86,47 @@ public partial class MainWindow : Window
         listener.KeyReleased += GlobalKeyReleased;
 
     }
-    
+
+    private void WindowInit()
+    {
+        this.Icon = new WindowIcon(@"assets/Icon.png");
+        var screen = Screens.Primary.WorkingArea;
+        this.WindowState = WindowState.Maximized;
+        // Установить размеры окна равными размерам экрана
+        this.Width = screen.Width;
+        this.Height = screen.Height;
+
+        // Установить минимальные и максимальные размеры окна
+        this.MinWidth = screen.Width;
+        this.MinHeight = screen.Height;
+        this.MaxWidth = screen.Width;
+        this.MaxHeight = screen.Height;
+        
+
+        // Запретить изменение размеров окна
+        this.CanResize = false;
+        
+        //Привязать окно к начальному положению
+        this.WindowStartupLocation = WindowStartupLocation.Manual;
+        _initialPosition = new PixelPoint(screen.X, screen.Y);
+        this.Position = _initialPosition;
+
+        // Подписка на событие изменения положения окна
+        this.PositionChanged += MainWindow_PositionChanged;
+    }
+
+    //Инициализация событий кнопок управления
+    private void ButtonEventsInit()
+    {
+        RemoveButton.Click+= Workspace.RemoveSelectedjElement;
+        XamlizeButton.Click += XAMLGenerator.XAMLIZE;
+        MainCanvas.PointerPressed += Workspace.OnjControlPressed;
+    }
+    private void MainWindow_PositionChanged(object sender, PixelPointEventArgs e)
+    {
+        // Возвращаем окно на исходное положение
+        this.Position = _initialPosition;
+    }
 
     private void GlobalKeyPressed(KeyEventArgs e)
     {
@@ -99,7 +138,8 @@ public partial class MainWindow : Window
         if (e.Key == Key.LeftCtrl)
             LCtrlPressed = false;
         else if(e.Key == Key.Delete)
-            RemovejElement(null,null);
+            //ИСПРАВИТЬ
+            Workspace.RemoveSelectedjElement(null,null);
     }
 
     
@@ -110,50 +150,10 @@ public partial class MainWindow : Window
     
 
 
-    private void XAMLIZE(object? sender, RoutedEventArgs? e)
-    {
-        ((Button)sender).Content = "   XAMLize   ";
-
-        // selectedTreeItem.element.Background = selectedOriginalBackground;
-        Broadcast.InitXAML();
-        while (MainCanvas.XAMLRating > -1)
-        {
-            Broadcast.XAMLize();
-        }
-
-        string filePath = @"XamladeDemo/MainWindow.axaml";
-        var outputXAML = new List<string>();
-        outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
-         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
-         xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
-         xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
-         mc:Ignorable=""d"" Width=""700"" Height=""600""
-         x:Class=""XamladeDemo.MainWindow""
-         Title=""TestWindow"">");
-        outputXAML.AddRange(MainCanvas.XAMLPiece);
-        outputXAML.Add(@"</Window>");
-        File.WriteAllLines(filePath, outputXAML);
-    }
+    
 
 
-    public static readonly List<string> ExcludedWords = new()
-    {
-        "jParent", "mTreeItem", "Presenter", "Template", "IsLoaded",
-        "DesiredSize", "IsMeasureValid", "IsArrangeValid", "RenderTransform",
-        "DataContext", "IsInitialized", "Parent", "ActualThemeVariant",
-        "Transitions", "Item", "Type", "IsPressed", "ClickMode", "IsDefault", "IsCancel",
-        "DataTemplates", "Focusable", "IsEnabled", "IsKeyboardFocusWithin",
-        "IsFocused", "IsHitTestVisible", "IsPointerOver", "IsTabStop",
-        "IsEffectivelyEnabled", "TabIndex", "KeyBindings", "GestureRecognizers",
-        "UseLayoutRounding", "ClipToBounds", "IsEffectivelyVisible",
-        "HasMirrorTransform", "RenderTransformOrigin", "ZIndex", "Classes",
-        "Styles", "StyleKey", "Resources", "Command", "HotKey",
-        "CommandParameter", "Flyout", "Theme", "Clip", "TemplatedParent", "Effect",
-        "OpacityMask", "Bounds", "Cursor", "Tag", "ContextFlyout", "ContextMenu", "FocusAdorner", "IsItemsHost",
-        "Children", "jChildren", "FontFamily", "TextDecoration", "ContentTemplate", "FlowDirection", "Inlines",
-        "TextLayout",
-        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo","jImageSource"
-    };
+    
 
     private void ShowProperties()
     {
@@ -167,19 +167,19 @@ public partial class MainWindow : Window
         }
 
 
-        if (selectedTreeItem.element == MainCanvas) return;
+        if (HierarchyControl.selectedTreeItem.element == MainCanvas) return;
         //  Type type = selectedTreeItem.element.GetType();
         //   = type.GetProperties();
 
-        Type type = selectedTreeItem.element.GetType();
+        Type type = HierarchyControl.selectedTreeItem.element.GetType();
         var props = type.GetProperties();
     
         foreach (var prop in props)
         {
-            if (!ExcludedWords.Contains(prop.Name))
+            if (!Constants.ExcludedWords.Contains(prop.Name))
             {
                 var prop_type = type.GetProperty(prop.Name).PropertyType;
-                AddPropItem(prop.Name, prop.GetValue(selectedTreeItem.element), prop_type);
+                AddPropItem(prop.Name, prop.GetValue(HierarchyControl.selectedTreeItem.element), prop_type);
                 //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
             }
         }
@@ -193,11 +193,11 @@ public partial class MainWindow : Window
     private void SelectjElement(JControl element)
     {
         if ((element is null) || (element.Name == null)) return;
-        selectedTreeItem = element.mTreeItem;
-        MainHierarchyTree.SelectedItem = selectedTreeItem;
-        selectedOriginalBackground = selectedTreeItem.element.Background;
-        Workspace.InitMovable(selectedTreeItem.element);
-        selectedTreeItem.element.Focus();
+        HierarchyControl.selectedTreeItem = element.mTreeItem;
+        MainHierarchyTree.SelectedItem = HierarchyControl.selectedTreeItem;
+        selectedOriginalBackground = HierarchyControl.selectedTreeItem.element.Background;
+        Workspace.InitMovable(HierarchyControl.selectedTreeItem.element);
+        HierarchyControl.selectedTreeItem.element.Focus();
         ShowProperties();
     }
 
@@ -217,39 +217,7 @@ public partial class MainWindow : Window
 
     
     
-    private static void RemovejElement(object? sender, RoutedEventArgs? e)
-    {
-        if (selectedTreeItem == Workspace.MainCanvas.mTreeItem) return;
-        var element = selectedTreeItem.element;
-        var jparent = selectedTreeItem.element.jParent;
-        jparent.RemoveChild(selectedTreeItem.element);
-        
-        var parent = selectedTreeItem.Parent as mTreeViewItem;
-        parent.Items.Remove(selectedTreeItem);
-        HierarchyControl.HierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
-        
-        var data = new Object[] {jparent,element,element.mTreeItem};
-        AddHistoryItem(new Change(element,"Removed",data));
-       // MainHierarchyTree.SelectedItem=selectedTreeItem.element.mTreeItem;
-        element.Dispose();
-    }
     
-    private void OnjControlPressed(object? sender, PointerPressedEventArgs e)
-    {
-        e.Handled = true;
-        
-        Workspace.InitMovable((JControl)sender);
-        var element = sender as JControl;
-        element.IsPressed = true;
-        MainHierarchyTree.SelectedItem = (element).mTreeItem;
-    }
-
-    private void OnjControlReleased(object? sender, PointerReleasedEventArgs e)
-    {
-        e.Handled = true;
-        var element = sender as JControl;
-        element.IsPressed = false;
-    }
 
     private async void OnChooseImageClick(object? sender, RoutedEventArgs e)
     {
@@ -272,8 +240,8 @@ public partial class MainWindow : Window
             string fileName = Path.GetFileName(result[0]);
             string targetFilePath = Path.Combine("assets", fileName);
             File.Copy(result[0], targetFilePath, true);
-            ((jImage)selectedTreeItem.element).jImageSource = @"assets/" + fileName;
-            ((jImage)selectedTreeItem.element).Source = new Bitmap(((jImage)selectedTreeItem.element).jImageSource);
+            ((jImage)HierarchyControl.selectedTreeItem.element).jImageSource = @"assets/" + fileName;
+            ((jImage)HierarchyControl.selectedTreeItem.element).Source = new Bitmap(((jImage)HierarchyControl.selectedTreeItem.element).jImageSource);
         }
         else
         {
@@ -286,15 +254,15 @@ public partial class MainWindow : Window
         var parentPanel = comboBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
-        Type jElement_type = selectedTreeItem.element.GetType();
+        Type jElement_type = HierarchyControl.selectedTreeItem.element.GetType();
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
         object enumValue = Enum.Parse(prop_type, comboBox.SelectedItem.ToString());
         
-        object prevalue = prop.GetValue(selectedTreeItem.element);
-        AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+        object prevalue = prop.GetValue(HierarchyControl.selectedTreeItem.element);
+        AddHistoryItem(new Change(HierarchyControl.selectedTreeItem.element,prop_name,prevalue));
         
-        prop.SetValue(selectedTreeItem.element, enumValue);
+        prop.SetValue(HierarchyControl.selectedTreeItem.element, enumValue);
     }
 
     private void OnColorChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
@@ -306,14 +274,14 @@ public partial class MainWindow : Window
             var txt_blc = parentPanel.Children[0] as TextBlock;
             var prop_name = txt_blc.Text;
            
-            Type jElement_type = selectedTreeItem.element.GetType();
+            Type jElement_type = HierarchyControl.selectedTreeItem.element.GetType();
             var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
             var prop = jElement_type.GetProperty(prop_name);
            
-            object prevalue = prop.GetValue(selectedTreeItem.element);
-            AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+            object prevalue = prop.GetValue(HierarchyControl.selectedTreeItem.element);
+            AddHistoryItem(new Change(HierarchyControl.selectedTreeItem.element,prop_name,prevalue));
            
-            prop.SetValue(selectedTreeItem.element, new SolidColorBrush(colorButton.Color));
+            prop.SetValue(HierarchyControl.selectedTreeItem.element, new SolidColorBrush(colorButton.Color));
             var textBlock = ((StackPanel)(colorButton.Parent)).Children[0] as TextBlock;
             textBlock.Text = colorButton.Color.ToString();
         }
@@ -325,13 +293,13 @@ public partial class MainWindow : Window
         var parentPanel = checkBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
-        Type jElement_type = selectedTreeItem.element.GetType();
+        Type jElement_type = HierarchyControl.selectedTreeItem.element.GetType();
         var prop = jElement_type.GetProperty(prop_name);
        
-        object prevalue = prop.GetValue(selectedTreeItem.element);
-        AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+        object prevalue = prop.GetValue(HierarchyControl.selectedTreeItem.element);
+        AddHistoryItem(new Change(HierarchyControl.selectedTreeItem.element,prop_name,prevalue));
         
-        prop.SetValue(selectedTreeItem.element, checkBox.IsChecked);
+        prop.SetValue(HierarchyControl.selectedTreeItem.element, checkBox.IsChecked);
     }
 
     private void OnPropertyChanged(object? sender, KeyEventArgs e)
@@ -342,13 +310,13 @@ public partial class MainWindow : Window
         var parentPanel = textBox.Parent as DockPanel;
         var txt_blc = parentPanel.Children[0] as TextBlock;
         var prop_name = txt_blc.Text;
-        Type jElement_type = selectedTreeItem.element.GetType();
+        Type jElement_type = HierarchyControl.selectedTreeItem.element.GetType();
         var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
         var prop = jElement_type.GetProperty(prop_name);
         textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
         
-        object prevalue = prop.GetValue(selectedTreeItem.element);
-        AddHistoryItem(new Change(selectedTreeItem.element,prop_name,prevalue));
+        object prevalue = prop.GetValue(HierarchyControl.selectedTreeItem.element);
+        AddHistoryItem(new Change(HierarchyControl.selectedTreeItem.element,prop_name,prevalue));
 
         if (textBox.Text == "не число") return;
         try
@@ -357,24 +325,24 @@ public partial class MainWindow : Window
             {
                 FieldInfo privateField =
                     typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
-                privateField.SetValue(selectedTreeItem.element, textBox.Text);
-                selectedTreeItem.Header = textBox.Text;
+                privateField.SetValue(HierarchyControl.selectedTreeItem.element, textBox.Text);
+                HierarchyControl.selectedTreeItem.Header = textBox.Text;
             }
             else if (prop.Name == "Content")
-                prop.SetValue(selectedTreeItem.element, textBox.Text);
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, textBox.Text);
             else if (prop_type == typeof(string))
-                prop.SetValue(selectedTreeItem.element, textBox.Text);
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, textBox.Text);
             else if (prop_type == typeof(int))
-                prop.SetValue(selectedTreeItem.element, Convert.ToInt32(textBox.Text));
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, Convert.ToInt32(textBox.Text));
             else if (prop_type == typeof(double))
             {
                 textBox.Text = textBox.Text.Replace('.', ',');
-                prop.SetValue(selectedTreeItem.element, Convert.ToDouble(textBox.Text));
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, Convert.ToDouble(textBox.Text));
             }
             else if (prop_type == typeof(IBrush))
             {
                 var brush = new SolidColorBrush(Color.Parse(textBox.Text));
-                prop.SetValue(selectedTreeItem.element, brush);
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, brush);
                 textBox.Foreground = new SolidColorBrush(Color.Parse(textBox.Text));
             }
             else if (prop_type == typeof(Thickness))
@@ -382,21 +350,21 @@ public partial class MainWindow : Window
                 var values = textBox.Text.Split(',');
                 var rect = new Thickness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
-                prop.SetValue(selectedTreeItem.element, rect);
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, rect);
             }
             else if (prop_type == typeof(CornerRadius))
             {
                 var values = textBox.Text.Split(',');
                 var rect = new CornerRadius(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
-                prop.SetValue(selectedTreeItem.element, rect);
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, rect);
             }
             else if (prop_type == typeof(Rect))
             {
                 var values = textBox.Text.Split(',');
                 var rect = new Rect(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
                     Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
-                prop.SetValue(selectedTreeItem.element, rect);
+                prop.SetValue(HierarchyControl.selectedTreeItem.element, rect);
             }
         }
         catch
