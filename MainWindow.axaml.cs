@@ -38,22 +38,30 @@ public partial class MainWindow : Window
     #region Globals
 
     //Отладочный итератор
-    private static int i = 0;
+    private int i = 0;
 
     //Случайное число
     private static Random random;
 
 
-   
+    //Перемещаемый по холсту объект
+    private JControl movable;
+    
+    //Кандидат на перемещение
+    private JControl premovable;
 
     //Выбранный в дереве элемент
-    private static mTreeViewItem? selectedTreeItem;
+    private mTreeViewItem? selectedTreeItem;
 
 
     //Оригинальный фон выбранного элемента
-    private static IBrush? selectedOriginalBackground;
+    private IBrush? selectedOriginalBackground;
 
-    private static TreeView _MainHierarchyTree;
+    // Половина ширины перемещаемого элемента
+    private double mov_hw;
+
+    // Половина высоты перемещаемого элемента 
+    private double mov_hh;
 
     #endregion
 
@@ -61,20 +69,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         _MainWindow = this;
-        //Incostylation
-        //Incostylation
         //
         InitializeComponent();
         this.Icon = new WindowIcon(@"assets/Icon.png");
         DataContext = this;
-        
-        
-        Workspace.Init(MainCanvas);
-        HierarchyControl.Init(MainHierarchyTree);
-        RemoveButton.Click+= RemovejElement;
-        
-        
-        
         WindowState = WindowState.Maximized;
         selectedOriginalBackground = MainCanvas.Background;
         MainHierarchyTree.Items.Add(new mTreeViewItem(MainCanvas));
@@ -104,10 +102,77 @@ public partial class MainWindow : Window
 
     
     
+    private void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
+    {
+        if (movable == null || Equals((JControl)sender!, movable) || Equals(movable, MainCanvas))
+            return;
+
+        e.Handled = true;
+
+        if (movable.jParent is not jCanvas) return;
+
+        var parentCanvas = movable.jParent as jCanvas;
+        if (e.GetCurrentPoint(parentCanvas).Properties.PointerUpdateKind != PointerUpdateKind.Other)
+            return;
+
+        Point mousePosition = e.GetPosition(parentCanvas);
+        var element = movable as Control;
+
+        if (movable.IsPressed && !LCtrlPressed)
+        {
+            Canvas.SetLeft(element, CorrectCoords(mousePosition.X - mov_hw));
+            Canvas.SetTop(element, CorrectCoords(mousePosition.Y - mov_hh));
+
+            if (Canvas.GetLeft(element) < 0)
+                Canvas.SetLeft(element, 0);
+
+            if (Canvas.GetTop(element) < 0)
+                Canvas.SetTop(element, 0);
+
+            if (Canvas.GetLeft(element) + 2 * mov_hw > parentCanvas.Bounds.Width)
+                Canvas.SetLeft(element, parentCanvas.Bounds.Width - 2 * mov_hw);
+
+            if (Canvas.GetTop(element) + 2 * mov_hh > parentCanvas.Bounds.Height)
+                Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
+        }
+        else if (movable.IsPressed && LCtrlPressed)
+        {
+            if (ResizeFlag)
+            {
+                UndoList.Remove(UndoList.Last());
+                AddHistoryItem(new Change(movable, "Size", new Size(element.Bounds.Width, element.Bounds.Height)));
+            }
+
+            ResizeFlag = false;
+            if (double.IsNaN(element.Width))
+                element.Width = element.Bounds.Width;
+            mousePosition = e.GetPosition(element);
+            if(mousePosition.X<5 || mousePosition.Y<5)
+                return;
+            element.Width = CorrectSize(mousePosition.X);
+            element.Height = CorrectSize(mousePosition.Y);
+        }
+    }
 
 
+    private void InitMovable(JControl obj)
+    {
+        if (obj is null) return;
+        AddHistoryItem(new Change(obj, 
+            "Coordinates",
+            new Coordinates(Canvas.GetLeft(obj as Control),Canvas.GetTop(obj as Control))));
+        movable = obj;
+        mov_hw = obj.Bounds.Width / 2;
+        mov_hh = obj.Bounds.Height / 2;
+    }
 
-    
+    public void InitPremovable()
+    {
+        if(premovable is null) return;
+        InitMovable(premovable);
+        MainHierarchyTree.SelectedItem = (premovable).mTreeItem;
+        
+    }
 
 
     private void XAMLIZE(object? sender, RoutedEventArgs? e)
@@ -196,7 +261,7 @@ public partial class MainWindow : Window
         selectedTreeItem = element.mTreeItem;
         MainHierarchyTree.SelectedItem = selectedTreeItem;
         selectedOriginalBackground = selectedTreeItem.element.Background;
-        Workspace.InitMovable(selectedTreeItem.element);
+        InitMovable(selectedTreeItem.element);
         selectedTreeItem.element.Focus();
         ShowProperties();
     }
@@ -213,20 +278,43 @@ public partial class MainWindow : Window
         e.Handled = true;
     }
 
-    
+    private void jElementClick(object? sender, RoutedEventArgs e)
+    {
+        e.Handled = true;
+        InitMovable((JControl)sender);
+        MainHierarchyTree.SelectedItem = ((JControl)sender).mTreeItem;
+    }
+
+    private void OnjControlPointerEntered(object? sender, PointerEventArgs e)
+    {
+        e.Handled = true;
+      //  Console.WriteLine(((JControl)sender).Type);
+        if (!((JControl)sender).Type.Contains("Button")) return;
+      //  Console.WriteLine("Ok");
+        premovable = sender as JControl;
+     //   InitMovable((JControl)sender);
+       // var element = sender as JControl;
+       // MainHierarchyTree.SelectedItem = (element).mTreeItem;
+    }
+
+    private void OnjControlPointerExited(object? sender, PointerEventArgs e)
+    {
+        e.Handled = true;
+        premovable = null;
+    }
 
     
     
-    private static void RemovejElement(object? sender, RoutedEventArgs? e)
+    private void RemovejElement(object? sender, RoutedEventArgs? e)
     {
-        if (selectedTreeItem == Workspace.MainCanvas.mTreeItem) return;
+        if (selectedTreeItem == MainCanvas.mTreeItem) return;
         var element = selectedTreeItem.element;
         var jparent = selectedTreeItem.element.jParent;
         jparent.RemoveChild(selectedTreeItem.element);
         
         var parent = selectedTreeItem.Parent as mTreeViewItem;
         parent.Items.Remove(selectedTreeItem);
-        HierarchyControl.HierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
+        MainHierarchyTree.SelectedItem  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
         
         var data = new Object[] {jparent,element,element.mTreeItem};
         AddHistoryItem(new Change(element,"Removed",data));
@@ -238,7 +326,7 @@ public partial class MainWindow : Window
     {
         e.Handled = true;
         
-        Workspace.InitMovable((JControl)sender);
+        InitMovable((JControl)sender);
         var element = sender as JControl;
         element.IsPressed = true;
         MainHierarchyTree.SelectedItem = (element).mTreeItem;

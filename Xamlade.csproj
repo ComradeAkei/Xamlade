@@ -36,7 +36,6 @@
       <None Remove="index.html" />
       <None Remove="Xamlade2.png~" />
       <None Remove="Xamlade2.png" />
-      <None Remove="qodana.yaml" />
     </ItemGroup>
 
 
@@ -51,7 +50,6 @@
       <Compile Remove="bin\**" />
       <Compile Remove="TestWindow.axaml.cs" />
       <Compile Remove="IgnoredTypeConverter.cs" />
-      <Compile Remove="IgnTypeConverter.cs" />
     </ItemGroup>
 
 

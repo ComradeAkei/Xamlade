@@ -30,8 +30,8 @@ public partial class MainWindow
     
             element.Name = typeName + (i++);
             SetDefaultValues(element);
-              element.PointerEntered += Workspace.OnjControlPointerEntered;
-              element.PointerExited += Workspace.OnjControlPointerExited;
+              element.PointerEntered += OnjControlPointerEntered;
+              element.PointerExited += OnjControlPointerExited;
           //  element.Click += jElementClick;
             element.PointerPressed += OnjControlPressed;
             element.PointerReleased += OnjControlReleased;
