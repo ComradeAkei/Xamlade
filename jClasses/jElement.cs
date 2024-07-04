@@ -58,6 +58,8 @@ public interface IChildContainer
 public interface JControl
 {
     public IChildContainer? jParent { get; set; }
+    
+    
     public string Type { get; }
     
     public mTreeViewItem? mTreeItem { get; set; }

@@ -76,6 +76,10 @@
             <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="avares://Xamlade/RES/loading.gif"
                           Stretch="None"
                           StretchDirection="Both" />
+            
+            <Panel Name = "DebugPanel" VerticalAlignment="Bottom" Height="20" Background="ForestGreen" IsVisible="False" >
+                <TextBlock Name="DebugTextBlock" VerticalAlignment="Center" TextAlignment="Left" FontSize="16" Foreground="Black">$DEBUG$</TextBlock>    
+            </Panel>
         </StackPanel>
 
         
@@ -136,6 +140,7 @@
             <!-- <Image Source="assets/Xamlade.png" Width="500" Height="500"/> -->
             <!-- Здесь наступает власть объектов JControl -->
         </xamlade:jCanvas>
-
+        
+        
     </DockPanel>
 </Window>

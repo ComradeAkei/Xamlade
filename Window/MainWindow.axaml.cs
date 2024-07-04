@@ -39,12 +39,14 @@ public partial class MainWindow : Window
         DataContext = this;
         InitializeComponent();
         WindowInit();
+
         
+        Utils.Init(DebugPanel);
         Workspace.Init(MainCanvas);
         HierarchyControl.Init(MainHierarchyTree);
         PropertiesControl.Init(PropListBox);
         TestWindow.Init(LoadingGif);
-        Utils.Init();
+        
         ButtonEventsInit();
         
         var listener = new GlobalKeyListener(this);

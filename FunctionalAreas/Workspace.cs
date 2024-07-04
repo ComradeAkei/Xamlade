@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Timers;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -12,11 +13,12 @@ public static class Workspace
 {
     
     public static jCanvas MainCanvas { get; set; }
+    public static Border? movableBorder { get; set; }
     
     //Перемещаемый по холсту объект
     public static JControl? movable;
     
-    //Кандидат на перемещение
+    //Кандидат на перемещение (кнопки)
     public static JControl? premovable;
     
     // Половина ширины перемещаемого элемента
@@ -33,6 +35,9 @@ public static class Workspace
         MainCanvas = mainCanvas;
         mainCanvas.PointerMoved += jCanvas_OnPointerMoved;
         selectedOriginalBackground = MainCanvas.Background;
+        Utils.DebugTimer.Elapsed += DebugWorkspace;
+        movableBorder = new Border();
+        
     }
     
     public static void InitMovable(JControl obj)
@@ -44,6 +49,7 @@ public static class Workspace
         movable = obj;
         mov_hw = obj.Bounds.Width / 2;
         mov_hh = obj.Bounds.Height / 2;
+    //    movableBorder._child = (Control)movable;
     }
 
     public static void InitPremovable()
@@ -53,6 +59,9 @@ public static class Workspace
         HierarchyControl.Selected = (premovable).mTreeItem;
         
     }
+
+    private static void DebugWorkspace(Object source, ElapsedEventArgs e) =>
+        Utils.PrintDebugMessage($"Movable: {movable?.Name} Premovable: {premovable?.Name}");
     
     
    public static void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
@@ -87,7 +96,7 @@ public static class Workspace
     }
    }
 
-
+    
 
    // Проверка типа обновления указателя 
    private static bool IsPointerMoveEvent(PointerEventArgs e, jCanvas parentCanvas) =>
@@ -150,20 +159,15 @@ public static class Workspace
     public static void jElementClick(object? sender, RoutedEventArgs e)
     {
         e.Handled = true;
-        InitMovable((JControl)sender);
-        HierarchyControl.Selected = ((JControl)sender).mTreeItem;
+        InitMovable((JControl)sender!);
+        HierarchyControl.Selected = ((JControl)sender!).mTreeItem;
     }
 
     public static void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         e.Handled = true;
-        //  Console.WriteLine(((JControl)sender).Type);
-        if (!((JControl)sender).Type.Contains("Button")) return;
-        //  Console.WriteLine("Ok");
+        if (!((JControl)sender!).Type.Contains("Button")) return;
         premovable = sender as JControl;
-        //   InitMovable((JControl)sender);
-        // var element = sender as JControl;
-        // MainHierarchyTree.SelectedItem = (element).mTreeItem;
     }
 
     public static void OnjControlPointerExited(object? sender, PointerEventArgs e)
