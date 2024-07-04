@@ -18,17 +18,17 @@ using Avalonia.Media.Imaging;
 
 namespace Xamlade;
 
-public partial class MainWindow
+public static class ElementGenerator
 {
-    public void GenerateElement(object? sender, RoutedEventArgs e)
+    public static void GenerateElement(object? sender, RoutedEventArgs e)
     {
-            if (!(HierarchyControl.selectedTreeItem.element is IChildContainer parent)) return;
+            if (!(HierarchyControl.Selected.element is IChildContainer parent)) return;
     
             string typeName = ((Button)sender).Content.ToString();
             Type elementType = Type.GetType("Xamlade.j" + typeName);
             JControl element = (JControl)Activator.CreateInstance(elementType);
     
-            element.Name = typeName + (i++);
+            element.Name = typeName + (Utils.NextgenIterator++);
             SetDefaultValues(element);
               element.PointerEntered += Workspace.OnjControlPointerEntered;
               element.PointerExited += Workspace.OnjControlPointerExited;
@@ -38,10 +38,10 @@ public partial class MainWindow
             
             parent.AddChild(element);
             var item = new mTreeViewItem(element);
-            HierarchyControl.selectedTreeItem.Items.Add(item);
+            HierarchyControl.Selected.Items.Add(item);
             (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
             var data = new Object[] {parent,element,element.mTreeItem};
-            AddHistoryItem(new Change(element,"Created",data));
+            History.AddHistoryItem(new History.Change(element,"Created",data));
     }
 
     public static void SetDefaultValues(JControl element)
@@ -103,7 +103,7 @@ public partial class MainWindow
             case "Canvas":
             {
                 // Генерация случайного цвета в формате HEX
-                string randomHexColor = $"#{random.Next(0x1000000):X6}";
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
                 // Преобразование HEX строки в Color объект
                 Color randomColor = Color.Parse(randomHexColor);
                 ((jCanvas)element).Background = new SolidColorBrush(randomColor);
@@ -115,7 +115,7 @@ public partial class MainWindow
             case "StackPanel":
             {
                 // Генерация случайного цвета в формате HEX
-                string randomHexColor = $"#{random.Next(0x1000000):X6}";
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
                 // Преобразование HEX строки в Color объект
                 Color randomColor = Color.Parse(randomHexColor);
                 ((jStackPanel)element).Background = new SolidColorBrush(randomColor);

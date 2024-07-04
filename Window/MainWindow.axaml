@@ -21,22 +21,22 @@
                 </Button>
             </Border>
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
-                <Button Width="40" Height="40" Click="RUN_WINDOW" Margin="0" Background="Transparent" >
+                <Button Name = "RunWindowButton" Width="40" Height="40" Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/run.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </Border>
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
-                <Button Width="40" Height="40" Click="DEXAMLIZE" Margin="0" Background="Transparent" >
+                <Button Name="DeXamLizeButton" Width="40" Height="40" Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/dexamlize.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </Border>
             
-            <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" Margin="10,0,0,0" >
-                <Button Width="40" Height="40" Click="UNDO" Margin="0" Background="Transparent" >
+            <Border  BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" Margin="10,0,0,0" >
+                <Button Name = "UndoButton" Width="40" Height="40" Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/undo.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -44,7 +44,7 @@
             </Border>
             
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
-                <Button Width="40" Height="40" Click="REDO" Margin="0" Background="Transparent" >
+                <Button Name="RedoButton" Width="40" Height="40"  Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/redo.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -58,7 +58,7 @@
                 </Button>
             </Border>
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" Margin="10,0,0,0" >
-                <Button Width="40" Height="40" Click="DEBUG" Margin="0" Background="Transparent" >
+                <Button Name="SettingsButton" Width="40" Height="40"  Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/settings.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
@@ -66,20 +66,16 @@
             </Border>
             
             <Border BorderThickness="2" Height="40" Width="40" BorderBrush="#20423c" Background="Transparent" >
-                <Button Width="40" Height="40" Click="DEBUG" Margin="0" Background="Transparent" >
+                <Button Name="DebugButton" Width="40" Height="40"  Margin="0" Background="Transparent" >
                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
                         <Image Source="avares://Xamlade/assets/debug.png" Width="25" Height="25" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Button>
             </Border>
             
-            <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="{Binding Path=SelectedGif}"
+            <gif:GifImage Name="LoadingGif" IsVisible="False" SourceUriRaw="avares://Xamlade/RES/loading.gif"
                           Stretch="None"
                           StretchDirection="Both" />
-            <CheckBox Name="StrictModeEnabled" IsChecked="False" Opacity="0">Строгий режим</CheckBox>
-            <TextBox Name="StrictModeValue" Text="1" Margin="5,0,0,0" Opacity="0"
-                     PropertyChanged="StrictModeEnabled_OnPropertyChanged" VerticalAlignment="Center" HorizontalAlignment="Center"
-                     VerticalContentAlignment="Center"/>
         </StackPanel>
 
         
@@ -88,7 +84,7 @@
         <!-- Панель с иерархией проекта -->
         <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="180" Background="#1D1D1D" Margin="2" >
             <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Margin="10" Foreground="#0ab076">$NAME$</TextBlock>
-            <TreeView Name="MainHierarchyTree" SelectionChanged="MainHierarchyTree_OnSelectionChanged"
+            <TreeView Name="MainHierarchyTree"
                       Foreground="#0ab076">
                 <!-- Ваши узлы дерева добавляются здесь -->
             </TreeView>
@@ -97,27 +93,27 @@
         <!-- Центральная область с вкладками -->
         <TabControl Name="MainTabControl" Background="#2B2B2B" Margin="0,2,0,2" DockPanel.Dock="Left">
             <TabItem Header="Элементы">
-                <StackPanel Width="300" Orientation="Vertical" Background="#2B2B2B">
-                    <Button Name="GenerateButton" Content="Button" Click="GenerateElement"
+                <StackPanel Name = "GeneratorPanel" Width="300" Orientation="Vertical" Background="#2B2B2B">
+                    <Button Name="GenerateButton" Content="Button" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateCanvas" Content="Canvas" Click="GenerateElement"
+                    <Button Name="GenerateCanvas" Content="Canvas" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateCheckBox" Content="CheckBox" Click="GenerateElement"
+                    <Button Name="GenerateCheckBox" Content="CheckBox" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateTextBlock" Content="TextBlock" Click="GenerateElement"
+                    <Button Name="GenerateTextBlock" Content="TextBlock"
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateTextBox" Content="TextBox" Click="GenerateElement"
+                    <Button Name="GenerateTextBox" Content="TextBox" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateStackPanel" Content="StackPanel" Click="GenerateElement"
+                    <Button Name="GenerateStackPanel" Content="StackPanel" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateToggleButton" Content="ToggleButton" Click="GenerateElement"
+                    <Button Name="GenerateToggleButton" Content="ToggleButton" 
                             Margin="10,0,10,10" />
-                    <Button Name="GenerateImage" Background="Chartreuse" Content="Image" Click="GenerateElement"
+                    <Button Name="GenerateImage" Background="Chartreuse" Content="Image" 
                             Margin="10,0,10,10" />
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Свойства">
+            <TabItem Name = "PropertiesPanel" Header="Свойства">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel Name="PropertyPanel" Width="300" Background="#2B2B2B">
                         <ListBox Name="PropListBox" Width="300" Background="#2B2B2B">
@@ -132,7 +128,7 @@
             </TabItem>
         </TabControl>
 
-        <!-- Правая область с холстом -->
+        <!-- Рабочая область -->
         <xamlade:jCanvas Name="MainCanvas" Background="#1E1E1E" Margin="2">
             <xamlade:jCanvas.Styles>
                 <FluentTheme/>

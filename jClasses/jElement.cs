@@ -184,7 +184,7 @@ public class mTreeViewItem : TreeViewItem
     }
 }
 
-[Serializable]
+
 public class jButton : Button, JControl
 {
     public int ID = 0;
@@ -223,13 +223,13 @@ public class jButton : Button, JControl
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
     
 }
@@ -262,13 +262,13 @@ public class jImage : Image, JControl
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
     
 }
@@ -299,13 +299,13 @@ public class jToggleButton : ToggleButton, JControl
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
     protected override void OnClick() {}
 }
@@ -338,13 +338,13 @@ public class jCheckBox : CheckBox, JControl
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
 
     protected override void OnClick() {}
@@ -372,13 +372,13 @@ public class jTextBlock : TextBlock, JControl
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
  
     public bool IsPressed { get; set; }
@@ -407,7 +407,7 @@ public class jTextBox : TextBox, JControl
     {
         if (mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
@@ -463,14 +463,14 @@ public class jCanvas : Canvas, IChildContainer, JControl
         
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             if(Name=="MainCanvas") return;
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
 
 }
@@ -513,12 +513,12 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
     {
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) MainWindow._MainWindow.CorrectLoadedjElement(this);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
         else if (mode == 3)
         {
             Broadcast.OnBroadcast -= HandleBroadcast; 
             Broadcast.DisposeElement(this);
         }
-        else if (mode == 4) MainWindow._MainWindow.CorrectTree(this);
+        else if (mode == 4) ImportXAML.CorrectTree(this);
     }
 }

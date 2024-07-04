@@ -7,8 +7,7 @@ using Avalonia.Interactivity;
 namespace Xamlade;
 
 public class GlobalKeyListener
-{ 
-    public static bool MousePressed = false;
+{
     public event Action<KeyEventArgs> KeyPressed;
     public event Action<KeyEventArgs> KeyReleased;
 
@@ -22,12 +21,10 @@ public class GlobalKeyListener
 
     private void PointerReleasedHandler(object? sender, PointerReleasedEventArgs e)
     {
-        MousePressed = false;
     }
 
     private void PointerPressedHandler(object? sender, PointerPressedEventArgs e)
     {
-        MousePressed = true;
         Workspace.InitPremovable();
     }
 
@@ -36,7 +33,7 @@ public class GlobalKeyListener
         if (e.Key == Key.LeftCtrl)
         {
             KeyPressed?.Invoke(e);
-            MainWindow.ResizeFlag = true;
+            State.ResizeFlag = true;
         }
     }
     private void KeyUpHandler(object sender, KeyEventArgs e)

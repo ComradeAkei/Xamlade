@@ -5,11 +5,12 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
 namespace Xamlade;
 
-public partial class MainWindow
+public static class ImportXAML
 {
     private static string filePathXAML = "";
     private static string ExternalXAML = "";
@@ -22,7 +23,7 @@ public partial class MainWindow
         "Slider", "TextBox", "ToggleButton", "TextBlock", "Image"
     };
 
-    public async Task RunDeXAMLIZE(Window window)
+    public static async Task RunDeXAMLIZE(Window window)
     {
         
         await OpenXAML(window);
@@ -30,7 +31,7 @@ public partial class MainWindow
         await LoadXAML();
     }
 
-    private async Task LoadXAML()
+    private static async Task LoadXAML()
     {
        if(filePathXAML == "") return;
 
@@ -51,24 +52,24 @@ public partial class MainWindow
 
         foreach (var item in buf)
         {
-            MainCanvas.AddChild(item);
+           Workspace.MainCanvas.AddChild(item);
         }
 
         for (int i = 0; i < buf.Count; i++)
         {
-            Canvas.SetTop(MainCanvas.Children[i], canv_top[i]);
-            Canvas.SetLeft(MainCanvas.Children[i], canv_left[i]);
+            Canvas.SetTop(Workspace.MainCanvas.Children[i], canv_top[i]);
+            Canvas.SetLeft(Workspace.MainCanvas.Children[i], canv_left[i]);
         }
-        MainCanvas.mTreeItem.Items.Clear();
+        Workspace.MainCanvas.mTreeItem.Items.Clear();
 
         Broadcast.RestoreBehavior();
         Broadcast.RestoreTree();
     }
 
-    public void CorrectLoadedjElement(JControl element)
+    public static void CorrectLoadedjElement(JControl element)
     {
         Console.WriteLine();
-        element.Name ??= element.Type + "_" + (i++);
+        element.Name ??= element.Type + "_" + (Utils.NextgenIterator++);
 
 
         if (element.Name == "MainCanvas") return;
@@ -91,7 +92,7 @@ public partial class MainWindow
 
     }
 
-    private async Task OpenXAML(Window window)
+    private static async Task OpenXAML(Window window)
     {
         filePathXAML = "";
         ExternalXAML = "";
@@ -116,9 +117,9 @@ public partial class MainWindow
             filePathXAML = result[0];
             ExternalXAML = File.ReadAllText(filePathXAML);
             // Удаляем элементы из MainCanvas
-            for (int i = MainCanvas.jChildren.Count - 1; i >= 0; i--)
+            for (int i = Workspace.MainCanvas.jChildren.Count - 1; i >= 0; i--)
             {
-                MainCanvas.RemoveChild(MainCanvas.jChildren[i]);
+                Workspace.MainCanvas.RemoveChild(Workspace.MainCanvas.jChildren[i]);
             }
 
             //Радикальная операция
@@ -220,7 +221,7 @@ public partial class MainWindow
         return input;
     }
 
-    public void CorrectTree(JControl element)
+    public static void CorrectTree(JControl element)
     {
         if (element is IChildContainer)
         {
@@ -231,6 +232,10 @@ public partial class MainWindow
             }
         }
 
-        HierarchyControl.selectedTreeItem = MainCanvas.mTreeItem;
+        HierarchyControl.Selected = Workspace.MainCanvas.mTreeItem;
+    }
+    public static async void DEXAMLIZE(object? sender, RoutedEventArgs e)
+    {
+        await RunDeXAMLIZE(MainWindow._MainWindow);
     }
 }

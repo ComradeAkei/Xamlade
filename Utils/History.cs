@@ -14,22 +14,24 @@ using AvaloniaColorPicker;
 
 namespace Xamlade;
 
-public partial class MainWindow
+public record jCoordinates(double X, double Y)
+{
+    public double X { get; set; } = X;
+    public double Y { get; set; } = Y;
+        
+}
+    
+public record jSize(double Width, double Height)
+{
+    public double Width { get; set; } = Width;
+    public double Height { get; set; } = Height;
+        
+}
+
+public static class History
 {
     private static bool HistoryOperationFlag = false;
-    public record Coordinates(double X, double Y)
-    {
-        public double X { get; set; } = X;
-        public double Y { get; set; } = Y;
-        
-    }
     
-    public record Size(double Width, double Height)
-    {
-        public double Width { get; set; } = Width;
-        public double Height { get; set; } = Height;
-        
-    }
     
     public struct Change
     {
@@ -82,8 +84,8 @@ public partial class MainWindow
             if(change==UndoList.Last()) return;
         UndoList.Add(change);
         if (change.FieldName == "Coordinates")
-            Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + (change.Value as Coordinates).X + " " +
-                              (change.Value as Coordinates).Y);
+            Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + (change.Value as jCoordinates).X + " " +
+                              (change.Value as jCoordinates).Y);
         else
             Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + change.Value.ToString());
     }
@@ -105,9 +107,9 @@ public partial class MainWindow
             
             object? CurStateValue;
             if (state.FieldName == "Coordinates")
-                CurStateValue = new Coordinates(Canvas.GetLeft(state.jObject as Control), Canvas.GetTop(state.jObject as Control));
+                CurStateValue = new jCoordinates(Canvas.GetLeft(state.jObject as Control), Canvas.GetTop(state.jObject as Control));
             else if (state.FieldName == "Size")
-                CurStateValue = new Size((state.jObject as Control).Width, (state.jObject as Control).Height);
+                CurStateValue = new jSize((state.jObject as Control).Width, (state.jObject as Control).Height);
             else if (state.FieldName == "Created")
                 CurStateValue = state.Value;
             else if (state.FieldName == "Removed")
@@ -127,7 +129,7 @@ public partial class MainWindow
             }
             
             if(state.FieldName=="Coordinates")
-                if (CurStateValue as Coordinates == state.Value as Coordinates)
+                if (CurStateValue as jCoordinates == state.Value as jCoordinates)
                 {
                     UndoList.Remove(UndoList.Last());
                     HistoryOperation(false);
@@ -151,10 +153,10 @@ public partial class MainWindow
             switch (state.FieldName)
             {
                 case "Coordinates":
-                    CurStateValue = new Coordinates(Canvas.GetLeft(state.jObject as Control), Canvas.GetTop(state.jObject as Control));
+                    CurStateValue = new jCoordinates(Canvas.GetLeft(state.jObject as Control), Canvas.GetTop(state.jObject as Control));
                     break;
                 case "Size":
-                    CurStateValue = new Size((state.jObject as Control).Width, (state.jObject as Control).Height);
+                    CurStateValue = new jSize((state.jObject as Control).Width, (state.jObject as Control).Height);
                     break;
                 case "Created":
                 case "Removed":
@@ -178,26 +180,27 @@ public partial class MainWindow
         var tst = mode ? "Redo" : "Undo";
         Console.WriteLine("History: "+ tst+" " + state.jObject.Name + " " + state.FieldName + " " + state.Value.ToString());
         
-       
-        MainWindow._MainHierarchyTree.SelectedItem = state.jObject.mTreeItem;
-        HierarchyControl.selectedTreeItem = state.jObject.mTreeItem;
+        
+       //ЧО ЗА ХУЙНЯ
+    //    HierarchyControl.HierarchyTree.SelectedItem = state.jObject.mTreeItem;
+        HierarchyControl.Selected = state.jObject.mTreeItem;
         
         switch (state.FieldName)
         {
             case "Coordinates":
-                Canvas.SetLeft(state.jObject as Control,(state.Value as Coordinates).X);
-                Canvas.SetTop(state.jObject as Control,(state.Value as Coordinates).Y);
+                Canvas.SetLeft(state.jObject as Control,(state.Value as jCoordinates).X);
+                Canvas.SetTop(state.jObject as Control,(state.Value as jCoordinates).Y);
                 HistoryOperationFlag = false;
                 return;
             case "Size":
-                (state.jObject as Control).Width = (state.Value as Size).Width;
-                (state.jObject as Control).Height = (state.Value as Size).Height;
+                (state.jObject as Control).Width = (state.Value as jSize).Width;
+                (state.jObject as Control).Height = (state.Value as jSize).Height;
                 HistoryOperationFlag = false;
                 return;
             case "Created" when (!mode):
             case "Removed" when (mode):
-                HierarchyControl.selectedTreeItem.element = state.jObject;
-                Workspace.RemoveSelectedjElement(null,null);
+                HierarchyControl.Selected.element = state.jObject;
+                Workspace.RemoveSelectedjElement();
                 HistoryOperationFlag = false;
                 return;
             case "Created" when (mode):
@@ -213,7 +216,7 @@ public partial class MainWindow
             }
         }
 
-        var jElement_type = HierarchyControl.selectedTreeItem.element.GetType();
+        var jElement_type = HierarchyControl.Selected.element.GetType();
         var prop = jElement_type.GetProperty(state.FieldName);
         prop.SetValue(state.jObject, state.Value);
         HistoryOperationFlag = false;
@@ -222,7 +225,7 @@ public partial class MainWindow
     
     
    
-    private void UNDO(object? sender, RoutedEventArgs e)
+    public static void UNDO(object? sender, RoutedEventArgs e)
     {
         HistoryOperation(false);
     }
@@ -236,10 +239,10 @@ public partial class MainWindow
         element.jParent = parent;
         (parent as JControl).mTreeItem.Items.Add(mtree);
         parent.AddChild(element,Canvas.GetTop(element as Control),Canvas.GetLeft(element as Control));
-        HierarchyControl.HierarchyTree.SelectedItem = element.mTreeItem;
-        HierarchyControl.selectedTreeItem = element.mTreeItem;
+        HierarchyControl.Selected = element.mTreeItem;
+        HierarchyControl.Selected = element.mTreeItem;
     }
-    private void REDO(object? sender, RoutedEventArgs e)
+    public static void REDO(object? sender, RoutedEventArgs e)
     {
         HistoryOperation(true);
     }

@@ -52,6 +52,10 @@
       <Compile Remove="TestWindow.axaml.cs" />
       <Compile Remove="IgnoredTypeConverter.cs" />
       <Compile Remove="IgnTypeConverter.cs" />
+      <Compile Update="[TODO]Unstructed\MainWindow.axaml.cs">
+        <DependentUpon>MainWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
 
