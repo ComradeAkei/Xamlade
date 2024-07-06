@@ -13,7 +13,7 @@ public static class Workspace
 {
     
     public static jCanvas MainCanvas { get; set; }
-    public static Border? movableBorder { get; set; }
+    public static jBorder? SelectionBorder { get; set; }
     
     //Перемещаемый по холсту объект
     public static JControl? movable;
@@ -36,8 +36,39 @@ public static class Workspace
         mainCanvas.PointerMoved += jCanvas_OnPointerMoved;
         selectedOriginalBackground = MainCanvas.Background;
         Utils.DebugTimer.Elapsed += DebugWorkspace;
-        movableBorder = new Border();
+        InitSelectionBorder();
         
+
+    }
+
+    private static void InitSelectionBorder()
+    {
+        SelectionBorder = new jBorder();
+        SelectionBorder.Background = Brushes.Transparent;
+        SelectionBorder.BorderBrush = Brushes.Chartreuse;
+        SelectionBorder.BorderThickness = new Thickness(3);
+        MainCanvas.AddChild(SelectionBorder,10,10);
+        SelectionBorder.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        SelectionBorder.IsVisible = false;
+    }
+
+    
+    //Оптимизировать: не повторять определение размера при каждом перемещении
+    public static void BindSelectionBorder(JControl obj)
+    {
+        if(obj is null) return;
+        if (obj.Name == "MainCanvas")
+        {
+            SelectionBorder.IsVisible = false;
+            return;
+        }
+        SelectionBorder.IsVisible = true;
+        SelectionBorder.Width = obj.Bounds.Width;
+        SelectionBorder.Height = obj.Bounds.Height;
+        SelectionBorder.IsHitTestVisible = false;
+        Point? position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
+        Canvas.SetLeft(SelectionBorder,position.Value.X);
+        Canvas.SetTop(SelectionBorder,position.Value.Y);
     }
     
     public static void InitMovable(JControl obj)
@@ -49,7 +80,7 @@ public static class Workspace
         movable = obj;
         mov_hw = obj.Bounds.Width / 2;
         mov_hh = obj.Bounds.Height / 2;
-    //    movableBorder._child = (Control)movable;
+        BindSelectionBorder(movable);
     }
 
     public static void InitPremovable()
@@ -94,6 +125,7 @@ public static class Workspace
         else
             MoveElement(mousePosition, element, parentCanvas);
     }
+    BindSelectionBorder(movable);
    }
 
     
@@ -110,6 +142,8 @@ public static class Workspace
 
         // Ограничение элемента в пределах холста
         ConstrainElementWithinCanvas(element, parentCanvas);
+        
+        
     }
 
     private static void ConstrainElementWithinCanvas(Control element, jCanvas parentCanvas)
@@ -166,8 +200,11 @@ public static class Workspace
     public static void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         e.Handled = true;
-        if (!((JControl)sender!).Type.Contains("Button")) return;
-        premovable = sender as JControl;
+        if (!(((JControl)sender).Type.Contains("Button") || ((JControl)sender).Type.Contains("CheckBox")))
+            return;
+
+
+    premovable = sender as JControl;
     }
 
     public static void OnjControlPointerExited(object? sender, PointerEventArgs e)
