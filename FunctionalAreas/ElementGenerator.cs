@@ -42,6 +42,7 @@ public static class ElementGenerator
             (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
             var data = new Object[] {parent,element,element.mTreeItem};
             History.AddHistoryItem(new History.Change(element,"Created",data));
+            InitSelectionBorder(element);
     }
 
     public static void SetDefaultValues(JControl element)
@@ -126,5 +127,16 @@ public static class ElementGenerator
 
         }
         
+    }
+
+    private static void InitSelectionBorder(JControl obj)
+    {
+        obj.selectionBorder = new jBorder();
+        obj.selectionBorder.Background = Brushes.Transparent;
+        obj.selectionBorder.BorderBrush = Brushes.Chartreuse;
+        obj.selectionBorder.BorderThickness = new Thickness(3);
+        Workspace.MainCanvas.AddChild(obj.selectionBorder,10,10);
+        obj.selectionBorder.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        obj.selectionBorder.IsVisible = false;
     }
 }

@@ -35,10 +35,15 @@ public class GlobalKeyListener
             KeyPressed?.Invoke(e);
             State.ResizeFlag = true;
         }
+        else if (e.Key == Key.LeftShift)
+        {
+            KeyPressed?.Invoke(e);
+            State.LShiftPressed = true;
+        }
     }
     private void KeyUpHandler(object sender, KeyEventArgs e)
     {
-        if (e.Key == Key.LeftCtrl || e.Key == Key.Delete)
+        if (e.Key == Key.LeftCtrl || e.Key == Key.Delete || e.Key == Key.LeftShift)
         {
             KeyReleased?.Invoke(e);
         }

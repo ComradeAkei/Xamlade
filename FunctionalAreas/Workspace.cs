@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Timers;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -13,7 +15,11 @@ public static class Workspace
 {
     
     public static jCanvas MainCanvas { get; set; }
-    public static jBorder? SelectionBorder { get; set; }
+  //  public static jBorder? SelectionBorder { get; set; }
+    
+    public static jCanvas SelectionCanvas { get; set; }
+    
+    private static Rectangle SelectionRectangle { get; set; }
     
     //Перемещаемый по холсту объект
     public static JControl? movable;
@@ -33,46 +39,107 @@ public static class Workspace
     public static void Init(jCanvas mainCanvas)
     {
         MainCanvas = mainCanvas;
+        MainCanvas.selectionBorder = new jBorder();
         mainCanvas.PointerMoved += jCanvas_OnPointerMoved;
         selectedOriginalBackground = MainCanvas.Background;
-        Utils.DebugTimer.Elapsed += DebugWorkspace;
-        InitSelectionBorder();
+  //      Utils.DebugTimer.Elapsed += DebugWorkspace;
+     //   InitSelectionBorder();
+        InitSelectionCanvas();
+        InitSelectionRectangle();
         
 
     }
 
-    private static void InitSelectionBorder()
+    #region Selection
+    
+    
+    //Канвас выделения
+    private static void InitSelectionCanvas()
     {
-        SelectionBorder = new jBorder();
-        SelectionBorder.Background = Brushes.Transparent;
-        SelectionBorder.BorderBrush = Brushes.Chartreuse;
-        SelectionBorder.BorderThickness = new Thickness(3);
-        MainCanvas.AddChild(SelectionBorder,10,10);
-        SelectionBorder.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
-        SelectionBorder.IsVisible = false;
+        SelectionCanvas = new jCanvas();
+        SelectionCanvas.Background = Brushes.Aqua;
     }
 
+    private static void InitSelectionRectangle()
+    {
+        SelectionRectangle = new Rectangle
+        {
+            Stroke = Brushes.Aqua,
+            StrokeThickness = 3,
+            Fill = Brushes.Chartreuse,
+            Opacity = 0.1,
+            IsHitTestVisible = false,
+        };
+        SelectionRectangle.IsVisible = false;
+        MainCanvas.Children.Add(SelectionRectangle);
+        SelectionRectangle.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        
+    }
+    //Выделить попавшие в рамку объекты
+    private static void CheckSelectionRectIntersections()
+    {
+        var parentCanvas = SelectionRectangle.Parent as jCanvas;
+        
+        var selectionRect = new Rect(Canvas.GetLeft(SelectionRectangle), Canvas.GetTop(SelectionRectangle), SelectionRectangle.Width, SelectionRectangle.Height);
+
+        foreach (var child in (parentCanvas).jChildren)
+        {
+            var controlRect = new Rect(Canvas.GetLeft(child as Control), Canvas.GetTop(child as Control), (child as Control).Bounds.Width,
+                (child as Control).Bounds.Height);
+
+                if (selectionRect.Intersects(controlRect))
+                    BindSelectionBorder(child);
+                
+            
+        }
+        //Сам контейнер не выделять
+        parentCanvas.selectionBorder.IsVisible = false;
+        movable = null;
+    }
+    
+    
+
+    
+    
+    //Поместить выделенные элементы на метаканвас
+    private static void ApplySelectionCanvas(List<JControl> objects, jCanvas parentCanvas)
+    {
+        
+    }
+    
+    //Вернуть элементы с метаканваса выделения
+    private static void RestoreSelectionCanvas()
+    {
+        
+    }
     
     //Оптимизировать: не повторять определение размера при каждом перемещении
     public static void BindSelectionBorder(JControl obj)
     {
         if(obj is null) return;
+        if(obj.selectionBorder is null) return;
         if (obj.Name == "MainCanvas")
         {
-            SelectionBorder.IsVisible = false;
+           // MainCanvas.selectionBorder.IsVisible = false;
+           //Тут Broadcast на снятие всех выделений
+           //Бля или нет
             return;
         }
-        SelectionBorder.IsVisible = true;
-        SelectionBorder.Width = obj.Bounds.Width;
-        SelectionBorder.Height = obj.Bounds.Height;
-        SelectionBorder.IsHitTestVisible = false;
+        obj.selectionBorder.IsVisible = true;
+        obj.selectionBorder.Width = obj.Bounds.Width;
+        obj.selectionBorder.Height = obj.Bounds.Height;
+        obj.selectionBorder.IsHitTestVisible = false;
         Point? position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
-        Canvas.SetLeft(SelectionBorder,position.Value.X);
-        Canvas.SetTop(SelectionBorder,position.Value.Y);
+        Canvas.SetLeft(obj.selectionBorder,position.Value.X);
+        Canvas.SetTop(obj.selectionBorder,position.Value.Y);
     }
+    
+    #endregion
     
     public static void InitMovable(JControl obj)
     {
+        
+        Broadcast.RemoveSelection();
         if (obj is null) return;
         History.AddHistoryItem(new History.Change(obj, 
             "Coordinates",
@@ -92,21 +159,35 @@ public static class Workspace
     }
 
     private static void DebugWorkspace(Object source, ElapsedEventArgs e) =>
-        Utils.PrintDebugMessage($"Movable: {movable?.Name} Premovable: {premovable?.Name}");
+        Utils.PrintDebugMessage($"Movable: {movable?.Name} Premovable: {premovable?.Name} + LShift: {State.LShiftPressed}");
     
     
    public static void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)
    {
-       
+    
+    if(Equals(sender,SelectionCanvas))
+       return;
+    e.Handled = true;
+
+    if (State.LShiftPressed && e.GetCurrentPoint(MainCanvas).Properties.IsLeftButtonPressed)
+    {
+        DrawSelectionFrame(e);
+        return;
+    }
+    else if (!State.LShiftPressed)
+    {
+        if(SelectionRectangle.IsVisible)
+            CheckSelectionRectIntersections();
+        SelectionRectangle.IsVisible = false;
+    }
+
     if (movable == null) 
         return;
     // Проверка sender и основного холста
     if (Equals(movable, MainCanvas))
         return;
-    
-    e.Handled = true;
 
-    // Проверка родительского элемента movable
+   // Проверка родительского элемента movable
     if (movable.jParent is not jCanvas parentCanvas || !IsPointerMoveEvent(e, parentCanvas))
         return;
 
@@ -121,14 +202,55 @@ public static class Workspace
     if (movable.IsPressed)
     {
         if (State.LCtrlPressed)
-            HandleControlPressed(e, element);
+            ResizeElement(e, element);
         else
             MoveElement(mousePosition, element, parentCanvas);
     }
     BindSelectionBorder(movable);
    }
 
+    private static Point startPosition;
+
+    private static void DrawSelectionFrame(PointerEventArgs e)
+    {
+        if (movable is not jCanvas)
+            return;
+        var currentCanvas = movable as jCanvas;
+        // Сделаем рамку видимой, если она еще не видна
+        SelectionRectangle.IsVisible = true;
+        if (State.RectangleFlag)
+        {
+            (SelectionRectangle.Parent as Canvas).Children.Remove(SelectionRectangle);
+            currentCanvas.Children.Add(SelectionRectangle);
+            startPosition = e.GetPosition(currentCanvas);
+            Canvas.SetLeft(SelectionRectangle, startPosition.X);
+            Canvas.SetTop(SelectionRectangle, startPosition.Y);
+            State.RectangleFlag = false;
+        }
+        
+
+        // Установим ширину и высоту movable, если они NaN
+        if (double.IsNaN(movable.Width))
+            movable.Width = movable.Bounds.Width;
+        if (double.IsNaN(movable.Height))
+            movable.Height = movable.Bounds.Height;
+
+        // Получим текущую позицию указателя мыши относительно MainCanvas
+        var currentPosition = e.GetPosition(currentCanvas);
     
+        // Вычисляем новую позицию и размеры рамки
+        var x = Math.Min(startPosition.X, currentPosition.X);
+        var y = Math.Min(startPosition.Y, currentPosition.Y);
+        var width = Math.Abs(currentPosition.X - startPosition.X);
+        var height = Math.Abs(currentPosition.Y - startPosition.Y);
+
+        // Устанавливаем позицию и размеры SelectionRectangle
+        Canvas.SetLeft(SelectionRectangle, x);
+        Canvas.SetTop(SelectionRectangle, y);
+        SelectionRectangle.Width = width;
+        SelectionRectangle.Height = height;
+    }
+
 
    // Проверка типа обновления указателя 
    private static bool IsPointerMoveEvent(PointerEventArgs e, jCanvas parentCanvas) =>
@@ -145,7 +267,7 @@ public static class Workspace
         
         
     }
-
+    //Ограничить перемещение в пределах канваса
     private static void ConstrainElementWithinCanvas(Control element, jCanvas parentCanvas)
     {
         // Ограничение позиции элемента в пределах границ холста
@@ -164,7 +286,7 @@ public static class Workspace
             Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
     }
 
-    private static void HandleControlPressed(PointerEventArgs e, Control element)
+    private static void ResizeElement(PointerEventArgs e, Control element)
     {
         //Поправить флаг!!
         if (State.ResizeFlag)
@@ -256,7 +378,7 @@ public static class Workspace
         HierarchyControl.Selected = element.mTreeItem;
         HierarchyControl.Selected = HierarchyControl.Selected;
         selectedOriginalBackground = HierarchyControl.Selected.element.Background;
-        Workspace.InitMovable(HierarchyControl.Selected.element);
+        InitMovable(HierarchyControl.Selected.element);
         HierarchyControl.Selected.element.Focus();
         PropertiesControl.ShowProperties();
     }

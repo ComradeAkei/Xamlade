@@ -67,7 +67,6 @@ public static class Utils
         Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
         {
             ((DebugPanel.Children[0] as TextBlock)!).Text = message;
-            Console.WriteLine();
         });
     }
         

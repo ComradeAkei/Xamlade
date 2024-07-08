@@ -22,6 +22,8 @@ public static class Broadcast
     public static void KillAll()=> OnBroadcast?.Invoke(3);
     //Восстановить дерево объектов
     public static void RestoreTree()=> OnBroadcast?.Invoke(4);
+    //Снять выделение
+    public static void RemoveSelection()=> OnBroadcast?.Invoke(5);
 
 
 

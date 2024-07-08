@@ -52,7 +52,6 @@ public partial class MainWindow : Window
         var listener = new GlobalKeyListener(this);
         listener.KeyPressed += GlobalKeyPressed;
         listener.KeyReleased += GlobalKeyReleased;
-
     }
     
    
@@ -103,6 +102,9 @@ public partial class MainWindow : Window
     {
         if (e.Key == Key.LeftCtrl)
             State.LCtrlPressed = true;
+        else if (e.Key == Key.LeftShift)
+            State.LShiftPressed = true;
+        
     }
     private void GlobalKeyReleased(KeyEventArgs e)
     {
@@ -110,7 +112,13 @@ public partial class MainWindow : Window
             State.LCtrlPressed = false;
         else if(e.Key == Key.Delete)
             Workspace.RemoveSelectedjElement();
+        else if (e.Key == Key.LeftShift)
+        {
+            State.LShiftPressed = false;
+            State.RectangleFlag = true;
+        }
     }
+    
 
    
 }
