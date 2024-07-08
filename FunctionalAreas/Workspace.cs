@@ -15,7 +15,8 @@ public static class Workspace
 {
     
     public static jCanvas MainCanvas { get; set; }
-  //  public static jBorder? SelectionBorder { get; set; }
+
+    private static List<JControl> SelectedObjects = new List<JControl>(); 
     
     public static jCanvas SelectionCanvas { get; set; }
     
@@ -133,13 +134,21 @@ public static class Workspace
         Canvas.SetLeft(obj.selectionBorder,position.Value.X);
         Canvas.SetTop(obj.selectionBorder,position.Value.Y);
     }
+
+    private static void CancelSelection()
+    {
+        if(SelectedObjects.Any())
+            foreach (var obj in SelectedObjects)
+                obj.selectionBorder.IsVisible = false;
+        SelectedObjects.Clear();
+    }
     
     #endregion
     
     public static void InitMovable(JControl obj)
     {
+        CancelSelection();
         
-        Broadcast.RemoveSelection();
         if (obj is null) return;
         History.AddHistoryItem(new History.Change(obj, 
             "Coordinates",
@@ -150,6 +159,7 @@ public static class Workspace
         BindSelectionBorder(movable);
     }
 
+    
     public static void InitPremovable()
     {
         if(premovable is null) return;
@@ -187,7 +197,7 @@ public static class Workspace
     if (Equals(movable, MainCanvas))
         return;
 
-   // Проверка родительского элемента movable
+    // Проверка родительского элемента movable
     if (movable.jParent is not jCanvas parentCanvas || !IsPointerMoveEvent(e, parentCanvas))
         return;
 
@@ -264,8 +274,6 @@ public static class Workspace
 
         // Ограничение элемента в пределах холста
         ConstrainElementWithinCanvas(element, parentCanvas);
-        
-        
     }
     //Ограничить перемещение в пределах канваса
     private static void ConstrainElementWithinCanvas(Control element, jCanvas parentCanvas)
@@ -326,7 +334,7 @@ public static class Workspace
             return;
 
 
-    premovable = sender as JControl;
+        premovable = sender as JControl;
     }
 
     public static void OnjControlPointerExited(object? sender, PointerEventArgs e)
