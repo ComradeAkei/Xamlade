@@ -66,7 +66,7 @@ public interface IChildContainer
 //Для простых объектов
 public interface JControl
 {
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public bool IsSelected => selectionBorder.IsVisible;
     public IChildContainer? jParent { get; set; }
     
@@ -202,7 +202,7 @@ public class jButton : Button, JControl
 {
     public int ID = 0;
     protected override Type StyleKeyOverride => typeof(Button);
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
 
     [field: NonSerialized]
     public IChildContainer? jParent { get; set; }
@@ -247,7 +247,7 @@ public class jButton : Button, JControl
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
     
 }
@@ -263,7 +263,7 @@ public class jImage : Image, JControl
         
     }
 
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     
     private string controlType => jElementType.Image.ToString();
@@ -291,7 +291,7 @@ public class jImage : Image, JControl
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
     
 }
@@ -308,7 +308,7 @@ public class jToggleButton : ToggleButton, JControl
     }
     private string controlType => jElementType.ToggleButton.ToString();
     public string Type => controlType;
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
@@ -332,7 +332,7 @@ public class jToggleButton : ToggleButton, JControl
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
     protected override void OnClick() {}
 }
@@ -347,7 +347,7 @@ public class jCheckBox : CheckBox, JControl
     }
 
     protected override Type StyleKeyOverride => typeof(CheckBox);
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     
     private string controlType => jElementType.CheckBox.ToString();
@@ -375,7 +375,7 @@ public class jCheckBox : CheckBox, JControl
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
 
     protected override void OnClick() {}
@@ -391,7 +391,7 @@ public class jTextBlock : TextBlock, JControl
     }
 
     protected override Type StyleKeyOverride => typeof(TextBlock);
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     private string controlType => jElementType.TextBlock.ToString();
     public string Type => controlType;
@@ -413,7 +413,7 @@ public class jTextBlock : TextBlock, JControl
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
  
     public bool IsPressed { get; set; }
@@ -430,7 +430,7 @@ public class jTextBox : TextBox, JControl
     }
 
     protected override Type StyleKeyOverride => typeof(TextBox);
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     private string controlType => jElementType.TextBox.ToString();
     public string Type => controlType;
@@ -451,7 +451,7 @@ public class jTextBox : TextBox, JControl
         }
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e) { }
@@ -468,7 +468,7 @@ public class jBorder : Border, IChildContainer, JControl
     protected override Type StyleKeyOverride => typeof(Border);
     
     private string controlType => jElementType.Border.ToString();
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
@@ -504,7 +504,6 @@ public class jBorder : Border, IChildContainer, JControl
     
     private void HandleBroadcast(int mode)
     {
-        
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
@@ -529,7 +528,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
     public mTreeViewItem? mTreeItem { get; set; }
   
     public List<string> XAMLPiece { get; set; }
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     public List<JControl> jChildren { get; }
     public jCanvas()
@@ -570,7 +569,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
 
 }
@@ -578,7 +577,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
 public class jStackPanel : StackPanel, JControl, IChildContainer
 {
     protected override Type StyleKeyOverride => typeof(StackPanel);
-    public jBorder selectionBorder { get; set; }
+    public mBorder selectionBorder { get; set; }
     public IChildContainer? jParent { get; set; }
     private string controlType => jElementType.StackPanel.ToString();
     public string Type => controlType;
@@ -623,6 +622,20 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
         else if (mode == 4) ImportXAML.CorrectTree(this);
         else if (mode == 5) 
             if(selectionBorder is not null)
-        selectionBorder.IsVisible = false;
+                selectionBorder.IsVisible = false;
     }
+}
+
+public class mBorder : Border, MControl
+{
+    private JControl master;
+    public mBorder(JControl binded)
+    {
+        master = binded;
+        Name = master.Name + "_Border";
+    }
+}
+
+public interface MControl
+{
 }

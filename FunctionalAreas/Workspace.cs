@@ -39,7 +39,7 @@ public static class Workspace
     public static void Init(jCanvas mainCanvas)
     {
         MainCanvas = mainCanvas;
-        MainCanvas.selectionBorder = new jBorder();
+        MainCanvas.selectionBorder = new mBorder(MainCanvas);
         mainCanvas.PointerMoved += jCanvas_OnPointerMoved;
         selectedOriginalBackground = MainCanvas.Background;
   //      Utils.DebugTimer.Elapsed += DebugWorkspace;

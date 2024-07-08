@@ -34,6 +34,7 @@ public static class XAMLGenerator
 {
     public static string GetProperties(JControl element)
     {
+        if (element is MControl) return "";
         string getProperties = "";
         Type type = element.GetType();
         var props = type.GetProperties();
@@ -43,6 +44,7 @@ public static class XAMLGenerator
         foreach (var prop in props)
         {
             if((element.Name == "MainCanvas") && prop.Name is "Width" or "Height") continue;
+            if (element.Type == "Border") continue;
             if (!Constants.ExcludedWords.Contains(prop.Name))
             {
                 if (prop.Name == "Source")
@@ -76,7 +78,7 @@ public static class XAMLGenerator
     }
     public static void XAMLizeElement(JControl element)
     {
-        if(element.Name==null) return;
+        if(element.Name == null) return;
         if (element.XAMLRating == 0)
         {
             element.XAMLPiece.Add($"</{element.Type}>");
