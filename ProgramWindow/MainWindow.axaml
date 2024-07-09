@@ -3,8 +3,10 @@
         xmlns:xamlade="clr-namespace:Xamlade"
        
         xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
-        x:Class="Xamlade.MainWindow"
-        x:DataType="xamlade:MainWindow"
+        xmlns:jClasses="clr-namespace:Xamlade.jClasses"
+        xmlns:programWindow="clr-namespace:Xamlade.ProgramWindow"
+        x:Class="Xamlade.ProgramWindow.MainWindow"
+        x:DataType="programWindow:MainWindow"
         Title="Xamlade" Background="DimGray">
 
    
@@ -133,13 +135,13 @@
         </TabControl>
 
         <!-- Рабочая область -->
-        <xamlade:jCanvas Name="MainCanvas" Background="#1E1E1E" Margin="2">
-            <xamlade:jCanvas.Styles>
+        <jClasses:jCanvas Name="MainCanvas" Background="#1E1E1E" Margin="2">
+            <jClasses:jCanvas.Styles>
                 <FluentTheme/>
-            </xamlade:jCanvas.Styles>
+            </jClasses:jCanvas.Styles>
             <!-- <Image Source="assets/Xamlade.png" Width="500" Height="500"/> -->
             <!-- Здесь наступает власть объектов JControl -->
-        </xamlade:jCanvas>
+        </jClasses:jCanvas>
         
         
     </DockPanel>

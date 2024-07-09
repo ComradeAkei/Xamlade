@@ -5,24 +5,24 @@
 
 //Рамку вынести в jSelectable
 
+//Добавить приоритеты отрисовки (задний - передний план)
+
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.Json.Serialization;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.LogicalTree;
 using Avalonia.Media;
+using Xamlade.Extensions;
+using Xamlade.XAMLWorkers;
 
-namespace Xamlade;
+namespace Xamlade.jClasses;
 
 
 public enum jElementType
@@ -180,21 +180,6 @@ public interface JControl
    }
    
     
-}
-
-
-//Модифицированные элементы дерева со встроенными jControl
-public class mTreeViewItem : TreeViewItem
-{
-    protected override Type StyleKeyOverride => typeof(TreeViewItem); 
-    public JControl element { get; set; }
-    public mTreeViewItem(JControl element)
-    {
-        this.element = element;
-        Header = element.Name;
-        //Обратная связь с jElement
-        element.mTreeItem = this;
-    }
 }
 
 
@@ -636,6 +621,3 @@ public class mBorder : Border, MControl
     }
 }
 
-public interface MControl
-{
-}

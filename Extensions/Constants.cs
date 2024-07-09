@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public static class Constants
 {

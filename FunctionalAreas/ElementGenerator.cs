@@ -1,22 +1,15 @@
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media;
-using Avalonia.Styling;
-using Avalonia.Controls.Primitives;
 using Avalonia.Media.Imaging;
+using Xamlade.Extensions;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.FunctionalAreas;
 
 public static class ElementGenerator
 {
@@ -25,7 +18,7 @@ public static class ElementGenerator
             if (!(HierarchyControl.Selected.element is IChildContainer parent)) return;
     
             string typeName = ((Button)sender).Content.ToString();
-            Type elementType = Type.GetType("Xamlade.j" + typeName);
+            Type elementType = Type.GetType("Xamlade.jClasses.j" + typeName);
             JControl element = (JControl)Activator.CreateInstance(elementType);
     
             element.Name = typeName + (Utils.NextgenIterator++);

@@ -1,4 +1,4 @@
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public static class State
 {

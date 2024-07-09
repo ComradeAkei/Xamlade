@@ -6,6 +6,7 @@
         <entry key="App.axaml" value="Xamlade.csproj" />
         <entry key="ComboboxStyle.axaml" value="Xamlade.csproj" />
         <entry key="MainWindow.axaml" value="Xamlade.csproj" />
+        <entry key="ProgramWindow/MainWindow.axaml" value="Xamlade.csproj" />
         <entry key="TestWindow.axaml" value="Xamlade.csproj" />
         <entry key="Window/MainWindow.axaml" value="Xamlade.csproj" />
         <entry key="[TODO]Unstructed/MainWindow.axaml" value="Xamlade.csproj" />

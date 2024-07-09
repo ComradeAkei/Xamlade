@@ -1,7 +1,7 @@
-using System.ComponentModel;
 using Avalonia.Controls;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.FunctionalAreas;
 
 public static class HierarchyControl
 {

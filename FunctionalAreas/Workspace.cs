@@ -8,8 +8,10 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Xamlade.Extensions;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.FunctionalAreas;
 
 public static class Workspace
 {
@@ -207,6 +209,7 @@ public static class Workspace
         obj.selectionBorder.Height = obj.Bounds.Height;
         obj.selectionBorder.IsHitTestVisible = false;
         Point? position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
+        position ??= new Point(0, 0);
         Canvas.SetLeft(obj.selectionBorder,position.Value.X);
         Canvas.SetTop(obj.selectionBorder,position.Value.Y);
     }

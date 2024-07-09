@@ -1,18 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Templates;
-using Avalonia.Data;
 using Avalonia.Interactivity;
-using Avalonia.Layout;
-using Avalonia.Media;
-using Avalonia.Media.Imaging;
-using AvaloniaColorPicker;
+using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public record jCoordinates(double X, double Y)
 {
@@ -30,14 +24,14 @@ public record jSize(double Width, double Height)
 
 public static class History
 {
-    private static bool HistoryOperationFlag = false;
+    private static bool HistoryOperationFlag;
     
     
     public struct Change
     {
         public JControl jObject { get; set; }
-        public string FieldName;
-        public object Value;
+        public readonly string FieldName;
+        public readonly object Value;
         public Change(JControl jObjectl, string FieldName, object Value)
         {
             this.jObject = jObjectl;
@@ -69,8 +63,8 @@ public static class History
         
     }
     
-    public static List<Change> UndoList = new();
-    public static List<Change> RedoList = new();
+    public static readonly List<Change> UndoList = new();
+    public static readonly List<Change> RedoList = new();
     
     
     
@@ -83,14 +77,14 @@ public static class History
         if(UndoList.Count>0)
             if(change==UndoList.Last()) return;
         UndoList.Add(change);
-        if (change.FieldName == "Coordinates")
-            Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + (change.Value as jCoordinates).X + " " +
-                              (change.Value as jCoordinates).Y);
-        else
-            Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + change.Value.ToString());
+        // if (change.FieldName == "Coordinates")
+        //     Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + (change.Value as jCoordinates)!.X + " " +
+        //                       (change.Value as jCoordinates)!.Y);
+        // else
+        //     Console.WriteLine(change.jObject.Name + " " + change.FieldName + " " + change.Value.ToString());
     }
 
-
+    //ПИЗДЕЦ!!
     private static void HistoryOperation(bool mode)
     {
         Change state;
@@ -178,7 +172,7 @@ public static class History
         }
 
         var tst = mode ? "Redo" : "Undo";
-        Console.WriteLine("History: "+ tst+" " + state.jObject.Name + " " + state.FieldName + " " + state.Value.ToString());
+     //   Console.WriteLine("History: "+ tst+" " + state.jObject.Name + " " + state.FieldName + " " + state.Value.ToString());
         
         
        //ЧО ЗА ХУЙНЯ

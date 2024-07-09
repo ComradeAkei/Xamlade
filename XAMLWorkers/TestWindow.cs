@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Avalonia.Gif;
 using Avalonia.Interactivity;
 
-namespace Xamlade;
+namespace Xamlade.XAMLWorkers;
 
 public static class TestWindow
 {

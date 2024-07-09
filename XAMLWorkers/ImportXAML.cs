@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Xamlade.Extensions;
+using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.XAMLWorkers;
 
 public static class ImportXAML
 {
@@ -36,7 +38,7 @@ public static class ImportXAML
        if(filePathXAML == "") return;
 
 
-       var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(MainWindow).Assembly) as Canvas;
+       var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(ProgramWindow.MainWindow).Assembly) as Canvas;
 
 
         var buf = new List<JControl>();
@@ -237,6 +239,6 @@ public static class ImportXAML
     }
     public static async void DEXAMLIZE(object? sender, RoutedEventArgs e)
     {
-        await RunDeXAMLIZE(MainWindow._MainWindow);
+        await RunDeXAMLIZE(ProgramWindow.MainWindow._MainWindow);
     }
 }

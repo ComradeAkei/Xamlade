@@ -4,7 +4,7 @@ using System.Timers;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public static class Utils
 {

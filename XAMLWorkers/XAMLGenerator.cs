@@ -4,14 +4,17 @@ using System.IO;
 using System.Reflection;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Xamlade.Extensions;
+using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.XAMLWorkers;
 
 public static class Broadcast
 {
     public delegate void EventHandler(int mode);
 
-    public static event EventHandler OnBroadcast;
+    public static event EventHandler? OnBroadcast;
 
     public static void InitXAML()=> OnBroadcast?.Invoke(0);
     public static void XAMLize()=> OnBroadcast?.Invoke(1);
