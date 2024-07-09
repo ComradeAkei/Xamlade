@@ -1,9 +1,9 @@
 # Xamlade
 
 ![](https://i.postimg.cc/CxntPGB6/Xamlade2.png)
-You can support the project by donating to the following wallets:
-BTC: 1D8a6raKEGb7koaszYNys3bzecfWVHc4tT
-TON: UQDhp6tiqGEFjN4lwWxkjIMYtpsBdrN-76ijICsWdK44pHoy
+### You can support the project by donating to the following wallets:
+### BTC: 1D8a6raKEGb7koaszYNys3bzecfWVHc4tT
+### TON: UQDhp6tiqGEFjN4lwWxkjIMYtpsBdrN-76ijICsWdK44pHoy
 
 ## Визуальный редактор для XAML Avalonia UI 
 ### В разработке. Ориентировочный релиз осенью 2024. 
