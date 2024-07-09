@@ -16,7 +16,7 @@ public static class Workspace
     
     public static jCanvas MainCanvas { get; set; }
 
-    private static List<JControl> SelectedObjects = new List<JControl>(); 
+    private static List<JControl> SelectedList = new List<JControl>(); 
     
     public static jCanvas SelectionCanvas { get; set; }
     
@@ -43,7 +43,7 @@ public static class Workspace
         MainCanvas.selectionBorder = new mBorder(MainCanvas);
         mainCanvas.PointerMoved += jCanvas_OnPointerMoved;
         selectedOriginalBackground = MainCanvas.Background;
-  //      Utils.DebugTimer.Elapsed += DebugWorkspace;
+        Utils.DebugTimer.Elapsed += DebugWorkspace;
      //   InitSelectionBorder();
         InitSelectionCanvas();
         InitSelectionRectangle();
@@ -58,9 +58,14 @@ public static class Workspace
     private static void InitSelectionCanvas()
     {
         SelectionCanvas = new jCanvas();
+        SelectionCanvas.Name = "SelectionCanvas";
         SelectionCanvas.Background = Brushes.Aqua;
+        SelectionCanvas.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        SelectionCanvas.PointerEntered += OnjControlPointerEntered;
+        SelectionCanvas.PointerExited += OnjControlPointerExited;
+        SelectionCanvas.PointerPressed += OnjControlPressed;
+        SelectionCanvas.PointerReleased += OnjControlReleased;
     }
-
     private static void InitSelectionRectangle()
     {
         SelectionRectangle = new Rectangle
@@ -88,30 +93,100 @@ public static class Workspace
             var controlRect = new Rect(Canvas.GetLeft(child as Control), Canvas.GetTop(child as Control), (child as Control).Bounds.Width,
                 (child as Control).Bounds.Height);
 
-                if (selectionRect.Intersects(controlRect))
-                    BindSelectionBorder(child);
-                
-            
+            if (selectionRect.Intersects(controlRect))
+            {
+                BindSelectionBorder(child);
+                SelectedList.Add(child);
+            }
+
+
         }
         //Сам контейнер не выделять
         parentCanvas.selectionBorder.IsVisible = false;
-        movable = null;
+        SelectedList.Remove(parentCanvas);
+        ApplySelectionCanvas();
     }
-    
-    
-
-    
     
     //Поместить выделенные элементы на метаканвас
-    private static void ApplySelectionCanvas(List<JControl> objects, jCanvas parentCanvas)
+    private static void ApplySelectionCanvas()
     {
         
+        if (SelectedList.Count < 2) {movable = null; return;}
+        var parent = SelectedList[0].jParent;
+        // Проверить, что все выделенные элементы находятся в одном контейнере
+        foreach (var obj in SelectedList)
+        {
+            if (obj.jParent != parent)
+            {
+                movable = null; 
+                return;
+            }
+        }
+        parent.AddChild(SelectionCanvas);
+
+        // Найти границы (минимальные и максимальные координаты) всех элементов в SelectedList
+        double minX = double.MaxValue, minY = double.MaxValue;
+        double maxX = double.MinValue, maxY = double.MinValue;
+
+        foreach (var obj in SelectedList)
+        {
+            var bounds = obj.Bounds;
+            minX = Math.Min(minX, bounds.X);
+            minY = Math.Min(minY, bounds.Y);
+            maxX = Math.Max(maxX, bounds.X + bounds.Width);
+            maxY = Math.Max(maxY, bounds.Y + bounds.Height);
+        }
+
+        // Установить размеры и положение SelectionCanvas
+        Canvas.SetLeft(SelectionCanvas, minX);
+        Canvas.SetTop(SelectionCanvas, minY);
+        SelectionCanvas.Width = maxX - minX;
+        SelectionCanvas.Height = maxY - minY;
+
+        // Переместить все объекты в SelectionCanvas, сохраняя их абсолютные координаты
+        foreach (var obj in SelectedList)
+        {
+            var absX = Canvas.GetLeft(obj as Control);
+            var absY = Canvas.GetTop(obj as Control);
+            parent.RemoveChild(obj);
+            SelectionCanvas.AddChild(obj);
+            Canvas.SetLeft(obj as Control, absX - minX);
+            Canvas.SetTop(obj as Control, absY - minY);
+            (obj as Control).IsHitTestVisible = false;
+            obj.selectionBorder.IsVisible = true;
+        }
+
+        movable = SelectionCanvas;
     }
-    
+
+
+
     //Вернуть элементы с метаканваса выделения
     private static void RestoreSelectionCanvas()
     {
-        
+        if (SelectionCanvas.Parent == null)
+            return;
+
+        var parent = SelectionCanvas.Parent as jCanvas;
+        double selCanvasLeft = Canvas.GetLeft(SelectionCanvas);
+        double selCanvasTop = Canvas.GetTop(SelectionCanvas);
+
+        // Переместить все объекты обратно в родительский canvas, восстанавливая их абсолютные координаты
+        var children = SelectionCanvas.jChildren.ToList(); // Создаем копию списка, чтобы избежать модификации коллекции во время итерации
+
+        foreach (var child in children)
+        {
+            var relX = Canvas.GetLeft(child as Control);
+            var relY = Canvas.GetTop(child as Control);
+            SelectionCanvas.RemoveChild(child);
+            parent.AddChild(child);
+            Canvas.SetLeft(child as Control, relX + selCanvasLeft);
+            Canvas.SetTop(child as Control, relY + selCanvasTop);
+            (child as Control).IsHitTestVisible = true;
+        }
+
+        // Удалить SelectionCanvas из родительского canvas
+        parent.RemoveChild(SelectionCanvas);
     }
     
     //Оптимизировать: не повторять определение размера при каждом перемещении
@@ -137,17 +212,22 @@ public static class Workspace
 
     private static void CancelSelection()
     {
-        if(SelectedObjects.Any())
-            foreach (var obj in SelectedObjects)
-                obj.selectionBorder.IsVisible = false;
-        SelectedObjects.Clear();
+        RestoreSelectionCanvas();
+        if(SelectedList.Any())
+            foreach (var obj in SelectedList)
+                if (obj.Name != "SelectionCanvas")
+                    obj.selectionBorder.IsVisible = false;
+        SelectedList.Clear();
     }
     
     #endregion
     
     public static void InitMovable(JControl obj)
     {
-        CancelSelection();
+        if(Equals(movable,obj))
+            return;
+        //Дёргается не из-за этого
+     //   CancelSelection();
         
         if (obj is null) return;
         History.AddHistoryItem(new History.Change(obj, 
@@ -157,6 +237,7 @@ public static class Workspace
         mov_hw = obj.Bounds.Width / 2;
         mov_hh = obj.Bounds.Height / 2;
         BindSelectionBorder(movable);
+        SelectedList.Add(movable);
     }
 
     
@@ -177,7 +258,8 @@ public static class Workspace
     
     if(Equals(sender,SelectionCanvas))
        return;
-    e.Handled = true;
+    if(Equals(movable?.jParent,SelectionCanvas))
+        return;
 
     if (State.LShiftPressed && e.GetCurrentPoint(MainCanvas).Properties.IsLeftButtonPressed)
     {

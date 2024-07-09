@@ -30,8 +30,8 @@ public static class ElementGenerator
     
             element.Name = typeName + (Utils.NextgenIterator++);
             SetDefaultValues(element);
-              element.PointerEntered += Workspace.OnjControlPointerEntered;
-              element.PointerExited += Workspace.OnjControlPointerExited;
+            element.PointerEntered += Workspace.OnjControlPointerEntered;
+            element.PointerExited += Workspace.OnjControlPointerExited;
           //  element.Click += jElementClick;
             element.PointerPressed += Workspace.OnjControlPressed;
             element.PointerReleased += Workspace.OnjControlReleased;
