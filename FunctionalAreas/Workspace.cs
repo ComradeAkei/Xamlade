@@ -59,7 +59,7 @@ public static class Workspace
     {
         SelectionCanvas = new jCanvas();
         SelectionCanvas.Name = "SelectionCanvas";
-        SelectionCanvas.Background = Brushes.Aqua;
+        SelectionCanvas.Background = Brushes.Transparent;
         SelectionCanvas.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
         SelectionCanvas.PointerEntered += OnjControlPointerEntered;
         SelectionCanvas.PointerExited += OnjControlPointerExited;
@@ -99,7 +99,6 @@ public static class Workspace
                 SelectedList.Add(child);
             }
 
-
         }
         //Сам контейнер не выделять
         parentCanvas.selectionBorder.IsVisible = false;
@@ -110,7 +109,7 @@ public static class Workspace
     //Поместить выделенные элементы на метаканвас
     private static void ApplySelectionCanvas()
     {
-        
+        SelectionCanvas.IsVisible = true;
         if (SelectedList.Count < 2) {movable = null; return;}
         var parent = SelectedList[0].jParent;
         // Проверить, что все выделенные элементы находятся в одном контейнере
@@ -149,6 +148,7 @@ public static class Workspace
             var absX = Canvas.GetLeft(obj as Control);
             var absY = Canvas.GetTop(obj as Control);
             parent.RemoveChild(obj);
+           
             SelectionCanvas.AddChild(obj);
             Canvas.SetLeft(obj as Control, absX - minX);
             Canvas.SetTop(obj as Control, absY - minY);
@@ -156,7 +156,7 @@ public static class Workspace
             obj.selectionBorder.IsVisible = true;
         }
 
-        movable = SelectionCanvas;
+       // movable = SelectionCanvas;
     }
 
 
@@ -164,6 +164,7 @@ public static class Workspace
     //Вернуть элементы с метаканваса выделения
     private static void RestoreSelectionCanvas()
     {
+        SelectionCanvas.IsVisible = false;
         if (SelectionCanvas.Parent == null)
             return;
 
@@ -183,6 +184,7 @@ public static class Workspace
             Canvas.SetLeft(child as Control, relX + selCanvasLeft);
             Canvas.SetTop(child as Control, relY + selCanvasTop);
             (child as Control).IsHitTestVisible = true;
+            child.selectionBorder.IsVisible = false;
         }
 
         // Удалить SelectionCanvas из родительского canvas
@@ -212,7 +214,6 @@ public static class Workspace
 
     private static void CancelSelection()
     {
-        RestoreSelectionCanvas();
         if(SelectedList.Any())
             foreach (var obj in SelectedList)
                 if (obj.Name != "SelectionCanvas")
@@ -224,10 +225,14 @@ public static class Workspace
     
     public static void InitMovable(JControl obj)
     {
-        if(Equals(movable,obj))
-            return;
+        if(!Equals(SelectionCanvas,obj))
+            if(SelectionCanvas.IsVisible)
+                RestoreSelectionCanvas();
         //Дёргается не из-за этого
-     //   CancelSelection();
+         CancelSelection();
+         if(Equals(SelectionCanvas,obj))
+             foreach (var child in SelectionCanvas.jChildren)
+                 child.selectionBorder.IsVisible = true;
         
         if (obj is null) return;
         History.AddHistoryItem(new History.Change(obj, 
@@ -299,6 +304,13 @@ public static class Workspace
             MoveElement(mousePosition, element, parentCanvas);
     }
     BindSelectionBorder(movable);
+    if(Equals(movable,SelectionCanvas))
+        foreach (var obj in SelectionCanvas.jChildren)
+        {
+            var position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
+            Canvas.SetLeft(obj.selectionBorder,position.Value.X);
+            Canvas.SetTop(obj.selectionBorder,position.Value.Y);
+        }
    }
 
     private static Point startPosition;
@@ -429,19 +441,37 @@ public static class Workspace
         => RemoveSelectedjElement();
     public static void RemoveSelectedjElement()
     {
+        
+        if (SelectionCanvas.jChildren.Count > 1)
+        {
+            foreach (var child in SelectionCanvas.jChildren)
+            {
+                child.selectionBorder.IsVisible = false;
+                (child?.mTreeItem?.Parent as mTreeViewItem)?.Items?.Remove(child?.mTreeItem);
+            }
+
+            var count = SelectionCanvas.jChildren.Count;
+            for(int i = 0; i < count;i++)
+                SelectionCanvas.RemoveChild(SelectionCanvas.jChildren[0]);
+            return;
+        }
         if (HierarchyControl.Selected == MainCanvas.mTreeItem) return;
+        
+        
         var element = HierarchyControl.Selected.element;
         var jparent = HierarchyControl.Selected.element.jParent;
-        jparent.RemoveChild(HierarchyControl.Selected.element);
-        
-        var parent = HierarchyControl.Selected.Parent as mTreeViewItem;
-        parent.Items.Remove(HierarchyControl.Selected);
+        jparent.RemoveChild(element);
+        var parent = element.mTreeItem.Parent as mTreeViewItem;
+        parent.Items.Remove(element.mTreeItem);
         HierarchyControl.Selected  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
         
         var data = new Object[] {jparent,element,element.mTreeItem};
         History.AddHistoryItem(new History.Change(element,"Removed",data));
         // MainHierarchyTree.SelectedItem=selectedTreeItem.element.mTreeItem;
         element.Dispose();
+
+        
+
     }
     
     public static void OnjControlPressed(object? sender, PointerPressedEventArgs e)
