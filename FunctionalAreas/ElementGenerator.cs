@@ -129,12 +129,12 @@ public static class ElementGenerator
         
     }
 
-    private static void InitSelectionBorder(JControl obj)
+    public static void InitSelectionBorder(JControl obj)
     {
         obj.selectionBorder = new mBorder(obj);
         obj.selectionBorder.Background = Brushes.Transparent;
-        obj.selectionBorder.BorderBrush = Brushes.Chartreuse;
-        obj.selectionBorder.BorderThickness = new Thickness(3);
+        obj.selectionBorder.BorderBrush = new SolidColorBrush(Color.Parse("#1D9627"));
+        obj.selectionBorder.BorderThickness = new Thickness(2);
         Workspace.MainCanvas.Children.Add(obj.selectionBorder);
         obj.selectionBorder.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
         obj.selectionBorder.IsVisible = false;

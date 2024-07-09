@@ -6,7 +6,6 @@ namespace Xamlade;
 public static class HierarchyControl
 {
     private static TreeView HierarchyTree { get; set; }
-    
     /// <summary>
     /// Выбранный в дереве элемент
     /// </summary>

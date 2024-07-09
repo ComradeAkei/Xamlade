@@ -92,7 +92,7 @@ public static class XAMLGenerator
     public static void XAMLIZE(object? sender, RoutedEventArgs? e)
     {
         
-
+        Workspace.RestoreSelectionCanvas();
         // selectedTreeItem.element.Background = selectedOriginalBackground;
         Broadcast.InitXAML();
         while (Workspace.MainCanvas.XAMLRating > -1)

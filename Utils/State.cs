@@ -2,7 +2,7 @@ namespace Xamlade;
 
 public static class State
 {
-    public static bool RectangleFlag = false;
+    public static bool RectangleFlag = true;
     public static bool LCtrlPressed = false;
     public static bool LShiftPressed = false;
     public static bool ResizeFlag = false;

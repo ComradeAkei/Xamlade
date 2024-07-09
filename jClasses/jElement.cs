@@ -556,7 +556,7 @@ public class jCanvas : Canvas, IChildContainer, JControl
     public int XAMLRating { get; set; }
     private void HandleBroadcast(int mode)
     {
-        
+        if (Name == "SelectionCanvas") return;
         if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
         else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
         else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);

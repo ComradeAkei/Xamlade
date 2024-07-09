@@ -87,6 +87,7 @@ public static class ImportXAML
             element.Click += Workspace.jElementClick;
             element.PointerPressed += Workspace.OnjControlPressed;
             element.PointerReleased += Workspace.OnjControlReleased;
+            ElementGenerator.InitSelectionBorder(element);
         
         
 

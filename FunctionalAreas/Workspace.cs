@@ -60,7 +60,7 @@ public static class Workspace
         SelectionCanvas = new jCanvas();
         SelectionCanvas.Name = "SelectionCanvas";
         SelectionCanvas.Background = Brushes.Transparent;
-        SelectionCanvas.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        SelectionCanvas.SetValue(Panel.ZIndexProperty, Int32.MaxValue-5);
         SelectionCanvas.PointerEntered += OnjControlPointerEntered;
         SelectionCanvas.PointerExited += OnjControlPointerExited;
         SelectionCanvas.PointerPressed += OnjControlPressed;
@@ -155,14 +155,13 @@ public static class Workspace
             (obj as Control).IsHitTestVisible = false;
             obj.selectionBorder.IsVisible = true;
         }
-
-       // movable = SelectionCanvas;
+        
     }
 
 
 
     //Вернуть элементы с метаканваса выделения
-    private static void RestoreSelectionCanvas()
+    public static void RestoreSelectionCanvas()
     {
         SelectionCanvas.IsVisible = false;
         if (SelectionCanvas.Parent == null)
@@ -268,6 +267,7 @@ public static class Workspace
 
     if (State.LShiftPressed && e.GetCurrentPoint(MainCanvas).Properties.IsLeftButtonPressed)
     {
+        
         DrawSelectionFrame(e);
         return;
     }
@@ -313,7 +313,7 @@ public static class Workspace
         }
    }
 
-    private static Point startPosition;
+    private static Point startPosition = new Point(0,0);
 
     private static void DrawSelectionFrame(PointerEventArgs e)
     {
