@@ -79,7 +79,7 @@ public static class ImportXAML
             element.mTreeItem.Header =element.Name;
             var parent = ((Control)element).Parent;
 
-            element.SetParent((IChildContainer)parent);
+            element.SetParent((JChildContainer)parent);
 
             
 
@@ -89,7 +89,7 @@ public static class ImportXAML
             element.Click += Workspace.jElementClick;
             element.PointerPressed += Workspace.OnjControlPressed;
             element.PointerReleased += Workspace.OnjControlReleased;
-            ElementGenerator.InitSelectionBorder(element);
+            ElementGenerator.InitSelectionBorder(element as JSelectable);
         
         
 
@@ -226,9 +226,9 @@ public static class ImportXAML
 
     public static void CorrectTree(JControl element)
     {
-        if (element is IChildContainer)
+        if (element is JChildContainer)
         {
-            var container = (IChildContainer)element;
+            var container = (JChildContainer)element;
             foreach (var child in container.jChildren)
             {
                 element.mTreeItem.Items.Add(child.mTreeItem);

@@ -76,7 +76,7 @@ public static class XAMLGenerator
     {
         if(element.Name==null) return;
         element.XAMLPiece.Clear();
-        element.XAMLRating = element is IChildContainer container ? container.jChildren.Count : 0;
+        element.XAMLRating = element is JChildContainer container ? container.jChildren.Count : 0;
         element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
     }
     public static void XAMLizeElement(JControl element)
@@ -105,7 +105,7 @@ public static class XAMLGenerator
         var wWidth = (int)Workspace.MainCanvas.Bounds.Width;
         var wHeight = (int)Workspace.MainCanvas.Bounds.Height;
         
-        string filePath = @"XamladeDemo/MainWindow.axaml";
+        string filePath = @"./XamladeDemo/MainWindow.axaml";
         var outputXAML = new List<string>();
         outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
          xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""

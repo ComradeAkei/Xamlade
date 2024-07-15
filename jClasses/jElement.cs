@@ -1,5 +1,5 @@
+//МОИ ИНТЕРФЕЙСЫ ИМЕНУЮТСЯ С J
 
-//Сделать интерфейс Xamlizable
 
 //Повторное использование кода в классах
 
@@ -55,7 +55,7 @@ public enum jElementType
 
 
 // Для контейнеров
-public interface IChildContainer
+public interface JChildContainer
 {
     List<JControl> jChildren { get; }
     void AddChild(JControl child, double top = 0, double left = 0);
@@ -63,12 +63,19 @@ public interface IChildContainer
     public void RemoveChild(JControl child);
 
 }
+
+//Интерфейс рамки выделения объекта
+public interface JSelectable
+{
+    public mBorder selectionBorder { get; set; }
+}
+
 //Для простых объектов
 public interface JControl
 {
-    public mBorder selectionBorder { get; set; }
-    public bool IsSelected => selectionBorder.IsVisible;
-    public IChildContainer? jParent { get; set; }
+    
+    public bool IsSelected => (this as JSelectable)?.selectionBorder.IsVisible ?? false;
+    public JChildContainer? jParent { get; set; }
     
     
     public string Type { get; }
@@ -135,7 +142,7 @@ public interface JControl
    public event EventHandler<KeyEventArgs>? KeyUp;
 
    
-   public void SetParent(IChildContainer parent)
+   public void SetParent(JChildContainer parent)
    {
        if(parent==null) return;
        if(this.Name == "MainCanvas") return;
@@ -178,19 +185,38 @@ public interface JControl
        Reflector.SetName(null, this);
        
    }
-   
-    
+}
+
+//Приёмник широковещательных сообщений jObject
+public interface JBroadcastHandler<T>
+    where T : JControl
+{
+    internal void HandleBroadcast(int mode)
+    {
+        if(mode == 0) XAMLGenerator.XAMLRatingInit(this as JControl);
+        else if (mode == 1) XAMLGenerator.XAMLizeElement(this as JControl);
+        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this as JControl);
+        else if (mode == 3)
+        {
+            Broadcast.OnBroadcast -= HandleBroadcast; 
+            Broadcast.DisposeElement(this as JControl);
+        }
+        else if (mode == 4) ImportXAML.CorrectTree(this as JControl);
+        else if (mode == 5) 
+            if((this as JSelectable). selectionBorder is not null)
+                (this as JSelectable).selectionBorder.IsVisible = false;
+    }
 }
 
 
-public class jButton : Button, JControl
+public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     public int ID = 0;
     protected override Type StyleKeyOverride => typeof(Button);
     public mBorder selectionBorder { get; set; }
 
     [field: NonSerialized]
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     private string controlType => jElementType.Button.ToString();
     public string Type => controlType;
     [JsonIgnore]
@@ -214,42 +240,28 @@ public class jButton : Button, JControl
 
     public jButton()
     {
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
     
-    private void HandleBroadcast(int mode)
-    {
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
-    }
+    
     
 }
 
-public class jImage : Image, JControl
+public class jImage : Image, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(Image);
     public jImage()
     {
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
         
     }
 
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     
     private string controlType => jElementType.Image.ToString();
     public string Type => controlType;
@@ -282,19 +294,19 @@ public class jImage : Image, JControl
 }
 
 
-public class jToggleButton : ToggleButton, JControl
+public class jToggleButton : ToggleButton, JControl, JBroadcastHandler<JControl>, JSelectable 
 {
     protected override Type StyleKeyOverride => typeof(ToggleButton);
     public jToggleButton()
     {
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
     private string controlType => jElementType.ToggleButton.ToString();
     public string Type => controlType;
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
@@ -303,37 +315,22 @@ public class jToggleButton : ToggleButton, JControl
         get => base.IsPressed;
         set => SetValue(IsPressedProperty, value);
     }
-    
-    private void HandleBroadcast(int mode)
-    {
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
-    }
+
     protected override void OnClick() {}
 }
 
-public class jCheckBox : CheckBox, JControl
+public class jCheckBox : CheckBox, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     public jCheckBox()
     {
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
 
     protected override Type StyleKeyOverride => typeof(CheckBox);
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     
     private string controlType => jElementType.CheckBox.ToString();
     public string Type => controlType;
@@ -366,18 +363,18 @@ public class jCheckBox : CheckBox, JControl
     protected override void OnClick() {}
 }
 
-public class jTextBlock : TextBlock, JControl
+public class jTextBlock : TextBlock, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     public jTextBlock()
     {
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
 
     protected override Type StyleKeyOverride => typeof(TextBlock);
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     private string controlType => jElementType.TextBlock.ToString();
     public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
@@ -385,59 +382,28 @@ public class jTextBlock : TextBlock, JControl
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
 
-    private void HandleBroadcast(int mode)
-    {
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
-    }
- 
     public bool IsPressed { get; set; }
     public event EventHandler<RoutedEventArgs>? Click;
 }
 
-public class jTextBox : TextBox, JControl
+public class jTextBox : TextBox, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     public jTextBox()
     {
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
 
     protected override Type StyleKeyOverride => typeof(TextBox);
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     private string controlType => jElementType.TextBox.ToString();
     public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
 
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
-
-    private void HandleBroadcast(int mode)
-    {
-        if (mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
-    }
 
     protected override void OnPointerPressed(PointerPressedEventArgs e) { }
     protected override void OnPointerMoved(PointerEventArgs e) { }
@@ -448,13 +414,13 @@ public class jTextBox : TextBox, JControl
 }
 
 //Доделать
-public class jBorder : Border, IChildContainer, JControl
+public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(Border);
     
     private string controlType => jElementType.Border.ToString();
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
@@ -467,7 +433,7 @@ public class jBorder : Border, IChildContainer, JControl
     public jBorder()
     {
         jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
@@ -486,23 +452,9 @@ public class jBorder : Border, IChildContainer, JControl
         jChildren.Clear();
         Child = null;
     }
-    
-    private void HandleBroadcast(int mode)
-    {
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            if(Name=="MainCanvas") return;
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-    }
 }
 
-public class jCanvas : Canvas, IChildContainer, JControl
+public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JControl>, JSelectable
 { 
     protected override Type StyleKeyOverride => typeof(Canvas); 
     
@@ -514,12 +466,12 @@ public class jCanvas : Canvas, IChildContainer, JControl
   
     public List<string> XAMLPiece { get; set; }
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     public List<JControl> jChildren { get; }
     public jCanvas()
     {
         jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
@@ -539,31 +491,13 @@ public class jCanvas : Canvas, IChildContainer, JControl
         Children.Remove((Control)child);
     }
     public int XAMLRating { get; set; }
-    private void HandleBroadcast(int mode)
-    {
-        if (Name == "SelectionCanvas") return;
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            if(Name=="MainCanvas") return;
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
-    }
-
 }
 
-public class jStackPanel : StackPanel, JControl, IChildContainer
+public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(StackPanel);
     public mBorder selectionBorder { get; set; }
-    public IChildContainer? jParent { get; set; }
+    public JChildContainer? jParent { get; set; }
     private string controlType => jElementType.StackPanel.ToString();
     public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
@@ -576,7 +510,7 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
     public jStackPanel()
     {
         jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += HandleBroadcast;
+        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
@@ -593,22 +527,6 @@ public class jStackPanel : StackPanel, JControl, IChildContainer
         jChildren.Remove(child);
         Children.Remove((Control)child);
     }
-    
-    private void HandleBroadcast(int mode)
-    {
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
-    }
 }
 
 public class mBorder : Border, MControl
@@ -620,4 +538,3 @@ public class mBorder : Border, MControl
         Name = master.Name + "_Border";
     }
 }
-

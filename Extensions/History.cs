@@ -201,7 +201,7 @@ public static class History
             case "Removed" when (!mode):
             {
                 var array = state.Value as object[];
-                var parent = (IChildContainer)array[0];
+                var parent = (JChildContainer)array[0];
                 var element = (JControl)array[1];
                 var mTree = (mTreeViewItem)array[2];
                 ResurrectElement(parent, element, mTree);
@@ -225,7 +225,7 @@ public static class History
     }
 
 
-    private static void ResurrectElement(IChildContainer parent, JControl element, mTreeViewItem mtree)
+    private static void ResurrectElement(JChildContainer parent, JControl element, mTreeViewItem mtree)
     {
         //Блок реанимации
         Reflector.SetName(mtree.Header.ToString(),element);

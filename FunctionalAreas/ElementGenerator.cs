@@ -15,7 +15,7 @@ public static class ElementGenerator
 {
     public static void GenerateElement(object? sender, RoutedEventArgs e)
     {
-            if (!(HierarchyControl.Selected.element is IChildContainer parent)) return;
+            if (!(HierarchyControl.Selected.element is JChildContainer parent)) return;
     
             string typeName = ((Button)sender).Content.ToString();
             Type elementType = Type.GetType("Xamlade.jClasses.j" + typeName);
@@ -35,7 +35,7 @@ public static class ElementGenerator
             (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
             var data = new Object[] {parent,element,element.mTreeItem};
             History.AddHistoryItem(new History.Change(element,"Created",data));
-            InitSelectionBorder(element);
+            InitSelectionBorder(element as JSelectable);
     }
 
     public static void SetDefaultValues(JControl element)
@@ -122,9 +122,9 @@ public static class ElementGenerator
         
     }
 
-    public static void InitSelectionBorder(JControl obj)
+    public static void InitSelectionBorder(JSelectable obj)
     {
-        obj.selectionBorder = new mBorder(obj);
+        obj.selectionBorder = new mBorder(obj as JControl);
         obj.selectionBorder.Background = Brushes.Transparent;
         obj.selectionBorder.BorderBrush = new SolidColorBrush(Color.Parse("#1D9627"));
         obj.selectionBorder.BorderThickness = new Thickness(2);
