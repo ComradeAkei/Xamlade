@@ -10,29 +10,6 @@ using Xamlade.jClasses;
 
 namespace Xamlade.XAMLWorkers;
 
-public static class Broadcast
-{
-    public delegate void EventHandler(int mode);
-
-    public static event EventHandler? OnBroadcast;
-
-    public static void InitXAML()=> OnBroadcast?.Invoke(0);
-    public static void XAMLize()=> OnBroadcast?.Invoke(1);
-    
-   //Восстановить поведение jElement после выгрузки из XAML
-    public static void RestoreBehavior()=> OnBroadcast?.Invoke(2);
-    //Убить все объекты
-    public static void KillAll()=> OnBroadcast?.Invoke(3);
-    //Восстановить дерево объектов
-    public static void RestoreTree()=> OnBroadcast?.Invoke(4);
-    //Снять выделение
-  //  public static void RemoveSelection()=> OnBroadcast?.Invoke(5);
-
-
-
-    public static void DisposeElement(JControl element) => element.Dispose();
-}
-
 public static class XAMLGenerator
 {
     public static string GetProperties(JControl element)
@@ -63,6 +40,8 @@ public static class XAMLGenerator
             getProperties += " HorizontalAlignment=\"Stretch\"\n            VerticalAlignment=\"Stretch\"";
             return getProperties;
         }
+
+        if (Equals(element, Workspace.SelectionCanvas)) return "";
         if ((element.jParent as JControl).Type == jElementType.Canvas.ToString())
         {
             getProperties+=$"Canvas.Left=\"{Convert.ToInt32(Canvas.GetLeft((Control)element))}\" ";
@@ -74,7 +53,6 @@ public static class XAMLGenerator
     }
     public static void XAMLRatingInit(JControl element)
     {
-        if(element.Name==null) return;
         element.XAMLPiece.Clear();
         element.XAMLRating = element is JChildContainer container ? container.jChildren.Count : 0;
         element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");

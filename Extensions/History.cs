@@ -8,20 +8,6 @@ using Xamlade.jClasses;
 
 namespace Xamlade.Extensions;
 
-public record jCoordinates(double X, double Y)
-{
-    public double X { get; set; } = X;
-    public double Y { get; set; } = Y;
-        
-}
-    
-public record jSize(double Width, double Height)
-{
-    public double Width { get; set; } = Width;
-    public double Height { get; set; } = Height;
-        
-}
-
 public static class History
 {
     private static bool HistoryOperationFlag;

@@ -17,13 +17,17 @@ public static class ImportXAML
     private static string filePathXAML = "";
     private static string ExternalXAML = "";
 
-    private static readonly string[] elementsToReplace =
+    private static readonly string[] elementsToReplace;
+
+    static ImportXAML()
     {
-        "Border", "Canvas", "DockPanel", "Grid", "Panel", "ScrollViewer", "StackPanel",
-        "TabControl", "TabItem", "Button", "CheckBox", "ComboBox", "DatePicker",
-        "ListBox", "ListView", "Menu", "MenuItem", "ProgressBar", "RadioButton",
-        "Slider", "TextBox", "ToggleButton", "TextBlock", "Image"
-    };
+        elementsToReplace = new[] {
+            "Border", "Canvas", "DockPanel", "Grid", "Panel", "ScrollViewer", "StackPanel",
+            "TabControl", "TabItem", "Button", "CheckBox", "ComboBox", "DatePicker",
+            "ListBox", "ListView", "Menu", "MenuItem", "ProgressBar", "RadioButton",
+            "Slider", "TextBox", "ToggleButton", "TextBlock", "Image"
+        };
+    }
 
     public static async Task RunDeXAMLIZE(Window window)
     {
@@ -59,26 +63,25 @@ public static class ImportXAML
 
         for (int i = 0; i < buf.Count; i++)
         {
-            Canvas.SetTop(Workspace.MainCanvas.Children[i], canv_top[i]);
-            Canvas.SetLeft(Workspace.MainCanvas.Children[i], canv_left[i]);
+            Canvas.SetTop(Workspace.MainCanvas.jChildren[i] as Control, canv_top[i]);
+            Canvas.SetLeft(Workspace.MainCanvas.jChildren[i] as Control, canv_left[i]);
         }
         Workspace.MainCanvas.mTreeItem.Items.Clear();
 
         Broadcast.RestoreBehavior();
-        Broadcast.RestoreTree();
+     //   Broadcast.RestoreTree();
     }
 
     public static void CorrectLoadedjElement(JControl element)
     {
-        Console.WriteLine();
         element.Name ??= element.Type + "_" + (Utils.NextgenIterator++);
 
 
         if (element.Name == "MainCanvas") return;
-        
+            element.mTreeItem = new mTreeViewItem(element);
             element.mTreeItem.Header =element.Name;
             var parent = ((Control)element).Parent;
-
+            
             element.SetParent((JChildContainer)parent);
 
             
@@ -162,7 +165,7 @@ public static class ImportXAML
                 var matchValue = match.Value;
 
                 // Заменяем <Имя_элемента на <xamlade:jИмя элемента
-                var replacement = matchValue.Replace("<" + element, "<xamlade:j" + element);
+                var replacement = matchValue.Replace("<" + element, "<jClasses:j" + element);
 
                 index++;
 
@@ -174,7 +177,7 @@ public static class ImportXAML
             {
                 var matchValue = match.Value;
                 // Заменяем </Имя_элемента на </xamlade:jИмя элемента
-                var replacement = matchValue.Replace("</" + element, "</xamlade:j" + element);
+                var replacement = matchValue.Replace("</" + element, "</jClasses:j" + element);
 
                 index++;
 
@@ -196,7 +199,7 @@ public static class ImportXAML
 
     static string ReplaceMainCanvasTag(string input)
     {
-        var match = Regex.Match(input, @"<xamlade:jCanvas", RegexOptions.Singleline);
+        var match = Regex.Match(input, @"<jClasses:jCanvas", RegexOptions.Singleline);
 
         // Если найдено, заменяем его
         if (match.Success)
@@ -205,11 +208,11 @@ public static class ImportXAML
             int index = match.Index;
             int length = match.Length;
             input = input.Substring(0, index) +
-                    "<Canvas xmlns='https://github.com/avaloniaui' xmlns:xamlade='clr-namespace:Xamlade'" +
+                    "<Canvas xmlns='https://github.com/avaloniaui' xmlns:jClasses='clr-namespace:Xamlade.jClasses'" +
                     input.Substring(index + length);
 
             // Находим последнее вхождение </xamlade:jCanvas>
-            Match lastMatch = Regex.Match(input, @"</xamlade:jCanvas>",
+            Match lastMatch = Regex.Match(input, @"</jClasses:jCanvas>",
                 RegexOptions.Singleline | RegexOptions.RightToLeft);
 
             // Если найдено, заменяем его

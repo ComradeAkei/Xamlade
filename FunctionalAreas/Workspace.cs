@@ -155,7 +155,7 @@ public static class Workspace
             Canvas.SetLeft(obj as Control, absX - minX);
             Canvas.SetTop(obj as Control, absY - minY);
             (obj as Control).IsHitTestVisible = false;
-            obj.selectionBorder.IsVisible = true;
+            (obj as JSelectable).selectionBorder.IsVisible = true;
         }
         
     }
@@ -185,7 +185,7 @@ public static class Workspace
             Canvas.SetLeft(child as Control, relX + selCanvasLeft);
             Canvas.SetTop(child as Control, relY + selCanvasTop);
             (child as Control).IsHitTestVisible = true;
-            child.selectionBorder.IsVisible = false;
+            (child as JSelectable).selectionBorder.IsVisible = false;
         }
 
         // Удалить SelectionCanvas из родительского canvas
@@ -196,7 +196,7 @@ public static class Workspace
     public static void BindSelectionBorder(JControl obj)
     {
         if(obj is null) return;
-        if(obj.selectionBorder is null) return;
+        if((obj as JSelectable).selectionBorder is null) return;
         if (obj.Name == "MainCanvas")
         {
            // MainCanvas.selectionBorder.IsVisible = false;
@@ -204,14 +204,14 @@ public static class Workspace
            //Бля или нет
             return;
         }
-        obj.selectionBorder.IsVisible = true;
-        obj.selectionBorder.Width = obj.Bounds.Width;
-        obj.selectionBorder.Height = obj.Bounds.Height;
-        obj.selectionBorder.IsHitTestVisible = false;
+        (obj as JSelectable).selectionBorder.IsVisible = true;
+        (obj as JSelectable).selectionBorder.Width = obj.Bounds.Width;
+        (obj as JSelectable).selectionBorder.Height = obj.Bounds.Height;
+        (obj as JSelectable).selectionBorder.IsHitTestVisible = false;
         Point? position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
-        position ??= new Point(0, 0);
-        Canvas.SetLeft(obj.selectionBorder,position.Value.X);
-        Canvas.SetTop(obj.selectionBorder,position.Value.Y);
+        position ??= new Point(0, 0); 
+        Canvas.SetLeft((obj as JSelectable).selectionBorder,position.Value.X);
+        Canvas.SetTop((obj as JSelectable).selectionBorder,position.Value.Y);
     }
 
     private static void CancelSelection()
@@ -219,7 +219,7 @@ public static class Workspace
         if(SelectedList.Any())
             foreach (var obj in SelectedList)
                 if (obj.Name != "SelectionCanvas")
-                    obj.selectionBorder.IsVisible = false;
+                    (obj as JSelectable).selectionBorder.IsVisible = false;
         SelectedList.Clear();
     }
     
@@ -234,7 +234,7 @@ public static class Workspace
          CancelSelection();
          if(Equals(SelectionCanvas,obj))
              foreach (var child in SelectionCanvas.jChildren)
-                 child.selectionBorder.IsVisible = true;
+                 (child as JSelectable).selectionBorder.IsVisible = true;
         
         if (obj is null) return;
         History.AddHistoryItem(new History.Change(obj, 
@@ -311,8 +311,8 @@ public static class Workspace
         foreach (var obj in SelectionCanvas.jChildren)
         {
             var position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
-            Canvas.SetLeft(obj.selectionBorder,position.Value.X);
-            Canvas.SetTop(obj.selectionBorder,position.Value.Y);
+            Canvas.SetLeft((obj as JSelectable).selectionBorder,position.Value.X);
+            Canvas.SetTop((obj as JSelectable).selectionBorder,position.Value.Y);
         }
    }
 
@@ -449,7 +449,7 @@ public static class Workspace
         {
             foreach (var child in SelectionCanvas.jChildren)
             {
-                child.selectionBorder.IsVisible = false;
+                (child as JSelectable).selectionBorder.IsVisible = false;
                 (child?.mTreeItem?.Parent as mTreeViewItem)?.Items?.Remove(child?.mTreeItem);
             }
 

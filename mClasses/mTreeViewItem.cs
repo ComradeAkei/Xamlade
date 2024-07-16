@@ -3,11 +3,6 @@ using Avalonia.Controls;
 
 namespace Xamlade.jClasses;
 
-public interface MControl
-{
-    
-}
-
 //Модифицированные элементы дерева со встроенными jControl
 public class mTreeViewItem : TreeViewItem, MControl
 {
@@ -15,6 +10,7 @@ public class mTreeViewItem : TreeViewItem, MControl
     public JControl element { get; set; }
     public mTreeViewItem(JControl element)
     {
+        this.Name = $"{element.Name}_mTree";
         this.element = element;
         Header = element.Name;
         //Обратная связь с jElement
