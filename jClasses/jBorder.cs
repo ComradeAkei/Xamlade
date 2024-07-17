@@ -31,18 +31,75 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
         mTreeItem = new mTreeViewItem(this);
     }
     
+    
     public void AddChild(JControl child, double top = 0, double left = 0)
     {
+        
+       
+        
+        var jParent = child.jParent;
+        var mTreeItem1 = child.mTreeItem;
         if (jChildren.Any())
-            throw new Exception("jBorder can only have one child");
+            return;
+        jParent.AddChild(this);
+        if (child.jParent is jCanvas)
+        {
+            Canvas.SetTop(this,Canvas.GetTop(child as Control));
+            Canvas.SetLeft(this,Canvas.GetLeft(child as Control));
+        }
+        jParent.RemoveChild(child);
         jChildren.Add(child);
         child.jParent = this;
         Child = (Control)child;
+     
+        (jParent as JControl).mTreeItem.Items.Remove(mTreeItem1);
+        this.mTreeItem = new mTreeViewItem(this);
+        this.mTreeItem.IsExpanded = true;
+        this.mTreeItem.Header = $"{child.Name} border";
+        (jParent as JControl).mTreeItem.Items.Add(this.mTreeItem);
+        this.mTreeItem.Items.Add(mTreeItem1);
+        Child.IsHitTestVisible = false;
+        
+
+        //  
+
+
+
     }
 
+    public void Remove()
+    {
+        double top = 0, left = 0;
+        var jParent = this.jParent;
+        var child = this.jChildren[0];
+        var mTreeItem1 = child.mTreeItem;
+        (child as Control).IsHitTestVisible = true;
+        if (jParent is jCanvas)
+        {
+            top = Canvas.GetTop(this as Control);
+            left = Canvas.GetLeft(this as Control);
+        }
+        
+        jParent.RemoveChild(this);
+        RemoveChild(child);
+        
+        jParent.AddChild(child);
+        if (jParent is jCanvas)
+        {
+            Canvas.SetTop(child as Control, top);
+            Canvas.SetLeft(child as Control, left);
+        }
+        this.mTreeItem.Items.Remove(mTreeItem1);
+        (jParent as JControl).mTreeItem.Items.Add(mTreeItem1);
+        (jParent as JControl).mTreeItem.Items.Remove(mTreeItem);
+
+    }
     public void RemoveChild(JControl? child = null)
     {
         jChildren.Clear();
+        jParent.RemoveChild(this);
         Child = null;
     }
+    
+    
 }

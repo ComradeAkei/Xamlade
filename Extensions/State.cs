@@ -9,4 +9,5 @@ public static class State
 
     public static bool StrictModeEnabled = false;
     public static int StrictModeValue { get; set; }
+    public static bool NewResizeFlag = true;
 }

@@ -219,7 +219,8 @@ public static class Workspace
         if(SelectedList.Any())
             foreach (var obj in SelectedList)
                 if (obj.Name != "SelectionCanvas")
-                    (obj as JSelectable).selectionBorder.IsVisible = false;
+                    if((obj as JSelectable).selectionBorder is not null) 
+                        (obj as JSelectable).selectionBorder.IsVisible = false;
         SelectedList.Clear();
     }
     
@@ -237,6 +238,8 @@ public static class Workspace
                  (child as JSelectable).selectionBorder.IsVisible = true;
         
         if (obj is null) return;
+        if (obj.jParent is jBorder)
+            obj = obj.jParent as JControl;
         History.AddHistoryItem(new History.Change(obj, 
             "Coordinates",
             new jCoordinates(Canvas.GetLeft(obj as Control),Canvas.GetTop(obj as Control))));
@@ -302,7 +305,7 @@ public static class Workspace
     if (movable.IsPressed)
     {
         if (State.LCtrlPressed)
-            ResizeElement(e, element);
+            ResizeElement(e, element as JControl);
         else
             MoveElement(mousePosition, element, parentCanvas);
     }
@@ -391,29 +394,57 @@ public static class Workspace
             Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
     }
 
-    private static void ResizeElement(PointerEventArgs e, Control element)
+    
+    private static Point ResizeStartPosition = new Point(0,0);
+    private static void ResizeElement(PointerEventArgs e, JControl element)
     {
-        //Поправить флаг!!
         if (State.ResizeFlag)
         {
+            
             if (History.UndoList.Any())
                 History.UndoList.Remove(History.UndoList.Last());
 
             History.AddHistoryItem(new History.Change(movable, "Size", new jSize(element.Bounds.Width, element.Bounds.Height)));
         }
 
+        if (State.NewResizeFlag)
+        {
+            startPosition = new Point(Canvas.GetLeft(element as Control), Canvas.GetTop(element as Control));
+            State.NewResizeFlag = false;
+        }
+
         State.ResizeFlag = false;
 
         if (double.IsNaN(element.Width))
             element.Width = element.Bounds.Width;
+        if (double.IsNaN(element.Height))
+            element.Height = element.Bounds.Height;
 
-        var mousePosition = e.GetPosition(element);
+        var currentCanvas = element.jParent as Canvas;
 
-        if (mousePosition.X < 5 || mousePosition.Y < 5)
-            return;
+        // Получим начальную позицию элемента
+        
 
-        element.Width = CorrectSize(mousePosition.X);
-        element.Height = CorrectSize(mousePosition.Y);
+        // Получим текущую позицию указателя мыши относительно родительского элемента
+        var mousePosition = e.GetPosition(currentCanvas);
+
+        // Вычислим новую позицию и размеры элемента
+        var newLeft = Math.Min(startPosition.X, mousePosition.X);
+        var newTop = Math.Min(startPosition.Y, mousePosition.Y);
+        var newWidth = Math.Abs(mousePosition.X - startPosition.X);
+        var newHeight = Math.Abs(mousePosition.Y - startPosition.Y);
+
+        // Ограничиваем минимальные размеры элемента
+        newWidth = Math.Max(10, newWidth);
+        newHeight = Math.Max(10, newHeight);
+
+        // Устанавливаем новые размеры и позицию элемента
+        Canvas.SetLeft(element as Control, newLeft);
+        Canvas.SetTop(element as Control, newTop);
+        element.Width = CorrectSize(newWidth);
+        element.Height = CorrectSize(newHeight);
+        // Ограничение элемента в пределах холста
+        ConstrainElementWithinCanvas(element as Control, (element.jParent) as jCanvas);
     }
 
     
@@ -458,6 +489,12 @@ public static class Workspace
                 SelectionCanvas.RemoveChild(SelectionCanvas.jChildren[0]);
             return;
         }
+        else if (movable is jBorder border)
+        {
+            border.Remove();
+            return;
+        }
+
         if (HierarchyControl.Selected == MainCanvas.mTreeItem) return;
         
         

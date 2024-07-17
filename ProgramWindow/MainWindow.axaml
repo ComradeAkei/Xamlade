@@ -88,7 +88,7 @@
         
         
         <!-- Панель с иерархией проекта -->
-        <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="180" Background="#1D1D1D" Margin="2" >
+        <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="200" Background="#1D1D1D" Margin="2" >
             <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Margin="10" Foreground="#0ab076">$NAME$</TextBlock>
             <TreeView Name="MainHierarchyTree"
                       Foreground="#0ab076">
@@ -113,6 +113,8 @@
                     <Button Name="GenerateStackPanel" Content="StackPanel" 
                             Margin="10,0,10,10" />
                     <Button Name="GenerateToggleButton" Content="ToggleButton" 
+                            Margin="10,0,10,10" />
+                    <Button Name="GenerateBorder" Content="Border" 
                             Margin="10,0,10,10" />
                     <Button Name="GenerateImage" Background="Chartreuse" Content="Image" 
                             Margin="10,0,10,10" />

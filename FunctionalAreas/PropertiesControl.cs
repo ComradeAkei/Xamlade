@@ -43,7 +43,11 @@ public static class PropertiesControl
 
         public static void ShowProperties()
         {
-            PropListItems?.Clear();
+            try
+            {
+                PropListItems?.Clear();
+            }
+            catch{}
 
             if (Equals(HierarchyControl.Selected.element, Workspace.MainCanvas)) return;
 

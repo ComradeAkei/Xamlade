@@ -69,7 +69,7 @@ public static class ImportXAML
         Workspace.MainCanvas.mTreeItem.Items.Clear();
 
         Broadcast.RestoreBehavior();
-     //   Broadcast.RestoreTree();
+        Broadcast.RestoreTree();
     }
 
     public static void CorrectLoadedjElement(JControl element)
@@ -229,16 +229,15 @@ public static class ImportXAML
 
     public static void CorrectTree(JControl element)
     {
-        if (element is JChildContainer)
+        if (element is JChildContainer container)
         {
-            var container = (JChildContainer)element;
             foreach (var child in container.jChildren)
-            {
-                element.mTreeItem.Items.Add(child.mTreeItem);
-            }
+                if (!element.mTreeItem.Items.Contains(child.mTreeItem))
+                    element.mTreeItem.Items.Add(child.mTreeItem);
         }
 
         HierarchyControl.Selected = Workspace.MainCanvas.mTreeItem;
+        Workspace.MainCanvas.mTreeItem.IsExpanded = true;
     }
     public static async void DEXAMLIZE(object? sender, RoutedEventArgs e)
     {

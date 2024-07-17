@@ -89,7 +89,10 @@ public partial class MainWindow : Window
     private void GlobalKeyReleased(KeyEventArgs e)
     {
         if (e.Key == Key.LeftCtrl)
+        {
             State.LCtrlPressed = false;
+            State.NewResizeFlag = true;
+        }
         else if(e.Key == Key.Delete)
             Workspace.RemoveSelectedjElement();
         else if (e.Key == Key.LeftShift)
