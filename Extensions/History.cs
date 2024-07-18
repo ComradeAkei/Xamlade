@@ -218,7 +218,9 @@ public static class History
         element.mTreeItem = mtree;
         element.jParent = parent;
         (parent as JControl).mTreeItem.Items.Add(mtree);
-        parent.AddChild(element,Canvas.GetTop(element as Control),Canvas.GetLeft(element as Control));
+        if(parent is jCanvas canvas)
+            canvas.AddChild(element,Canvas.GetTop(element as Control),Canvas.GetLeft(element as Control));
+        else parent.AddChild(element);
         HierarchyControl.Selected = element.mTreeItem;
         HierarchyControl.Selected = element.mTreeItem;
     }

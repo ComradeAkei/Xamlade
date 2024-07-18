@@ -28,6 +28,15 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
         mTreeItem = new mTreeViewItem(this);
     }
 
+    
+    
+    public void AddChild(JControl child)
+    {
+        jChildren.Add(child);
+        child.jParent = this;
+        //   Console.WriteLine(child.GetType().ToString());
+        Children.Add((Control)child);
+    }
     public void AddChild(JControl child, double top = 0, double left = 0)
     {
         jChildren.Add(child);

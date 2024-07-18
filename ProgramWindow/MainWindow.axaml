@@ -116,6 +116,8 @@
                             Margin="10,0,10,10" />
                     <Button Name="GenerateBorder" Content="Border" 
                             Margin="10,0,10,10" />
+                    <Button Name="GenerateDockPanel" Content="DockPanel" 
+                            Margin="10,0,10,10" />
                     <Button Name="GenerateImage" Background="Chartreuse" Content="Image" 
                             Margin="10,0,10,10" />
                 </StackPanel>
@@ -128,6 +130,7 @@
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Margin" Value="0"/>
                                 </Style>
                             </ListBox.Styles>
                         </ListBox>

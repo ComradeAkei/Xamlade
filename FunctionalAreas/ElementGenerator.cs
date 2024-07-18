@@ -87,6 +87,18 @@ public static class ElementGenerator
     {
         switch (element.Type)
         {
+            
+            case "DockPanel":
+            {
+                // Генерация случайного цвета в формате HEX
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
+                // Преобразование HEX строки в Color объект
+                var randomColor = Color.Parse(randomHexColor);
+                ((jDockPanel)element).Background = new SolidColorBrush(randomColor);
+                ((jDockPanel)element).Height = 400;
+                ((jDockPanel)element).Width = 400;
+            } 
+                break;
             case "Button":
             {
                 ((jButton)element).Content = "Text";

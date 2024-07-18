@@ -469,6 +469,7 @@ public static class Workspace
     {
         e.Handled = true;
         premovable = null;
+        PropertiesControl.ShowProperties();
     }
 
     public static void RemoveSelectedjElementHandler(object? sender, RoutedEventArgs e)
@@ -526,6 +527,7 @@ public static class Workspace
 
     public static void OnjControlReleased(object? sender, PointerReleasedEventArgs e)
     {
+        
         e.Handled = true;
         var element = sender as JControl;
         element.IsPressed = false;

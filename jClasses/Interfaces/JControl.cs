@@ -80,11 +80,11 @@ public interface JControl
     public event EventHandler<KeyEventArgs>? KeyDown;
     public event EventHandler<KeyEventArgs>? KeyUp;
 
-   
+
     public void SetParent(JChildContainer parent)
     {
-        if(parent==null) return;
-        if(this.Name == "MainCanvas") return;
+        if (parent == null) return;
+        if (this.Name == "MainCanvas") return;
         double top = 0;
         double left = 0;
 
@@ -98,8 +98,8 @@ public interface JControl
 
             var _parent = ((Control)this).Parent as Panel;
             _parent.Children.Remove((Control)this);
-            
-             (parent as JControl).mTreeItem.Items.Add(this.mTreeItem);
+
+            (parent as JControl).mTreeItem.Items.Add(this.mTreeItem);
         }
 
         var oldParent = this.jParent;
@@ -107,9 +107,12 @@ public interface JControl
         {
             oldParent.RemoveChild(this);
         }
-        parent.AddChild(this,top,left);
+
+        if (parent is jCanvas canvas)
+            canvas.AddChild(this, top, left);
+        else parent.AddChild(this);
     }
-   
+
     public bool Focus(NavigationMethod method = NavigationMethod.Unspecified,
         KeyModifiers keyModifiers = KeyModifiers.None);
    

@@ -6,12 +6,11 @@ using Xamlade.XAMLWorkers;
 
 namespace Xamlade.jClasses;
 
-public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHandler<JControl>, JSelectable
+public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler<JControl>, JSelectable
 {
-    protected override Type StyleKeyOverride => typeof(StackPanel);
-    public mBorder selectionBorder { get; set; }
+    protected override Type StyleKeyOverride => typeof(DockPanel);
     public JChildContainer? jParent { get; set; }
-    private string controlType => jElementType.StackPanel.ToString();
+    private string controlType => jElementType.DockPanel.ToString();
     public string Type => controlType;
     public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
@@ -20,14 +19,13 @@ public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHand
     public event EventHandler<RoutedEventArgs>? Click;
     public List<JControl> jChildren { get; }
 
-    public jStackPanel()
+    public jDockPanel()
     {
         jChildren = new List<JControl>();
         Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
         mTreeItem = new mTreeViewItem(this);
     }
-
     public void AddChild(JControl child)
     {
         jChildren.Add(child);
@@ -40,4 +38,6 @@ public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHand
         jChildren.Remove(child);
         Children.Remove((Control)child);
     }
+
+    public mBorder selectionBorder { get; set; }
 }

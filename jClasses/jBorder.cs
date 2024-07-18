@@ -32,7 +32,7 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
     }
     
     
-    public void AddChild(JControl child, double top = 0, double left = 0)
+    public void AddChild(JControl child)
     {
         
        
@@ -60,8 +60,6 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
         this.mTreeItem.Items.Add(mTreeItem1);
         Child.IsHitTestVisible = false;
         
-
-        //  
 
 
 

@@ -5,7 +5,7 @@ namespace Xamlade.jClasses;
 public interface JChildContainer
 {
     List<JControl> jChildren { get; }
-    void AddChild(JControl child, double top = 0, double left = 0);
+    void AddChild(JControl child);
 
     public void RemoveChild(JControl child);
 
