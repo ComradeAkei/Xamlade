@@ -1,4 +1,4 @@
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public static class State
 {
@@ -9,4 +9,5 @@ public static class State
 
     public static bool StrictModeEnabled = false;
     public static int StrictModeValue { get; set; }
+    public static bool NewResizeFlag = true;
 }

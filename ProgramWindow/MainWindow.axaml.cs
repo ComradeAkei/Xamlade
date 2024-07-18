@@ -1,37 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Presenters;
 using Avalonia.Input;
-using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
-using Avalonia.Media;
-using Avalonia.Styling;
-using Avalonia.Controls.Primitives;
-using Avalonia.Layout;
-using Avalonia.Gif;
-using Avalonia.Media.Imaging;
-using AvaloniaColorPicker;
-using Avalonia.Markup;
-using Microsoft.Diagnostics.Runtime;
+using Xamlade.Extensions;
+using Xamlade.FunctionalAreas;
+using Xamlade.XAMLWorkers;
 
-namespace Xamlade;
+namespace Xamlade.ProgramWindow;
 
 
 
 public partial class MainWindow : Window
 {
-    public static MainWindow _MainWindow;
+    public static MainWindow _MainWindow = null!;
 
     public MainWindow()
     {
@@ -58,7 +38,7 @@ public partial class MainWindow : Window
     private void WindowInit()
     {
         this.Icon = new WindowIcon(@"assets/Icon.png");
-        var screen = Screens.Primary.WorkingArea;
+        var screen = Screens.Primary!.WorkingArea;
         this.WindowState = WindowState.Maximized;
         // Установить размеры окна равными размерам экрана
         this.Width = screen.Width;
@@ -77,7 +57,7 @@ public partial class MainWindow : Window
         var _initialPosition = new PixelPoint(screen.X, screen.Y);
         this.Position = _initialPosition;
         // Вернуть положение окна
-        this.PositionChanged += (sender, e) => this.Position = _initialPosition;
+        this.PositionChanged += (_, _) => this.Position = _initialPosition;
     }
 
 
@@ -109,7 +89,10 @@ public partial class MainWindow : Window
     private void GlobalKeyReleased(KeyEventArgs e)
     {
         if (e.Key == Key.LeftCtrl)
+        {
             State.LCtrlPressed = false;
+            State.NewResizeFlag = true;
+        }
         else if(e.Key == Key.Delete)
             Workspace.RemoveSelectedjElement();
         else if (e.Key == Key.LeftShift)

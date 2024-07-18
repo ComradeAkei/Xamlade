@@ -3,25 +3,31 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Xamlade.Extensions;
+using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.XAMLWorkers;
 
 public static class ImportXAML
 {
     private static string filePathXAML = "";
     private static string ExternalXAML = "";
 
-    private static readonly string[] elementsToReplace =
+    private static readonly string[] elementsToReplace;
+
+    static ImportXAML()
     {
-        "Border", "Canvas", "DockPanel", "Grid", "Panel", "ScrollViewer", "StackPanel",
-        "TabControl", "TabItem", "Button", "CheckBox", "ComboBox", "DatePicker",
-        "ListBox", "ListView", "Menu", "MenuItem", "ProgressBar", "RadioButton",
-        "Slider", "TextBox", "ToggleButton", "TextBlock", "Image"
-    };
+        elementsToReplace = new[] {
+            "Border", "Canvas", "DockPanel", "Grid", "Panel", "ScrollViewer", "StackPanel",
+            "TabControl", "TabItem", "Button", "CheckBox", "ComboBox", "DatePicker",
+            "ListBox", "ListView", "Menu", "MenuItem", "ProgressBar", "RadioButton",
+            "Slider", "TextBox", "ToggleButton", "TextBlock", "Image"
+        };
+    }
 
     public static async Task RunDeXAMLIZE(Window window)
     {
@@ -36,7 +42,7 @@ public static class ImportXAML
        if(filePathXAML == "") return;
 
 
-       var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(MainWindow).Assembly) as Canvas;
+       var obj = AvaloniaRuntimeXamlLoader.Load(ExternalXAML, typeof(ProgramWindow.MainWindow).Assembly) as Canvas;
 
 
         var buf = new List<JControl>();
@@ -57,8 +63,8 @@ public static class ImportXAML
 
         for (int i = 0; i < buf.Count; i++)
         {
-            Canvas.SetTop(Workspace.MainCanvas.Children[i], canv_top[i]);
-            Canvas.SetLeft(Workspace.MainCanvas.Children[i], canv_left[i]);
+            Canvas.SetTop(Workspace.MainCanvas.jChildren[i] as Control, canv_top[i]);
+            Canvas.SetLeft(Workspace.MainCanvas.jChildren[i] as Control, canv_left[i]);
         }
         Workspace.MainCanvas.mTreeItem.Items.Clear();
 
@@ -68,16 +74,15 @@ public static class ImportXAML
 
     public static void CorrectLoadedjElement(JControl element)
     {
-        Console.WriteLine();
         element.Name ??= element.Type + "_" + (Utils.NextgenIterator++);
 
 
         if (element.Name == "MainCanvas") return;
-        
+            element.mTreeItem = new mTreeViewItem(element);
             element.mTreeItem.Header =element.Name;
             var parent = ((Control)element).Parent;
-
-            element.SetParent((IChildContainer)parent);
+            
+            element.SetParent((JChildContainer)parent);
 
             
 
@@ -87,7 +92,7 @@ public static class ImportXAML
             element.Click += Workspace.jElementClick;
             element.PointerPressed += Workspace.OnjControlPressed;
             element.PointerReleased += Workspace.OnjControlReleased;
-            ElementGenerator.InitSelectionBorder(element);
+            ElementGenerator.InitSelectionBorder(element as JSelectable);
         
         
 
@@ -160,7 +165,7 @@ public static class ImportXAML
                 var matchValue = match.Value;
 
                 // Заменяем <Имя_элемента на <xamlade:jИмя элемента
-                var replacement = matchValue.Replace("<" + element, "<xamlade:j" + element);
+                var replacement = matchValue.Replace("<" + element, "<jClasses:j" + element);
 
                 index++;
 
@@ -172,7 +177,7 @@ public static class ImportXAML
             {
                 var matchValue = match.Value;
                 // Заменяем </Имя_элемента на </xamlade:jИмя элемента
-                var replacement = matchValue.Replace("</" + element, "</xamlade:j" + element);
+                var replacement = matchValue.Replace("</" + element, "</jClasses:j" + element);
 
                 index++;
 
@@ -194,7 +199,7 @@ public static class ImportXAML
 
     static string ReplaceMainCanvasTag(string input)
     {
-        var match = Regex.Match(input, @"<xamlade:jCanvas", RegexOptions.Singleline);
+        var match = Regex.Match(input, @"<jClasses:jCanvas", RegexOptions.Singleline);
 
         // Если найдено, заменяем его
         if (match.Success)
@@ -203,11 +208,11 @@ public static class ImportXAML
             int index = match.Index;
             int length = match.Length;
             input = input.Substring(0, index) +
-                    "<Canvas xmlns='https://github.com/avaloniaui' xmlns:xamlade='clr-namespace:Xamlade'" +
+                    "<Canvas xmlns='https://github.com/avaloniaui' xmlns:jClasses='clr-namespace:Xamlade.jClasses'" +
                     input.Substring(index + length);
 
             // Находим последнее вхождение </xamlade:jCanvas>
-            Match lastMatch = Regex.Match(input, @"</xamlade:jCanvas>",
+            Match lastMatch = Regex.Match(input, @"</jClasses:jCanvas>",
                 RegexOptions.Singleline | RegexOptions.RightToLeft);
 
             // Если найдено, заменяем его
@@ -224,19 +229,18 @@ public static class ImportXAML
 
     public static void CorrectTree(JControl element)
     {
-        if (element is IChildContainer)
+        if (element is JChildContainer container)
         {
-            var container = (IChildContainer)element;
             foreach (var child in container.jChildren)
-            {
-                element.mTreeItem.Items.Add(child.mTreeItem);
-            }
+                if (!element.mTreeItem.Items.Contains(child.mTreeItem))
+                    element.mTreeItem.Items.Add(child.mTreeItem);
         }
 
         HierarchyControl.Selected = Workspace.MainCanvas.mTreeItem;
+        Workspace.MainCanvas.mTreeItem.IsExpanded = true;
     }
     public static async void DEXAMLIZE(object? sender, RoutedEventArgs e)
     {
-        await RunDeXAMLIZE(MainWindow._MainWindow);
+        await RunDeXAMLIZE(ProgramWindow.MainWindow._MainWindow);
     }
 }

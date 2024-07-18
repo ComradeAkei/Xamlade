@@ -3,8 +3,10 @@
         xmlns:xamlade="clr-namespace:Xamlade"
        
         xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
-        x:Class="Xamlade.MainWindow"
-        x:DataType="xamlade:MainWindow"
+        xmlns:jClasses="clr-namespace:Xamlade.jClasses"
+        xmlns:programWindow="clr-namespace:Xamlade.ProgramWindow"
+        x:Class="Xamlade.ProgramWindow.MainWindow"
+        x:DataType="programWindow:MainWindow"
         Title="Xamlade" Background="DimGray">
 
    
@@ -86,7 +88,7 @@
         
         
         <!-- Панель с иерархией проекта -->
-        <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="180" Background="#1D1D1D" Margin="2" >
+        <StackPanel Name = "HierarchyPanel" DockPanel.Dock="Right" Width="200" Background="#1D1D1D" Margin="2" >
             <TextBlock VerticalAlignment="Top" TextAlignment="Center" FontSize="16" Margin="10" Foreground="#0ab076">$NAME$</TextBlock>
             <TreeView Name="MainHierarchyTree"
                       Foreground="#0ab076">
@@ -112,6 +114,10 @@
                             Margin="10,0,10,10" />
                     <Button Name="GenerateToggleButton" Content="ToggleButton" 
                             Margin="10,0,10,10" />
+                    <Button Name="GenerateBorder" Content="Border" 
+                            Margin="10,0,10,10" />
+                    <Button Name="GenerateDockPanel" Content="DockPanel" 
+                            Margin="10,0,10,10" />
                     <Button Name="GenerateImage" Background="Chartreuse" Content="Image" 
                             Margin="10,0,10,10" />
                 </StackPanel>
@@ -124,6 +130,7 @@
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Margin" Value="0"/>
                                 </Style>
                             </ListBox.Styles>
                         </ListBox>
@@ -133,13 +140,13 @@
         </TabControl>
 
         <!-- Рабочая область -->
-        <xamlade:jCanvas Name="MainCanvas" Background="#1E1E1E" Margin="2">
-            <xamlade:jCanvas.Styles>
+        <jClasses:jCanvas Name="MainCanvas" Background="#1E1E1E" Margin="2">
+            <jClasses:jCanvas.Styles>
                 <FluentTheme/>
-            </xamlade:jCanvas.Styles>
+            </jClasses:jCanvas.Styles>
             <!-- <Image Source="assets/Xamlade.png" Width="500" Height="500"/> -->
             <!-- Здесь наступает власть объектов JControl -->
-        </xamlade:jCanvas>
+        </jClasses:jCanvas>
         
         
     </DockPanel>

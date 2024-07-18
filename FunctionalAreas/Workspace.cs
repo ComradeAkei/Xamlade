@@ -8,8 +8,10 @@ using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
+using Xamlade.Extensions;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.FunctionalAreas;
 
 public static class Workspace
 {
@@ -153,7 +155,7 @@ public static class Workspace
             Canvas.SetLeft(obj as Control, absX - minX);
             Canvas.SetTop(obj as Control, absY - minY);
             (obj as Control).IsHitTestVisible = false;
-            obj.selectionBorder.IsVisible = true;
+            (obj as JSelectable).selectionBorder.IsVisible = true;
         }
         
     }
@@ -183,7 +185,7 @@ public static class Workspace
             Canvas.SetLeft(child as Control, relX + selCanvasLeft);
             Canvas.SetTop(child as Control, relY + selCanvasTop);
             (child as Control).IsHitTestVisible = true;
-            child.selectionBorder.IsVisible = false;
+            (child as JSelectable).selectionBorder.IsVisible = false;
         }
 
         // Удалить SelectionCanvas из родительского canvas
@@ -194,7 +196,7 @@ public static class Workspace
     public static void BindSelectionBorder(JControl obj)
     {
         if(obj is null) return;
-        if(obj.selectionBorder is null) return;
+        if((obj as JSelectable).selectionBorder is null) return;
         if (obj.Name == "MainCanvas")
         {
            // MainCanvas.selectionBorder.IsVisible = false;
@@ -202,13 +204,14 @@ public static class Workspace
            //Бля или нет
             return;
         }
-        obj.selectionBorder.IsVisible = true;
-        obj.selectionBorder.Width = obj.Bounds.Width;
-        obj.selectionBorder.Height = obj.Bounds.Height;
-        obj.selectionBorder.IsHitTestVisible = false;
+        (obj as JSelectable).selectionBorder.IsVisible = true;
+        (obj as JSelectable).selectionBorder.Width = obj.Bounds.Width;
+        (obj as JSelectable).selectionBorder.Height = obj.Bounds.Height;
+        (obj as JSelectable).selectionBorder.IsHitTestVisible = false;
         Point? position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
-        Canvas.SetLeft(obj.selectionBorder,position.Value.X);
-        Canvas.SetTop(obj.selectionBorder,position.Value.Y);
+        position ??= new Point(0, 0); 
+        Canvas.SetLeft((obj as JSelectable).selectionBorder,position.Value.X);
+        Canvas.SetTop((obj as JSelectable).selectionBorder,position.Value.Y);
     }
 
     private static void CancelSelection()
@@ -216,7 +219,8 @@ public static class Workspace
         if(SelectedList.Any())
             foreach (var obj in SelectedList)
                 if (obj.Name != "SelectionCanvas")
-                    obj.selectionBorder.IsVisible = false;
+                    if((obj as JSelectable).selectionBorder is not null) 
+                        (obj as JSelectable).selectionBorder.IsVisible = false;
         SelectedList.Clear();
     }
     
@@ -231,9 +235,11 @@ public static class Workspace
          CancelSelection();
          if(Equals(SelectionCanvas,obj))
              foreach (var child in SelectionCanvas.jChildren)
-                 child.selectionBorder.IsVisible = true;
+                 (child as JSelectable).selectionBorder.IsVisible = true;
         
         if (obj is null) return;
+        if (obj.jParent is jBorder)
+            obj = obj.jParent as JControl;
         History.AddHistoryItem(new History.Change(obj, 
             "Coordinates",
             new jCoordinates(Canvas.GetLeft(obj as Control),Canvas.GetTop(obj as Control))));
@@ -299,7 +305,7 @@ public static class Workspace
     if (movable.IsPressed)
     {
         if (State.LCtrlPressed)
-            ResizeElement(e, element);
+            ResizeElement(e, element as JControl);
         else
             MoveElement(mousePosition, element, parentCanvas);
     }
@@ -308,8 +314,8 @@ public static class Workspace
         foreach (var obj in SelectionCanvas.jChildren)
         {
             var position = ((Control)obj).TranslatePoint(new Point(0, 0), MainCanvas);
-            Canvas.SetLeft(obj.selectionBorder,position.Value.X);
-            Canvas.SetTop(obj.selectionBorder,position.Value.Y);
+            Canvas.SetLeft((obj as JSelectable).selectionBorder,position.Value.X);
+            Canvas.SetTop((obj as JSelectable).selectionBorder,position.Value.Y);
         }
    }
 
@@ -388,29 +394,57 @@ public static class Workspace
             Canvas.SetTop(element, parentCanvas.Bounds.Height - 2 * mov_hh);
     }
 
-    private static void ResizeElement(PointerEventArgs e, Control element)
+    
+    private static Point ResizeStartPosition = new Point(0,0);
+    private static void ResizeElement(PointerEventArgs e, JControl element)
     {
-        //Поправить флаг!!
         if (State.ResizeFlag)
         {
+            
             if (History.UndoList.Any())
                 History.UndoList.Remove(History.UndoList.Last());
 
             History.AddHistoryItem(new History.Change(movable, "Size", new jSize(element.Bounds.Width, element.Bounds.Height)));
         }
 
+        if (State.NewResizeFlag)
+        {
+            startPosition = new Point(Canvas.GetLeft(element as Control), Canvas.GetTop(element as Control));
+            State.NewResizeFlag = false;
+        }
+
         State.ResizeFlag = false;
 
         if (double.IsNaN(element.Width))
             element.Width = element.Bounds.Width;
+        if (double.IsNaN(element.Height))
+            element.Height = element.Bounds.Height;
 
-        var mousePosition = e.GetPosition(element);
+        var currentCanvas = element.jParent as Canvas;
 
-        if (mousePosition.X < 5 || mousePosition.Y < 5)
-            return;
+        // Получим начальную позицию элемента
+        
 
-        element.Width = CorrectSize(mousePosition.X);
-        element.Height = CorrectSize(mousePosition.Y);
+        // Получим текущую позицию указателя мыши относительно родительского элемента
+        var mousePosition = e.GetPosition(currentCanvas);
+
+        // Вычислим новую позицию и размеры элемента
+        var newLeft = Math.Min(startPosition.X, mousePosition.X);
+        var newTop = Math.Min(startPosition.Y, mousePosition.Y);
+        var newWidth = Math.Abs(mousePosition.X - startPosition.X);
+        var newHeight = Math.Abs(mousePosition.Y - startPosition.Y);
+
+        // Ограничиваем минимальные размеры элемента
+        newWidth = Math.Max(10, newWidth);
+        newHeight = Math.Max(10, newHeight);
+
+        // Устанавливаем новые размеры и позицию элемента
+        Canvas.SetLeft(element as Control, newLeft);
+        Canvas.SetTop(element as Control, newTop);
+        element.Width = CorrectSize(newWidth);
+        element.Height = CorrectSize(newHeight);
+        // Ограничение элемента в пределах холста
+        ConstrainElementWithinCanvas(element as Control, (element.jParent) as jCanvas);
     }
 
     
@@ -435,6 +469,7 @@ public static class Workspace
     {
         e.Handled = true;
         premovable = null;
+        PropertiesControl.ShowProperties();
     }
 
     public static void RemoveSelectedjElementHandler(object? sender, RoutedEventArgs e)
@@ -446,7 +481,7 @@ public static class Workspace
         {
             foreach (var child in SelectionCanvas.jChildren)
             {
-                child.selectionBorder.IsVisible = false;
+                (child as JSelectable).selectionBorder.IsVisible = false;
                 (child?.mTreeItem?.Parent as mTreeViewItem)?.Items?.Remove(child?.mTreeItem);
             }
 
@@ -455,6 +490,12 @@ public static class Workspace
                 SelectionCanvas.RemoveChild(SelectionCanvas.jChildren[0]);
             return;
         }
+        else if (movable is jBorder border)
+        {
+            border.Remove();
+            return;
+        }
+
         if (HierarchyControl.Selected == MainCanvas.mTreeItem) return;
         
         
@@ -486,6 +527,7 @@ public static class Workspace
 
     public static void OnjControlReleased(object? sender, PointerReleasedEventArgs e)
     {
+        
         e.Handled = true;
         var element = sender as JControl;
         element.IsPressed = false;

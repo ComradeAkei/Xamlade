@@ -3,14 +3,17 @@ using System.Reflection;
 using System.Timers;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Xamlade.FunctionalAreas;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public static class Utils
 {
     
     private static Panel DebugPanel { get; set; }
-    public static Timer DebugTimer{ get; set; } 
+    public static Timer DebugTimer{ get; set; }
+
+    private static Timer MainTimer;
     
     public static bool isDebugPanelActive
     {
@@ -36,29 +39,16 @@ public static class Utils
         DebugTimer = new Timer(100);
         DebugTimer.AutoReset = true;
         DebugTimer.Enabled = true;
+        MainTimer = new Timer(4000);
+        MainTimer.AutoReset = true;
+        MainTimer.Elapsed += (sender, args) => Tick();
+        MainTimer.Start();
     }
     public static void DEBUG(object? sender, RoutedEventArgs e)
     {
         isDebugPanelActive = !isDebugPanelActive;
-        // Предположим, что у вас есть объект Border
-        Border border = new Border();
-
-// Пример установки содержимого Border
-        border.Child = new Button { Content = "Click me" };
-
-// Используем рефлексию для доступа к приватному полю _child
-        FieldInfo childField = typeof(Border).GetField("_child", BindingFlags.NonPublic | BindingFlags.Instance);
-
-        if (childField != null)
-        {
-            var child = childField.GetValue(border) as Control;
-            if (child != null)
-            {
-                // Ваш код для работы с дочерним элементом
-                // Например, вывести тип дочернего элемента
-                Console.WriteLine(child.GetType().Name);
-            }
-        }
+      
+        
         
     }
 
@@ -69,8 +59,14 @@ public static class Utils
             ((DebugPanel.Children[0] as TextBlock)!).Text = message;
         });
     }
-        
-    
+
+    private static void Tick()
+    {
+        Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
+        {
+        //    PropertiesControl.ShowProperties();
+        });
+    }
     
     
 }

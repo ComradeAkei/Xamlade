@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public static class Constants
 {
@@ -20,6 +20,6 @@ public static class Constants
         "OpacityMask", "Bounds", "Cursor", "Tag", "ContextFlyout", "ContextMenu", "FocusAdorner", "IsItemsHost",
         "Children", "jChildren", "FontFamily", "TextDecoration", "ContentTemplate", "FlowDirection", "Inlines",
         "TextLayout",
-        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo","jImageSource", "selectionBorder"
+        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo","jImageSource", "selectionBorder","Child"
     };
 }

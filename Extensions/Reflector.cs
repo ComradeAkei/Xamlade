@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using Avalonia;
 using Microsoft.Diagnostics.Runtime;
-using System.Runtime.InteropServices;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 
 
@@ -16,9 +13,9 @@ public static class Reflector
 {
     public static void SetName(string? name, JControl element)
     {
-        FieldInfo privateField =
+        var privateField =
             typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
-        privateField.SetValue(element, name);
+        privateField?.SetValue(element, name);
     }
     
     

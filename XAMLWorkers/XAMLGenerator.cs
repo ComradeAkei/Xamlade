@@ -4,31 +4,11 @@ using System.IO;
 using System.Reflection;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Xamlade.Extensions;
+using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
-namespace Xamlade;
-
-public static class Broadcast
-{
-    public delegate void EventHandler(int mode);
-
-    public static event EventHandler OnBroadcast;
-
-    public static void InitXAML()=> OnBroadcast?.Invoke(0);
-    public static void XAMLize()=> OnBroadcast?.Invoke(1);
-    
-   //Восстановить поведение jElement после выгрузки из XAML
-    public static void RestoreBehavior()=> OnBroadcast?.Invoke(2);
-    //Убить все объекты
-    public static void KillAll()=> OnBroadcast?.Invoke(3);
-    //Восстановить дерево объектов
-    public static void RestoreTree()=> OnBroadcast?.Invoke(4);
-    //Снять выделение
-  //  public static void RemoveSelection()=> OnBroadcast?.Invoke(5);
-
-
-
-    public static void DisposeElement(JControl element) => element.Dispose();
-}
+namespace Xamlade.XAMLWorkers;
 
 public static class XAMLGenerator
 {
@@ -60,6 +40,8 @@ public static class XAMLGenerator
             getProperties += " HorizontalAlignment=\"Stretch\"\n            VerticalAlignment=\"Stretch\"";
             return getProperties;
         }
+
+        if (Equals(element, Workspace.SelectionCanvas)) return "";
         if ((element.jParent as JControl).Type == jElementType.Canvas.ToString())
         {
             getProperties+=$"Canvas.Left=\"{Convert.ToInt32(Canvas.GetLeft((Control)element))}\" ";
@@ -71,9 +53,8 @@ public static class XAMLGenerator
     }
     public static void XAMLRatingInit(JControl element)
     {
-        if(element.Name==null) return;
         element.XAMLPiece.Clear();
-        element.XAMLRating = element is IChildContainer container ? container.jChildren.Count : 0;
+        element.XAMLRating = element is JChildContainer container ? container.jChildren.Count : 0;
         element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
     }
     public static void XAMLizeElement(JControl element)
@@ -102,7 +83,7 @@ public static class XAMLGenerator
         var wWidth = (int)Workspace.MainCanvas.Bounds.Width;
         var wHeight = (int)Workspace.MainCanvas.Bounds.Height;
         
-        string filePath = @"XamladeDemo/MainWindow.axaml";
+        string filePath = @"./XamladeDemo/MainWindow.axaml";
         var outputXAML = new List<string>();
         outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
          xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""

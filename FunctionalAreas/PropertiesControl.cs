@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Avalonia;
@@ -11,367 +13,748 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Styling;
+using Avalonia.Threading;
 using AvaloniaColorPicker;
+using Xamlade.Extensions;
+using Xamlade.jClasses;
 
-namespace Xamlade;
+// ReSharper disable All
+
+namespace Xamlade.FunctionalAreas;
 
 public static class PropertiesControl
 {
     public static ListBox PropListBox { get; set; }
     private static ItemCollection PropListItems;
+
     public static void Init(ListBox propListBox)
     {
         PropListBox = propListBox;
-        //Принудительный вызов конструктора ItemCollection
-        ConstructorInfo? constructor = typeof(ItemCollection).GetConstructor(
+
+        var listBoxItemStyle = new Style(x => x.OfType<ListBoxItem>())
+        {
+            Setters =
+            {
+                new Setter(ListBoxItem.MarginProperty, new Thickness(0)),
+                new Setter(ListBoxItem.PaddingProperty, new Thickness(0)),
+                new Setter(ListBoxItem.HorizontalAlignmentProperty, HorizontalAlignment.Stretch),
+                new Setter(ListBoxItem.MinHeightProperty, (double)0),
+                new Setter(ListBoxItem.MaxHeightProperty, double.PositiveInfinity)
+            }
+        };
+
+        // Добавляем стиль в коллекцию стилей ListBox
+        PropListBox.Styles.Add(listBoxItemStyle);
+
+        // Использование рефлексии для создания экземпляра ItemCollection
+        var constructor = typeof(ItemCollection).GetConstructor(
             BindingFlags.Instance | BindingFlags.NonPublic,
             null,
             Type.EmptyTypes,
             null);
-        PropListItems = constructor.Invoke(new object[] { }) as ItemCollection;
+
+        PropListItems = (ItemCollection)constructor.Invoke(new object[] { });
     }
-    
-    private static SolidColorBrush GetColor(string color)
-        => new SolidColorBrush(Color.Parse(color));
+
+    private static SolidColorBrush GetColor(string color) => new(Color.Parse(color));
+
     public static void ShowProperties()
     {
         try
         {
-            PropListItems.Clear();
+            PropListItems?.Clear();
         }
         catch
         {
-            return;
         }
 
+        if (Equals(HierarchyControl.Selected.element, Workspace.MainCanvas)) return;
 
-        if (HierarchyControl.Selected.element == Workspace.MainCanvas) return;
-        //  Type type = selectedTreeItem.element.GetType();
-        //   = type.GetProperties();
+        var type = HierarchyControl.Selected.element.GetType();
+        var props = type.GetProperties()
+            .Where(prop => !Constants.ExcludedWords.Contains(prop.Name));
 
-        Type type = HierarchyControl.Selected.element.GetType();
-        var props = type.GetProperties();
-    
         foreach (var prop in props)
         {
-            if (!Constants.ExcludedWords.Contains(prop.Name))
-            {
-                var prop_type = type.GetProperty(prop.Name).PropertyType;
-                AddPropItem(prop.Name, prop.GetValue(HierarchyControl.Selected.element), prop_type);
-                //KeyValueList.Add(new KeyValue { Key = prop.Name, Value = prop.GetValue(selectedTreeItem.element)?.ToString() });
-            }
+            var propType = type.GetProperty(prop.Name).PropertyType;
+            AddPropItem(prop.Name, prop.GetValue(HierarchyControl.Selected.element), propType);
         }
 
-        FieldInfo privateField =
-            typeof(ItemsControl).GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance);
-        privateField.SetValue(PropListBox, PropListItems);
-    }
-    
-    
-     public static void AddPropItem(string name, object? value,Type type)
-    {
-        var listItem = new ListBoxItem();
-        var dockPanel = new DockPanel
+        AddContainerProperties();
+        if (PropListBox != null)
         {
-            Height = 32
+            typeof(ItemsControl)
+                .GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance)
+                ?.SetValue(PropListBox, PropListItems);
+        }
+    }
+
+    private static void AddContainerProperties()
+    {
+        var obj = HierarchyControl.Selected.element;
+        if (obj.jParent is null) return;
+
+        var ContainerType = HierarchyControl.Selected.element.jParent.GetType();
+
+        var listItem = new ListBoxItem
+        {
+            Content = new Border
+            {
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = GetColor("#8897FF"),
+                Child = new DockPanel
+                {
+                    Height = 40,
+                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                    Children =
+                    {
+                        new TextBlock
+                        {
+                            Text = " " + ContainerType.UnderlyingSystemType.Name.Substring(1),
+                            Foreground = GetColor("#9cd638"),
+                            FontSize = 20,
+                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                        }
+                    }
+                }
+            }
         };
-        
+        PropListItems?.Add(listItem);
+
+
+        switch (ContainerType.UnderlyingSystemType.Name)
+        {
+            case "jDockPanel":
+                AddPropItem("Docked", DockPanel.GetDock(obj as Control), typeof(Dock));
+                break;
+
+            case "jCanvas":
+
+                AddPropItem("Left", Double.IsNaN(Canvas.GetLeft(obj as Control)) ? 0 : Canvas.GetLeft(obj as Control),
+                    typeof(double));
+                AddPropItem("Top", Double.IsNaN(Canvas.GetTop(obj as Control)) ? 0 : Canvas.GetTop(obj as Control),
+                    typeof(double));
+                break;
+
+            case "jGrid":
+                AddPropItem("Row", Grid.GetRow(obj as Control), typeof(int));
+                AddPropItem("Column", Grid.GetColumn(obj as Control), typeof(int));
+                AddPropItem("RowSpan", Grid.GetRowSpan(obj as Control), typeof(int));
+                AddPropItem("ColumnSpan", Grid.GetColumnSpan(obj as Control), typeof(int));
+                break;
+
+            case "jRelativePanel":
+                AddPropItem("AlignLeftWithPanel", RelativePanel.GetAlignLeftWithPanel(obj as Control), typeof(bool));
+                AddPropItem("AlignRightWithPanel", RelativePanel.GetAlignRightWithPanel(obj as Control), typeof(bool));
+                AddPropItem("AlignTopWithPanel", RelativePanel.GetAlignTopWithPanel(obj as Control), typeof(bool));
+                AddPropItem("AlignBottomWithPanel", RelativePanel.GetAlignBottomWithPanel(obj as Control),
+                    typeof(bool));
+                AddPropItem("AlignHorizontalCenterWithPanel",
+                    RelativePanel.GetAlignHorizontalCenterWithPanel(obj as Control), typeof(bool));
+                AddPropItem("AlignVerticalCenterWithPanel",
+                    RelativePanel.GetAlignVerticalCenterWithPanel(obj as Control), typeof(bool));
+                AddPropItem("LeftOf", RelativePanel.GetLeftOf(obj as Control), typeof(Control));
+                AddPropItem("RightOf", RelativePanel.GetRightOf(obj as Control), typeof(Control));
+                AddPropItem("Above", RelativePanel.GetAbove(obj as Control), typeof(Control));
+                AddPropItem("Below", RelativePanel.GetBelow(obj as Control), typeof(Control));
+                AddPropItem("AlignLeftWith", RelativePanel.GetAlignLeftWith(obj as Control), typeof(Control));
+                AddPropItem("AlignRightWith", RelativePanel.GetAlignRightWith(obj as Control), typeof(Control));
+                AddPropItem("AlignTopWith", RelativePanel.GetAlignTopWith(obj as Control), typeof(Control));
+                AddPropItem("AlignBottomWith", RelativePanel.GetAlignBottomWith(obj as Control), typeof(Control));
+                AddPropItem("AlignHorizontalCenterWith", RelativePanel.GetAlignHorizontalCenterWith(obj as Control),
+                    typeof(Control));
+                AddPropItem("AlignVerticalCenterWith", RelativePanel.GetAlignVerticalCenterWith(obj as Control),
+                    typeof(Control));
+                break;
+
+            // Add cases for other panel types as needed
+        }
+    }
+
+    //Вернуть private
+    public static void AddPropItem(string name, object value, Type type)
+    {
+        var listItem = new ListBoxItem
+        {
+            Content = new Border
+            {
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = GetColor("#8897FF"),
+                Child = CreatePropertyPanel(name, value, type)
+            }
+        };
+
+        PropListItems?.Add(listItem);
+        //PropListItems?.Add(listItem);
+    }
+
+    private static DockPanel CreatePropertyPanel(string name, object value, Type type)
+    {
+        var dockPanel = new DockPanel { Height = 32 };
+
+        var textBlock = CreatePropertyNameTextBlock(name);
+        dockPanel.Children.Add(textBlock);
+
+        var controlPanel = CreatePropertyControlPanel(name, value, type);
+        dockPanel.Children.Add(controlPanel);
+
+        return dockPanel;
+    }
+
+    private static TextBlock CreatePropertyNameTextBlock(string name)
+    {
         var textBlock = new TextBlock
         {
             Text = name,
-            //  DockPanel.Dock="Left" VerticalAlignment="Center"
             Foreground = GetColor("#0ab076"),
             FontWeight = FontWeight.Normal,
             FontSize = 18,
             HorizontalAlignment = HorizontalAlignment.Right,
             VerticalAlignment = VerticalAlignment.Center,
-            Margin = new Thickness(10,0,0,0),
-            MaxWidth=150
+            Margin = new Thickness(10, 0, 0, 0),
+            MaxWidth = 150
         };
-        DockPanel.SetDock(textBlock,Dock.Left);
-        dockPanel.Children.Add(textBlock);
-        
-        
-        if (type == typeof(int) || type == typeof(string) || 
-            type == typeof(double) || name == "Content" || 
-            type == typeof(Thickness) || type == typeof(CornerRadius) || 
-            type == typeof(Rect) )
+        DockPanel.SetDock(textBlock, Dock.Left);
+        return textBlock;
+    }
+
+    private static Control CreatePropertyControlPanel(string name, object value, Type type)
+    {
+        if (type == typeof(int) || type == typeof(string) ||
+            type == typeof(double) || name == "Content" ||
+            type == typeof(Thickness) || type == typeof(CornerRadius) ||
+            type == typeof(Rect))
         {
-            var _propElement = new TextBox();
-            _propElement.Text = value?.ToString();
-            _propElement.Foreground = GetColor("#0ab076");
-            _propElement.FontWeight = FontWeight.Normal;
-            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-            _propElement.VerticalAlignment = VerticalAlignment.Center;
-            _propElement.Margin = new Thickness(5, 0, 0, 0);
-            _propElement.KeyDown += OnPropertyChanged;
-            DockPanel.SetDock(_propElement, Dock.Right);
-            dockPanel.Children.Add(_propElement);
+            return CreateTextBox(value?.ToString(), OnPropertyChanged);
         }
-        //Для цветов
         else if (type == typeof(IBrush))
         {
-            var stackPanel = new StackPanel{Orientation = Orientation.Horizontal};
-            var _textBlock = new TextBlock();
-            
-            if (value != null)
-            {
-                var colorButton = new ColorButton
-                {
-                    Color = Color.Parse(value.ToString())
-                };
-                colorButton.PropertyChanged += OnColorChanged;
-                _textBlock.Text = colorButton.Color.ToString();
-                _textBlock.VerticalAlignment = VerticalAlignment.Center;
-                _textBlock.Foreground = GetColor("#0ab076");
-                _textBlock.FontWeight = FontWeight.Normal;
-                stackPanel.HorizontalAlignment = HorizontalAlignment.Right;
-                stackPanel.Children.Add(_textBlock);
-                stackPanel.Children.Add(colorButton);
-               // colorButton.HorizontalAlignment = HorizontalAlignment.Right;
-                DockPanel.SetDock(stackPanel, Dock.Right);
-                dockPanel.Children.Add(stackPanel);
-            }
+            return CreateColorPanel(value);
         }
-        //Для перечислений
         else if (type.IsEnum)
         {
-            var _propElement = new ComboBox();
-            _propElement.Margin = new Thickness(0, 0, 0, 10);
-            
-            //Чтоб нормально отображался Placeholder
-            var dataTemplate = new FuncDataTemplate<string>((item, _) =>
-            {
-                var textBlock = new TextBlock{VerticalAlignment = VerticalAlignment.Center};
-                textBlock.Bind(TextBlock.TextProperty, new Binding(".")); 
-                return textBlock;
-            });
-            _propElement.ItemTemplate = dataTemplate;
-            
-           _propElement.Foreground = GetColor("#0ab076");
-           _propElement.FontWeight = FontWeight.Normal;
-           _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-           _propElement.VerticalAlignment = VerticalAlignment.Center;
-           _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
-           _propElement.Margin = new Thickness(5, 0, 0, 0);
-            var enumValues = Enum.GetValues(type);
-            
-            foreach (var _value in enumValues) 
-                _propElement.Items.Add(_value.ToString());
-            _propElement.SelectedItem = value?.ToString();
-            _propElement.SelectionChanged+= OnEnumPropertyChanged;
-            DockPanel.SetDock(_propElement, Dock.Right);
-            dockPanel.Children.Add(_propElement); 
+            return CreateEnumComboBox(type, value, OnEnumPropertyChanged);
         }
-        else if (type == typeof(Boolean?) || type == typeof(bool))
+        else if (type == typeof(bool) || type == typeof(bool?))
         {
-            var _propElement = new CheckBox();
-            _propElement.IsChecked = (bool)value;
-            _propElement.Width = 30;
-            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-            _propElement.Foreground = GetColor("#0ab076");
-            _propElement.FontWeight = FontWeight.Normal;
-            _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
-            _propElement.VerticalAlignment = VerticalAlignment.Center;
-            _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
-            _propElement.Margin = new Thickness(5, 0, 0, 0);
-            _propElement.IsCheckedChanged += OnBoolPropertyChanged;
-            DockPanel.SetDock(_propElement, Dock.Right);
-            dockPanel.Children.Add(_propElement);
-            
+            return CreateCheckBox((bool?)value, OnBoolPropertyChanged);
         }
-        else if ( type == typeof(IImage))
+        else if (type == typeof(IImage))
         {
-            var _propElement = new Button();
-            _propElement.Content = "Выбрать";
-            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-            _propElement.Foreground = GetColor("#0ab076");
-            _propElement.FontWeight = FontWeight.Normal;
-            _propElement.HorizontalContentAlignment = HorizontalAlignment.Right;
-            _propElement.VerticalAlignment = VerticalAlignment.Center;
-            _propElement.VerticalContentAlignment = VerticalAlignment.Bottom;
-            _propElement.Margin = new Thickness(5, 0, 0, 0);
-            _propElement.Click += OnChooseImageClick;
-            DockPanel.SetDock(_propElement, Dock.Right);
-            dockPanel.Children.Add(_propElement);
-            
+            return CreateImageButton(OnChooseImageClick);
         }
         else
         {
-            var _propElement = new TextBox();
-            _propElement.Text = value?.ToString();
-            _propElement.Foreground = Brushes.Red;
-            _propElement.FontWeight = FontWeight.Normal;
-            _propElement.HorizontalAlignment = HorizontalAlignment.Right;
-            _propElement.Margin = new Thickness(5, 0, 0, 0);
-            _propElement.Width = 100;
-            //_propElement.KeyDown += OnPropertyChanged;
-            DockPanel.SetDock(_propElement, Dock.Right);
-            dockPanel.Children.Add(_propElement); 
+            return CreateTextBox(value?.ToString(), null, Brushes.Red);
+        }
+    }
+
+    private static TextBox CreateTextBox(string text, EventHandler<KeyEventArgs> keyDownHandler = null,
+        IBrush foreground = null)
+    {
+        var textBox = new TextBox
+        {
+            Text = text,
+            Foreground = foreground ?? GetColor("#0ab076"),
+            FontWeight = FontWeight.Normal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Center,
+            Margin = new Thickness(5, 0, 0, 0)
+        };
+
+        if (keyDownHandler != null)
+        {
+            textBox.KeyDown += keyDownHandler;
         }
 
-        var border = new Border();
-        border.BorderThickness = new Thickness(0, 0, 0, 1);
-        border.BorderBrush = GetColor("#8897FF");
-        border.Child = dockPanel;
-        listItem.Content = border;
-        
-        PropListItems.Add(listItem);
+        DockPanel.SetDock(textBox, Dock.Right);
+        return textBox;
     }
-     
-     private static void OnPropertyChanged(object? sender, KeyEventArgs e)
+
+    private static StackPanel CreateColorPanel(object value)
+    {
+        var stackPanel = new StackPanel { Orientation = Orientation.Horizontal };
+
+        if (value != null)
+        {
+            var textBlock = new TextBlock
+            {
+                Text = value.ToString(),
+                VerticalAlignment = VerticalAlignment.Center,
+                Foreground = GetColor("#0ab076"),
+                FontWeight = FontWeight.Normal
+            };
+
+            var colorButton = new ColorButton
+            {
+                Color = Color.Parse(value.ToString())
+            };
+            colorButton.PropertyChanged += OnColorChanged;
+
+            stackPanel.HorizontalAlignment = HorizontalAlignment.Right;
+            stackPanel.Children.Add(textBlock);
+            stackPanel.Children.Add(colorButton);
+        }
+
+        DockPanel.SetDock(stackPanel, Dock.Right);
+        return stackPanel;
+    }
+
+    private static ComboBox CreateEnumComboBox(Type enumType, object selectedValue,
+        EventHandler<SelectionChangedEventArgs> selectionChangedHandler)
+    {
+        var comboBox = new ComboBox
+        {
+            Margin = new Thickness(0, 0, 0, 10),
+            Foreground = GetColor("#0ab076"),
+            FontWeight = FontWeight.Normal,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Center,
+            VerticalContentAlignment = VerticalAlignment.Bottom,
+            ItemTemplate = new FuncDataTemplate<string>((item, _) =>
+                new TextBlock
+                {
+                    Text = item,
+                    VerticalAlignment = VerticalAlignment.Center
+                })
+        };
+
+        foreach (var value in Enum.GetValues(enumType))
+        {
+            comboBox.Items.Add(value.ToString());
+        }
+
+        comboBox.SelectedItem = selectedValue?.ToString();
+        comboBox.SelectionChanged += selectionChangedHandler;
+
+        DockPanel.SetDock(comboBox, Dock.Right);
+        return comboBox;
+    }
+
+    private static CheckBox CreateCheckBox(bool? isChecked, EventHandler<RoutedEventArgs> checkedChangedHandler)
+    {
+        var checkBox = new CheckBox
+        {
+            IsChecked = isChecked,
+            Width = 30,
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Foreground = GetColor("#0ab076"),
+            FontWeight = FontWeight.Normal,
+            HorizontalContentAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Center,
+            VerticalContentAlignment = VerticalAlignment.Bottom,
+            Margin = new Thickness(5, 0, 0, 0)
+        };
+
+        checkBox.IsCheckedChanged += checkedChangedHandler;
+
+        DockPanel.SetDock(checkBox, Dock.Right);
+        return checkBox;
+    }
+
+    private static Button CreateImageButton(EventHandler<RoutedEventArgs> clickHandler)
+    {
+        var button = new Button
+        {
+            Content = "Выбрать",
+            HorizontalAlignment = HorizontalAlignment.Right,
+            Foreground = GetColor("#0ab076"),
+            FontWeight = FontWeight.Normal,
+            HorizontalContentAlignment = HorizontalAlignment.Right,
+            VerticalAlignment = VerticalAlignment.Center,
+            VerticalContentAlignment = VerticalAlignment.Bottom,
+            Margin = new Thickness(5, 0, 0, 0)
+        };
+
+        button.Click += clickHandler;
+
+        DockPanel.SetDock(button, Dock.Right);
+        return button;
+    }
+
+    private static void OnPropertyChanged(object sender, KeyEventArgs e)
     {
         if (e.Key != Key.Enter) return;
-        var textBox = sender as TextBox;
+        var textBox = (TextBox)sender;
+        var propName = ((TextBlock)((DockPanel)textBox.Parent).Children[0]).Text;
 
-        var parentPanel = textBox.Parent as DockPanel;
-        var txt_blc = parentPanel.Children[0] as TextBlock;
-        var prop_name = txt_blc.Text;
-        Type jElement_type = HierarchyControl.Selected.element.GetType();
-        var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
-        var prop = jElement_type.GetProperty(prop_name);
-        textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
-        
-        object prevalue = prop.GetValue(HierarchyControl.Selected.element);
-        History.AddHistoryItem(new History.Change(HierarchyControl.Selected.element,prop_name,prevalue));
+        SetPropertyValue(propName, textBox.Text, textBox);
+    }
 
-        if (textBox.Text == "не число") return;
+    private static async void OnChooseImageClick(object sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Title = "Выберите изображение",
+            AllowMultiple = false,
+            Filters = new List<FileDialogFilter>
+            {
+                new FileDialogFilter
+                {
+                    Name = "Изображения",
+                    Extensions = new List<string> { "png", "jpg", "jpeg", "gif", "bmp" }
+                }
+            }
+        };
+
+        var result = await dialog.ShowAsync(ProgramWindow.MainWindow._MainWindow);
+
+        if (result != null && result.Length > 0)
+        {
+            var fileName = Path.GetFileName(result[0]);
+            var targetFilePath = Path.Combine("assets", fileName);
+            File.Copy(result[0], targetFilePath, true);
+
+            var jImage = (jImage)HierarchyControl.Selected.element;
+            jImage.jImageSource = $@"assets/{fileName}";
+            jImage.Source = new Bitmap(jImage.jImageSource);
+        }
+    }
+
+    private static void ContainerPropertySet(string propName, string value)
+    {
+        var element = HierarchyControl.Selected.element as Control;
+        if (element == null) return;
+
+        switch (propName)
+        {
+            case "Docked":
+                if (Enum.TryParse(value, out Dock dock))
+                {
+                    DockPanel.SetDock(element, dock);
+                }
+
+                break;
+
+            case "Left":
+                if (double.TryParse(value, out double left))
+                {
+                    Canvas.SetLeft(element, left);
+                }
+
+                break;
+
+            case "Top":
+                if (double.TryParse(value, out double top))
+                {
+                    Canvas.SetTop(element, top);
+                }
+
+                break;
+
+            case "Right":
+                if (double.TryParse(value, out double right))
+                {
+                    Canvas.SetRight(element, right);
+                }
+
+                break;
+
+            case "Bottom":
+                if (double.TryParse(value, out double bottom))
+                {
+                    Canvas.SetBottom(element, bottom);
+                }
+
+                break;
+
+            case "Row":
+                if (int.TryParse(value, out int row))
+                {
+                    Grid.SetRow(element, row);
+                }
+
+                break;
+
+            case "Column":
+                if (int.TryParse(value, out int column))
+                {
+                    Grid.SetColumn(element, column);
+                }
+
+                break;
+
+            case "RowSpan":
+                if (int.TryParse(value, out int rowSpan))
+                {
+                    Grid.SetRowSpan(element, rowSpan);
+                }
+
+                break;
+
+            case "ColumnSpan":
+                if (int.TryParse(value, out int columnSpan))
+                {
+                    Grid.SetColumnSpan(element, columnSpan);
+                }
+
+                break;
+
+            case "AlignLeftWithPanel":
+                if (bool.TryParse(value, out bool alignLeftWithPanel))
+                {
+                    RelativePanel.SetAlignLeftWithPanel(element, alignLeftWithPanel);
+                }
+
+                break;
+
+            case "AlignRightWithPanel":
+                if (bool.TryParse(value, out bool alignRightWithPanel))
+                {
+                    RelativePanel.SetAlignRightWithPanel(element, alignRightWithPanel);
+                }
+
+                break;
+
+            case "AlignTopWithPanel":
+                if (bool.TryParse(value, out bool alignTopWithPanel))
+                {
+                    RelativePanel.SetAlignTopWithPanel(element, alignTopWithPanel);
+                }
+
+                break;
+
+            case "AlignBottomWithPanel":
+                if (bool.TryParse(value, out bool alignBottomWithPanel))
+                {
+                    RelativePanel.SetAlignBottomWithPanel(element, alignBottomWithPanel);
+                }
+
+                break;
+
+            case "AlignHorizontalCenterWithPanel":
+                if (bool.TryParse(value, out bool alignHorizontalCenterWithPanel))
+                {
+                    RelativePanel.SetAlignHorizontalCenterWithPanel(element, alignHorizontalCenterWithPanel);
+                }
+
+                break;
+
+            case "AlignVerticalCenterWithPanel":
+                if (bool.TryParse(value, out bool alignVerticalCenterWithPanel))
+                {
+                    RelativePanel.SetAlignVerticalCenterWithPanel(element, alignVerticalCenterWithPanel);
+                }
+
+                break;
+
+            // Additional cases for other properties related to RelativePanel
+            case "LeftOf":
+            case "RightOf":
+            case "Above":
+            case "Below":
+            case "AlignLeftWith":
+            case "AlignRightWith":
+            case "AlignTopWith":
+            case "AlignBottomWith":
+            case "AlignHorizontalCenterWith":
+            case "AlignVerticalCenterWith":
+                //ИСПРАИТЬ
+                var relativeElement = new Control(); ///
+                if (relativeElement != null)
+                {
+                    switch (propName)
+                    {
+                        case "LeftOf":
+                            RelativePanel.SetLeftOf(element, relativeElement);
+                            break;
+                        case "RightOf":
+                            RelativePanel.SetRightOf(element, relativeElement);
+                            break;
+                        case "Above":
+                            RelativePanel.SetAbove(element, relativeElement);
+                            break;
+                        case "Below":
+                            RelativePanel.SetBelow(element, relativeElement);
+                            break;
+                        case "AlignLeftWith":
+                            RelativePanel.SetAlignLeftWith(element, relativeElement);
+                            break;
+                        case "AlignRightWith":
+                            RelativePanel.SetAlignRightWith(element, relativeElement);
+                            break;
+                        case "AlignTopWith":
+                            RelativePanel.SetAlignTopWith(element, relativeElement);
+                            break;
+                        case "AlignBottomWith":
+                            RelativePanel.SetAlignBottomWith(element, relativeElement);
+                            break;
+                        case "AlignHorizontalCenterWith":
+                            RelativePanel.SetAlignHorizontalCenterWith(element, relativeElement);
+                            break;
+                        case "AlignVerticalCenterWith":
+                            RelativePanel.SetAlignVerticalCenterWith(element, relativeElement);
+                            break;
+                    }
+                }
+
+                break;
+
+            default:
+                Console.WriteLine($"Property {propName} not recognized.");
+                break;
+        }
+    }
+
+    private static void OnEnumPropertyChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var comboBox = (ComboBox)sender;
+        var propName = ((TextBlock)((DockPanel)comboBox.Parent).Children[0]).Text;
+        Type propType;
         try
         {
-            if (prop.Name == "Name")
-            {
-                FieldInfo privateField =
-                    typeof(StyledElement).GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance);
-                privateField.SetValue(HierarchyControl.Selected.element, textBox.Text);
-                HierarchyControl.Selected.Header = textBox.Text;
-            }
-            else if (prop.Name == "Content")
-                prop.SetValue(HierarchyControl.Selected.element, textBox.Text);
-            else if (prop_type == typeof(string))
-                prop.SetValue(HierarchyControl.Selected.element, textBox.Text);
-            else if (prop_type == typeof(int))
-                prop.SetValue(HierarchyControl.Selected.element, Convert.ToInt32(textBox.Text));
-            else if (prop_type == typeof(double))
-            {
-                textBox.Text = textBox.Text.Replace('.', ',');
-                prop.SetValue(HierarchyControl.Selected.element, Convert.ToDouble(textBox.Text));
-            }
-            else if (prop_type == typeof(IBrush))
-            {
-                var brush = new SolidColorBrush(Color.Parse(textBox.Text));
-                prop.SetValue(HierarchyControl.Selected.element, brush);
-                textBox.Foreground = new SolidColorBrush(Color.Parse(textBox.Text));
-            }
-            else if (prop_type == typeof(Thickness))
-            {
-                var values = textBox.Text.Split(',');
-                var rect = new Thickness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
-                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
-                prop.SetValue(HierarchyControl.Selected.element, rect);
-            }
-            else if (prop_type == typeof(CornerRadius))
-            {
-                var values = textBox.Text.Split(',');
-                var rect = new CornerRadius(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
-                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
-                prop.SetValue(HierarchyControl.Selected.element, rect);
-            }
-            else if (prop_type == typeof(Rect))
-            {
-                var values = textBox.Text.Split(',');
-                var rect = new Rect(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
-                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
-                prop.SetValue(HierarchyControl.Selected.element, rect);
-            }
+            propType = HierarchyControl.Selected.element.GetType().GetProperty(propName).PropertyType;
         }
         catch
         {
-            textBox.Text = "Некорректное значение";
-            textBox.Foreground = Brushes.Red;
+            ContainerPropertySet(propName, comboBox.SelectedItem.ToString());
+            return;
+        }
+
+        var enumValue = Enum.Parse(propType, comboBox.SelectedItem.ToString());
+        SetPropertyValue(propName, enumValue);
+    }
+
+    private static void OnColorChanged(object sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        if (e.Property == ColorButton.ColorProperty)
+        {
+            var colorButton = (ColorButton)sender;
+            var propName = ((TextBlock)((DockPanel)colorButton.Parent.Parent).Children[0]).Text;
+
+            var newColor = new SolidColorBrush(colorButton.Color);
+            SetPropertyValue(propName, newColor);
+
+            var textBlock = ((StackPanel)colorButton.Parent).Children[0] as TextBlock;
+            if (textBlock != null)
+            {
+                textBlock.Text = colorButton.Color.ToString();
+            }
         }
     }
-     
-     private static async void OnChooseImageClick(object? sender, RoutedEventArgs e)
-    {
-        OpenFileDialog dialog = new OpenFileDialog();
-        dialog.Title = "Выберите изображение";
-        dialog.AllowMultiple = false;
-        dialog.Filters.Add(new FileDialogFilter
-        {
-            Name = "Изображения",
-            Extensions = { "png", "jpg", "jpeg", "gif", "bmp" }
-        });
-        Task<string[]> task = dialog.ShowAsync(MainWindow._MainWindow);
-        
-        // Дожидаемся завершения задачи (await)
-        string[] result = await task;
 
-        // Обрабатываем результат
-        if (result != null && result.Length > 0)
+    private static void OnBoolPropertyChanged(object sender, RoutedEventArgs e)
+    {
+        var checkBox = (CheckBox)sender;
+        var propName = ((TextBlock)((DockPanel)checkBox.Parent).Children[0]).Text;
+
+        SetPropertyValue(propName, checkBox.IsChecked);
+    }
+
+    private static void SetPropertyValue(string propName, object value, TextBox textBox = null)
+    {
+        var element = HierarchyControl.Selected.element;
+
+        PropertyInfo? prop;
+        try
         {
-            string fileName = Path.GetFileName(result[0]);
-            string targetFilePath = Path.Combine("assets", fileName);
-            File.Copy(result[0], targetFilePath, true);
-            ((jImage)HierarchyControl.Selected.element).jImageSource = @"assets/" + fileName;
-            ((jImage)HierarchyControl.Selected.element).Source = new Bitmap(((jImage)HierarchyControl.Selected.element).jImageSource);
+            prop = element.GetType().GetProperty(propName);
+        }
+        catch
+        {
+            ContainerPropertySet(propName, value.ToString());
+            return;
+        }
+
+        if (prop == null)
+        {
+            ContainerPropertySet(propName, value.ToString());
+            return;
+        }
+
+        object convertedValue = ConvertValue(prop.PropertyType, value);
+        if (convertedValue == null && textBox != null)
+        {
+            textBox.Text = "Некорректное значение";
+            textBox.Foreground = Brushes.Red;
+            return;
+        }
+
+        var prevalue = prop.GetValue(element);
+        History.AddHistoryItem(new History.Change(element, propName, prevalue));
+
+        if (propName == "Name")
+        {
+            typeof(StyledElement)
+                .GetField("_name", BindingFlags.NonPublic | BindingFlags.Instance)
+                ?.SetValue(element, convertedValue);
+            HierarchyControl.Selected.Header = (string)convertedValue;
         }
         else
         {
-            return;
+            try
+            {
+                 Dispatcher.UIThread.InvokeAsync(() =>
+                {
+                    try
+                    {
+                        prop.SetValue(element, convertedValue);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Exception caught in UI thread: {ex.Message}");
+                        if (textBox != null)
+                        {
+                            textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
+                        }
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception caught in main thread: {ex.Message}");
+                if (textBox != null)
+                {
+                    textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
+                }
+            }
         }
-    }
-    private static void OnEnumPropertyChanged(object? sender, SelectionChangedEventArgs e)
-    {
-        var comboBox = sender as ComboBox;
-        var parentPanel = comboBox.Parent as DockPanel;
-        var txt_blc = parentPanel.Children[0] as TextBlock;
-        var prop_name = txt_blc.Text;
-        Type jElement_type = HierarchyControl.Selected.element.GetType();
-        var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
-        var prop = jElement_type.GetProperty(prop_name);
-        object enumValue = Enum.Parse(prop_type, comboBox.SelectedItem.ToString());
-        
-        object prevalue = prop.GetValue(HierarchyControl.Selected.element);
-        History.AddHistoryItem(new History.Change(HierarchyControl.Selected.element,prop_name,prevalue));
-        
-        prop.SetValue(HierarchyControl.Selected.element, enumValue);
+
+        if (textBox != null)
+        {
+            textBox.Foreground = new SolidColorBrush(Color.Parse("#88F1FF"));
+        }
     }
 
-    private static void OnColorChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
+    private static object ConvertValue(Type targetType, object value)
     {
-        if (e.Property == AvaloniaColorPicker.ColorButton.ColorProperty)
+        try
         {
-            var colorButton = sender as ColorButton;
-            var parentPanel = colorButton.Parent.Parent as DockPanel;
-            var txt_blc = parentPanel.Children[0] as TextBlock;
-            var prop_name = txt_blc.Text;
-           
-            Type jElement_type = HierarchyControl.Selected.element.GetType();
-            var prop_type = jElement_type.GetProperty(prop_name).PropertyType;
-            var prop = jElement_type.GetProperty(prop_name);
-           
-            object prevalue = prop.GetValue(HierarchyControl.Selected.element);
-            History.AddHistoryItem(new History.Change(HierarchyControl.Selected.element,prop_name,prevalue));
-           
-            prop.SetValue(HierarchyControl.Selected.element, new SolidColorBrush(colorButton.Color));
-            var textBlock = ((StackPanel)(colorButton.Parent)).Children[0] as TextBlock;
-            textBlock.Text = colorButton.Color.ToString();
+            if (targetType == typeof(int))
+                return Convert.ToInt32(value);
+            if (targetType == typeof(double))
+                return Convert.ToDouble(((string)value).Replace('.', ','));
+            if (targetType == typeof(IBrush))
+                return new SolidColorBrush(Color.Parse((value.ToString())));
+            if (targetType == typeof(Thickness))
+            {
+                var values = ((string)value).Split(',');
+                return new Thickness(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
+                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
+            }
+
+            if (targetType == typeof(CornerRadius))
+            {
+                var values = ((string)value).Split(',');
+                return new CornerRadius(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
+                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
+            }
+
+            if (targetType == typeof(Rect))
+            {
+                var values = ((string)value).Split(',');
+                return new Rect(Convert.ToInt32(values[0]), Convert.ToInt32(values[1]),
+                    Convert.ToInt32(values[2]), Convert.ToInt32(values[3]));
+            }
+
+            return value;
+        }
+        catch
+        {
+            return null;
         }
     }
-    
-    private static void OnBoolPropertyChanged(object? sender, RoutedEventArgs e)
-    {
-        var checkBox = sender as CheckBox;
-        var parentPanel = checkBox.Parent as DockPanel;
-        var txt_blc = parentPanel.Children[0] as TextBlock;
-        var prop_name = txt_blc.Text;
-        Type jElement_type = HierarchyControl.Selected.element.GetType();
-        var prop = jElement_type.GetProperty(prop_name);
-       
-        object prevalue = prop.GetValue(HierarchyControl.Selected.element);
-        History.AddHistoryItem(new History.Change(HierarchyControl.Selected.element,prop_name,prevalue));
-        
-        prop.SetValue(HierarchyControl.Selected.element, checkBox.IsChecked);
-    }
-     
 }

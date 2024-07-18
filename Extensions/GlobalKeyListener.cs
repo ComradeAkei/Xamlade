@@ -1,20 +1,20 @@
 using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Xamlade.FunctionalAreas;
 
-namespace Xamlade;
+namespace Xamlade.Extensions;
 
 public class GlobalKeyListener
 {
-    public event Action<KeyEventArgs> KeyPressed;
-    public event Action<KeyEventArgs> KeyReleased;
+    public event Action<KeyEventArgs> KeyPressed = null!;
+    public event Action<KeyEventArgs> KeyReleased = null!;
 
     public GlobalKeyListener(Window window)
     {
-        window.AddHandler(InputElement.KeyDownEvent, KeyDownHandler, RoutingStrategies.Tunnel);
-        window.AddHandler(InputElement.KeyUpEvent, KeyUpHandler, RoutingStrategies.Tunnel);
+        window.AddHandler(InputElement.KeyDownEvent, KeyDownHandler!, RoutingStrategies.Tunnel);
+        window.AddHandler(InputElement.KeyUpEvent, KeyUpHandler!, RoutingStrategies.Tunnel);
         window.AddHandler(InputElement.PointerPressedEvent, PointerPressedHandler, RoutingStrategies.Tunnel);
         window.AddHandler(InputElement.PointerReleasedEvent, PointerReleasedHandler, RoutingStrategies.Tunnel);
     }
@@ -32,12 +32,12 @@ public class GlobalKeyListener
     {
         if (e.Key == Key.LeftCtrl)
         {
-            KeyPressed?.Invoke(e);
+            KeyPressed.Invoke(e);
             State.ResizeFlag = true;
         }
         else if (e.Key == Key.LeftShift)
         {
-            KeyPressed?.Invoke(e);
+            KeyPressed.Invoke(e);
             State.LShiftPressed = true;
         }
     }
@@ -45,7 +45,7 @@ public class GlobalKeyListener
     {
         if (e.Key == Key.LeftCtrl || e.Key == Key.Delete || e.Key == Key.LeftShift)
         {
-            KeyReleased?.Invoke(e);
+            KeyReleased.Invoke(e);
         }
     }
 }
