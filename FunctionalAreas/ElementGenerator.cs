@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Xamlade.Extensions;
@@ -87,7 +88,32 @@ public static class ElementGenerator
     {
         switch (element.Type)
         {
-            
+         
+            case "Grid":
+            {
+                var grid = element as jGrid;
+                // Генерация случайного цвета в формате HEX
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
+        
+                // Преобразование HEX строки в Color объект
+                var randomColor = Color.Parse(randomHexColor);
+        
+                // Установка фона
+                grid.Background = new SolidColorBrush(randomColor);
+
+                // Установка фиксированных размеров
+                grid.Height = 400;
+                grid.Width = 400;
+                grid.ShowGridLines = true;
+
+                // Инициализация строк и столбцов по умолчанию
+                
+                grid.RowDefinitions.Add(new mRowDefinition(grid, 100) );
+                grid.RowDefinitions.Add(new mRowDefinition(grid, 100) );
+                grid.ColumnDefinitions.Add(new mColumnDefinition(grid,100));
+                grid.ColumnDefinitions.Add(new mColumnDefinition(grid,100));
+            } 
+                break;
             case "DockPanel":
             {
                 // Генерация случайного цвета в формате HEX
@@ -105,6 +131,7 @@ public static class ElementGenerator
                 ((jButton)element).Background = Brushes.Blue;
                 ((jButton)element).Foreground = Brushes.White;
                 ((jButton)element).FontSize = 20;
+                ((jButton)element).HorizontalAlignment = HorizontalAlignment.Center;
             } 
                 break;
             case "TextBox":

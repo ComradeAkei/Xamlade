@@ -15,6 +15,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using AvaloniaColorPicker;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
@@ -31,6 +32,7 @@ public static class PropertiesControl
     public static void Init(ListBox propListBox)
     {
         PropListBox = propListBox;
+        
 
         var listBoxItemStyle = new Style(x => x.OfType<ListBoxItem>())
         {
@@ -81,12 +83,60 @@ public static class PropertiesControl
             AddPropItem(prop.Name, prop.GetValue(HierarchyControl.Selected.element), propType);
         }
 
+        AddSpecialProperties();
         AddContainerProperties();
         if (PropListBox != null)
         {
             typeof(ItemsControl)
                 .GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance)
                 ?.SetValue(PropListBox, PropListItems);
+        }
+    }
+
+    private static void AddSpecialProperties()
+    {
+        var obj = HierarchyControl.Selected.element;
+        if (obj.jParent is null) return;
+
+        var elementType = HierarchyControl.Selected.element.GetType();
+
+        var listItem = new ListBoxItem
+        {
+            Content = new Border
+            {
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = GetColor("#8897FF"),
+                Child = new DockPanel
+                {
+                    Height = 40,
+                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                    Children =
+                    {
+                        new TextBlock
+                        {
+                            Text = " " + "Специальные",
+                            Foreground = GetColor("#9cd638"),
+                            FontSize = 20,
+                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                        }
+                    }
+                }
+            }
+        };
+        PropListItems?.Add(listItem);
+
+
+        switch (elementType.UnderlyingSystemType.Name)
+        {
+            case "jGrid":
+                AddPropItem("Rows", (obj as jGrid).RowDefinitions.Count, typeof(int));
+                AddPropItem("Columns", (obj as jGrid).ColumnDefinitions.Count, typeof(int));
+                break;
+            default:
+                PropListItems?.Remove(listItem);
+                break;
         }
     }
 
@@ -112,7 +162,7 @@ public static class PropertiesControl
                     {
                         new TextBlock
                         {
-                            Text = " " + ContainerType.UnderlyingSystemType.Name.Substring(1),
+                            Text = " Родительский " + ContainerType.UnderlyingSystemType.Name.Substring(1),
                             Foreground = GetColor("#9cd638"),
                             FontSize = 20,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
@@ -177,6 +227,7 @@ public static class PropertiesControl
     //Вернуть private
     public static void AddPropItem(string name, object value, Type type)
     {
+        if (name == "ColumnDefinitions" || name == "RowDefinitions") return;
         var listItem = new ListBoxItem
         {
             Content = new Border
@@ -264,6 +315,7 @@ public static class PropertiesControl
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(5, 0, 0, 0)
         };
+      //  textBox.KeyDown += PropListkeyDownHandler;
 
         if (keyDownHandler != null)
         {
@@ -273,6 +325,41 @@ public static class PropertiesControl
         DockPanel.SetDock(textBox, Dock.Right);
         return textBox;
     }
+
+    private static void PropListkeyDownHandler(object? sender, KeyEventArgs e)
+    {
+        var textBox = sender as TextBox;
+        var listBox = textBox?.Parent.Parent.Parent.Parent as TreeViewItem;
+        var index = PropListBox.Items.IndexOf(listBox); 
+        TextBox nextTextBox;
+      
+        //TODO ИСПОЛНЕНИЕ НЕ ДОХОДИТ!
+        switch (e.Key)
+        {
+            case Key.Down:
+                index++;
+                 nextTextBox = (((PropListBox.ItemContainerGenerator.ContainerFromIndex(index) as ListBoxItem)
+                            ?.GetVisualChildren().FirstOrDefault() as Border)
+                        ?.Child as DockPanel)
+                    ?.Children.OfType<TextBox>().ElementAtOrDefault(1);
+                nextTextBox?.Focus();
+                break;
+
+            case Key.Up:
+                index--;
+                 nextTextBox = (((PropListBox.ItemContainerGenerator.ContainerFromIndex(index) as ListBoxItem)
+                            ?.GetVisualChildren().FirstOrDefault() as Border)
+                        ?.Child as DockPanel)
+                    ?.Children.OfType<TextBox>().ElementAtOrDefault(1);
+                nextTextBox?.Focus();
+                break;
+
+            default:
+                break;
+        }
+        
+    }
+    
 
     private static StackPanel CreateColorPanel(object value)
     {
@@ -411,6 +498,49 @@ public static class PropertiesControl
             var jImage = (jImage)HierarchyControl.Selected.element;
             jImage.jImageSource = $@"assets/{fileName}";
             jImage.Source = new Bitmap(jImage.jImageSource);
+        }
+    }
+
+    private static void SpecialPropertySet(string propName, string value)
+    {
+        var element = HierarchyControl.Selected.element as Control;
+        if (element == null) return;
+
+        switch (propName)
+        {
+            case "Rows":
+            {
+                var grid = element as jGrid;
+                var rows = grid.RowDefinitions.Count;
+                int.TryParse(value, out int newRows);
+                if (rows == newRows)
+                    return;
+                if (newRows > rows)
+                    for (int i = rows; i < newRows; i++)
+                        grid.RowDefinitions.Add(new mRowDefinition(grid, 100));
+                else
+                    for (int i = rows; i > newRows; i--)
+                        grid.RowDefinitions.RemoveAt(grid.RowDefinitions.Count - 1);
+            }
+                break;
+            case "Columns":
+            {
+                var grid = element as jGrid;
+                var columns = grid.ColumnDefinitions.Count;
+                int.TryParse(value, out int newColumns);
+
+                if (columns == newColumns)
+                    return;
+
+                if (newColumns > columns)
+                    for (int i = columns; i < newColumns; i++)
+                        grid.ColumnDefinitions.Add(new mColumnDefinition(grid, 100));
+                else
+                    for (int i = columns; i > newColumns; i--)
+                        grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
+            }
+                break;
+           
         }
     }
 
@@ -594,7 +724,7 @@ public static class PropertiesControl
                 break;
 
             default:
-                Console.WriteLine($"Property {propName} not recognized.");
+                SpecialPropertySet(propName, value);
                 break;
         }
     }
@@ -685,9 +815,10 @@ public static class PropertiesControl
         }
         else
         {
+            //НАЙТИ РЕШЕНИЕ С ПОДАВЛЕНИЕМ ИСКЛЮЧЕНИЙ ПРИ НЕВЕРНОМ ВВОДЕ
             try
             {
-                 Dispatcher.UIThread.InvokeAsync(() =>
+                Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     try
                     {
