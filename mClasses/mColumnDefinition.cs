@@ -10,9 +10,10 @@ public class mColumnDefinition:ColumnDefinition, MControl
         this.parent = parent;
         this.Width = height;
     }
-    public mColumnDefinition(jGrid parent,double height, GridUnitType type = GridUnitType.Star)
+    public mColumnDefinition(jGrid parent,double width, GridUnitType type = GridUnitType.Star)
     {
         this.parent = parent;
-        this.Width = new GridLength(height, type);
+        this.Width = new GridLength(width, type);
+        
     }
 }

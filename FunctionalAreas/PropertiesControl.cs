@@ -191,10 +191,19 @@ public static class PropertiesControl
                 break;
 
             case "jGrid":
+                var grid = obj.jParent as jGrid;
                 AddPropItem("Row", Grid.GetRow(obj as Control), typeof(int));
                 AddPropItem("Column", Grid.GetColumn(obj as Control), typeof(int));
                 AddPropItem("RowSpan", Grid.GetRowSpan(obj as Control), typeof(int));
                 AddPropItem("ColumnSpan", Grid.GetColumnSpan(obj as Control), typeof(int));
+                AddPropItem("RowHeight", grid!.RowDefinitions[Grid.GetRow(obj as Control)].Height.Value,
+                    typeof(double));
+                AddPropItem("RowType", grid!.RowDefinitions[Grid.GetRow(obj as Control)].Height.GridUnitType,
+                    typeof(GridUnitType));
+                AddPropItem("ColumnWidth", grid!.ColumnDefinitions[Grid.GetColumn(obj as Control)].Width.Value,
+                    typeof(double));
+                AddPropItem("ColumnType", grid!.ColumnDefinitions[Grid.GetColumn(obj as Control)].Width.GridUnitType,
+                    typeof(GridUnitType));
                 break;
 
             case "jRelativePanel":
@@ -363,6 +372,7 @@ public static class PropertiesControl
             ChangePropiertyFocus(index++);
             return;
         }
+
         var control = dockPanel?.Children[1];
         if (control is not null)
             await Dispatcher.UIThread.InvokeAsync(() => control?.Focus(NavigationMethod.Unspecified));
@@ -520,14 +530,41 @@ public static class PropertiesControl
                 var grid = element as jGrid;
                 var rows = grid.RowDefinitions.Count;
                 int.TryParse(value, out int newRows);
+
                 if (rows == newRows)
+                {
                     return;
+                }
+
                 if (newRows > rows)
+                {
                     for (int i = rows; i < newRows; i++)
+                    {
                         grid.RowDefinitions.Add(new mRowDefinition(grid, 100));
+                    }
+                }
                 else
-                    for (int i = rows; i > newRows; i--)
-                        grid.RowDefinitions.RemoveAt(grid.RowDefinitions.Count - 1);
+                {
+                    // Создаем список строк с детьми
+                    var rowsWithChildren = new List<int>();
+                    foreach (var child in grid.Children)
+                    {
+                        int row = Grid.GetRow(child);
+                        if (!rowsWithChildren.Contains(row))
+                        {
+                            rowsWithChildren.Add(row);
+                        }
+                    }
+
+                    // Удаляем строки, не затрагивая строки с детьми
+                    for (int i = rows - 1; i >= newRows; i--)
+                    {
+                        if (!rowsWithChildren.Contains(i))
+                        {
+                            grid.RowDefinitions.RemoveAt(i);
+                        }
+                    }
+                }
             }
                 break;
             case "Columns":
@@ -537,14 +574,39 @@ public static class PropertiesControl
                 int.TryParse(value, out int newColumns);
 
                 if (columns == newColumns)
+                {
                     return;
+                }
 
                 if (newColumns > columns)
+                {
                     for (int i = columns; i < newColumns; i++)
+                    {
                         grid.ColumnDefinitions.Add(new mColumnDefinition(grid, 100));
+                    }
+                }
                 else
-                    for (int i = columns; i > newColumns; i--)
-                        grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
+                {
+                    // Создаем список колонок с детьми
+                    var columnsWithChildren = new List<int>();
+                    foreach (var child in grid.Children)
+                    {
+                        int column = Grid.GetColumn(child);
+                        if (!columnsWithChildren.Contains(column))
+                        {
+                            columnsWithChildren.Add(column);
+                        }
+                    }
+                    
+                    for (int i = columns - 1; i >= newColumns; i--)
+                    {
+                        if (!columnsWithChildren.Contains(i))
+                        {
+                            grid.ColumnDefinitions.RemoveAt(i);
+                        }
+                    }
+                }
+                
             }
                 break;
         }
@@ -628,6 +690,48 @@ public static class PropertiesControl
                 }
 
                 break;
+            case "RowHeight":
+            {
+                var grid = element.Parent as Grid;
+                if (double.TryParse(value, out double height))
+                {
+                    var _Height = grid!.RowDefinitions[Grid.GetRow(element)].Height;
+                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(height, _Height.GridUnitType);
+                }
+            }
+                break;
+            case "ColumnWidth":
+            {
+                var grid = element.Parent as Grid;
+                if (double.TryParse(value, out double width))
+                {
+                    var _Width = grid!.ColumnDefinitions[Grid.GetRow(element)].Width;
+                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(width, _Width.GridUnitType);
+                }
+            }
+                break;
+            case "RowType":
+            {
+                var grid = element.Parent as Grid;
+                if (Enum.TryParse(value, out GridUnitType unitType))
+                {
+                    var _Height = grid!.RowDefinitions[Grid.GetRow(element)].Height;
+                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(_Height.Value, unitType);
+                }
+            }
+                break;
+
+            case "ColumnType":
+            {
+                var grid = element.Parent as Grid;
+                if (Enum.TryParse(value, out GridUnitType unitType))
+                {
+                    var _Width = grid!.ColumnDefinitions[Grid.GetColumn(element)].Width;
+                    grid!.ColumnDefinitions[Grid.GetColumn(element)].Width = new GridLength(_Width.Value, unitType);
+                }
+            }
+                break;
+
 
             case "AlignLeftWithPanel":
                 if (bool.TryParse(value, out bool alignLeftWithPanel))
