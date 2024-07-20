@@ -118,6 +118,8 @@
                             Margin="10,0,10,10" />
                     <Button Name="GenerateDockPanel" Content="DockPanel" 
                             Margin="10,0,10,10" />
+                    <Button Name="GenerateGrid" Content="Grid" 
+                            Margin="10,0,10,10" />
                     <Button Name="GenerateImage" Background="Chartreuse" Content="Image" 
                             Margin="10,0,10,10" />
                 </StackPanel>

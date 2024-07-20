@@ -11,10 +11,12 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
 using Avalonia.Threading;
+using Avalonia.VisualTree;
 using AvaloniaColorPicker;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
@@ -31,6 +33,7 @@ public static class PropertiesControl
     public static void Init(ListBox propListBox)
     {
         PropListBox = propListBox;
+
 
         var listBoxItemStyle = new Style(x => x.OfType<ListBoxItem>())
         {
@@ -81,12 +84,60 @@ public static class PropertiesControl
             AddPropItem(prop.Name, prop.GetValue(HierarchyControl.Selected.element), propType);
         }
 
+        AddSpecialProperties();
         AddContainerProperties();
         if (PropListBox != null)
         {
             typeof(ItemsControl)
                 .GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance)
                 ?.SetValue(PropListBox, PropListItems);
+        }
+    }
+
+    private static void AddSpecialProperties()
+    {
+        var obj = HierarchyControl.Selected.element;
+        if (obj.jParent is null) return;
+
+        var elementType = HierarchyControl.Selected.element.GetType();
+
+        var listItem = new ListBoxItem
+        {
+            Content = new Border
+            {
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = GetColor("#8897FF"),
+                Child = new DockPanel
+                {
+                    Height = 40,
+                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
+                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                    Children =
+                    {
+                        new TextBlock
+                        {
+                            Text = " " + "Специальные",
+                            Foreground = GetColor("#9cd638"),
+                            FontSize = 20,
+                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
+                        }
+                    }
+                }
+            }
+        };
+        PropListItems?.Add(listItem);
+
+
+        switch (elementType.UnderlyingSystemType.Name)
+        {
+            case "jGrid":
+                AddPropItem("Rows", (obj as jGrid).RowDefinitions.Count, typeof(int));
+                AddPropItem("Columns", (obj as jGrid).ColumnDefinitions.Count, typeof(int));
+                break;
+            default:
+                PropListItems?.Remove(listItem);
+                break;
         }
     }
 
@@ -112,7 +163,7 @@ public static class PropertiesControl
                     {
                         new TextBlock
                         {
-                            Text = " " + ContainerType.UnderlyingSystemType.Name.Substring(1),
+                            Text = " Родительский " + ContainerType.UnderlyingSystemType.Name.Substring(1),
                             Foreground = GetColor("#9cd638"),
                             FontSize = 20,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
@@ -140,10 +191,19 @@ public static class PropertiesControl
                 break;
 
             case "jGrid":
+                var grid = obj.jParent as jGrid;
                 AddPropItem("Row", Grid.GetRow(obj as Control), typeof(int));
                 AddPropItem("Column", Grid.GetColumn(obj as Control), typeof(int));
                 AddPropItem("RowSpan", Grid.GetRowSpan(obj as Control), typeof(int));
                 AddPropItem("ColumnSpan", Grid.GetColumnSpan(obj as Control), typeof(int));
+                AddPropItem("RowHeight", grid!.RowDefinitions[Grid.GetRow(obj as Control)].Height.Value,
+                    typeof(double));
+                AddPropItem("RowType", grid!.RowDefinitions[Grid.GetRow(obj as Control)].Height.GridUnitType,
+                    typeof(GridUnitType));
+                AddPropItem("ColumnWidth", grid!.ColumnDefinitions[Grid.GetColumn(obj as Control)].Width.Value,
+                    typeof(double));
+                AddPropItem("ColumnType", grid!.ColumnDefinitions[Grid.GetColumn(obj as Control)].Width.GridUnitType,
+                    typeof(GridUnitType));
                 break;
 
             case "jRelativePanel":
@@ -177,6 +237,7 @@ public static class PropertiesControl
     //Вернуть private
     public static void AddPropItem(string name, object value, Type type)
     {
+        if (name == "ColumnDefinitions" || name == "RowDefinitions") return;
         var listItem = new ListBoxItem
         {
             Content = new Border
@@ -186,6 +247,7 @@ public static class PropertiesControl
                 Child = CreatePropertyPanel(name, value, type)
             }
         };
+        listItem.Name = name;
 
         PropListItems?.Add(listItem);
         //PropListItems?.Add(listItem);
@@ -264,14 +326,56 @@ public static class PropertiesControl
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(5, 0, 0, 0)
         };
+        //  textBox.KeyDown += PropListkeyDownHandler;
 
-        if (keyDownHandler != null)
-        {
-            textBox.KeyDown += keyDownHandler;
-        }
+
+        textBox.KeyDown += keyDownHandler;
+        textBox.KeyDown += PropListkeyDownHandler;
 
         DockPanel.SetDock(textBox, Dock.Right);
         return textBox;
+    }
+
+    private static void PropListkeyDownHandler(object? sender, KeyEventArgs e)
+    {
+        var textBox = sender as TextBox;
+        var listBoxItem = textBox.FindLogicalAncestorOfType<ListBoxItem>();
+        var listBox = listBoxItem.FindLogicalAncestorOfType<ListBox>();
+        int index = listBox.Items.IndexOf(listBoxItem);
+
+        TextBox nextTextBox;
+        switch (e.Key)
+        {
+            case Key.Down:
+            case Key.Tab:
+                index++;
+                break;
+
+            case Key.Up:
+                index--;
+                break;
+        }
+
+        ChangePropiertyFocus(index);
+    }
+
+    private static async void ChangePropiertyFocus(int index)
+    {
+        if (index < 0) return;
+        if (index >= PropListBox.Items.Count) return;
+
+        var container = PropListBox.Items[index] as ListBoxItem;
+        var visualChild = container?.Content as Border;
+        var dockPanel = visualChild?.Child as DockPanel;
+        if (dockPanel.Children.Count < 2)
+        {
+            ChangePropiertyFocus(index++);
+            return;
+        }
+
+        var control = dockPanel?.Children[1];
+        if (control is not null)
+            await Dispatcher.UIThread.InvokeAsync(() => control?.Focus(NavigationMethod.Unspecified));
     }
 
     private static StackPanel CreateColorPanel(object value)
@@ -414,6 +518,100 @@ public static class PropertiesControl
         }
     }
 
+    private static void SpecialPropertySet(string propName, string value)
+    {
+        var element = HierarchyControl.Selected.element as Control;
+        if (element == null) return;
+
+        switch (propName)
+        {
+            case "Rows":
+            {
+                var grid = element as jGrid;
+                var rows = grid.RowDefinitions.Count;
+                int.TryParse(value, out int newRows);
+
+                if (rows == newRows)
+                {
+                    return;
+                }
+
+                if (newRows > rows)
+                {
+                    for (int i = rows; i < newRows; i++)
+                    {
+                        grid.RowDefinitions.Add(new mRowDefinition(grid, 100));
+                    }
+                }
+                else
+                {
+                    // Создаем список строк с детьми
+                    var rowsWithChildren = new List<int>();
+                    foreach (var child in grid.Children)
+                    {
+                        int row = Grid.GetRow(child);
+                        if (!rowsWithChildren.Contains(row))
+                        {
+                            rowsWithChildren.Add(row);
+                        }
+                    }
+
+                    // Удаляем строки, не затрагивая строки с детьми
+                    for (int i = rows - 1; i >= newRows; i--)
+                    {
+                        if (!rowsWithChildren.Contains(i))
+                        {
+                            grid.RowDefinitions.RemoveAt(i);
+                        }
+                    }
+                }
+            }
+                break;
+            case "Columns":
+            {
+                var grid = element as jGrid;
+                var columns = grid.ColumnDefinitions.Count;
+                int.TryParse(value, out int newColumns);
+
+                if (columns == newColumns)
+                {
+                    return;
+                }
+
+                if (newColumns > columns)
+                {
+                    for (int i = columns; i < newColumns; i++)
+                    {
+                        grid.ColumnDefinitions.Add(new mColumnDefinition(grid, 100));
+                    }
+                }
+                else
+                {
+                    // Создаем список колонок с детьми
+                    var columnsWithChildren = new List<int>();
+                    foreach (var child in grid.Children)
+                    {
+                        int column = Grid.GetColumn(child);
+                        if (!columnsWithChildren.Contains(column))
+                        {
+                            columnsWithChildren.Add(column);
+                        }
+                    }
+                    
+                    for (int i = columns - 1; i >= newColumns; i--)
+                    {
+                        if (!columnsWithChildren.Contains(i))
+                        {
+                            grid.ColumnDefinitions.RemoveAt(i);
+                        }
+                    }
+                }
+                
+            }
+                break;
+        }
+    }
+
     private static void ContainerPropertySet(string propName, string value)
     {
         var element = HierarchyControl.Selected.element as Control;
@@ -492,6 +690,48 @@ public static class PropertiesControl
                 }
 
                 break;
+            case "RowHeight":
+            {
+                var grid = element.Parent as Grid;
+                if (double.TryParse(value, out double height))
+                {
+                    var _Height = grid!.RowDefinitions[Grid.GetRow(element)].Height;
+                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(height, _Height.GridUnitType);
+                }
+            }
+                break;
+            case "ColumnWidth":
+            {
+                var grid = element.Parent as Grid;
+                if (double.TryParse(value, out double width))
+                {
+                    var _Width = grid!.ColumnDefinitions[Grid.GetRow(element)].Width;
+                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(width, _Width.GridUnitType);
+                }
+            }
+                break;
+            case "RowType":
+            {
+                var grid = element.Parent as Grid;
+                if (Enum.TryParse(value, out GridUnitType unitType))
+                {
+                    var _Height = grid!.RowDefinitions[Grid.GetRow(element)].Height;
+                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(_Height.Value, unitType);
+                }
+            }
+                break;
+
+            case "ColumnType":
+            {
+                var grid = element.Parent as Grid;
+                if (Enum.TryParse(value, out GridUnitType unitType))
+                {
+                    var _Width = grid!.ColumnDefinitions[Grid.GetColumn(element)].Width;
+                    grid!.ColumnDefinitions[Grid.GetColumn(element)].Width = new GridLength(_Width.Value, unitType);
+                }
+            }
+                break;
+
 
             case "AlignLeftWithPanel":
                 if (bool.TryParse(value, out bool alignLeftWithPanel))
@@ -594,7 +834,7 @@ public static class PropertiesControl
                 break;
 
             default:
-                Console.WriteLine($"Property {propName} not recognized.");
+                SpecialPropertySet(propName, value);
                 break;
         }
     }
@@ -685,9 +925,10 @@ public static class PropertiesControl
         }
         else
         {
+            //НАЙТИ РЕШЕНИЕ С ПОДАВЛЕНИЕМ ИСКЛЮЧЕНИЙ ПРИ НЕВЕРНОМ ВВОДЕ
             try
             {
-                 Dispatcher.UIThread.InvokeAsync(() =>
+                Dispatcher.UIThread.InvokeAsync(() =>
                 {
                     try
                     {

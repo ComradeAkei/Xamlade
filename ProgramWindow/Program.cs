@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Avalonia;
 
-namespace Xamlade;
+namespace Xamlade.ProgramWindow;
 
 class Program
 {
@@ -12,25 +11,8 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
-        {
-            Console.WriteLine($"Unhandled exception: {e.ExceptionObject}");
-        };
-
-        TaskScheduler.UnobservedTaskException += (sender, e) =>
-        {
-            Console.WriteLine($"Unobserved task exception: {e.Exception}");
-            e.SetObserved(); // Помечаем исключение как обработанное
-        };
-
-        try
-        {
+        
             BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Exception in Main: {ex.Message}");
-        }
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
@@ -39,4 +21,6 @@ class Program
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace();
+    
+    
 }
