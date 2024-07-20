@@ -34,11 +34,7 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
         child.jParent = this;
         Children.Add((Control)child);
     }
-
-    public void AddChild(JControl child, int row, int column)
-    {
-        throw new NotImplementedException();
-    }
+    
 
     public void RemoveChild(JControl child)
     {

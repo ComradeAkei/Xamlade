@@ -11,6 +11,7 @@ using Avalonia.Data;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
@@ -32,7 +33,7 @@ public static class PropertiesControl
     public static void Init(ListBox propListBox)
     {
         PropListBox = propListBox;
-        
+
 
         var listBoxItemStyle = new Style(x => x.OfType<ListBoxItem>())
         {
@@ -237,6 +238,7 @@ public static class PropertiesControl
                 Child = CreatePropertyPanel(name, value, type)
             }
         };
+        listItem.Name = name;
 
         PropListItems?.Add(listItem);
         //PropListItems?.Add(listItem);
@@ -315,12 +317,11 @@ public static class PropertiesControl
             VerticalAlignment = VerticalAlignment.Center,
             Margin = new Thickness(5, 0, 0, 0)
         };
-      //  textBox.KeyDown += PropListkeyDownHandler;
+        //  textBox.KeyDown += PropListkeyDownHandler;
 
-        if (keyDownHandler != null)
-        {
-            textBox.KeyDown += keyDownHandler;
-        }
+
+        textBox.KeyDown += keyDownHandler;
+        textBox.KeyDown += PropListkeyDownHandler;
 
         DockPanel.SetDock(textBox, Dock.Right);
         return textBox;
@@ -329,37 +330,43 @@ public static class PropertiesControl
     private static void PropListkeyDownHandler(object? sender, KeyEventArgs e)
     {
         var textBox = sender as TextBox;
-        var listBox = textBox?.Parent.Parent.Parent.Parent as TreeViewItem;
-        var index = PropListBox.Items.IndexOf(listBox); 
+        var listBoxItem = textBox.FindLogicalAncestorOfType<ListBoxItem>();
+        var listBox = listBoxItem.FindLogicalAncestorOfType<ListBox>();
+        int index = listBox.Items.IndexOf(listBoxItem);
+
         TextBox nextTextBox;
-      
-        //TODO ИСПОЛНЕНИЕ НЕ ДОХОДИТ!
         switch (e.Key)
         {
             case Key.Down:
+            case Key.Tab:
                 index++;
-                 nextTextBox = (((PropListBox.ItemContainerGenerator.ContainerFromIndex(index) as ListBoxItem)
-                            ?.GetVisualChildren().FirstOrDefault() as Border)
-                        ?.Child as DockPanel)
-                    ?.Children.OfType<TextBox>().ElementAtOrDefault(1);
-                nextTextBox?.Focus();
                 break;
 
             case Key.Up:
                 index--;
-                 nextTextBox = (((PropListBox.ItemContainerGenerator.ContainerFromIndex(index) as ListBoxItem)
-                            ?.GetVisualChildren().FirstOrDefault() as Border)
-                        ?.Child as DockPanel)
-                    ?.Children.OfType<TextBox>().ElementAtOrDefault(1);
-                nextTextBox?.Focus();
-                break;
-
-            default:
                 break;
         }
-        
+
+        ChangePropiertyFocus(index);
     }
-    
+
+    private static async void ChangePropiertyFocus(int index)
+    {
+        if (index < 0) return;
+        if (index >= PropListBox.Items.Count) return;
+
+        var container = PropListBox.Items[index] as ListBoxItem;
+        var visualChild = container?.Content as Border;
+        var dockPanel = visualChild?.Child as DockPanel;
+        if (dockPanel.Children.Count < 2)
+        {
+            ChangePropiertyFocus(index++);
+            return;
+        }
+        var control = dockPanel?.Children[1];
+        if (control is not null)
+            await Dispatcher.UIThread.InvokeAsync(() => control?.Focus(NavigationMethod.Unspecified));
+    }
 
     private static StackPanel CreateColorPanel(object value)
     {
@@ -540,7 +547,6 @@ public static class PropertiesControl
                         grid.ColumnDefinitions.RemoveAt(grid.ColumnDefinitions.Count - 1);
             }
                 break;
-           
         }
     }
 

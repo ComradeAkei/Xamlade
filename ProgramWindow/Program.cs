@@ -1,7 +1,7 @@
 ﻿using System;
 using Avalonia;
 
-namespace Xamlade;
+namespace Xamlade.ProgramWindow;
 
 class Program
 {
@@ -11,15 +11,8 @@ class Program
     [STAThread]
     public static void Main(string[] args)
     {
-        try
-        {
+        
             BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Unhandled Exception: {ex.Message}");
-            Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-        }
     }
 
     // Avalonia configuration, don't remove; also used by visual designer.
