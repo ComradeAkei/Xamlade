@@ -125,6 +125,17 @@ public static class ElementGenerator
                 ((jDockPanel)element).Width = 400;
             } 
                 break;
+            case "ComboBox":
+            {
+                // Генерация случайного цвета в формате HEX
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
+                // Преобразование HEX строки в Color объект
+                var randomColor = Color.Parse(randomHexColor);
+                ((jComboBox)element).Background = new SolidColorBrush(randomColor);
+                ((jComboBox)element).Height = 200; // Задаем высоту для ComboBox
+                ((jComboBox)element).Width = 200;  // Задаем ширину для ComboBox
+            } 
+                break;
             case "Button":
             {
                 ((jButton)element).Content = "Text";
