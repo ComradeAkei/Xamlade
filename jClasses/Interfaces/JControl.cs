@@ -130,7 +130,7 @@ public interface JControl
        
     }
 
-    public string ToString()
+    public string? ToString()
     {
         return $"Type: {Type}, Name: {Name}, IsSelected: {IsSelected}, IsEnabled: {IsEnabled}, IsVisible: {IsVisible}, DataContext: {DataContext}, Bounds: {Bounds}";
     }

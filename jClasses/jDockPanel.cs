@@ -39,5 +39,17 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
         Children.Remove((Control)child);
     }
 
+    public static void SetDock(JControl element, Dock value)
+    {
+        if (element == null) throw new ArgumentNullException(nameof(element));
+        DockPanel.SetDock(element as Control, value);
+    }
+
+    public static Dock GetDock(JControl element)
+    {
+        if (element == null) throw new ArgumentNullException(nameof(element));
+        return DockPanel.GetDock(element as Control);
+    }
+
     public mBorder selectionBorder { get; set; }
 }

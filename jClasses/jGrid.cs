@@ -41,6 +41,30 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
         jChildren.Remove(child);
         Children.Remove((Control)child);
     }
+    
+    public static void SetRow(JControl element, int value) => 
+        Grid.SetRow(element as Control, value);
+
+    public static void SetColumn(JControl element, int value) => 
+        Grid.SetColumn(element as Control, value);
+
+    public static void SetRowSpan(JControl element, int value) => 
+        Grid.SetRowSpan(element as Control, value);
+
+    public static void SetColumnSpan(JControl element, int value) => 
+        Grid.SetColumnSpan(element as Control, value);
+
+    public static int GetRow(JControl element) => 
+        Grid.GetRow(element as Control);
+
+    public static int GetColumn(JControl element) => 
+        Grid.GetColumn(element as Control);
+
+    public static int GetRowSpan(JControl element) => 
+        Grid.GetRowSpan(element as Control);
+
+    public static int GetColumnSpan(JControl element) => 
+        Grid.GetColumnSpan(element as Control);
 
     public mBorder selectionBorder { get; set; }
 }
