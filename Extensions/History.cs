@@ -87,7 +87,7 @@ public static class History
             
             object? CurStateValue;
             if (state.FieldName == "Coordinates")
-                CurStateValue = new jCoordinates(Canvas.GetLeft(state.jObject as Control), Canvas.GetTop(state.jObject as Control));
+                CurStateValue = new jCoordinates(jCanvas.GetLeft(state.jObject), jCanvas.GetTop(state.jObject));
             else if (state.FieldName == "Size")
                 CurStateValue = new jSize((state.jObject as Control).Width, (state.jObject as Control).Height);
             else if (state.FieldName == "Created")
@@ -133,7 +133,7 @@ public static class History
             switch (state.FieldName)
             {
                 case "Coordinates":
-                    CurStateValue = new jCoordinates(Canvas.GetLeft(state.jObject as Control), Canvas.GetTop(state.jObject as Control));
+                    CurStateValue = new jCoordinates(jCanvas.GetLeft(state.jObject), jCanvas.GetTop(state.jObject));
                     break;
                 case "Size":
                     CurStateValue = new jSize((state.jObject as Control).Width, (state.jObject as Control).Height);
@@ -168,8 +168,8 @@ public static class History
         switch (state.FieldName)
         {
             case "Coordinates":
-                Canvas.SetLeft(state.jObject as Control,(state.Value as jCoordinates).X);
-                Canvas.SetTop(state.jObject as Control,(state.Value as jCoordinates).Y);
+                jCanvas.SetLeft(state.jObject,(state.Value as jCoordinates).X);
+                jCanvas.SetTop(state.jObject ,(state.Value as jCoordinates).Y);
                 HistoryOperationFlag = false;
                 return;
             case "Size":

@@ -614,7 +614,7 @@ public static class PropertiesControl
 
     private static void ContainerPropertySet(string propName, string value)
     {
-        var element = HierarchyControl.Selected.element as Control;
+        var element = HierarchyControl.Selected.element;
         if (element == null) return;
 
         switch (propName)
@@ -622,7 +622,7 @@ public static class PropertiesControl
             case "Docked":
                 if (Enum.TryParse(value, out Dock dock))
                 {
-                    DockPanel.SetDock(element, dock);
+                    jDockPanel.SetDock(element, dock);
                 }
 
                 break;
@@ -630,7 +630,7 @@ public static class PropertiesControl
             case "Left":
                 if (double.TryParse(value, out double left))
                 {
-                    Canvas.SetLeft(element, left);
+                    jCanvas.SetLeft(element, left);
                 }
 
                 break;
@@ -638,7 +638,7 @@ public static class PropertiesControl
             case "Top":
                 if (double.TryParse(value, out double top))
                 {
-                    Canvas.SetTop(element, top);
+                    jCanvas.SetTop(element, top);
                 }
 
                 break;
@@ -646,7 +646,7 @@ public static class PropertiesControl
             case "Right":
                 if (double.TryParse(value, out double right))
                 {
-                    Canvas.SetRight(element, right);
+                    jCanvas.SetRight(element, right);
                 }
 
                 break;
@@ -654,7 +654,7 @@ public static class PropertiesControl
             case "Bottom":
                 if (double.TryParse(value, out double bottom))
                 {
-                    Canvas.SetBottom(element, bottom);
+                    jCanvas.SetBottom(element, bottom);
                 }
 
                 break;
@@ -662,7 +662,7 @@ public static class PropertiesControl
             case "Row":
                 if (int.TryParse(value, out int row))
                 {
-                    Grid.SetRow(element, row);
+                    jGrid.SetRow(element, row);
                 }
 
                 break;
@@ -670,7 +670,7 @@ public static class PropertiesControl
             case "Column":
                 if (int.TryParse(value, out int column))
                 {
-                    Grid.SetColumn(element, column);
+                    jGrid.SetColumn(element, column);
                 }
 
                 break;
@@ -678,7 +678,7 @@ public static class PropertiesControl
             case "RowSpan":
                 if (int.TryParse(value, out int rowSpan))
                 {
-                    Grid.SetRowSpan(element, rowSpan);
+                    jGrid.SetRowSpan(element, rowSpan);
                 }
 
                 break;
@@ -686,54 +686,54 @@ public static class PropertiesControl
             case "ColumnSpan":
                 if (int.TryParse(value, out int columnSpan))
                 {
-                    Grid.SetColumnSpan(element, columnSpan);
+                    jGrid.SetColumnSpan(element, columnSpan);
                 }
 
                 break;
             case "RowHeight":
             {
-                var grid = element.Parent as Grid;
+                var grid = element.jParent as jGrid;
                 if (double.TryParse(value, out double height))
                 {
-                    var _Height = grid!.RowDefinitions[Grid.GetRow(element)].Height;
-                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(height, _Height.GridUnitType);
+                    var _Height = grid!.RowDefinitions[jGrid.GetRow(element)].Height;
+                    grid!.RowDefinitions[jGrid.GetRow(element)].Height = new GridLength(height, _Height.GridUnitType);
                 }
             }
                 break;
             case "ColumnWidth":
             {
-                var grid = element.Parent as Grid;
+                var grid = element.jParent as Grid;
                 if (double.TryParse(value, out double width))
                 {
-                    var _Width = grid!.ColumnDefinitions[Grid.GetRow(element)].Width;
-                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(width, _Width.GridUnitType);
+                    var _Width = grid!.ColumnDefinitions[jGrid.GetRow(element)].Width;
+                    grid!.RowDefinitions[jGrid.GetRow(element)].Height = new GridLength(width, _Width.GridUnitType);
                 }
             }
                 break;
             case "RowType":
             {
-                var grid = element.Parent as Grid;
+                var grid = element.jParent as Grid;
                 if (Enum.TryParse(value, out GridUnitType unitType))
                 {
-                    var _Height = grid!.RowDefinitions[Grid.GetRow(element)].Height;
-                    grid!.RowDefinitions[Grid.GetRow(element)].Height = new GridLength(_Height.Value, unitType);
+                    var _Height = grid!.RowDefinitions[jGrid.GetRow(element)].Height;
+                    grid!.RowDefinitions[jGrid.GetRow(element)].Height = new GridLength(_Height.Value, unitType);
                 }
             }
                 break;
 
             case "ColumnType":
             {
-                var grid = element.Parent as Grid;
+                var grid = element.jParent as jGrid;
                 if (Enum.TryParse(value, out GridUnitType unitType))
                 {
-                    var _Width = grid!.ColumnDefinitions[Grid.GetColumn(element)].Width;
-                    grid!.ColumnDefinitions[Grid.GetColumn(element)].Width = new GridLength(_Width.Value, unitType);
+                    var _Width = grid!.ColumnDefinitions[jGrid.GetColumn(element)].Width;
+                    grid!.ColumnDefinitions[jGrid.GetColumn(element)].Width = new GridLength(_Width.Value, unitType);
                 }
             }
                 break;
 
 
-            case "AlignLeftWithPanel":
+           /* case "AlignLeftWithPanel":
                 if (bool.TryParse(value, out bool alignLeftWithPanel))
                 {
                     RelativePanel.SetAlignLeftWithPanel(element, alignLeftWithPanel);
@@ -831,7 +831,7 @@ public static class PropertiesControl
                     }
                 }
 
-                break;
+                break;*/
 
             default:
                 SpecialPropertySet(propName, value);
