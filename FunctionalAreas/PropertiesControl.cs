@@ -135,12 +135,58 @@ public static class PropertiesControl
                 AddPropItem("Rows", (obj as jGrid).RowDefinitions.Count, typeof(int));
                 AddPropItem("Columns", (obj as jGrid).ColumnDefinitions.Count, typeof(int));
                 break;
+            case "jComboBox" :
+                SetAddButton();
+                break;
             default:
                 PropListItems?.Remove(listItem);
                 break;
         }
     }
 
+    //TODO !!!
+    private static void SetAddButton()
+    {
+        var obj = HierarchyControl.Selected.element;
+        if (obj is jComboBox comboBox)
+        {
+            var addItemListItem = new ListBoxItem
+            {
+                Content = new Border
+                {
+                    BorderThickness = new Thickness(0, 0, 0, 1),
+                    BorderBrush = GetColor("#8897FF"),
+                    Child = new DockPanel
+                    {
+                        Height = 40,
+                        HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
+                        VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                        Children =
+                        {
+                            new Button
+                            {
+                                Content = "Добавить элемент" ,
+                                Foreground = GetColor("#9cd638"),
+                                FontSize = 20,
+                                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+                                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+                            }
+                        }
+                    }
+                }
+            };
+            
+            
+            
+            ((Button)((DockPanel)((Border)addItemListItem.Content).Child).Children[0]).AddHandler(Button.ClickEvent,
+                (sender, e) =>
+                {
+                    comboBox.AddChild(new jComboBoxItem(obj.Name + $"{comboBox.Items.Count}"));
+                });
+            
+        }
+    }
+    
     private static void AddContainerProperties()
     {
         var obj = HierarchyControl.Selected.element;
@@ -148,7 +194,7 @@ public static class PropertiesControl
 
         var ContainerType = HierarchyControl.Selected.element.jParent.GetType();
 
-        var listItem = new ListBoxItem
+        var parentPropertiesListItem = new ListBoxItem
         {
             Content = new Border
             {
@@ -173,11 +219,17 @@ public static class PropertiesControl
                 }
             }
         };
-        PropListItems?.Add(listItem);
+        PropListItems?.Add(parentPropertiesListItem);
+
+
+        
+
+        
 
 
         switch (ContainerType.UnderlyingSystemType.Name)
         {
+        
             case "jDockPanel":
                 AddPropItem("Docked", DockPanel.GetDock(obj as Control), typeof(Dock));
                 break;

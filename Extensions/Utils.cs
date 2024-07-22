@@ -3,7 +3,9 @@ using System.Reflection;
 using System.Timers;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
 namespace Xamlade.Extensions;
 
@@ -47,9 +49,15 @@ public static class Utils
     public static void DEBUG(object? sender, RoutedEventArgs e)
     {
         isDebugPanelActive = !isDebugPanelActive;
-      
-        
-        
+
+        var comboBox = Workspace.FindMainCanvasChildByName<jComboBox>("ComboBox0");
+        var button = new jButton();
+        button.Content = $"NextGenIterator: {NextgenIterator++}";
+        button.Background = Brushes.Aqua;
+        button.Name = $"NextGenIterator: {NextgenIterator++}";
+
+        comboBox.Items.Add(button);
+
     }
 
     public static void PrintDebugMessage(string message)

@@ -458,7 +458,7 @@ public static class Workspace
     public static void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         e.Handled = true;
-        if (!(((JControl)sender).Type.Contains("Button") || ((JControl)sender).Type.Contains("CheckBox")))
+        if (!(((JControl)sender).Type.Contains("Button") || ((JControl)sender).Type.Contains("CheckBox")|| ((JControl)sender).Type.Contains("ComboBox")))
             return;
 
 
@@ -560,4 +560,8 @@ public static class Workspace
     public static double CorrectSize(double coord)
         => CorrectCoords(coord) > 0 ? CorrectCoords(coord) : State.StrictModeValue;
     
+    
+    
+    //TODO сделать универсальным
+    public static T FindMainCanvasChildByName<T>(string name) where T : JControl => MainCanvas.jChildren.OfType<T>().FirstOrDefault(child => child.Name == name);
 }
