@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
@@ -144,10 +145,19 @@ public static class PropertiesControl
         }
     }
 
-    //TODO !!!
+  
     private static void SetAddButton()
     {
         var obj = HierarchyControl.Selected.element;
+
+        var button = new Button
+        {
+            Content = "Добавить элемент",
+            Foreground = GetColor("#9cd638"),
+            FontSize = 20,
+            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
+            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
+        };
         if (obj is jComboBox comboBox)
         {
             var addItemListItem = new ListBoxItem
@@ -163,27 +173,30 @@ public static class PropertiesControl
                         VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
                         Children =
                         {
-                            new Button
-                            {
-                                Content = "Добавить элемент" ,
-                                Foreground = GetColor("#9cd638"),
-                                FontSize = 20,
-                                HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                                VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                            }
+                            button
                         }
                     }
                 }
             };
-            
-            
-            
-            ((Button)((DockPanel)((Border)addItemListItem.Content).Child).Children[0]).AddHandler(Button.ClickEvent,
+            button.AddHandler(Button.ClickEvent,
                 (sender, e) =>
                 {
-                    comboBox.AddChild(new jComboBoxItem(obj.Name + $"{comboBox.Items.Count}"));
+                    var item = new jComboBoxItem(obj.Name + $"Item {comboBox.Items.Count}");
+                    item.Click+= (_, _) =>
+                    {
+                        comboBox.SelectedItem = item;
+                        var _obj = item.Content as Control;
+                        if (_obj is not null)
+                            Reflector.SetXYBoundsZero(_obj);
+                    };
+
+                    comboBox.AddChild(item);
+                    HierarchyControl.Selected.Items.Add(item.mTreeItem);
+                    comboBox.mTreeItem.IsExpanded = true;
+                    var data = new Object[] { comboBox, item, item.mTreeItem };
+                    History.AddHistoryItem(new History.Change(item, "Created", data));
                 });
-            
+            PropListItems?.Add(addItemListItem);
         }
     }
     

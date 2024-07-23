@@ -20,6 +20,7 @@ public static class Constants
         "OpacityMask", "Bounds", "Cursor", "Tag", "ContextFlyout", "ContextMenu", "FocusAdorner", "IsItemsHost",
         "Children", "jChildren", "FontFamily", "TextDecoration", "ContentTemplate", "FlowDirection", "Inlines",
         "TextLayout",
-        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo","jImageSource", "selectionBorder","Child"
+        "XAMLRating", "XAMLPiece", "CanPaste", "CanUndo","jImageSource", "selectionBorder","Child","ItemsView","ItemsPanelRoot","Items",
+        "ItemsPanel", "ItemContainerGenerator", "SelectedValue", "SelectionBoxItem","SelectedItem"
     };
 }

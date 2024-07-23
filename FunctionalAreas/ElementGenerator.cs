@@ -25,6 +25,7 @@ public static class ElementGenerator
         }
 
         if ((HierarchyControl.Selected.element is jBorder)) return;
+        if ((HierarchyControl.Selected.element is jComboBox)) return;
         if (!(HierarchyControl.Selected.element is JChildContainer parent)) return;
 
 
@@ -54,6 +55,7 @@ public static class ElementGenerator
     //Для выделения
     private static void GenerateBorders()
     {
+        if(HierarchyControl.Selected is jComboBoxItem) return;
         if (Workspace.SelectionCanvas.jChildren.Count > 1)
         {
             var collection = Workspace.SelectionCanvas.jChildren.ToList();
