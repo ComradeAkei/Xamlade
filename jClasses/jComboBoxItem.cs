@@ -5,11 +5,12 @@ using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Xamlade.Extensions;
 using Xamlade.XAMLWorkers;
 
 namespace Xamlade.jClasses;
 
-    public class jComboBoxItem : ComboBoxItem, JControl, JSelectable, JChildContainer
+    public class jComboBoxItem : ComboBoxItem, JControl, JSelectable, JChildContainer, JBroadcastHandler<JControl>
     {
         private string controlType => jElementType.ComboBoxItem.ToString();
         protected override Type StyleKeyOverride => typeof(ComboBoxItem);
@@ -23,13 +24,19 @@ namespace Xamlade.jClasses;
 
         public List<JControl> jChildren { get; }
 
-        public jComboBoxItem(string name)
+        public jComboBoxItem()
         {
-            Name = name;
+            Name = $"jComboboxItem + {Utils.NextgenIterator}";
             jChildren = new List<JControl>();
+            Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
             XAMLPiece = new List<string>();
             mTreeItem = new mTreeViewItem(this);
             this.AddHandler(PointerPressedEvent, OnPointerPressed, handledEventsToo: true);
+        }
+        public jComboBoxItem(string name):this()
+        {
+            Name = name;
+            mTreeItem.Header = name;
         }
 
         private void OnPointerPressed(object sender, PointerPressedEventArgs e)

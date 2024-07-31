@@ -53,8 +53,8 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
         Canvas.SetBottom(element as Control, value);
     }
 
-    public static double GetLeft(JControl element) => 
-        Canvas.GetLeft(element as Control);
+    public static double GetLeft(JControl element) =>
+        double.IsNaN(Canvas.GetLeft(element as Control)) ? 0 : Canvas.GetLeft(element as Control);
 
     public static double GetRight(JControl element)
     {
@@ -65,7 +65,7 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
     public static double GetTop(JControl element)
     {
         if (element == null) throw new ArgumentNullException(nameof(element));
-        return Canvas.GetTop(element as Control);
+        return  double.IsNaN(Canvas.GetTop(element as Control)) ? 0 : Canvas.GetTop(element as Control);;
     }
 
     public static double GetBottom(JControl element)

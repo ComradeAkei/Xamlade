@@ -181,7 +181,7 @@ public static class PropertiesControl
             button.AddHandler(Button.ClickEvent,
                 (sender, e) =>
                 {
-                    var item = new jComboBoxItem(obj.Name + $"Item {comboBox.Items.Count}");
+                    var item = new jComboBoxItem(obj.Name + $"Item{comboBox.Items.Count}");
                     item.Click+= (_, _) =>
                     {
                         comboBox.SelectedItem = item;

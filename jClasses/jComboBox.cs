@@ -55,7 +55,9 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
 
     public void RemoveChild(JControl child)
     {
+        Broadcast.OnBroadcast -= (child as JBroadcastHandler<JControl>).HandleBroadcast;
         jChildren.Remove(child);
         Items.Remove(child);
+        
     }
 }
