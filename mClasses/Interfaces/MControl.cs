@@ -1,4 +1,4 @@
-namespace Xamlade.jClasses;
+namespace Xamlade.mClasses;
 
 public interface MControl
 {

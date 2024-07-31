@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 
 namespace Xamlade.Extensions;
 
@@ -21,6 +22,8 @@ public class GlobalKeyListener
 
     private void PointerReleasedHandler(object? sender, PointerReleasedEventArgs e)
     {
+        if (Workspace.movable is jComboBox comboBox)
+            comboBox.IsPressed = false;
     }
 
     private void PointerPressedHandler(object? sender, PointerPressedEventArgs e)

@@ -458,7 +458,7 @@ public static class Workspace
     public static void OnjControlPointerEntered(object? sender, PointerEventArgs e)
     {
         e.Handled = true;
-        if (!(((JControl)sender).Type.Contains("Button") || ((JControl)sender).Type.Contains("CheckBox")))
+        if (!(((JControl)sender).Type.Contains("Button") || ((JControl)sender).Type.Contains("CheckBox")|| ((JControl)sender).Type.Contains("ComboBox")))
             return;
 
 
@@ -503,7 +503,8 @@ public static class Workspace
         var jparent = HierarchyControl.Selected.element.jParent;
         jparent.RemoveChild(element);
         var parent = element.mTreeItem.Parent as mTreeViewItem;
-        parent.Items.Remove(element.mTreeItem);
+        if(parent != null)
+            parent.Items.Remove(element.mTreeItem);
         HierarchyControl.Selected  = (jparent.jChildren.Count > 0) ? jparent.jChildren.Last().mTreeItem : ((JControl)jparent).mTreeItem;
         
         var data = new Object[] {jparent,element,element.mTreeItem};
@@ -548,7 +549,7 @@ public static class Workspace
     //Корректировка координат для перемещения и растяжения в строгом режиме
     public static double CorrectCoords(double coord)
     {
-        ///ВАЖНО///
+        ///ВАЖНО/// чо важного то?
         if (!State.StrictModeEnabled) return Math.Round(coord);
         if(State.StrictModeValue == 0) return Math.Round(coord);
         if (State.StrictModeValue <= 0) return coord;
@@ -560,4 +561,16 @@ public static class Workspace
     public static double CorrectSize(double coord)
         => CorrectCoords(coord) > 0 ? CorrectCoords(coord) : State.StrictModeValue;
     
+    
+    
+    //TODO сделать универсальным
+    public static T FindMainCanvasChildByName<T>(string name) where T : JControl => MainCanvas.jChildren.OfType<T>().FirstOrDefault(child => child.Name == name);
+    /// <summary>
+    /// Найти дочерний элемент контейнера. Использовать при недоступности ссылки
+    /// </summary>
+    /// <param name="parent"> Родительский элемент</param>
+    /// <param name="name"> Имя элемента</param>
+    /// <typeparam name="T">Тип искомого элемента</typeparam>
+    /// <returns></returns>
+    public static T FindjChildByName<T>(JChildContainer parent, string name) where T : JControl => parent.jChildren.OfType<T>().FirstOrDefault(child => child.Name == name);
 }
