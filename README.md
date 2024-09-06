@@ -1,6 +1,7 @@
 # Xamlade
 
-![](https://i.postimg.cc/CxntPGB6/Xamlade2.png)
+![](Xamlade.png)
+
 ### You can support the project by donating to the following wallets:
 ### BTC: 1D8a6raKEGb7koaszYNys3bzecfWVHc4tT
 ### TON: UQDhp6tiqGEFjN4lwWxkjIMYtpsBdrN-76ijICsWdK44pHoy
@@ -10,7 +11,7 @@
 
 ## RELEASE XX.09.2024
 
-05.09.2024 проект не брошен.
+06.09.2024 проект не брошен.
 Мы всё ближе и ближе к релизу!
 Разработка идёт по мере возможности...
 Изменения в ветке Development
