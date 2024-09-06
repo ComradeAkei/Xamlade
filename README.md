@@ -1,11 +1,12 @@
 # Xamlade
 
 ![](Xamlade.png)
+# PLEASE CONTRIBUTE TO XAMLADE!!! (W_W)'
 
 ### You can support the project by donating to the following wallets:
-### BTC: 1D8a6raKEGb7koaszYNys3bzecfWVHc4tT
-### TON: UQDhp6tiqGEFjN4lwWxkjIMYtpsBdrN-76ijICsWdK44pHoy
-
+### BTC: 1LN9Cyk5BGZqvCnJ1sjQrZUsQYgZwfmEFH
+### TON: UQAT4y-Y7cQutoMDsBcBvcS3H9S5vytslIdGLMZPhuS72y8R
+## The project is being developed by a single person who is very eager to help the community in creating a visual XAML editor.
 ## Визуальный редактор для XAML Avalonia UI 
 ### В разработке. Ориентировочный релиз осенью 2024. 
 
