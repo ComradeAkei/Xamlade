@@ -1,0 +1,45 @@
+2024-09-07 00:04:45.198 +03:00 [INF] Starting log...
+2024-09-07 00:04:48.709 +03:00 [DBG] Finding descriptors for initialize
+2024-09-07 00:04:49.539 +03:00 [DBG] Queueing "Serial":initialize:0 request for processing
+2024-09-07 00:04:49.651 +03:00 [DBG] Starting: Processing request initialize 0
+2024-09-07 00:04:49.686 +03:00 [DBG] Starting: Routing Request (0) initialize
+2024-09-07 00:04:49.734 +03:00 [VRB] Converting params for Request (0) initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-09-07 00:04:49.738 +03:00 [VRB] Converting params for Notification initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-09-07 00:04:50.707 +03:00 [INF] GetRegistrationOptions method
+2024-09-07 00:04:50.952 +03:00 [VRB] Response value was OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializeResult
+2024-09-07 00:04:50.961 +03:00 [DBG] Finished: Routing Request (0) initialize in 1274ms
+2024-09-07 00:04:50.962 +03:00 [DBG] Finished: Processing request initialize 0 in 1299ms
+2024-09-07 00:04:51.148 +03:00 [DBG] Finding descriptors for initialized
+2024-09-07 00:04:51.150 +03:00 [DBG] Queueing "Serial":initialized request for processing
+2024-09-07 00:04:51.176 +03:00 [DBG] Starting: Processing notification initialized
+2024-09-07 00:04:51.183 +03:00 [DBG] Starting: Routing Notification initialized
+2024-09-07 00:04:51.183 +03:00 [VRB] Converting params for Notification initialized to OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializedParams
+2024-09-07 00:04:51.347 +03:00 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
+2024-09-07 00:04:51.447 +03:00 [DBG] Finding descriptors for textDocument/didOpen
+2024-09-07 00:04:51.449 +03:00 [DBG] Finished: Routing Notification initialized in 265ms
+2024-09-07 00:04:51.449 +03:00 [DBG] Finished: Processing notification initialized in 272ms
+2024-09-07 00:04:51.471 +03:00 [VRB] Created attribute xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml
+2024-09-07 00:04:51.474 +03:00 [VRB] Looking for handler for descriptors textDocument/didOpen
+2024-09-07 00:04:51.474 +03:00 [VRB] Checking handler textDocument/didOpen:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-09-07 00:04:51.475 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentOpenRegistrationOptions
+2024-09-07 00:04:51.475 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-09-07 00:04:51.484 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-09-07 00:04:51.484 +03:00 [DBG] Queueing "Serial":textDocument/didOpen request for processing
+2024-09-07 00:04:51.484 +03:00 [DBG] Starting: Processing notification textDocument/didOpen
+2024-09-07 00:04:51.485 +03:00 [DBG] Starting: Routing Notification textDocument/didOpen
+2024-09-07 00:04:51.485 +03:00 [VRB] Converting params for Notification textDocument/didOpen to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams
+2024-09-07 00:04:51.488 +03:00 [DBG] Finished: Routing Notification textDocument/didOpen in 3ms
+2024-09-07 00:04:51.488 +03:00 [DBG] Finished: Processing notification textDocument/didOpen in 3ms
+2024-09-07 00:05:20.166 +03:00 [DBG] Finding descriptors for shutdown
+2024-09-07 00:05:20.167 +03:00 [DBG] Queueing "Serial":shutdown:1 request for processing
+2024-09-07 00:05:20.167 +03:00 [DBG] Starting: Processing request shutdown 1
+2024-09-07 00:05:20.167 +03:00 [DBG] Starting: Routing Request (1) shutdown
+2024-09-07 00:05:20.167 +03:00 [VRB] Converting params for Request (1) shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-09-07 00:05:20.168 +03:00 [VRB] Converting params for Notification shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-09-07 00:05:20.190 +03:00 [VRB] Response value was null
+2024-09-07 00:05:20.193 +03:00 [DBG] Finished: Routing Request (1) shutdown in 25ms
+2024-09-07 00:05:20.193 +03:00 [DBG] Finished: Processing request shutdown 1 in 25ms
+2024-09-07 00:05:20.212 +03:00 [VRB] Could not write to output handler, perhaps serialization failed?
+System.Threading.Channels.ChannelClosedException: The channel has been closed.
+   at System.Threading.Channels.AsyncOperation`1.GetResult(Int16 token)
+   at OmniSharp.Extensions.JsonRpc.OutputHandler.ProcessOutputStream(CancellationToken cancellationToken)

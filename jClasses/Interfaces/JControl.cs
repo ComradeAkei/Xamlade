@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -7,26 +10,37 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Xamlade.Extensions;
+using Xamlade.LinkWorkers;
 
 namespace Xamlade.jClasses;
 
-public interface JControl
+public interface JControl : JProperties
 {
-    
+    public Beholder Beholder { get; set; }
+    public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public bool IsSelected => (this as JSelectable)?.selectionBorder.IsVisible ?? false;
-    public JChildContainer? jParent { get; set; }
     
+    protected JChildContainer? _jParent { get; set; }
     
+    public JChildContainer? jParent
+    {
+        get => _jParent;
+        set
+        {
+            _jParent = value;
+            AfterParentSet();
+        }
+    }
+
+
     public string Type { get; }
-    
-    public mTreeViewItem? mTreeItem { get; set; }
-    
+
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
 
     // Устанавливает фон элемента
     IBrush? Background { get; set; }
-    
+
 
     // Указывает, активен ли элемент для взаимодействия с пользователем
     bool IsEnabled { get; set; }
@@ -64,13 +78,17 @@ public interface JControl
     object? DataContext { get; set; }
 
     // Устанавливает уникальное имя элемента
+    /*  public string? Name
+      {
+          get => this.Name;
+          set { this.Beholder.mTreeItem.Name = value; }
+      }
+  */
     public string? Name { get; set; }
-    
     public bool IsPressed { get; set; }
-    
+
     public Rect Bounds { get; }
-    // Позволяет присваивать один или несколько CSS-классов элементу
-    // Classes Classes { get; set; }
+
 
     public event EventHandler<PointerEventArgs>? PointerEntered;
     public event EventHandler<PointerEventArgs>? PointerExited;
@@ -79,49 +97,57 @@ public interface JControl
     public event EventHandler<PointerReleasedEventArgs>? PointerReleased;
     public event EventHandler<KeyEventArgs>? KeyDown;
     public event EventHandler<KeyEventArgs>? KeyUp;
-
-
+    public event EventHandler<AvaloniaPropertyChangedEventArgs>? PropertyChanged;
     
-    
+
+    private void AfterParentSet()
+    {
+        if ((this as JControl)?.jParent is not { } parent) return;
+        xPropertiesGroup["container"].Clear();
+        foreach (var kvp in ((jParent as JChildContainer).GetType()
+                     .GetProperty("ContainerSetProperties", BindingFlags.Public | BindingFlags.Static)
+                     ?.GetValue(jParent)) as Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>)
+            SpecialSetDelegates.TryAdd(kvp.Key, kvp.Value);
+        AddContainerProperties();
+        AddSpecialProperties();
+        (this as JControl).Beholder.PropListItemsInit();
+    }
+
     public void SetParent(JChildContainer parent)
     {
-        if (parent == null) return;
+        if (parent is null) return;
         if (this.Name == "MainCanvas") return;
-        double top = 0;
-        double left = 0;
-        if (this.jParent != null)
-        {
-            if ((this).jParent is jCanvas)
-            {
-                top = jCanvas.GetTop(this);
-                left = jCanvas.GetLeft(this);
-            }
-            this.jParent.RemoveChild(this);
-        }
+        this.jParent?.RemoveChild(this);
         parent.AddChild(this);
     }
-    
-    
+
 
     public bool Focus(NavigationMethod method = NavigationMethod.Unspecified,
         KeyModifiers keyModifiers = KeyModifiers.None);
-   
+
     public void Dispose()
     {
-        if(this.Name == "MainCanvas") return;
-       
+        if (this.Name == "MainCanvas") return;
+
         //   mTreeItem.element=null;
-        this.mTreeItem = null;
+        this.Beholder.mTreeItem = null;
         var parent = this.jParent;
-        if(jParent != null)
+        if (jParent != null)
             jParent.RemoveChild(this);
-        Console.WriteLine(this.Name+" Disposed");
+        Console.WriteLine(this.Name + " Disposed");
         Reflector.SetName(null, this);
-       
     }
 
-    public string? ToString()
+    public string? ToString() =>
+            $"Type: {Type}, Name: {Name}, IsSelected: {IsSelected}, IsEnabled: {IsEnabled}, " +
+            $"IsVisible: {IsVisible}, DataContext: {DataContext}, Bounds: {Bounds}";
+
+    public void JControlInit()
     {
-        return $"Type: {Type}, Name: {Name}, IsSelected: {IsSelected}, IsEnabled: {IsEnabled}, IsVisible: {IsVisible}, DataContext: {DataContext}, Bounds: {Bounds}";
+        InitProperties();
+        if (this is JChildContainer container)
+            container.InitContainerProperties();
+        //СОБЫТИЕ ВЫЗЫВАЕТСЯ ДЛЯ БОЛЬШИНСТВА ИЗМЕНЕНИЙ ЗНАЧЕНИЙ ПОЛЕЙ AVALONIA UI! 
+        this.PropertyChanged += Beholder.OnPropertyChanged;
     }
 }

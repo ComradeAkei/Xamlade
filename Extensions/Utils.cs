@@ -50,14 +50,6 @@ public static class Utils
     {
         isDebugPanelActive = !isDebugPanelActive;
 
-        var comboBox = Workspace.FindMainCanvasChildByName<jComboBox>("ComboBox0");
-        var button = new jButton();
-        button.Content = $"NextGenIterator: {NextgenIterator++}";
-        button.Background = Brushes.Aqua;
-        button.Name = $"NextGenIterator: {NextgenIterator++}";
-
-        comboBox.Items.Add(button);
-
     }
 
     public static void PrintDebugMessage(string message)

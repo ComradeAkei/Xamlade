@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Avalonia;
@@ -15,12 +16,19 @@ using Avalonia.Layout;
 using Avalonia.LogicalTree;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Media.Immutable;
 using Avalonia.Styling;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using AvaloniaColorPicker;
+using Xamlade.ColorPicker;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
+using Xamlade.LinkWorkers;
+using Xamlade.ProgramWindow;
+using MyColorButton = Xamlade.ColorPicker.MyColorButton;
+using ColorPicker = AvaloniaColorPicker.ColorPicker;
+using Enum = System.Enum;
 
 // ReSharper disable All
 
@@ -63,151 +71,59 @@ public static class PropertiesControl
 
     private static SolidColorBrush GetColor(string color) => new(Color.Parse(color));
 
+    private static JControl? PropElement = null;
+
     public static void ShowProperties()
     {
-        try
-        {
-            PropListItems?.Clear();
-        }
-        catch
-        {
-        }
+        if (Equals(HierarchyControl.Selected.Beholder.element, Workspace.MainCanvas)) return;
 
-        if (Equals(HierarchyControl.Selected.element, Workspace.MainCanvas)) return;
+        if (PropElement != null && PropElement.Equals(HierarchyControl.Selected.Beholder.element))
+            return;
 
-        var type = HierarchyControl.Selected.element.GetType();
-        var props = type.GetProperties()
-            .Where(prop => !Constants.ExcludedWords.Contains(prop.Name));
+        PropElement = HierarchyControl.Selected.Beholder.element as JControl;
 
-        foreach (var prop in props)
-        {
-            var propType = type.GetProperty(prop.Name).PropertyType;
-            AddPropItem(prop.Name, prop.GetValue(HierarchyControl.Selected.element), propType);
-        }
-
-        AddSpecialProperties();
-        AddContainerProperties();
         if (PropListBox != null)
         {
-            typeof(ItemsControl)
-                .GetField("_items", BindingFlags.NonPublic | BindingFlags.Instance)
-                ?.SetValue(PropListBox, PropListItems);
-        }
-    }
+            // Отключаем виртуализацию
+            PropListBox.ItemsPanel = new FuncTemplate<Panel>(() => new StackPanel());
 
-    private static void AddSpecialProperties()
-    {
-        var obj = HierarchyControl.Selected.element;
-        if (obj.jParent is null) return;
-
-        var elementType = HierarchyControl.Selected.element.GetType();
-
-        var listItem = new ListBoxItem
-        {
-            Content = new Border
+            // Очистите текущий источник данных
+            PropListBox.ItemsSource = null;
+            // Обновляем ItemsSource в главном UI потоке
+            Dispatcher.UIThread.InvokeAsync(() =>
             {
-                BorderThickness = new Thickness(0, 0, 0, 1),
-                BorderBrush = GetColor("#8897FF"),
-                Child = new DockPanel
-                {
-                    Height = 40,
-                    HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
-                    VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                    Children =
-                    {
-                        new TextBlock
-                        {
-                            Text = " " + "Специальные",
-                            Foreground = GetColor("#9cd638"),
-                            FontSize = 20,
-                            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-                            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center
-                        }
-                    }
-                }
-            }
-        };
-        PropListItems?.Add(listItem);
-
-
-        switch (elementType.UnderlyingSystemType.Name)
-        {
-            case "jGrid":
-                AddPropItem("Rows", (obj as jGrid).RowDefinitions.Count, typeof(int));
-                AddPropItem("Columns", (obj as jGrid).ColumnDefinitions.Count, typeof(int));
-                break;
-            case "jComboBox" :
-                SetAddButton();
-                break;
-            default:
-                PropListItems?.Remove(listItem);
-                break;
-        }
-    }
-
-  
-    private static void SetAddButton()
-    {
-        var obj = HierarchyControl.Selected.element;
-
-        var button = new Button
-        {
-            Content = "Добавить элемент",
-            Foreground = GetColor("#9cd638"),
-            FontSize = 20,
-            HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
-            VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-        };
-        if (obj is jComboBox comboBox)
-        {
-            var addItemListItem = new ListBoxItem
-            {
-                Content = new Border
-                {
-                    BorderThickness = new Thickness(0, 0, 0, 1),
-                    BorderBrush = GetColor("#8897FF"),
-                    Child = new DockPanel
-                    {
-                        Height = 40,
-                        HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch,
-                        VerticalAlignment = Avalonia.Layout.VerticalAlignment.Center,
-                        Children =
-                        {
-                            button
-                        }
-                    }
-                }
-            };
-            button.AddHandler(Button.ClickEvent,
-                (sender, e) =>
-                {
-                    var item = new jComboBoxItem(obj.Name + $"Item{comboBox.Items.Count}");
-                    item.Click+= (_, _) =>
-                    {
-                        comboBox.SelectedItem = item;
-                        var _obj = item.Content as Control;
-                        if (_obj is not null)
-                            Reflector.SetXYBoundsZero(_obj);
-                    };
-
-                    comboBox.AddChild(item);
-                    HierarchyControl.Selected.Items.Add(item.mTreeItem);
-                    comboBox.mTreeItem.IsExpanded = true;
-                    var data = new Object[] { comboBox, item, item.mTreeItem };
-                    History.AddHistoryItem(new History.Change(item, "Created", data));
-                });
-            PropListItems?.Add(addItemListItem);
+                PropListBox.ItemsSource = HierarchyControl.Selected.Beholder.PropListItems;
+            });
         }
     }
     
-    private static void AddContainerProperties()
+    //Вернуть private
+    //ДОДЕЛАТЬ!!!!!
+    public static ListBoxItem CreatePropItem(string name, Property prop)
     {
-        var obj = HierarchyControl.Selected.element;
-        if (obj.jParent is null) return;
+        if (name == "main") return null;
+        else if (name == "specials") return SpecialsLabel("Специальные");
+        else if (name == "container") return SpecialsLabel(prop.Value?.ToString() ?? "Контейнер");
 
-        var ContainerType = HierarchyControl.Selected.element.jParent.GetType();
+        if (name == "ColumnDefinitions" || name == "RowDefinitions") return null;
+        var listItem = new ListBoxItem
+        {
+            Content = new Border
+            {
+                BorderThickness = new Thickness(0, 0, 0, 1),
+                BorderBrush = GetColor("#8897FF"),
+                Child = CreatePropertyPanel(name, prop.Value, prop.Type)
+            }
+        };
+        listItem.Name = name;
+        return listItem;
+        //beholder.PropListItems.Add(listItem);
+        //PropListItems?.Add(listItem);
+    }
 
-        var parentPropertiesListItem = new ListBoxItem
+    public static ListBoxItem SpecialsLabel(string LABEL)
+    {
+        var listItem = new ListBoxItem
         {
             Content = new Border
             {
@@ -222,7 +138,7 @@ public static class PropertiesControl
                     {
                         new TextBlock
                         {
-                            Text = " Родительский " + ContainerType.UnderlyingSystemType.Name.Substring(1),
+                            Text = " " + LABEL,
                             Foreground = GetColor("#9cd638"),
                             FontSize = 20,
                             HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Center,
@@ -232,91 +148,9 @@ public static class PropertiesControl
                 }
             }
         };
-        PropListItems?.Add(parentPropertiesListItem);
-
-
-        
-
-        
-
-
-        switch (ContainerType.UnderlyingSystemType.Name)
-        {
-        
-            case "jDockPanel":
-                AddPropItem("Docked", DockPanel.GetDock(obj as Control), typeof(Dock));
-                break;
-
-            case "jCanvas":
-
-                AddPropItem("Left", Double.IsNaN(Canvas.GetLeft(obj as Control)) ? 0 : Canvas.GetLeft(obj as Control),
-                    typeof(double));
-                AddPropItem("Top", Double.IsNaN(Canvas.GetTop(obj as Control)) ? 0 : Canvas.GetTop(obj as Control),
-                    typeof(double));
-                break;
-
-            case "jGrid":
-                var grid = obj.jParent as jGrid;
-                AddPropItem("Row", Grid.GetRow(obj as Control), typeof(int));
-                AddPropItem("Column", Grid.GetColumn(obj as Control), typeof(int));
-                AddPropItem("RowSpan", Grid.GetRowSpan(obj as Control), typeof(int));
-                AddPropItem("ColumnSpan", Grid.GetColumnSpan(obj as Control), typeof(int));
-                AddPropItem("RowHeight", grid!.RowDefinitions[Grid.GetRow(obj as Control)].Height.Value,
-                    typeof(double));
-                AddPropItem("RowType", grid!.RowDefinitions[Grid.GetRow(obj as Control)].Height.GridUnitType,
-                    typeof(GridUnitType));
-                AddPropItem("ColumnWidth", grid!.ColumnDefinitions[Grid.GetColumn(obj as Control)].Width.Value,
-                    typeof(double));
-                AddPropItem("ColumnType", grid!.ColumnDefinitions[Grid.GetColumn(obj as Control)].Width.GridUnitType,
-                    typeof(GridUnitType));
-                break;
-
-            case "jRelativePanel":
-                AddPropItem("AlignLeftWithPanel", RelativePanel.GetAlignLeftWithPanel(obj as Control), typeof(bool));
-                AddPropItem("AlignRightWithPanel", RelativePanel.GetAlignRightWithPanel(obj as Control), typeof(bool));
-                AddPropItem("AlignTopWithPanel", RelativePanel.GetAlignTopWithPanel(obj as Control), typeof(bool));
-                AddPropItem("AlignBottomWithPanel", RelativePanel.GetAlignBottomWithPanel(obj as Control),
-                    typeof(bool));
-                AddPropItem("AlignHorizontalCenterWithPanel",
-                    RelativePanel.GetAlignHorizontalCenterWithPanel(obj as Control), typeof(bool));
-                AddPropItem("AlignVerticalCenterWithPanel",
-                    RelativePanel.GetAlignVerticalCenterWithPanel(obj as Control), typeof(bool));
-                AddPropItem("LeftOf", RelativePanel.GetLeftOf(obj as Control), typeof(Control));
-                AddPropItem("RightOf", RelativePanel.GetRightOf(obj as Control), typeof(Control));
-                AddPropItem("Above", RelativePanel.GetAbove(obj as Control), typeof(Control));
-                AddPropItem("Below", RelativePanel.GetBelow(obj as Control), typeof(Control));
-                AddPropItem("AlignLeftWith", RelativePanel.GetAlignLeftWith(obj as Control), typeof(Control));
-                AddPropItem("AlignRightWith", RelativePanel.GetAlignRightWith(obj as Control), typeof(Control));
-                AddPropItem("AlignTopWith", RelativePanel.GetAlignTopWith(obj as Control), typeof(Control));
-                AddPropItem("AlignBottomWith", RelativePanel.GetAlignBottomWith(obj as Control), typeof(Control));
-                AddPropItem("AlignHorizontalCenterWith", RelativePanel.GetAlignHorizontalCenterWith(obj as Control),
-                    typeof(Control));
-                AddPropItem("AlignVerticalCenterWith", RelativePanel.GetAlignVerticalCenterWith(obj as Control),
-                    typeof(Control));
-                break;
-
-            // Add cases for other panel types as needed
-        }
+        return listItem;
     }
 
-    //Вернуть private
-    public static void AddPropItem(string name, object value, Type type)
-    {
-        if (name == "ColumnDefinitions" || name == "RowDefinitions") return;
-        var listItem = new ListBoxItem
-        {
-            Content = new Border
-            {
-                BorderThickness = new Thickness(0, 0, 0, 1),
-                BorderBrush = GetColor("#8897FF"),
-                Child = CreatePropertyPanel(name, value, type)
-            }
-        };
-        listItem.Name = name;
-
-        PropListItems?.Add(listItem);
-        //PropListItems?.Add(listItem);
-    }
 
     private static DockPanel CreatePropertyPanel(string name, object value, Type type)
     {
@@ -357,7 +191,8 @@ public static class PropertiesControl
         {
             return CreateTextBox(value?.ToString(), OnPropertyChanged);
         }
-        else if (type == typeof(IBrush))
+        else if (type == typeof(IBrush) || type == typeof(ImmutableSolidColorBrush) ||
+                 type == typeof(Avalonia.Media.SolidColorBrush))
         {
             return CreateColorPanel(value);
         }
@@ -406,6 +241,7 @@ public static class PropertiesControl
         var textBox = sender as TextBox;
         var listBoxItem = textBox.FindLogicalAncestorOfType<ListBoxItem>();
         var listBox = listBoxItem.FindLogicalAncestorOfType<ListBox>();
+        if (listBox is null) return;
         int index = listBox.Items.IndexOf(listBoxItem);
 
         TextBox nextTextBox;
@@ -457,15 +293,16 @@ public static class PropertiesControl
                 FontWeight = FontWeight.Normal
             };
 
-            var colorButton = new ColorButton
+            var MyColorButton = new MyColorButton
             {
                 Color = Color.Parse(value.ToString())
             };
-            colorButton.PropertyChanged += OnColorChanged;
+
+            MyColorButton.PropertyChanged += OnColorChanged;
 
             stackPanel.HorizontalAlignment = HorizontalAlignment.Right;
             stackPanel.Children.Add(textBlock);
-            stackPanel.Children.Add(colorButton);
+            stackPanel.Children.Add(MyColorButton);
         }
 
         DockPanel.SetDock(stackPanel, Dock.Right);
@@ -577,330 +414,30 @@ public static class PropertiesControl
             var targetFilePath = Path.Combine("assets", fileName);
             File.Copy(result[0], targetFilePath, true);
 
-            var jImage = (jImage)HierarchyControl.Selected.element;
+            var jImage = (jImage)HierarchyControl.Selected.Beholder.element;
             jImage.jImageSource = $@"assets/{fileName}";
             jImage.Source = new Bitmap(jImage.jImageSource);
         }
     }
 
+    //Посылать делегат (выполнено)
     private static void SpecialPropertySet(string propName, string value)
     {
-        var element = HierarchyControl.Selected.element as Control;
-        if (element == null) return;
+        var element = HierarchyControl.Selected.Beholder.element as JControl;
+        if (element == null) 
+            return;
 
-        switch (propName)
+        // Если строка может быть преобразована в число, передаем как int
+        if (Int32.TryParse(value, out int val))
         {
-            case "Rows":
-            {
-                var grid = element as jGrid;
-                var rows = grid.RowDefinitions.Count;
-                int.TryParse(value, out int newRows);
-
-                if (rows == newRows)
-                {
-                    return;
-                }
-
-                if (newRows > rows)
-                {
-                    for (int i = rows; i < newRows; i++)
-                    {
-                        grid.RowDefinitions.Add(new mRowDefinition(grid, 100));
-                    }
-                }
-                else
-                {
-                    // Создаем список строк с детьми
-                    var rowsWithChildren = new List<int>();
-                    foreach (var child in grid.Children)
-                    {
-                        int row = Grid.GetRow(child);
-                        if (!rowsWithChildren.Contains(row))
-                        {
-                            rowsWithChildren.Add(row);
-                        }
-                    }
-
-                    // Удаляем строки, не затрагивая строки с детьми
-                    for (int i = rows - 1; i >= newRows; i--)
-                    {
-                        if (!rowsWithChildren.Contains(i))
-                        {
-                            grid.RowDefinitions.RemoveAt(i);
-                        }
-                    }
-                }
-            }
-                break;
-            case "Columns":
-            {
-                var grid = element as jGrid;
-                var columns = grid.ColumnDefinitions.Count;
-                int.TryParse(value, out int newColumns);
-
-                if (columns == newColumns)
-                {
-                    return;
-                }
-
-                if (newColumns > columns)
-                {
-                    for (int i = columns; i < newColumns; i++)
-                    {
-                        grid.ColumnDefinitions.Add(new mColumnDefinition(grid, 100));
-                    }
-                }
-                else
-                {
-                    // Создаем список колонок с детьми
-                    var columnsWithChildren = new List<int>();
-                    foreach (var child in grid.Children)
-                    {
-                        int column = Grid.GetColumn(child);
-                        if (!columnsWithChildren.Contains(column))
-                        {
-                            columnsWithChildren.Add(column);
-                        }
-                    }
-                    
-                    for (int i = columns - 1; i >= newColumns; i--)
-                    {
-                        if (!columnsWithChildren.Contains(i))
-                        {
-                            grid.ColumnDefinitions.RemoveAt(i);
-                        }
-                    }
-                }
-                
-            }
-                break;
+            element.SpecialSetDelegates[propName](element, val);
         }
-    }
-
-    private static void ContainerPropertySet(string propName, string value)
-    {
-        var element = HierarchyControl.Selected.element;
-        if (element == null) return;
-
-        switch (propName)
+        else
         {
-            case "Docked":
-                if (Enum.TryParse(value, out Dock dock))
-                {
-                    jDockPanel.SetDock(element, dock);
-                }
-
-                break;
-
-            case "Left":
-                if (double.TryParse(value, out double left))
-                {
-                    jCanvas.SetLeft(element, left);
-                }
-
-                break;
-
-            case "Top":
-                if (double.TryParse(value, out double top))
-                {
-                    jCanvas.SetTop(element, top);
-                }
-
-                break;
-
-            case "Right":
-                if (double.TryParse(value, out double right))
-                {
-                    jCanvas.SetRight(element, right);
-                }
-
-                break;
-
-            case "Bottom":
-                if (double.TryParse(value, out double bottom))
-                {
-                    jCanvas.SetBottom(element, bottom);
-                }
-
-                break;
-
-            case "Row":
-                if (int.TryParse(value, out int row))
-                {
-                    jGrid.SetRow(element, row);
-                }
-
-                break;
-
-            case "Column":
-                if (int.TryParse(value, out int column))
-                {
-                    jGrid.SetColumn(element, column);
-                }
-
-                break;
-
-            case "RowSpan":
-                if (int.TryParse(value, out int rowSpan))
-                {
-                    jGrid.SetRowSpan(element, rowSpan);
-                }
-
-                break;
-
-            case "ColumnSpan":
-                if (int.TryParse(value, out int columnSpan))
-                {
-                    jGrid.SetColumnSpan(element, columnSpan);
-                }
-
-                break;
-            case "RowHeight":
-            {
-                var grid = element.jParent as jGrid;
-                if (double.TryParse(value, out double height))
-                {
-                    var _Height = grid!.RowDefinitions[jGrid.GetRow(element)].Height;
-                    grid!.RowDefinitions[jGrid.GetRow(element)].Height = new GridLength(height, _Height.GridUnitType);
-                }
-            }
-                break;
-            case "ColumnWidth":
-            {
-                var grid = element.jParent as Grid;
-                if (double.TryParse(value, out double width))
-                {
-                    var _Width = grid!.ColumnDefinitions[jGrid.GetRow(element)].Width;
-                    grid!.RowDefinitions[jGrid.GetRow(element)].Height = new GridLength(width, _Width.GridUnitType);
-                }
-            }
-                break;
-            case "RowType":
-            {
-                var grid = element.jParent as Grid;
-                if (Enum.TryParse(value, out GridUnitType unitType))
-                {
-                    var _Height = grid!.RowDefinitions[jGrid.GetRow(element)].Height;
-                    grid!.RowDefinitions[jGrid.GetRow(element)].Height = new GridLength(_Height.Value, unitType);
-                }
-            }
-                break;
-
-            case "ColumnType":
-            {
-                var grid = element.jParent as jGrid;
-                if (Enum.TryParse(value, out GridUnitType unitType))
-                {
-                    var _Width = grid!.ColumnDefinitions[jGrid.GetColumn(element)].Width;
-                    grid!.ColumnDefinitions[jGrid.GetColumn(element)].Width = new GridLength(_Width.Value, unitType);
-                }
-            }
-                break;
-
-
-           /* case "AlignLeftWithPanel":
-                if (bool.TryParse(value, out bool alignLeftWithPanel))
-                {
-                    RelativePanel.SetAlignLeftWithPanel(element, alignLeftWithPanel);
-                }
-
-                break;
-
-            case "AlignRightWithPanel":
-                if (bool.TryParse(value, out bool alignRightWithPanel))
-                {
-                    RelativePanel.SetAlignRightWithPanel(element, alignRightWithPanel);
-                }
-
-                break;
-
-            case "AlignTopWithPanel":
-                if (bool.TryParse(value, out bool alignTopWithPanel))
-                {
-                    RelativePanel.SetAlignTopWithPanel(element, alignTopWithPanel);
-                }
-
-                break;
-
-            case "AlignBottomWithPanel":
-                if (bool.TryParse(value, out bool alignBottomWithPanel))
-                {
-                    RelativePanel.SetAlignBottomWithPanel(element, alignBottomWithPanel);
-                }
-
-                break;
-
-            case "AlignHorizontalCenterWithPanel":
-                if (bool.TryParse(value, out bool alignHorizontalCenterWithPanel))
-                {
-                    RelativePanel.SetAlignHorizontalCenterWithPanel(element, alignHorizontalCenterWithPanel);
-                }
-
-                break;
-
-            case "AlignVerticalCenterWithPanel":
-                if (bool.TryParse(value, out bool alignVerticalCenterWithPanel))
-                {
-                    RelativePanel.SetAlignVerticalCenterWithPanel(element, alignVerticalCenterWithPanel);
-                }
-
-                break;
-
-            // Additional cases for other properties related to RelativePanel
-            case "LeftOf":
-            case "RightOf":
-            case "Above":
-            case "Below":
-            case "AlignLeftWith":
-            case "AlignRightWith":
-            case "AlignTopWith":
-            case "AlignBottomWith":
-            case "AlignHorizontalCenterWith":
-            case "AlignVerticalCenterWith":
-                //ИСПРАИТЬ
-                var relativeElement = new Control(); ///
-                if (relativeElement != null)
-                {
-                    switch (propName)
-                    {
-                        case "LeftOf":
-                            RelativePanel.SetLeftOf(element, relativeElement);
-                            break;
-                        case "RightOf":
-                            RelativePanel.SetRightOf(element, relativeElement);
-                            break;
-                        case "Above":
-                            RelativePanel.SetAbove(element, relativeElement);
-                            break;
-                        case "Below":
-                            RelativePanel.SetBelow(element, relativeElement);
-                            break;
-                        case "AlignLeftWith":
-                            RelativePanel.SetAlignLeftWith(element, relativeElement);
-                            break;
-                        case "AlignRightWith":
-                            RelativePanel.SetAlignRightWith(element, relativeElement);
-                            break;
-                        case "AlignTopWith":
-                            RelativePanel.SetAlignTopWith(element, relativeElement);
-                            break;
-                        case "AlignBottomWith":
-                            RelativePanel.SetAlignBottomWith(element, relativeElement);
-                            break;
-                        case "AlignHorizontalCenterWith":
-                            RelativePanel.SetAlignHorizontalCenterWith(element, relativeElement);
-                            break;
-                        case "AlignVerticalCenterWith":
-                            RelativePanel.SetAlignVerticalCenterWith(element, relativeElement);
-                            break;
-                    }
-                }
-
-                break;*/
-
-            default:
-                SpecialPropertySet(propName, value);
-                break;
+            //TODO разобаться с ENUMами
+            var propertyType = element.xPropertiesGroup["container"][propName].GetType();
+            var enumValue = Enum.Parse(propertyType, value);
+            element.SpecialSetDelegates[propName](element, (int)enumValue);
         }
     }
 
@@ -911,11 +448,11 @@ public static class PropertiesControl
         Type propType;
         try
         {
-            propType = HierarchyControl.Selected.element.GetType().GetProperty(propName).PropertyType;
+            propType = HierarchyControl.Selected.Beholder.element.GetType().GetProperty(propName).PropertyType;
         }
         catch
         {
-            ContainerPropertySet(propName, comboBox.SelectedItem.ToString());
+            SpecialPropertySet(propName, comboBox.SelectedItem.ToString());
             return;
         }
 
@@ -925,19 +462,21 @@ public static class PropertiesControl
 
     private static void OnColorChanged(object sender, AvaloniaPropertyChangedEventArgs e)
     {
-        if (e.Property == ColorButton.ColorProperty)
+        if (e.Property == MyColorButton.ColorProperty)
         {
-            var colorButton = (ColorButton)sender;
-            var propName = ((TextBlock)((DockPanel)colorButton.Parent.Parent).Children[0]).Text;
+            var MyColorButton = (MyColorButton)sender;
 
-            var newColor = new SolidColorBrush(colorButton.Color);
+
+            var propName = ((TextBlock)((DockPanel)MyColorButton.Parent.Parent).Children[0]).Text;
+            var _color = MyColorButton.Color;
+            var newColor = new SolidColorBrush(MyColorButton.Color);
             SetPropertyValue(propName, newColor);
 
-            var textBlock = ((StackPanel)colorButton.Parent).Children[0] as TextBlock;
-            if (textBlock != null)
-            {
-                textBlock.Text = colorButton.Color.ToString();
-            }
+            var textBlock = ((StackPanel)MyColorButton.Parent).Children[0] as TextBlock;
+
+            textBlock.Text = MyColorButton.Color.ToString();
+            MyColorButton = new MyColorButton();
+            MyColorButton.Color = _color;
         }
     }
 
@@ -951,7 +490,7 @@ public static class PropertiesControl
 
     private static void SetPropertyValue(string propName, object value, TextBox textBox = null)
     {
-        var element = HierarchyControl.Selected.element;
+        var element = HierarchyControl.Selected.Beholder.element;
 
         PropertyInfo? prop;
         try
@@ -960,13 +499,13 @@ public static class PropertiesControl
         }
         catch
         {
-            ContainerPropertySet(propName, value.ToString());
+            SpecialPropertySet(propName, value.ToString());
             return;
         }
 
         if (prop == null)
         {
-            ContainerPropertySet(propName, value.ToString());
+            SpecialPropertySet(propName, value.ToString());
             return;
         }
 

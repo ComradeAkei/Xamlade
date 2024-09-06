@@ -3,32 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
 
 namespace Xamlade.jClasses;
 
 public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JControl>, JSelectable
 {
+    
+    public Beholder Beholder { get; set; }
+    public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     protected override Type StyleKeyOverride => typeof(Border);
     
     private string controlType => jElementType.Border.ToString();
     public mBorder selectionBorder { get; set; }
-    public JChildContainer? jParent { get; set; }
+
+
+    public JChildContainer? _jParent { get; set; }
     public string Type => controlType;
-    public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }
     public bool IsPressed { get; set; }
     public event EventHandler<RoutedEventArgs>? Click;
-    
+
+    public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
+    public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
     public List<JControl> jChildren { get; }
 
     public jBorder()
     {
+        SpecialSetDelegates = new();
         jChildren = new List<JControl>();
         Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
-        mTreeItem = new mTreeViewItem(this);
     }
     
     
@@ -38,7 +45,7 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
        
         
         var jParent = child.jParent;
-        var mTreeItem1 = child.mTreeItem;
+        var mTreeItem1 = child.Beholder.mTreeItem;
         if (jChildren.Any())
             return;
         jParent.AddChild(this);
@@ -52,12 +59,12 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
         child.jParent = this;
         Child = (Control)child;
      
-        (jParent as JControl).mTreeItem.Items.Remove(mTreeItem1);
-        this.mTreeItem = new mTreeViewItem(this);
-        this.mTreeItem.IsExpanded = true;
-        this.mTreeItem.Header = $"{child.Name} border";
-        (jParent as JControl).mTreeItem.Items.Add(this.mTreeItem);
-        this.mTreeItem.Items.Add(mTreeItem1);
+        (jParent as JControl).Beholder.mTreeItem.Items.Remove(mTreeItem1);
+        this.Beholder.mTreeItem = new mTreeViewItem(this);
+        this.Beholder.mTreeItem.IsExpanded = true;
+        this.Beholder.mTreeItem.Header = $"{child.Name} border";
+        (jParent as JControl).Beholder.mTreeItem.Items.Add(this.Beholder.mTreeItem);
+        this.Beholder.mTreeItem.Items.Add(mTreeItem1);
         Child.IsHitTestVisible = false;
         
 
@@ -68,9 +75,9 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
     public void Remove()
     {
         double top = 0, left = 0;
-        var jParent = this.jParent;
+        var jParent = (this as JControl).jParent;
         var child = this.jChildren[0];
-        var mTreeItem1 = child.mTreeItem;
+        var mTreeItem1 = child.Beholder.mTreeItem;
         (child as Control).IsHitTestVisible = true;
         if (jParent is jCanvas)
         {
@@ -87,17 +94,29 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
             Canvas.SetTop(child as Control, top);
             Canvas.SetLeft(child as Control, left);
         }
-        this.mTreeItem.Items.Remove(mTreeItem1);
-        (jParent as JControl).mTreeItem.Items.Add(mTreeItem1);
-        (jParent as JControl).mTreeItem.Items.Remove(mTreeItem);
+        this.Beholder.mTreeItem.Items.Remove(mTreeItem1);
+        (jParent as JControl).Beholder.mTreeItem.Items.Add(mTreeItem1);
+        (jParent as JControl).Beholder.mTreeItem.Items.Remove(Beholder.mTreeItem);
 
     }
     public void RemoveChild(JControl? child = null)
     {
         jChildren.Clear();
-        jParent.RemoveChild(this);
+        
+        (this as JControl).jParent.RemoveChild(this);
         Child = null;
     }
-    
-    
+
+    public void InitContainerProperties()
+    {
+        
+    }
+
+
+    public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
+
+    public void AddSpecialProperties()
+    {
+        return;
+    }
 }

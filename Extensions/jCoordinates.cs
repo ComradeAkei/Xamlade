@@ -1,8 +1,8 @@
 namespace Xamlade.Extensions;
 
-public record jCoordinates(double X, double Y)
+public record jCoordinates(int X, int Y)
 {
-    public double X { get; set; } = X;
-    public double Y { get; set; } = Y;
+    public int X { get; set; } = X;
+    public int Y { get; set; } = Y;
         
 }

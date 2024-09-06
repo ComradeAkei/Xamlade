@@ -163,7 +163,7 @@ public static class History
         
        //ЧО ЗА ХУЙНЯ
     //    HierarchyControl.HierarchyTree.SelectedItem = state.jObject.mTreeItem;
-        HierarchyControl.Selected = state.jObject.mTreeItem;
+        HierarchyControl.Selected = state.jObject.Beholder.mTreeItem;
         
         switch (state.FieldName)
         {
@@ -179,7 +179,7 @@ public static class History
                 return;
             case "Created" when (!mode):
             case "Removed" when (mode):
-                HierarchyControl.Selected.element = state.jObject;
+                HierarchyControl.Selected.Beholder.element = state.jObject;
                 Workspace.RemoveSelectedjElement();
                 HistoryOperationFlag = false;
                 return;
@@ -196,7 +196,7 @@ public static class History
             }
         }
 
-        var jElement_type = HierarchyControl.Selected.element.GetType();
+        var jElement_type = HierarchyControl.Selected.Beholder.element.GetType();
         var prop = jElement_type.GetProperty(state.FieldName);
         prop.SetValue(state.jObject, state.Value);
         HistoryOperationFlag = false;
@@ -215,14 +215,14 @@ public static class History
     {
         //Блок реанимации
         Reflector.SetName(mtree.Header.ToString(),element);
-        element.mTreeItem = mtree;
+        element.Beholder.mTreeItem = mtree;
         element.jParent = parent;
-        (parent as JControl).mTreeItem.Items.Add(mtree);
+        (parent as JControl).Beholder.mTreeItem.Items.Add(mtree);
         if(parent is jCanvas canvas)
-            canvas.AddChild(element,Canvas.GetTop(element as Control),Canvas.GetLeft(element as Control));
+            canvas.AddChild(element,jCanvas.GetTop(element),jCanvas.GetLeft(element));
         else parent.AddChild(element);
-        HierarchyControl.Selected = element.mTreeItem;
-        HierarchyControl.Selected = element.mTreeItem;
+        HierarchyControl.Selected = element.Beholder.mTreeItem;
+        HierarchyControl.Selected = element.Beholder.mTreeItem;
     }
     public static void REDO(object? sender, RoutedEventArgs e)
     {

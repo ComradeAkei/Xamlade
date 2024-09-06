@@ -10,6 +10,7 @@ using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
+using Xamlade.LinkWorkers;
 
 namespace Xamlade.FunctionalAreas;
 
@@ -24,15 +25,17 @@ public static class ElementGenerator
             return;
         }
 
-        if ((HierarchyControl.Selected.element is jBorder)) return;
-        if ((HierarchyControl.Selected.element is jComboBox)) return;
-        if (!(HierarchyControl.Selected.element is JChildContainer parent)) return;
+        if ((HierarchyControl.Selected.Beholder.element is jBorder)) return;
+        if ((HierarchyControl.Selected.Beholder.element is jComboBox)) return;
+        if (!(HierarchyControl.Selected.Beholder.element is JChildContainer parent)) return;
 
 
         var elementType = Type.GetType("Xamlade.jClasses.j" + typeName);
         var element = (JControl)Activator.CreateInstance(elementType);
+        var element_beholder = new Beholder(element);
 
         element.Name = typeName + (Utils.NextgenIterator++);
+        Beholder.HandleNameUpdate(element);
         SetDefaultValues(element, parent as JControl);
         element.PointerEntered += Workspace.OnjControlPointerEntered;
         element.PointerExited += Workspace.OnjControlPointerExited;
@@ -45,8 +48,8 @@ public static class ElementGenerator
         parent.AddChild(element);
         var item = new mTreeViewItem(element);
         HierarchyControl.Selected.Items.Add(item);
-        (((JControl)(item.element.jParent))!).mTreeItem.IsExpanded = true;
-        var data = new Object[] { parent, element, element.mTreeItem };
+        (((JControl)(item.Beholder.element.jParent))!).Beholder.mTreeItem.IsExpanded = true;
+        var data = new Object[] { parent, element, element.Beholder.mTreeItem };
         History.AddHistoryItem(new History.Change(element, "Created", data));
         InitSelectionBorder(element as JSelectable);
     }
@@ -67,7 +70,7 @@ public static class ElementGenerator
         {
             if (Workspace.movable is null) return;
             if (Workspace.movable.Name == "MainCanvas") return;
-            if (HierarchyControl.Selected.element.jParent is jBorder) return;
+            if (HierarchyControl.Selected.Beholder.element.jParent is jBorder) return;
             GenerateBorder(Workspace.movable);
         }
     }
@@ -131,6 +134,7 @@ public static class ElementGenerator
                 grid.RowDefinitions.Add(new mRowDefinition(grid, 100));
                 grid.ColumnDefinitions.Add(new mColumnDefinition(grid, 100));
                 grid.ColumnDefinitions.Add(new mColumnDefinition(grid, 100));
+                grid.AddSpecialProperties();
             }
                 break;
             case "DockPanel":

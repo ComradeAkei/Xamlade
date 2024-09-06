@@ -66,7 +66,7 @@ public static class ImportXAML
             Canvas.SetTop(Workspace.MainCanvas.jChildren[i] as Control, canv_top[i]);
             Canvas.SetLeft(Workspace.MainCanvas.jChildren[i] as Control, canv_left[i]);
         }
-        Workspace.MainCanvas.mTreeItem.Items.Clear();
+        Workspace.MainCanvas.Beholder.mTreeItem.Items.Clear();
 
         Broadcast.RestoreBehavior();
         Broadcast.RestoreTree();
@@ -78,8 +78,8 @@ public static class ImportXAML
 
 
         if (element.Name == "MainCanvas") return;
-            element.mTreeItem = new mTreeViewItem(element);
-            element.mTreeItem.Header =element.Name;
+            element.Beholder.mTreeItem = new mTreeViewItem(element);
+            element.Beholder.mTreeItem.Header =element.Name;
             var parent = ((Control)element).Parent;
             
             element.SetParent((JChildContainer)parent);
@@ -232,12 +232,12 @@ public static class ImportXAML
         if (element is JChildContainer container)
         {
             foreach (var child in container.jChildren)
-                if (!element.mTreeItem.Items.Contains(child.mTreeItem))
-                    element.mTreeItem.Items.Add(child.mTreeItem);
+                if (!element.Beholder.mTreeItem.Items.Contains(child.Beholder.mTreeItem))
+                    element.Beholder.mTreeItem.Items.Add(child.Beholder.mTreeItem);
         }
 
-        HierarchyControl.Selected = Workspace.MainCanvas.mTreeItem;
-        Workspace.MainCanvas.mTreeItem.IsExpanded = true;
+        HierarchyControl.Selected = Workspace.MainCanvas.Beholder.mTreeItem;
+        Workspace.MainCanvas.Beholder.mTreeItem.IsExpanded = true;
     }
     public static async void DEXAMLIZE(object? sender, RoutedEventArgs e)
     {

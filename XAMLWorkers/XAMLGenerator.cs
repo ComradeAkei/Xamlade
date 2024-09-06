@@ -18,16 +18,18 @@ public static class XAMLGenerator
         if (element.jParent is null && element.Name != "MainCanvas") return "";
         if (element is MControl) return "";
         string getProperties = "";
-        Type type = element.GetType();
+        var type = element.GetType();
         var props = type.GetProperties();
-        ConstructorInfo? constructor = type.GetConstructor(new Type[] { });
-        var DefaultObject = constructor.Invoke(new object[] { });
+        var constructor = type.GetConstructor(new Type[] { });
+        var DefaultObject = constructor!.Invoke(new object[] { });
 
         foreach (var prop in props)
         {
             if ((element.Name == "MainCanvas") && prop.Name is "Width" or "Height") continue;
             if((element.Type == "ComboBoxItem") && (element as jComboBoxItem).jChildren.Count !=0 && prop.Name is "Content") continue;
             if (element.Type == "Border") continue;
+            
+            
             if (!Constants.ExcludedWords.Contains(prop.Name))
             {
                 if (prop.Name == "Source")

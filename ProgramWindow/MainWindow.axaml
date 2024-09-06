@@ -130,7 +130,7 @@
             <TabItem Name = "PropertiesPanel" Header="Свойства">
                 <ScrollViewer VerticalScrollBarVisibility="Hidden">
                     <StackPanel Name="PropertyPanel" Width="300" Background="#2B2B2B">
-                        <ListBox Name="PropListBox" Width="300" Background="#2B2B2B">
+                        <ListBox  Name="PropListBox" Width="300" Background="#2B2B2B">
                             <ListBox.Styles>
                                 <Style Selector="ListBoxItem">
                                     <Setter Property="Padding" Value="0" />

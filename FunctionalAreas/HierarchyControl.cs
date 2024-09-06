@@ -41,13 +41,13 @@ public static class HierarchyControl
         HierarchyTree.SelectionChanged += MainHierarchyTree_OnSelectionChanged;
         
         HierarchyTree.Items.Add(new mTreeViewItem(Workspace.MainCanvas));
-        Selected = Workspace.MainCanvas.mTreeItem;
+        Selected = Workspace.MainCanvas.Beholder.mTreeItem;
     }
     
     private static void MainHierarchyTree_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (((TreeView)sender).SelectedItem is mTreeViewItem item)
-            Workspace.SelectjElement(item.element);
+            Workspace.SelectjElement(item.Beholder.element);
         else
             Workspace.SelectjElement(Workspace.MainCanvas);
         e.Handled = true;

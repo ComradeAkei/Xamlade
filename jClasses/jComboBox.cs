@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
 
 namespace Xamlade.jClasses;
@@ -14,10 +15,12 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
     protected override Type StyleKeyOverride => typeof(ComboBox);
     public mBorder selectionBorder { get; set; }
 
+    public Beholder Beholder { get; set; }
+    public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
+    public JChildContainer? _jParent { get; set; }
     [field: NonSerialized] public JChildContainer? jParent { get; set; }
     private string controlType => jElementType.ComboBox.ToString();
     public string Type => controlType;
-    [JsonIgnore] public mTreeViewItem? mTreeItem { get; set; }
     public int XAMLRating { get; set; }
     [field: NonSerialized] public List<string> XAMLPiece { get; set; }
 
@@ -39,11 +42,14 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
 
     public jComboBox()
     {
+        SpecialSetDelegates = new();
         jChildren = new List<JControl>();
         Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
-        mTreeItem = new mTreeViewItem(this);
     }
+
+    public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
+    public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
 
     public List<JControl> jChildren { get; }
     public void AddChild(JControl child)
@@ -59,5 +65,18 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
         jChildren.Remove(child);
         Items.Remove(child);
         
+    }
+
+    public void InitContainerProperties()
+    {
+        
+    }
+
+
+    public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
+
+    public void AddSpecialProperties()
+    {
+        return;
     }
 }

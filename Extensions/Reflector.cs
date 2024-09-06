@@ -68,23 +68,56 @@ public static class Reflector
     {
         // Получение типа объекта
         var type = obj.GetType();
+        
         // Поиск приватного поля
-        var field = type.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance);
+        var field = GetFieldRecursive(type, name);
         if (field != null)
         {
             field.SetValue(obj, value);
             return;
         }
+        
         // Поиск приватного свойства
-        var property = type.GetProperty(name, BindingFlags.NonPublic | BindingFlags.Instance);
+        var property = GetPropertyRecursive(type, name);
         if (property != null && property.CanWrite)
         {
             property.SetValue(obj, value);
             return;
         }
-
-        throw new ArgumentException($"No private field or property named '{name}' found in type '{type.FullName}'.");
+        
+        // Если имя начинается с подчеркивания
+        if (name[0] == '_') 
+            throw new ArgumentException($"No private field or property named '{name}' found in type '{type.FullName}' or its base types.");
+        
+        // Пробуем найти поле или свойство с изменённым именем
+        ForceSet(obj, $"_{name.ToLower()}", value);
     }
-    
-    
+
+    private static FieldInfo GetFieldRecursive(Type type, string name)
+    {
+        while (type != null)
+        {
+            var field = type.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance);
+            if (field != null)
+                return field;
+
+            type = type.BaseType;
+        }
+        return null;
+    }
+
+    private static PropertyInfo GetPropertyRecursive(Type type, string name)
+    {
+        while (type != null)
+        {
+            var property = type.GetProperty(name, BindingFlags.NonPublic | BindingFlags.Instance);
+            if (property != null)
+                return property;
+
+            type = type.BaseType;
+        }
+        return null;
+    }
 }
+    
+    

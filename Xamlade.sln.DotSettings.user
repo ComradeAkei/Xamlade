@@ -8,4 +8,5 @@
   &lt;Assembly Path="/home/akei/.nuget/packages/material.avalonia/3.0.2/lib/netstandard2.0/Material.Styles.dll" /&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/avalonia.themes.fluent/11.0.5/lib/net6.0/Avalonia.Themes.Fluent.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/home/akei/.cache/JetBrains/Rider2023.2/resharper-host/temp/Rider/vAny/CoverageData/_Xamlade.1213933711/Snapshot/snapshot.utdcvr</s:String></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/Environment/Highlighting/HighlightingSourceSnapshotLocation/@EntryValue">/home/akei/.cache/JetBrains/Rider2023.2/resharper-host/temp/Rider/vAny/CoverageData/_Xamlade.1213933711/Snapshot/snapshot.utdcvr</s:String>
+	</wpf:ResourceDictionary>

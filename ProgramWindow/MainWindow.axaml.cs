@@ -37,6 +37,7 @@ public partial class MainWindow : Window
    
     private void WindowInit()
     {
+        
         this.Icon = new WindowIcon(@"assets/Icon.png");
         var screen = Screens.Primary!.WorkingArea;
         this.WindowState = WindowState.Maximized;
