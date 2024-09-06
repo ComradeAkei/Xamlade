@@ -1,0 +1,1150 @@
+2024-07-31 00:00:04.724 +03:00 [INF] Starting log...
+2024-07-31 00:00:07.278 +03:00 [DBG] Finding descriptors for initialize
+2024-07-31 00:00:07.902 +03:00 [DBG] Queueing "Serial":initialize:0 request for processing
+2024-07-31 00:00:07.964 +03:00 [DBG] Starting: Processing request initialize 0
+2024-07-31 00:00:07.981 +03:00 [DBG] Starting: Routing Request (0) initialize
+2024-07-31 00:00:08.009 +03:00 [VRB] Converting params for Request (0) initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 00:00:08.014 +03:00 [VRB] Converting params for Notification initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 00:00:08.793 +03:00 [INF] GetRegistrationOptions method
+2024-07-31 00:00:09.089 +03:00 [VRB] Response value was OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializeResult
+2024-07-31 00:00:09.098 +03:00 [DBG] Finished: Routing Request (0) initialize in 1115ms
+2024-07-31 00:00:09.100 +03:00 [DBG] Finished: Processing request initialize 0 in 1128ms
+2024-07-31 00:00:09.322 +03:00 [DBG] Finding descriptors for initialized
+2024-07-31 00:00:09.326 +03:00 [DBG] Queueing "Serial":initialized request for processing
+2024-07-31 00:00:09.364 +03:00 [DBG] Starting: Processing notification initialized
+2024-07-31 00:00:09.373 +03:00 [DBG] Starting: Routing Notification initialized
+2024-07-31 00:00:09.373 +03:00 [VRB] Converting params for Notification initialized to OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializedParams
+2024-07-31 00:00:09.578 +03:00 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
+2024-07-31 00:00:09.628 +03:00 [DBG] Finding descriptors for textDocument/didOpen
+2024-07-31 00:00:09.637 +03:00 [DBG] Finished: Routing Notification initialized in 263ms
+2024-07-31 00:00:09.638 +03:00 [DBG] Finished: Processing notification initialized in 273ms
+2024-07-31 00:00:09.658 +03:00 [VRB] Created attribute xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml
+2024-07-31 00:00:09.664 +03:00 [VRB] Looking for handler for descriptors textDocument/didOpen
+2024-07-31 00:00:09.665 +03:00 [VRB] Checking handler textDocument/didOpen:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:00:09.665 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentOpenRegistrationOptions
+2024-07-31 00:00:09.665 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:00:09.674 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:00:09.675 +03:00 [DBG] Queueing "Serial":textDocument/didOpen request for processing
+2024-07-31 00:00:09.675 +03:00 [DBG] Starting: Processing notification textDocument/didOpen
+2024-07-31 00:00:09.675 +03:00 [DBG] Starting: Routing Notification textDocument/didOpen
+2024-07-31 00:00:09.675 +03:00 [VRB] Converting params for Notification textDocument/didOpen to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams
+2024-07-31 00:00:09.679 +03:00 [DBG] Finished: Routing Notification textDocument/didOpen in 3ms
+2024-07-31 00:00:09.679 +03:00 [DBG] Finished: Processing notification textDocument/didOpen in 4ms
+2024-07-31 00:35:45.438 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:35:45.498 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:35:45.501 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:35:45.502 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:35:45.502 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:35:45.502 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:35:45.502 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:35:45.503 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:35:45.503 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:35:45.503 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:35:45.504 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:35:45.527 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 23ms
+2024-07-31 00:35:45.527 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 23ms
+2024-07-31 00:40:08.801 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:40:08.802 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:40:08.802 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:40:08.802 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:40:08.802 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:40:08.802 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:40:08.802 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:40:08.802 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:40:08.803 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:40:08.803 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:40:08.803 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:40:08.821 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 17ms
+2024-07-31 00:40:08.821 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 17ms
+2024-07-31 00:40:09.111 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:40:09.112 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:40:09.112 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:40:09.112 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:40:09.112 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:40:09.112 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:40:09.112 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:40:09.112 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:40:09.112 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:40:09.112 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:40:09.113 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:40:09.113 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 00:40:09.114 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 00:40:10.132 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:40:10.139 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:40:10.139 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:40:10.139 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:40:10.139 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:40:10.139 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:40:10.140 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:40:10.140 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:40:10.140 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:40:10.140 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:40:10.140 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:40:10.143 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 3ms
+2024-07-31 00:40:10.143 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 3ms
+2024-07-31 00:40:10.674 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:40:10.674 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:40:10.674 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:40:10.674 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:40:10.674 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:40:10.674 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:40:10.675 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:40:10.675 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:40:10.675 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:40:10.675 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:40:10.675 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:40:10.677 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 2ms
+2024-07-31 00:40:10.677 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 2ms
+2024-07-31 00:40:13.357 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:40:13.357 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:40:13.357 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:40:13.357 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:40:13.357 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:40:13.357 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:40:13.357 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:40:13.358 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:40:13.358 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:40:13.358 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:40:13.358 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:40:13.358 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:40:13.358 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:40:13.944 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:40:13.944 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:40:13.944 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:40:13.944 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:40:13.944 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:40:13.944 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:40:13.945 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:40:13.945 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:40:13.945 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:40:13.945 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:40:13.945 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:40:13.945 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:40:13.945 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:48:12.879 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:48:12.880 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:48:12.880 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:48:12.880 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:48:12.880 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:48:12.880 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:48:12.880 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:48:12.881 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:48:12.881 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:48:12.881 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:48:12.881 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:48:12.882 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 00:48:12.882 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 00:48:13.568 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:48:13.568 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:48:13.568 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:48:13.568 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:48:13.568 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:48:13.568 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:48:13.568 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:48:13.569 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:48:13.569 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:48:13.569 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:48:13.569 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:48:13.569 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:48:13.570 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:48:14.141 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:48:14.141 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:48:14.141 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:48:14.141 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:48:14.141 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:48:14.141 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:48:14.141 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:48:14.141 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:48:14.142 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:48:14.142 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:48:14.142 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:48:14.142 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:48:14.142 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:48:58.470 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:48:58.470 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:48:58.470 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:48:58.470 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:48:58.470 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:48:58.470 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:48:58.470 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:48:58.470 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:48:58.470 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:48:58.470 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:48:58.470 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:48:58.471 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:48:58.471 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:49:00.140 +03:00 [DBG] Finding descriptors for shutdown
+2024-07-31 00:49:00.141 +03:00 [DBG] Queueing "Serial":shutdown:1 request for processing
+2024-07-31 00:49:00.142 +03:00 [DBG] Starting: Processing request shutdown 1
+2024-07-31 00:49:00.142 +03:00 [DBG] Starting: Routing Request (1) shutdown
+2024-07-31 00:49:00.142 +03:00 [VRB] Converting params for Request (1) shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 00:49:00.142 +03:00 [VRB] Converting params for Notification shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 00:49:00.157 +03:00 [VRB] Response value was null
+2024-07-31 00:49:00.158 +03:00 [DBG] Finished: Routing Request (1) shutdown in 16ms
+2024-07-31 00:49:00.168 +03:00 [DBG] Finished: Processing request shutdown 1 in 26ms
+2024-07-31 00:49:00.188 +03:00 [VRB] Could not write to output handler, perhaps serialization failed?
+System.Threading.Channels.ChannelClosedException: The channel has been closed.
+   at System.Threading.Channels.AsyncOperation`1.GetResult(Int16 token)
+   at OmniSharp.Extensions.JsonRpc.OutputHandler.ProcessOutputStream(CancellationToken cancellationToken)
+2024-07-31 00:58:03.859 +03:00 [INF] Starting log...
+2024-07-31 00:58:08.584 +03:00 [DBG] Finding descriptors for initialize
+2024-07-31 00:58:09.474 +03:00 [DBG] Queueing "Serial":initialize:0 request for processing
+2024-07-31 00:58:09.621 +03:00 [DBG] Starting: Processing request initialize 0
+2024-07-31 00:58:09.644 +03:00 [DBG] Starting: Routing Request (0) initialize
+2024-07-31 00:58:09.675 +03:00 [VRB] Converting params for Request (0) initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 00:58:09.681 +03:00 [VRB] Converting params for Notification initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 00:58:10.643 +03:00 [INF] GetRegistrationOptions method
+2024-07-31 00:58:11.106 +03:00 [VRB] Response value was OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializeResult
+2024-07-31 00:58:11.114 +03:00 [DBG] Finished: Routing Request (0) initialize in 1469ms
+2024-07-31 00:58:11.115 +03:00 [DBG] Finished: Processing request initialize 0 in 1486ms
+2024-07-31 00:58:11.312 +03:00 [DBG] Finding descriptors for initialized
+2024-07-31 00:58:11.315 +03:00 [DBG] Queueing "Serial":initialized request for processing
+2024-07-31 00:58:11.335 +03:00 [DBG] Starting: Processing notification initialized
+2024-07-31 00:58:11.345 +03:00 [DBG] Starting: Routing Notification initialized
+2024-07-31 00:58:11.345 +03:00 [VRB] Converting params for Notification initialized to OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializedParams
+2024-07-31 00:58:11.599 +03:00 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
+2024-07-31 00:58:11.654 +03:00 [DBG] Finished: Routing Notification initialized in 308ms
+2024-07-31 00:58:11.657 +03:00 [DBG] Finished: Processing notification initialized in 322ms
+2024-07-31 00:58:11.725 +03:00 [DBG] Finding descriptors for textDocument/didOpen
+2024-07-31 00:58:11.778 +03:00 [VRB] Created attribute xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml
+2024-07-31 00:58:11.786 +03:00 [VRB] Looking for handler for descriptors textDocument/didOpen
+2024-07-31 00:58:11.787 +03:00 [VRB] Checking handler textDocument/didOpen:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:58:11.787 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentOpenRegistrationOptions
+2024-07-31 00:58:11.787 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:58:11.800 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:58:11.801 +03:00 [DBG] Queueing "Serial":textDocument/didOpen request for processing
+2024-07-31 00:58:11.801 +03:00 [DBG] Starting: Processing notification textDocument/didOpen
+2024-07-31 00:58:11.801 +03:00 [DBG] Starting: Routing Notification textDocument/didOpen
+2024-07-31 00:58:11.801 +03:00 [VRB] Converting params for Notification textDocument/didOpen to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams
+2024-07-31 00:58:11.808 +03:00 [DBG] Finished: Routing Notification textDocument/didOpen in 6ms
+2024-07-31 00:58:11.808 +03:00 [DBG] Finished: Processing notification textDocument/didOpen in 6ms
+2024-07-31 00:58:40.019 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:58:40.059 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:58:40.061 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:58:40.061 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:58:40.061 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:58:40.061 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:58:40.061 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:58:40.062 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:58:40.062 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:58:40.062 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:58:40.062 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:58:40.085 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 23ms
+2024-07-31 00:58:40.085 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 23ms
+2024-07-31 00:58:41.040 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:58:41.053 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:58:41.054 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:58:41.054 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:58:41.054 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:58:41.054 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:58:41.054 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:58:41.054 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:58:41.054 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:58:41.054 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:58:41.055 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:58:41.060 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 5ms
+2024-07-31 00:58:41.060 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 5ms
+2024-07-31 00:58:41.766 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:58:41.767 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:58:41.767 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:58:41.767 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:58:41.767 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:58:41.767 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:58:41.768 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:58:41.768 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:58:41.768 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:58:41.768 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:58:41.768 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:58:41.782 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 13ms
+2024-07-31 00:58:41.782 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 13ms
+2024-07-31 00:58:42.782 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:58:42.782 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:58:42.783 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:58:42.783 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:58:42.783 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:58:42.783 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:58:42.783 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:58:42.783 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:58:42.783 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:58:42.783 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:58:42.783 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:58:42.786 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 3ms
+2024-07-31 00:58:42.787 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 3ms
+2024-07-31 00:59:10.903 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 00:59:10.903 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:59:10.903 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 00:59:10.903 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:59:10.904 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 00:59:10.904 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:59:10.904 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:59:10.904 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 00:59:10.904 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 00:59:10.904 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 00:59:10.904 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 00:59:10.905 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 1ms
+2024-07-31 00:59:10.905 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 00:59:11.928 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:59:11.928 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:59:11.928 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:59:11.928 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:59:11.928 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:59:11.929 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:59:11.929 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:59:11.929 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:59:11.929 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:59:11.929 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:59:11.929 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:59:11.930 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:59:11.930 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:59:12.040 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:59:12.040 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:59:12.040 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:59:12.040 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:59:12.040 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:59:12.040 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:59:12.041 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:59:12.041 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:59:12.041 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:59:12.041 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:59:12.041 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:59:12.042 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:59:12.042 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 00:59:17.739 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 00:59:17.739 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 00:59:17.739 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 00:59:17.739 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 00:59:17.739 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 00:59:17.739 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 00:59:17.739 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 00:59:17.740 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 00:59:17.740 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 00:59:17.740 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 00:59:17.740 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 00:59:17.740 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 00:59:17.740 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:09:22.400 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:09:22.401 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:22.401 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:09:22.401 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:22.401 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:09:22.401 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:22.402 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:22.402 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:09:22.402 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:09:22.402 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:09:22.402 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:09:22.403 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 1ms
+2024-07-31 01:09:22.403 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:09:23.410 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:09:23.411 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:23.412 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:09:23.412 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:23.412 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:09:23.412 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:23.412 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:23.412 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:09:23.412 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:09:23.412 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:09:23.412 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:09:23.413 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:09:23.413 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:09:27.173 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:09:27.174 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:27.174 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:09:27.174 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:27.174 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:09:27.174 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:27.174 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:27.174 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:09:27.174 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:09:27.174 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:09:27.174 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:09:27.185 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 10ms
+2024-07-31 01:09:27.185 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 11ms
+2024-07-31 01:09:27.199 +03:00 [DBG] Finding descriptors for textDocument/completion
+2024-07-31 01:09:27.206 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:27.206 +03:00 [VRB] Looking for handler for descriptors textDocument/completion
+2024-07-31 01:09:27.206 +03:00 [VRB] Checking handler textDocument/completion:Avalonia.AXAML.LanguageServer.AvaloniaCodeCompletionHandler
+2024-07-31 01:09:27.206 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.CompletionRegistrationOptions
+2024-07-31 01:09:27.206 +03:00 [VRB] Document Selector [**/*.axaml], [**/*.xaml]
+2024-07-31 01:09:27.206 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.AvaloniaCodeCompletionHandler  via [**/*.axaml], [**/*.xaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcRequestHandler`2[[OmniSharp.Extensions.LanguageServer.Protocol.Models.CompletionParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022],[OmniSharp.Extensions.LanguageServer.Protocol.Models.CompletionList, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:27.207 +03:00 [DBG] Swapping from "Serial" to "Parallel"
+2024-07-31 01:09:27.207 +03:00 [DBG] Completing existing request process type "Serial"
+2024-07-31 01:09:27.214 +03:00 [DBG] Queueing "Parallel":textDocument/completion:1 request for processing
+2024-07-31 01:09:27.215 +03:00 [DBG] Starting: Processing request textDocument/completion 1
+2024-07-31 01:09:27.215 +03:00 [DBG] Starting: Routing Request (1) textDocument/completion
+2024-07-31 01:09:27.215 +03:00 [VRB] Converting params for Request (1) textDocument/completion to OmniSharp.Extensions.LanguageServer.Protocol.Models.CompletionParams
+2024-07-31 01:09:27.215 +03:00 [VRB] Converting params for Notification textDocument/completion to OmniSharp.Extensions.LanguageServer.Protocol.Models.CompletionParams
+2024-07-31 01:09:29.066 +03:00 [VRB] Updating Resolve items with wrapped data for textDocument/completion:Avalonia.AXAML.LanguageServer.AvaloniaCodeCompletionHandler
+2024-07-31 01:09:29.067 +03:00 [VRB] Response value was OmniSharp.Extensions.LanguageServer.Protocol.Models.CompletionList
+2024-07-31 01:09:29.074 +03:00 [DBG] Finished: Routing Request (1) textDocument/completion in 1859ms
+2024-07-31 01:09:29.075 +03:00 [DBG] Finished: Processing request textDocument/completion 1 in 1859ms
+2024-07-31 01:09:29.102 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:09:29.103 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:29.103 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:09:29.103 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:29.103 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:09:29.103 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:29.103 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:29.103 +03:00 [DBG] Swapping from "Parallel" to "Serial"
+2024-07-31 01:09:29.103 +03:00 [DBG] Cancelling any outstanding requests (switch from parallel to serial)
+2024-07-31 01:09:29.104 +03:00 [DBG] Completing existing request process type "Parallel"
+2024-07-31 01:09:29.104 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:09:29.104 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:09:29.104 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:09:29.104 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:09:29.105 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.105 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.105 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:09:29.105 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:29.105 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:09:29.105 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:29.105 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:09:29.105 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:29.106 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:29.106 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:09:29.106 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:09:29.106 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:09:29.106 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:09:29.106 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.106 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.107 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:09:29.107 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:29.107 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:09:29.107 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:29.107 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:09:29.107 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:29.107 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:29.107 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:09:29.107 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:09:29.107 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:09:29.107 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:09:29.108 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.108 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.485 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:09:29.486 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:29.486 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:09:29.486 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:29.486 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:09:29.486 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:29.486 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:29.486 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:09:29.486 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:09:29.486 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:09:29.486 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:09:29.487 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:09:29.487 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:09:30.422 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:09:30.423 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:09:30.423 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:09:30.423 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:09:30.423 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:09:30.423 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:09:30.423 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:09:30.423 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:09:30.423 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:09:30.424 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:09:30.424 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:09:30.424 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:09:30.424 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:12:54.161 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:12:54.162 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:54.162 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:12:54.162 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:54.162 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:12:54.162 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:54.162 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:54.162 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:12:54.162 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:12:54.162 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:12:54.162 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:12:54.163 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:12:54.163 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:12:54.813 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:12:54.813 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:54.814 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:12:54.814 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:54.814 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:12:54.814 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:54.814 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:54.814 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:12:54.814 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:12:54.814 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:12:54.814 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:12:54.815 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:12:54.815 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:12:55.014 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:12:55.014 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:55.014 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:12:55.014 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:55.014 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:12:55.014 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:55.015 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:55.015 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:12:55.015 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:12:55.015 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:12:55.015 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:12:55.016 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:12:55.016 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:12:56.033 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:12:56.034 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:56.034 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:12:56.034 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:56.034 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:12:56.034 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:56.034 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:56.035 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:12:56.035 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:12:56.035 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:12:56.035 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:12:56.036 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:12:56.036 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:12:56.602 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:12:56.602 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:56.602 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:12:56.602 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:56.602 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:12:56.602 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:56.602 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:56.602 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:12:56.602 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:12:56.602 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:12:56.603 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:12:56.603 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:12:56.603 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:12:57.093 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:12:57.094 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:57.094 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:12:57.094 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:57.094 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:12:57.094 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:57.094 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:57.094 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:12:57.094 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:12:57.094 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:12:57.094 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:12:57.095 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:12:57.095 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:12:57.590 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:12:57.591 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:12:57.591 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:12:57.591 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:12:57.591 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:12:57.591 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:12:57.591 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:12:57.591 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:12:57.591 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:12:57.591 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:12:57.591 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:12:57.591 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:12:57.591 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:34.294 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:34.297 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:34.297 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:34.297 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:34.297 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:34.297 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:34.298 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:34.298 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:34.298 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:34.298 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:34.298 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:34.300 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 2ms
+2024-07-31 01:14:34.300 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 2ms
+2024-07-31 01:14:35.296 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:35.297 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:35.297 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:35.297 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:35.297 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:35.297 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:35.297 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:35.297 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:35.297 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:35.297 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:35.297 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:35.298 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:35.298 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:35.831 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:35.831 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:35.832 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:35.832 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:35.832 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:35.832 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:35.832 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:35.832 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:35.832 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:35.832 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:35.832 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:35.833 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:14:35.833 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:14:36.848 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:36.848 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:36.848 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:36.848 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:36.848 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:36.848 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:36.849 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:36.849 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:36.849 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:36.849 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:36.849 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:36.849 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:36.850 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:38.113 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:38.113 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:38.114 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:38.114 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:38.114 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:38.114 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:38.114 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:38.114 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:38.114 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:38.114 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:38.114 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:38.116 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 1ms
+2024-07-31 01:14:38.116 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:14:38.486 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:38.486 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:38.486 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:38.486 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:38.486 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:38.486 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:38.487 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:38.487 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:38.487 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:38.487 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:38.487 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:38.487 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:14:38.487 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:14:39.059 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:39.060 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:39.060 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:39.060 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:39.060 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:39.060 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:39.060 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:39.061 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:39.061 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:39.061 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:39.061 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:39.062 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:14:39.062 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:14:40.081 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:40.082 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:40.082 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:40.082 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:40.082 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:40.082 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:40.082 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:40.082 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:40.082 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:40.082 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:40.082 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:40.083 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:40.083 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:42.339 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:42.339 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:42.339 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:42.339 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:42.340 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:42.340 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:42.340 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:42.340 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:42.340 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:42.340 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:42.340 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:42.343 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 2ms
+2024-07-31 01:14:42.343 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 2ms
+2024-07-31 01:14:42.457 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:42.458 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:42.458 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:42.458 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:42.458 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:42.458 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:42.459 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:42.459 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:42.459 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:42.459 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:42.459 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:42.459 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:14:42.459 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:14:43.477 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:43.478 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:43.478 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:43.478 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:43.478 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:43.478 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:43.478 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:43.478 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:43.478 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:43.478 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:43.478 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:43.479 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:43.479 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:45.116 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:45.116 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:45.116 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:45.116 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:45.116 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:45.116 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:45.116 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:45.116 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:45.116 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:45.116 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:45.117 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:45.117 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:45.117 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:45.993 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:45.993 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:45.993 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:45.993 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:45.993 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:45.993 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:45.993 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:45.993 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:45.993 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:45.993 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:45.993 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:45.994 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:45.994 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:46.816 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:46.816 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:46.816 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:46.816 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:46.816 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:46.816 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:46.816 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:46.816 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:46.816 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:46.816 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:46.816 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:46.817 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:46.817 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:14:52.451 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:52.457 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:52.457 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:52.457 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:52.457 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:52.457 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:52.459 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:52.460 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:52.460 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:52.460 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:52.460 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:52.461 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:14:52.461 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:14:53.013 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:14:53.014 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:53.014 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:14:53.014 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:53.014 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:14:53.014 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:53.014 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:53.014 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:14:53.014 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:14:53.014 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:14:53.015 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:14:53.015 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:14:53.015 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:14:54.030 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:14:54.030 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:14:54.030 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:14:54.030 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:14:54.030 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:14:54.030 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:14:54.030 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:14:54.030 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:14:54.031 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:14:54.031 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:14:54.031 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:14:54.031 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:14:54.031 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:15:10.751 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:15:10.751 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:15:10.751 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:15:10.751 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:15:10.751 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:15:10.751 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:15:10.751 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:15:10.752 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:15:10.752 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:15:10.752 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:15:10.752 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:15:10.752 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:15:10.752 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:18:46.000 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:18:46.006 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:18:46.006 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:18:46.006 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:18:46.006 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:18:46.006 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:18:46.006 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:18:46.006 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:18:46.007 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:18:46.007 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:18:46.007 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:18:46.008 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:18:46.008 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:19:36.181 +03:00 [DBG] Finding descriptors for shutdown
+2024-07-31 01:19:36.192 +03:00 [DBG] Queueing "Serial":shutdown:2 request for processing
+2024-07-31 01:19:36.193 +03:00 [DBG] Starting: Processing request shutdown 2
+2024-07-31 01:19:36.193 +03:00 [DBG] Starting: Routing Request (2) shutdown
+2024-07-31 01:19:36.193 +03:00 [VRB] Converting params for Request (2) shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 01:19:36.193 +03:00 [VRB] Converting params for Notification shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 01:19:36.234 +03:00 [VRB] Response value was null
+2024-07-31 01:19:36.235 +03:00 [DBG] Finished: Routing Request (2) shutdown in 41ms
+2024-07-31 01:19:36.235 +03:00 [DBG] Finished: Processing request shutdown 2 in 41ms
+2024-07-31 01:19:36.248 +03:00 [VRB] Could not write to output handler, perhaps serialization failed?
+System.Threading.Channels.ChannelClosedException: The channel has been closed.
+   at System.Threading.Channels.AsyncOperation`1.GetResult(Int16 token)
+   at OmniSharp.Extensions.JsonRpc.OutputHandler.ProcessOutputStream(CancellationToken cancellationToken)
+2024-07-31 01:19:47.125 +03:00 [INF] Starting log...
+2024-07-31 01:19:50.541 +03:00 [DBG] Finding descriptors for initialize
+2024-07-31 01:19:51.082 +03:00 [DBG] Queueing "Serial":initialize:0 request for processing
+2024-07-31 01:19:51.147 +03:00 [DBG] Starting: Processing request initialize 0
+2024-07-31 01:19:51.166 +03:00 [DBG] Starting: Routing Request (0) initialize
+2024-07-31 01:19:51.191 +03:00 [VRB] Converting params for Request (0) initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 01:19:51.196 +03:00 [VRB] Converting params for Notification initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 01:19:52.143 +03:00 [INF] GetRegistrationOptions method
+2024-07-31 01:19:52.390 +03:00 [VRB] Response value was OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializeResult
+2024-07-31 01:19:52.399 +03:00 [DBG] Finished: Routing Request (0) initialize in 1232ms
+2024-07-31 01:19:52.400 +03:00 [DBG] Finished: Processing request initialize 0 in 1246ms
+2024-07-31 01:19:52.524 +03:00 [DBG] Finding descriptors for initialized
+2024-07-31 01:19:52.527 +03:00 [DBG] Queueing "Serial":initialized request for processing
+2024-07-31 01:19:52.534 +03:00 [DBG] Starting: Processing notification initialized
+2024-07-31 01:19:52.538 +03:00 [DBG] Starting: Routing Notification initialized
+2024-07-31 01:19:52.538 +03:00 [VRB] Converting params for Notification initialized to OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializedParams
+2024-07-31 01:19:52.727 +03:00 [DBG] Finished: Routing Notification initialized in 188ms
+2024-07-31 01:19:52.727 +03:00 [DBG] Finished: Processing notification initialized in 192ms
+2024-07-31 01:19:52.733 +03:00 [DBG] Finding descriptors for textDocument/didOpen
+2024-07-31 01:19:52.735 +03:00 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
+2024-07-31 01:19:52.761 +03:00 [VRB] Created attribute xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml
+2024-07-31 01:19:52.767 +03:00 [VRB] Looking for handler for descriptors textDocument/didOpen
+2024-07-31 01:19:52.767 +03:00 [VRB] Checking handler textDocument/didOpen:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:19:52.767 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentOpenRegistrationOptions
+2024-07-31 01:19:52.773 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:19:52.788 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:19:52.789 +03:00 [DBG] Queueing "Serial":textDocument/didOpen request for processing
+2024-07-31 01:19:52.789 +03:00 [DBG] Starting: Processing notification textDocument/didOpen
+2024-07-31 01:19:52.789 +03:00 [DBG] Starting: Routing Notification textDocument/didOpen
+2024-07-31 01:19:52.790 +03:00 [VRB] Converting params for Notification textDocument/didOpen to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams
+2024-07-31 01:19:52.795 +03:00 [DBG] Finished: Routing Notification textDocument/didOpen in 5ms
+2024-07-31 01:19:52.795 +03:00 [DBG] Finished: Processing notification textDocument/didOpen in 5ms
+2024-07-31 01:20:07.482 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:20:07.513 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:07.515 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:20:07.515 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:07.515 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:20:07.515 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:07.516 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:07.516 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:20:07.516 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:20:07.517 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:20:07.517 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:20:07.539 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 22ms
+2024-07-31 01:20:07.539 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 22ms
+2024-07-31 01:20:08.502 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:08.510 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:08.510 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:08.510 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:08.510 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:08.510 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:08.510 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:08.511 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:08.511 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:08.511 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:08.511 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:08.513 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 2ms
+2024-07-31 01:20:08.514 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 2ms
+2024-07-31 01:20:09.477 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:09.477 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:09.477 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:09.477 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:09.477 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:09.477 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:09.478 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:09.478 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:09.478 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:09.478 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:09.478 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:09.493 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 14ms
+2024-07-31 01:20:09.493 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 14ms
+2024-07-31 01:20:10.093 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:10.094 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:10.094 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:10.094 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:10.094 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:10.094 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:10.094 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:10.094 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:10.094 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:10.094 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:10.094 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:10.095 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:20:10.095 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:20:10.754 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:20:10.755 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:10.755 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:20:10.755 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:10.755 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:20:10.755 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:10.755 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:10.755 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:20:10.755 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:20:10.755 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:20:10.756 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:20:10.760 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 3ms
+2024-07-31 01:20:10.760 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 4ms
+2024-07-31 01:20:11.044 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:20:11.044 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:11.045 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:20:11.045 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:11.045 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:20:11.045 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:11.045 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:11.046 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:20:11.046 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:20:11.046 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:20:11.046 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:20:11.047 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:20:11.047 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:20:11.280 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:20:11.280 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:11.280 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:20:11.280 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:11.280 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:20:11.280 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:11.281 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:11.281 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:20:11.281 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:20:11.281 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:20:11.281 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:20:11.282 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:20:11.282 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:20:11.562 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:11.562 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:11.562 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:11.562 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:11.562 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:11.562 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:11.563 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:11.563 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:11.563 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:11.563 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:11.563 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:11.564 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 1ms
+2024-07-31 01:20:11.564 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 1ms
+2024-07-31 01:20:25.601 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:20:25.601 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:25.602 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:20:25.602 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:25.602 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:20:25.602 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:25.602 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:25.602 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:20:25.602 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:20:25.602 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:20:25.602 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:20:25.603 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:20:25.603 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:20:26.620 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:26.620 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:26.620 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:26.620 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:26.620 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:26.621 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:26.621 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:26.621 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:26.621 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:26.621 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:26.621 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:26.622 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:20:26.622 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:20:26.932 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:26.933 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:26.933 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:26.933 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:26.933 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:26.933 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:26.935 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:26.935 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:26.935 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:26.935 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:26.935 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:26.936 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:20:26.936 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 1ms
+2024-07-31 01:20:29.983 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:20:29.983 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:20:29.983 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:20:29.983 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:20:29.983 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:20:29.983 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:20:29.983 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:20:29.983 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:20:29.983 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:20:29.983 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:20:29.983 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:20:29.984 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:20:29.984 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:21:10.910 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:21:10.911 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:10.911 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:21:10.911 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:10.911 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:21:10.911 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:10.911 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:10.911 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:21:10.911 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:21:10.911 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:21:10.911 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:21:10.913 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 1ms
+2024-07-31 01:21:10.913 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 1ms
+2024-07-31 01:21:11.918 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:21:11.918 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:11.918 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:21:11.918 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:11.918 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:21:11.918 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:11.918 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:11.918 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:21:11.919 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:21:11.919 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:21:11.920 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:21:11.921 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 1ms
+2024-07-31 01:21:11.921 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 1ms
+2024-07-31 01:21:13.264 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:21:13.264 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:13.264 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:21:13.264 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:13.264 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:21:13.264 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:13.264 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:13.264 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:21:13.265 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:21:13.265 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:21:13.265 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:21:13.266 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:21:13.266 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 1ms
+2024-07-31 01:21:50.115 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:21:50.117 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:50.117 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:21:50.117 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:50.117 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:21:50.117 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:50.117 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:50.117 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:21:50.117 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:21:50.117 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:21:50.117 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:21:50.118 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:21:50.118 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:21:51.126 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:21:51.126 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:51.126 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:21:51.126 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:51.126 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:21:51.126 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:51.126 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:51.127 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:21:51.127 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:21:51.127 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:21:51.127 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:21:51.128 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:21:51.128 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:21:51.137 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:21:51.137 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:51.137 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:21:51.137 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:51.137 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:21:51.137 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:51.137 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:51.137 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:21:51.138 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:21:51.138 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:21:51.138 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:21:51.138 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:21:51.138 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 0ms
+2024-07-31 01:21:51.481 +03:00 [DBG] Finding descriptors for textDocument/didChange
+2024-07-31 01:21:51.481 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:51.482 +03:00 [VRB] Looking for handler for descriptors textDocument/didChange
+2024-07-31 01:21:51.482 +03:00 [VRB] Checking handler textDocument/didChange:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:51.482 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentChangeRegistrationOptions
+2024-07-31 01:21:51.482 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:51.482 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:51.482 +03:00 [DBG] Queueing "Serial":textDocument/didChange request for processing
+2024-07-31 01:21:51.482 +03:00 [DBG] Starting: Processing notification textDocument/didChange
+2024-07-31 01:21:51.482 +03:00 [DBG] Starting: Routing Notification textDocument/didChange
+2024-07-31 01:21:51.482 +03:00 [VRB] Converting params for Notification textDocument/didChange to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidChangeTextDocumentParams
+2024-07-31 01:21:51.483 +03:00 [DBG] Finished: Routing Notification textDocument/didChange in 0ms
+2024-07-31 01:21:51.483 +03:00 [DBG] Finished: Processing notification textDocument/didChange in 0ms
+2024-07-31 01:21:52.496 +03:00 [DBG] Finding descriptors for textDocument/didSave
+2024-07-31 01:21:52.496 +03:00 [VRB] Found attributes 1, ["xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml"]
+2024-07-31 01:21:52.496 +03:00 [VRB] Looking for handler for descriptors textDocument/didSave
+2024-07-31 01:21:52.496 +03:00 [VRB] Checking handler textDocument/didSave:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:21:52.496 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentSaveRegistrationOptions
+2024-07-31 01:21:52.496 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:21:52.497 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:21:52.497 +03:00 [DBG] Queueing "Serial":textDocument/didSave request for processing
+2024-07-31 01:21:52.497 +03:00 [DBG] Starting: Processing notification textDocument/didSave
+2024-07-31 01:21:52.497 +03:00 [DBG] Starting: Routing Notification textDocument/didSave
+2024-07-31 01:21:52.497 +03:00 [VRB] Converting params for Notification textDocument/didSave to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidSaveTextDocumentParams
+2024-07-31 01:21:52.498 +03:00 [DBG] Finished: Routing Notification textDocument/didSave in 0ms
+2024-07-31 01:21:52.498 +03:00 [DBG] Finished: Processing notification textDocument/didSave in 1ms
+2024-07-31 01:22:04.866 +03:00 [DBG] Finding descriptors for shutdown
+2024-07-31 01:22:04.866 +03:00 [DBG] Queueing "Serial":shutdown:1 request for processing
+2024-07-31 01:22:04.867 +03:00 [DBG] Starting: Processing request shutdown 1
+2024-07-31 01:22:04.867 +03:00 [DBG] Starting: Routing Request (1) shutdown
+2024-07-31 01:22:04.867 +03:00 [VRB] Converting params for Request (1) shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 01:22:04.867 +03:00 [VRB] Converting params for Notification shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 01:22:04.882 +03:00 [VRB] Response value was null
+2024-07-31 01:22:04.893 +03:00 [DBG] Finished: Routing Request (1) shutdown in 26ms
+2024-07-31 01:22:04.893 +03:00 [DBG] Finished: Processing request shutdown 1 in 26ms
+2024-07-31 01:22:04.926 +03:00 [VRB] Could not write to output handler, perhaps serialization failed?
+System.Threading.Channels.ChannelClosedException: The channel has been closed.
+   at System.Threading.Channels.AsyncOperation`1.GetResult(Int16 token)
+   at OmniSharp.Extensions.JsonRpc.OutputHandler.ProcessOutputStream(CancellationToken cancellationToken)
+2024-07-31 01:26:20.878 +03:00 [INF] Starting log...
+2024-07-31 01:26:24.997 +03:00 [DBG] Finding descriptors for initialize
+2024-07-31 01:26:25.632 +03:00 [DBG] Queueing "Serial":initialize:0 request for processing
+2024-07-31 01:26:25.693 +03:00 [DBG] Starting: Processing request initialize 0
+2024-07-31 01:26:25.717 +03:00 [DBG] Starting: Routing Request (0) initialize
+2024-07-31 01:26:25.746 +03:00 [VRB] Converting params for Request (0) initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 01:26:25.750 +03:00 [VRB] Converting params for Notification initialize to OmniSharp.Extensions.LanguageServer.Protocol.Models.InternalInitializeParams
+2024-07-31 01:26:26.938 +03:00 [INF] GetRegistrationOptions method
+2024-07-31 01:26:27.356 +03:00 [VRB] Response value was OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializeResult
+2024-07-31 01:26:27.361 +03:00 [DBG] Finished: Routing Request (0) initialize in 1643ms
+2024-07-31 01:26:27.362 +03:00 [DBG] Finished: Processing request initialize 0 in 1656ms
+2024-07-31 01:26:27.508 +03:00 [DBG] Finding descriptors for initialized
+2024-07-31 01:26:27.512 +03:00 [DBG] Queueing "Serial":initialized request for processing
+2024-07-31 01:26:27.523 +03:00 [DBG] Starting: Processing notification initialized
+2024-07-31 01:26:27.531 +03:00 [DBG] Starting: Routing Notification initialized
+2024-07-31 01:26:27.532 +03:00 [VRB] Converting params for Notification initialized to OmniSharp.Extensions.LanguageServer.Protocol.Models.InitializedParams
+2024-07-31 01:26:27.753 +03:00 [WRN] No ConfigurationItems have been defined, configuration won't surface any configuration from the client!
+2024-07-31 01:26:27.896 +03:00 [DBG] Finished: Routing Notification initialized in 364ms
+2024-07-31 01:26:27.896 +03:00 [DBG] Finished: Processing notification initialized in 373ms
+2024-07-31 01:26:27.900 +03:00 [DBG] Finding descriptors for textDocument/didOpen
+2024-07-31 01:26:27.926 +03:00 [VRB] Created attribute xml::file:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml
+2024-07-31 01:26:27.938 +03:00 [VRB] Looking for handler for descriptors textDocument/didOpen
+2024-07-31 01:26:27.938 +03:00 [VRB] Checking handler textDocument/didOpen:Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler
+2024-07-31 01:26:27.938 +03:00 [VRB] Registration options OmniSharp.Extensions.LanguageServer.Protocol.Models.TextDocumentOpenRegistrationOptions
+2024-07-31 01:26:27.939 +03:00 [VRB] Document Selector [**/*.xaml], [**/*.axaml]
+2024-07-31 01:26:27.952 +03:00 [VRB] Handler Selected: Avalonia.AXAML.LanguageServer.Handlers.TextDocumentHandler  via [**/*.xaml], [**/*.axaml] (targeting OmniSharp.Extensions.JsonRpc.IJsonRpcNotificationHandler`1[[OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams, OmniSharp.Extensions.LanguageProtocol, Version=0.19.0.0, Culture=neutral, PublicKeyToken=6d868dff454e6022]])
+2024-07-31 01:26:27.952 +03:00 [DBG] Queueing "Serial":textDocument/didOpen request for processing
+2024-07-31 01:26:27.953 +03:00 [DBG] Starting: Processing notification textDocument/didOpen
+2024-07-31 01:26:27.953 +03:00 [DBG] Starting: Routing Notification textDocument/didOpen
+2024-07-31 01:26:27.953 +03:00 [VRB] Converting params for Notification textDocument/didOpen to OmniSharp.Extensions.LanguageServer.Protocol.Models.DidOpenTextDocumentParams
+2024-07-31 01:26:27.957 +03:00 [DBG] Finished: Routing Notification textDocument/didOpen in 3ms
+2024-07-31 01:26:27.957 +03:00 [DBG] Finished: Processing notification textDocument/didOpen in 4ms
+2024-07-31 02:03:31.144 +03:00 [DBG] Finding descriptors for shutdown
+2024-07-31 02:03:31.144 +03:00 [DBG] Queueing "Serial":shutdown:1 request for processing
+2024-07-31 02:03:31.145 +03:00 [DBG] Starting: Processing request shutdown 1
+2024-07-31 02:03:31.145 +03:00 [DBG] Starting: Routing Request (1) shutdown
+2024-07-31 02:03:31.146 +03:00 [VRB] Converting params for Request (1) shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 02:03:31.146 +03:00 [VRB] Converting params for Notification shutdown to OmniSharp.Extensions.LanguageServer.Protocol.Models.ShutdownParams
+2024-07-31 02:03:31.167 +03:00 [VRB] Response value was null
+2024-07-31 02:03:31.168 +03:00 [DBG] Finished: Routing Request (1) shutdown in 21ms
+2024-07-31 02:03:31.168 +03:00 [DBG] Finished: Processing request shutdown 1 in 23ms
+2024-07-31 02:03:31.191 +03:00 [VRB] Could not write to output handler, perhaps serialization failed?
+System.Threading.Channels.ChannelClosedException: The channel has been closed.
+   at System.Threading.Channels.AsyncOperation`1.GetResult(Int16 token)
+   at OmniSharp.Extensions.JsonRpc.OutputHandler.ProcessOutputStream(CancellationToken cancellationToken)
