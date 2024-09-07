@@ -52,7 +52,7 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
         
         ContainerProperties = new List<(string, JChildContainer.ContainerPropertyDelegate)>
         {
-            ("Dock", GetDockInt )
+            ("Dock", (JControl element) => new Property(GetDock(element),typeof(Dock)))
         };
     }
 
@@ -61,7 +61,7 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
         
        ContainerSetProperties = new()
         {
-            { "Dock", (jControl, value) => SetDock(jControl, (Dock)Enum.ToObject(typeof(Dock), value)) }
+            { "Dock", (jControl, value) => SetDock(jControl, (Dock)Enum.Parse(typeof(Dock), (string)value.Value)) }
         }; 
     }
 
@@ -76,9 +76,7 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
         if (element == null) throw new ArgumentNullException(nameof(element));
         return DockPanel.GetDock(element as Control);
     }
-
-    public static int GetDockInt(JControl element) => 
-        (int)GetDock(element);
+    
 
     public mBorder selectionBorder { get; set; }
 

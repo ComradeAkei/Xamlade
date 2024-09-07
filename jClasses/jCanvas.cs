@@ -31,8 +31,8 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
     {
         ContainerSetProperties = new Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>
         {
-            { "Top", SetTop },
-            { "Left", SetLeft },
+            { "Top", (JControl element, Property prop) => SetTop(element,(int)(prop.Value ?? 0)) },
+            { "Left", (JControl element, Property prop) => SetLeft(element,(int)(prop.Value ?? 0)) },
         };
     }
     public jCanvas()
@@ -71,8 +71,8 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
     {
        ContainerProperties = new List<(string, JChildContainer.ContainerPropertyDelegate)>
         {
-            ("Top", (JControl child) => (int)jCanvas.GetTop(child)),
-            ("Left", (JControl child) => (int)jCanvas.GetLeft(child)),
+            ("Top", (JControl child) => new Property(jCanvas.GetTop(child))),
+            ("Left", (JControl child) => new Property(jCanvas.GetLeft(child))),
         }; 
     }
     public static int GetLeft(JControl element) =>

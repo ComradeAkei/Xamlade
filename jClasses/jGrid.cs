@@ -57,16 +57,16 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
     {
         ContainerSetProperties = new Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>
         {
-            { "Row", SetRow },
-            { "Column", SetColumn },
+            { "Row", (JControl element, Property prop) => SetRow(element,(int)(prop.Value ?? 0)) },
+            { "Column", (JControl element, Property prop) => SetColumn(element,(int)(prop.Value ?? 0)) },
         };
     }
     public void InitContainerProperties()
     {
         ContainerProperties = new List<(string, JChildContainer.ContainerPropertyDelegate)>
         {
-            ( "Row", GetRow ),
-            ( "Column", GetColumn ),
+            ( "Row", element => new Property(GetRow(element)) ),
+            ( "Column", element => new Property(GetColumn(element))),
         };
     }
 
@@ -109,8 +109,8 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
 
     public void AddSpecialSetDelegates()
     {
-        SpecialSetDelegates["Rows"] = SetRowsCount;
-        SpecialSetDelegates["Columns"] = SetColumnsCount;
+        SpecialSetDelegates["Rows"] = (element, value) => SetRowsCount(element, (int)(value.Value ?? 0));
+        SpecialSetDelegates["Columns"] = (element, value) => SetColumnsCount(element, (int)(value.Value ?? 0));
     }
 
     private void SetRowsCount(JControl element, int newRows)

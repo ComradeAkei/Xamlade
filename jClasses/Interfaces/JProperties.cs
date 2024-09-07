@@ -79,9 +79,10 @@ namespace Xamlade.jClasses
 
         public Property( object value, Type? t = null, byte flags = 0)
         {
-            Value = value;
-            Type = t ?? value.GetType();
-            Flags = flags;
+            if (value is Property p)
+                (Value, Type, Flags) = (p.Value, p.Type, p.Flags);
+            else 
+                (Value, Type, Flags) = (value, t ?? value.GetType(), flags);
         }
     }
 }
