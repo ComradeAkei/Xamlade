@@ -428,17 +428,10 @@ public static class PropertiesControl
             return;
 
         // Если строка может быть преобразована в число, передаем как int
-        if (Int32.TryParse(value, out int val))
-        {
-            element.SpecialSetDelegates[propName](element, val);
-        }
+        if (Int32.TryParse(value, out int intVal))
+            element.SpecialSetDelegates[propName](element, new Property(intVal));
         else
-        {
-            //TODO разобаться с ENUMами
-            var propertyType = element.xPropertiesGroup["container"][propName].GetType();
-            var enumValue = Enum.Parse(propertyType, value);
-            element.SpecialSetDelegates[propName](element, (int)enumValue);
-        }
+            element.SpecialSetDelegates[propName](element, new Property(value));
     }
 
     private static void OnEnumPropertyChanged(object sender, SelectionChangedEventArgs e)

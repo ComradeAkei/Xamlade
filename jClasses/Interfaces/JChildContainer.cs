@@ -5,8 +5,8 @@ namespace Xamlade.jClasses;
 
 public interface JChildContainer
 {
-    public delegate int ContainerPropertyDelegate(JControl element);
-    public delegate void ContainerSetPropertyDelegate(JControl element, int value);
+    public delegate Property ContainerPropertyDelegate(JControl element);
+    public delegate void ContainerSetPropertyDelegate(JControl element, Property value);
     public List<(string, ContainerPropertyDelegate)> ContainerProperties { get; set; }
     
     //Методы установки свойства на контейнере

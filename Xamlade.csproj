@@ -28,6 +28,7 @@
 
     <ItemGroup>
         <AdditionalFiles Include="**\*.xaml" />
+        <AdditionalFiles Remove="bin\Debug\net9.0\XamladeDemo\**" />
     </ItemGroup>
     
     <ItemGroup>
@@ -38,12 +39,14 @@
       <None Remove="Xamlade2.png~" />
       <None Remove="Xamlade2.png" />
       <None Remove="qodana.yaml" />
+      <None Remove="bin\Debug\net9.0\XamladeDemo\**" />
     </ItemGroup>
 
 
     <ItemGroup>
       <AvaloniaXaml Remove="TestWindow.axaml" />
       <AvaloniaXaml Remove="ComboboxStyle.axaml" />
+      <AvaloniaXaml Remove="bin\Debug\net9.0\XamladeDemo\**" />
     </ItemGroup>
 
 
@@ -64,12 +67,14 @@
       <Compile Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\.NETCoreApp,Version=v9.0.AssemblyAttributes.cs" />
       <Compile Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.AssemblyInfo.cs" />
       <Compile Include="bin\Debug\net9.0\XamladeDemo\Program.cs" />
+      <Compile Remove="bin\Debug\net9.0\XamladeDemo\**" />
     </ItemGroup>
 
 
     <ItemGroup>
       <None Remove="RES\loading.gif" />
       <AvaloniaResource Include="RES\loading.gif" />
+      <AvaloniaResource Remove="bin\Debug\net9.0\XamladeDemo\**" />
     </ItemGroup>
 
 
@@ -245,6 +250,14 @@
       <Content Include="bin\Debug\net9.0\XamladeDemo\RUN.sh" />
       <Content Include="bin\Debug\net9.0\XamladeDemo\XamladeDemo.csproj" />
       <Content Include="bin\Debug\net9.0\XamladeDemo\XamladeDemo.sln" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="bin\Debug\net9.0\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="bin\Debug\net9.0\XamladeDemo\**" />
     </ItemGroup>
     
     <Target Name="CopyAssets" BeforeTargets="Build">
