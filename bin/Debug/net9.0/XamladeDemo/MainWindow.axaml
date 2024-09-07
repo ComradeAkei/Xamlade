@@ -7,8 +7,10 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Grid ShowGridLines="True" ColumnDefinitions="50*,100*" RowDefinitions="200*,100*" Background="#fff77531" Width="400" Height="400" Name="Grid0" Canvas.Left="203" Canvas.Top="110" >
-<Button Name="Button1" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" >
+<Button Name="Button0" Content="Text" Background="#ff4dff00" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="795" Canvas.Top="217" >
+</Button>
+<Grid ShowGridLines="True" ColumnDefinitions="100*,50*,50*,100*" RowDefinitions="100*,100*,200*" Background="#ff923ac6" Width="400" Height="400" Name="Grid1" Canvas.Left="249" Canvas.Top="170" >
+<Button Name="Button2" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" >
 </Button>
 </Grid>
 </Canvas>

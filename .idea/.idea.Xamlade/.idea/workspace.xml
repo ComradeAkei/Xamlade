@@ -11,15 +11,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Полный переход на новую архитектуру">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Быстрая добавка новой функциональности с контейнеров">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jCanvas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/jDockPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jDockPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/jGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jGrid.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +30,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Development" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -118,12 +112,14 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4233131c6be12e7e37462c8dda8bed719550781131b741946f6de2c02cf8/INamed.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/App.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ComboboxStyle.axaml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/Extensions/Constants.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/History.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/jCoordinates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/Workspace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IgnoredTypeConverter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TestWindow.axaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" root0="FORCE_HIGHLIGHTING" />
@@ -149,33 +145,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.30800542",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "Development",
-    "last_opened_file_path": "/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "RiderDpaPageId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.30800542&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PreRelease&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;RiderDpaPageId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "/home/akei/.config/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
-      "/home/akei/.config/JetBrains/Rider2023.2/resharper-host/SourcesCache",
-      "/home/akei/.local/share/Symbols/src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/home/akei/.config/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
+      &quot;/home/akei/.config/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
+      &quot;/home/akei/.local/share/Symbols/src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="Development" />
@@ -351,15 +347,7 @@
       <workItem from="1725620304881" duration="12544000" />
       <workItem from="1725665091929" duration="1319000" />
       <workItem from="1725666451230" duration="1145000" />
-      <workItem from="1725733847816" duration="12055000" />
-    </task>
-    <task id="LOCAL-00013" summary="Добавлена поддержка StackPanel">
-      <option name="closed" value="true" />
-      <created>1699230272028</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1699230272028</updated>
+      <workItem from="1725733847816" duration="13388000" />
     </task>
     <task id="LOCAL-00014" summary="Анимация процесса компиляции XAML">
       <option name="closed" value="true" />
@@ -745,7 +733,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725743089141</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Быстрая добавка новой функциональности с контейнеров">
+      <option name="closed" value="true" />
+      <created>1725751450541</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1725751450541</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,7 +775,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bugfix" />
     <MESSAGE value="Добавлена отмена действий" />
     <MESSAGE value="Полная поддержка UNDO/REDO" />
     <MESSAGE value="Классификация" />
@@ -804,7 +799,8 @@
     <MESSAGE value="99" />
     <MESSAGE value="999" />
     <MESSAGE value="Полный переход на новую архитектуру" />
-    <option name="LAST_COMMIT_MESSAGE" value="Полный переход на новую архитектуру" />
+    <MESSAGE value="Быстрая добавка новой функциональности с контейнеров" />
+    <option name="LAST_COMMIT_MESSAGE" value="Быстрая добавка новой функциональности с контейнеров" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
