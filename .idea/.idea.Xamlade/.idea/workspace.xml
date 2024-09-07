@@ -11,13 +11,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Полный переход на новую архитектуру">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jCanvas.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/jDockPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jDockPanel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/jGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jGrid.cs" afterDir="false" />
@@ -128,6 +127,7 @@
     <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/jClasses/jCanvas.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/jCanvas.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/jGrid.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -149,33 +149,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.30800542&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Development&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.30800542",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "Development",
+    "last_opened_file_path": "/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "RiderDpaPageId",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;/home/akei/.config/JetBrains/Rider2023.2/resharper-host/DecompilerCache&quot;,
-      &quot;/home/akei/.config/JetBrains/Rider2023.2/resharper-host/SourcesCache&quot;,
-      &quot;/home/akei/.local/share/Symbols/src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "/home/akei/.config/JetBrains/Rider2023.2/resharper-host/DecompilerCache",
+      "/home/akei/.config/JetBrains/Rider2023.2/resharper-host/SourcesCache",
+      "/home/akei/.local/share/Symbols/src"
     ]
   }
-}</component>
+}]]></component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="Development" />
@@ -351,15 +351,7 @@
       <workItem from="1725620304881" duration="12544000" />
       <workItem from="1725665091929" duration="1319000" />
       <workItem from="1725666451230" duration="1145000" />
-      <workItem from="1725733847816" duration="3996000" />
-    </task>
-    <task id="LOCAL-00012" summary="Изменен интерфейс программы, добавлен TextBox, улучшена генерация XAML">
-      <option name="closed" value="true" />
-      <created>1699145872533</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1699145872533</updated>
+      <workItem from="1725733847816" duration="12055000" />
     </task>
     <task id="LOCAL-00013" summary="Добавлена поддержка StackPanel">
       <option name="closed" value="true" />
@@ -745,7 +737,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725666491582</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Полный переход на новую архитектуру">
+      <option name="closed" value="true" />
+      <created>1725743089141</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1725743089141</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -779,7 +779,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Bugfixes" />
     <MESSAGE value="Bugfix" />
     <MESSAGE value="Добавлена отмена действий" />
     <MESSAGE value="Полная поддержка UNDO/REDO" />
@@ -804,7 +803,8 @@
     <MESSAGE value="xamladeDemo" />
     <MESSAGE value="99" />
     <MESSAGE value="999" />
-    <option name="LAST_COMMIT_MESSAGE" value="999" />
+    <MESSAGE value="Полный переход на новую архитектуру" />
+    <option name="LAST_COMMIT_MESSAGE" value="Полный переход на новую архитектуру" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

@@ -75,30 +75,30 @@ public static class PropertiesControl
 
     public static void ShowProperties()
     {
-        if (Equals(HierarchyControl.Selected.Beholder.element, Workspace.MainCanvas)) return;
+        
 
-        if (PropElement != null && PropElement.Equals(HierarchyControl.Selected.Beholder.element))
-            return;
-
-        PropElement = HierarchyControl.Selected.Beholder.element as JControl;
-
+        //ОСТАВИТЬ ЧТОБЫ СВОЙСТВА НЕ ДЁРГАЛИСЬ
+         if (PropElement != null && PropElement.Equals(HierarchyControl.Selected.Beholder.element))
+             return;
+         PropElement = HierarchyControl.Selected.Beholder.element as JControl;
+        //
+        
         if (PropListBox != null)
         {
+            if ((Equals(HierarchyControl.Selected.Beholder.element, Workspace.MainCanvas)) || (Equals(HierarchyControl.Selected.Beholder.element, Workspace.SelectionCanvas)))
+            {
+                PropListBox.ItemsSource = null;
+                return;
+            }
             // Отключаем виртуализацию
             PropListBox.ItemsPanel = new FuncTemplate<Panel>(() => new StackPanel());
-
-            // Очистите текущий источник данных
             PropListBox.ItemsSource = null;
             // Обновляем ItemsSource в главном UI потоке
-            Dispatcher.UIThread.InvokeAsync(() =>
-            {
-                PropListBox.ItemsSource = HierarchyControl.Selected.Beholder.PropListItems;
-            });
+            Dispatcher.UIThread.InvokeAsync(() => 
+                PropListBox.ItemsSource = HierarchyControl.Selected.Beholder.PropListItems);
         }
     }
     
-    //Вернуть private
-    //ДОДЕЛАТЬ!!!!!
     public static ListBoxItem CreatePropItem(string name, Property prop)
     {
         if (name == "main") return null;
@@ -424,7 +424,7 @@ public static class PropertiesControl
     private static void SpecialPropertySet(string propName, string value)
     {
         var element = HierarchyControl.Selected.Beholder.element as JControl;
-        if (element == null) 
+        if (element == null)
             return;
 
         // Если строка может быть преобразована в число, передаем как int
