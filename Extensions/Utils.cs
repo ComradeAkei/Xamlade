@@ -11,12 +11,11 @@ namespace Xamlade.Extensions;
 
 public static class Utils
 {
-    
     private static Panel DebugPanel { get; set; }
-    public static Timer DebugTimer{ get; set; }
+    public static Timer DebugTimer { get; set; }
 
     private static Timer MainTimer;
-    
+
     public static bool isDebugPanelActive
     {
         get => DebugPanel.IsVisible;
@@ -28,6 +27,7 @@ public static class Utils
                 DebugPanel.IsVisible = false;
         }
     }
+
     //Отладочный итератор
     public static int NextgenIterator = 0;
 
@@ -46,10 +46,10 @@ public static class Utils
         MainTimer.Elapsed += (sender, args) => Tick();
         MainTimer.Start();
     }
+
     public static void DEBUG(object? sender, RoutedEventArgs e)
     {
         isDebugPanelActive = !isDebugPanelActive;
-
     }
 
     public static void PrintDebugMessage(string message)
@@ -60,13 +60,27 @@ public static class Utils
         });
     }
 
+    //Конвертеры делегатов
+    public static JChildContainer.ContainerSetPropertyDelegate ConvertSetter<T>(Action<JControl, T> setter) =>
+        (element, prop) =>
+        {
+            T value = (T)(prop.Value ?? default(T));
+            setter(element, value);
+        };
+
+    public static JChildContainer.ContainerPropertyDelegate ConvertGetter<T>(Func<JControl, T> getter)
+    {
+        return element =>
+        {
+            T value = getter(element);  // Получаем значение типа T
+            return new Property(value);  // Заворачиваем в Property
+        };
+    }
     private static void Tick()
     {
         Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>
         {
-        //    PropertiesControl.ShowProperties();
+            //    PropertiesControl.ShowProperties();
         });
     }
-    
-    
 }

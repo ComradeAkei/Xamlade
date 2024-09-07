@@ -4,6 +4,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
+using Xamlade.Extensions;
 
 namespace Xamlade.jClasses;
 
@@ -57,16 +58,28 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
     {
         ContainerSetProperties = new Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>
         {
-            { "Row", (JControl element, Property prop) => SetRow(element,(int)(prop.Value ?? 0)) },
-            { "Column", (JControl element, Property prop) => SetColumn(element,(int)(prop.Value ?? 0)) },
+            { "Row", Utils.ConvertSetter<int>(SetRow) },
+            { "Column", Utils.ConvertSetter<int>(SetColumn) },
+            { "RowSpan", Utils.ConvertSetter<int>(SetRowSpan) },
+            { "ColumnSpan", Utils.ConvertSetter<int>(SetColumnSpan) },
+            { "RowHeight", Utils.ConvertSetter<int>(SetRowHeight) },
+            { "ColumnWidth", Utils.ConvertSetter<int>(SetColumnWidth) },
+            { "RowType", Utils.ConvertSetter<GridUnitType>(SetRowType) },
+            { "ColumnType", Utils.ConvertSetter<GridUnitType>(SetColumnType) }
         };
     }
     public void InitContainerProperties()
     {
         ContainerProperties = new List<(string, JChildContainer.ContainerPropertyDelegate)>
         {
-            ( "Row", element => new Property(GetRow(element)) ),
-            ( "Column", element => new Property(GetColumn(element))),
+            ( "Row", Utils.ConvertGetter(GetRow) ),
+            ( "Column", Utils.ConvertGetter(GetColumn) ),
+            ( "RowSpan", Utils.ConvertGetter(GetRowSpan) ),
+            ( "ColumnSpan", Utils.ConvertGetter(GetColumnSpan) ),
+            ( "RowHeight", Utils.ConvertGetter(GetRowHeight) ),
+            ( "RowType", Utils.ConvertGetter(GetRowType) ),      
+            ( "ColumnWidth", Utils.ConvertGetter(GetColumnWidth) ), 
+            ( "ColumnType", Utils.ConvertGetter(GetColumnType) )    
         };
     }
 
@@ -94,6 +107,66 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
     public static int GetColumnSpan(JControl element) => 
         Grid.GetColumnSpan(element as Control);
 
+    public static void SetRowHeight(JControl element, int value)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return;
+    
+        var currentHeight = grid.RowDefinitions[Grid.GetRow(element as Control)].Height;
+        grid.RowDefinitions[Grid.GetRow(element as Control)].Height = new GridLength(value, currentHeight.GridUnitType);
+    }
+
+    public static void SetColumnWidth(JControl element, int value)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return;
+    
+        var currentWidth = grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width;
+        grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width = new GridLength(value, currentWidth.GridUnitType);
+    }
+
+    public static void SetRowType(JControl element, GridUnitType value)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return;
+    
+        var currentHeight = grid.RowDefinitions[Grid.GetRow(element as Control)].Height;
+        grid.RowDefinitions[Grid.GetRow(element as Control)].Height = new GridLength(currentHeight.Value, value);
+    }
+
+    public static void SetColumnType(JControl element, GridUnitType value)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return;
+    
+        var currentWidth = grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width;
+        grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width = new GridLength(currentWidth.Value, value);
+    }
+    public static int GetRowHeight(JControl element)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return 0;  // Обработка null, если родитель не является grid
+        return (int)grid.RowDefinitions[Grid.GetRow(element as Control)].Height.Value;
+    }
+    public static int GetRowType(JControl element)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return 0;  
+        return (int)grid.RowDefinitions[Grid.GetRow(element as Control)].Height.GridUnitType;
+    }
+    public static int GetColumnWidth(JControl element)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return 0;  
+        return (int)grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width.Value;
+    }
+    public static int GetColumnType(JControl element)
+    {
+        var grid = element.jParent as jGrid;
+        if (grid == null) return 0;
+        return (int)grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width.GridUnitType;
+    }
+    
     public mBorder selectionBorder { get; set; }
 
     public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
@@ -109,8 +182,8 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
 
     public void AddSpecialSetDelegates()
     {
-        SpecialSetDelegates["Rows"] = (element, value) => SetRowsCount(element, (int)(value.Value ?? 0));
-        SpecialSetDelegates["Columns"] = (element, value) => SetColumnsCount(element, (int)(value.Value ?? 0));
+        SpecialSetDelegates["Rows"] = Utils.ConvertSetter<int>(SetRowsCount);
+        SpecialSetDelegates["Columns"] = Utils.ConvertSetter<int>(SetColumnsCount);
     }
 
     private void SetRowsCount(JControl element, int newRows)

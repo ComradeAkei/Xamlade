@@ -45,8 +45,7 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
         jChildren.Remove(child);
         Children.Remove((Control)child);
     }
-
-    //TODO? Делегаты двух типов?
+    
     public void InitContainerProperties()
     {
         
@@ -61,7 +60,7 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
         
        ContainerSetProperties = new()
         {
-            { "Dock", (jControl, value) => SetDock(jControl, (Dock)Enum.Parse(typeof(Dock), (string)value.Value)) }
+            { "Dock",  (jControl, value) => SetDock(jControl, (Dock)Enum.Parse(typeof(Dock), (string)value.Value)) }
         }; 
     }
 

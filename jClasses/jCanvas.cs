@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Xamlade.Extensions;
 using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
 
@@ -31,9 +32,17 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
     {
         ContainerSetProperties = new Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>
         {
-            { "Top", (JControl element, Property prop) => SetTop(element,(int)(prop.Value ?? 0)) },
-            { "Left", (JControl element, Property prop) => SetLeft(element,(int)(prop.Value ?? 0)) },
+            { "Top", Utils.ConvertSetter<int>(SetTop) },
+            { "Left", Utils.ConvertSetter<int>(SetLeft) },
         };
+    }
+    public void InitContainerProperties()
+    {
+        ContainerProperties = new List<(string, JChildContainer.ContainerPropertyDelegate)>
+        {
+            ("Top", Utils.ConvertGetter(GetTop)),
+            ("Left", Utils.ConvertGetter(GetLeft)),
+        }; 
     }
     public jCanvas()
     {
@@ -67,14 +76,7 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
         Canvas.SetBottom(element as Control, value);
     }
 
-    public void InitContainerProperties()
-    {
-       ContainerProperties = new List<(string, JChildContainer.ContainerPropertyDelegate)>
-        {
-            ("Top", (JControl child) => new Property(jCanvas.GetTop(child))),
-            ("Left", (JControl child) => new Property(jCanvas.GetLeft(child))),
-        }; 
-    }
+    
     public static int GetLeft(JControl element) =>
         double.IsNaN((int)Canvas.GetLeft(element as Control)) ? 0 : (int)Canvas.GetLeft(element as Control);
 
