@@ -11,9 +11,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Bugfixes">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Extensions/Atributes/ReflectionCall.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jClasses/Elements/jProgressBar.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/HierarchyControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/HierarchyControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jBorder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jCheckBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jCheckBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jComboBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jComboBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jComboBoxItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jComboBoxItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jDockPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jDockPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jImage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jStackPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jStackPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jTextBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jTextBlock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jTextBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jTextBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jToggleButton.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +70,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/33d01c29e565463dbe58527016205d1223fa00/97/5d9ea46b/ColorButton`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/33d01c29e565463dbe58527016205d1223fa00/ca/efb1b145/ColorPickerWindow.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/33d01c29e565463dbe58527016205d1223fa00/e2/10c398f2/Palette.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/35d96747ffd34de28693384eb5a5d01fff200/3f/c45ec822/ProgressBar.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/35d96747ffd34de28693384eb5a5d01fff200/af/1838de8e/ItemCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/35d96747ffd34de28693384eb5a5d01fff200/c7/06fb1107/Canvas.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4081939150374df08a07a87a6d2002911ac800/03/05aad1b8/StyledElement.cs" root0="SKIP_HIGHLIGHTING" />
@@ -64,6 +87,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c6da6ce15f3d4ceea1a9f1da1beeac49f9200/bf/77810cdb/Panel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d8a5354b09db47eda5937b722f8095fc1ae600/75/85074fd3/InputElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db1fd93cf64a41698d9fa216e2a32dcbf5a00/77/0b712ad9/ItemCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fe7bf9cb9df14c6ab8e738e27e94952e1ea00/03/daf43b71/DrawingContextImpl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/75db895618764737a8e2369d5e6dd627bac00/58/beef984d/Avalonia.Themes.Fluent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/b5abfc76e5f64806874c5378a5d3fa0923e00/04/32f4e311/Citrus.Avalonia.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/29ba861a88c4a75221c6eb5ae01048244e784bbcf3983f5c5d3cadebb7519a1/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
@@ -98,6 +122,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ba3dc2cf8c3b7f63e09e91fc46f566b970695b3556535ef56d897fd6f866dd/TextBox.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c2f6475524d844411f342ebac3dc9fdcc985293c63097183568b465a768cd5/StackPanel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c48a1448d594fce4e6c2f33b72109dbcc54ce6f34f26858504961c3746764/ItemCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cc84c38d8785b88e166e6741b6a4c0dfa09eaf6e41eb151b255817e11f27570/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cd894a7e5e5fafa8a68b2e26724cc93ab936b5e988402ed3fa78ab48cd1b/CornerRadius.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d353812a25ccb01c976d5736f96d253a77e8709c72e6d8bea392613eb64c3/Visual.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a5354b09db47eda5937b722f8095fc1ae600/_0a183/StretchDirection.cs" root0="SKIP_HIGHLIGHTING" />
@@ -121,11 +146,11 @@
     <setting file="file://$PROJECT_DIR$/ProgramWindow/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TestWindow.axaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/jClasses/Containers/jDockPanel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/jClasses/Containers/jGrid.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/jClasses/jCanvas.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/jClasses/jDockPanel.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/jClasses/jGrid.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -176,6 +201,28 @@
     <force-push-targets>
       <force-push-target remote-path="origin" branch="Development" />
     </force-push-targets>
+  </component>
+  <component name="QodanaHighlightedReportService">
+    <option name="localRunPublishedPersistedInfo">
+      <LocalRunPublishedPersistedInfo>
+        <option name="fileReportPersistedInfo">
+          <LocalReportPersistedInfo>
+            <option name="path" value="/tmp/qodana_output/qodana.sarif.json" />
+            <option name="reportGuid" value="f22e47a8-f35d-4093-91aa-10d52e228b64" />
+            <option name="reportName" value="Xamlade/qodana/2024-09-08" />
+          </LocalReportPersistedInfo>
+        </option>
+        <option name="reportLink" value="https://qodana.cloud/projects/3jyDJ/reports/RwMey" />
+      </LocalRunPublishedPersistedInfo>
+    </option>
+  </component>
+  <component name="QodanaIsSelectedPersistenceService">
+    <option name="selectedOrLoading" value="true" />
+  </component>
+  <component name="QodanaReportsService">
+    <option name="descriptions">
+      <ReportDescription localRun="true" path="/tmp/qodana_output/qodana.sarif.json" publishedReportLink="https://qodana.cloud/projects/3jyDJ/reports/RwMey" reportGuid="f22e47a8-f35d-4093-91aa-10d52e228b64" reportId="Xamlade/qodana/2024-09-08" />
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Xamlade" type="DotNetProject" factoryName=".NET Project">
@@ -348,15 +395,8 @@
       <workItem from="1725665091929" duration="1319000" />
       <workItem from="1725666451230" duration="1145000" />
       <workItem from="1725733847816" duration="14167000" />
-      <workItem from="1725794557990" duration="14444000" />
-    </task>
-    <task id="LOCAL-00016" summary="google stats">
-      <option name="closed" value="true" />
-      <created>1699393135066</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1699393135067</updated>
+      <workItem from="1725794557990" duration="19589000" />
+      <workItem from="1725831910234" duration="1135000" />
     </task>
     <task id="LOCAL-00017" summary="google stats">
       <option name="closed" value="true" />
@@ -742,7 +782,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725818064298</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="BUXFIXES">
+      <option name="closed" value="true" />
+      <created>1725819687149</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1725819687150</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -776,7 +824,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Классификация" />
     <MESSAGE value="Тринадцать причин считать мандарин умнее кактуса" />
     <MESSAGE value="Selection" />
     <MESSAGE value="XAMLIZE FIX" />
@@ -801,7 +848,8 @@
     <MESSAGE value="Быстрая добавка новой функциональности с контейнеров" />
     <MESSAGE value="+-" />
     <MESSAGE value="Bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bugfixes" />
+    <MESSAGE value="BUXFIXES" />
+    <option name="LAST_COMMIT_MESSAGE" value="BUXFIXES" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

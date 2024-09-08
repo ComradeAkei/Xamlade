@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Avalonia.Controls;
+using Xamlade.Extensions;
 using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
 
@@ -39,7 +40,7 @@ public class jCheckBox : CheckBox, JControl, JBroadcastHandler<JControl>, JSelec
     public new bool IsPressed
     {
         get => base.IsPressed;
-        set => SetValue(IsPressedProperty, value);
+        set => Reflector.ForceSet(this,"_isPressed", value);
     }
     private void HandleBroadcast(int mode)
     {

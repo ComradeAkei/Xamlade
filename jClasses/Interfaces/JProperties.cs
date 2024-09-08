@@ -26,6 +26,7 @@ namespace Xamlade.jClasses
        
         public void SetProperty<T>(string name, T value, string category = "main")
         {
+            if(Constants.ExcludedWords.Contains(name)) return;
             if(value is not null)
                 xPropertiesGroup[category][name] = new Property(value, value.GetType());
         }
@@ -67,6 +68,7 @@ namespace Xamlade.jClasses
        
         public void UpdateProperty(string name, object? value)
         {
+           
             //ОПТИМИЗИРОВАТЬ!
             SetProperty(name,value);
         }

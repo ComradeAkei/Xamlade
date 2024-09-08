@@ -36,7 +36,7 @@ public interface JControl : JProperties
     }
 
 
-    public string Type { get; }
+    public string Type { get; } 
 
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }

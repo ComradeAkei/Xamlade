@@ -1,5 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Styling;
 using Xamlade.jClasses;
@@ -29,9 +31,9 @@ public static class HierarchyControl
         {
             Setters = 
             {
-                new Setter(TreeViewItem.PaddingProperty, new Thickness(0, 0, 0, 0)),
-                new Setter(Control.MarginProperty, new Thickness(-12, 0, 0, 0)), // Без отрицательного отступа
-                new Setter(TreeViewItem.FontSizeProperty, 15.0),
+                new Setter(TemplatedControl.PaddingProperty, new Thickness(0, 0, 0, 0)),
+                new Setter(Layoutable.MarginProperty, new Thickness(-12, 0, 0, 0)), // Без отрицательного отступа
+                new Setter(TemplatedControl.FontSizeProperty, 15.0),
             }
         };
         

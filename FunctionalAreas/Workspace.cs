@@ -11,6 +11,7 @@ using Avalonia.Media;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
 using Xamlade.LinkWorkers;
+using static System.Int32;
 
 namespace Xamlade.FunctionalAreas;
 
@@ -61,7 +62,7 @@ public static class Workspace
         SelectionCanvas = new jCanvas();
         SelectionCanvas.Name = "SelectionCanvas";
         SelectionCanvas.Background = Brushes.Transparent;
-        SelectionCanvas.SetValue(Panel.ZIndexProperty, Int32.MaxValue - 5);
+        SelectionCanvas.SetValue(Visual.ZIndexProperty, MaxValue - 5);
         SelectionCanvas.PointerEntered += OnjControlPointerEntered;
         SelectionCanvas.PointerExited += OnjControlPointerExited;
         SelectionCanvas.PointerPressed += OnjControlPressed;
@@ -81,7 +82,7 @@ public static class Workspace
         };
         SelectionRectangle.IsVisible = false;
         MainCanvas.Children.Add(SelectionRectangle);
-        SelectionRectangle.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        SelectionRectangle.SetValue(Visual.ZIndexProperty, MaxValue);
     }
 
     //Выделить попавшие в рамку объекты

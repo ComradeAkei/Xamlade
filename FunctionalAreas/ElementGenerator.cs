@@ -27,7 +27,6 @@ public static class ElementGenerator
         }
 
         if ((selectedElement is jBorder)) return;
-   //     if ((selectedElement is jComboBox)) return;
         if (selectedElement is not JChildContainer parent) return;
 
 
@@ -215,6 +214,15 @@ public static class ElementGenerator
                 checkBox.Foreground = Brushes.White;
             }
                 break;
+            case "ProgressBar":
+            {
+                var progressBar = (jProgressBar)element;
+                progressBar.Foreground = Brushes.Blue;
+                progressBar.Width = 300;
+                progressBar.Height = 30;
+                progressBar.Value = 38;
+            }
+                break;
             case "Canvas":
             {
                 string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
@@ -247,7 +255,7 @@ public static class ElementGenerator
         obj.selectionBorder.BorderBrush = new SolidColorBrush(Color.Parse("#1D9627"));
         obj.selectionBorder.BorderThickness = new Thickness(2);
         Workspace.MainCanvas.Children.Add(obj.selectionBorder);
-        obj.selectionBorder.SetValue(Panel.ZIndexProperty, Int32.MaxValue);
+        obj.selectionBorder.SetValue(Visual.ZIndexProperty, Int32.MaxValue);
         obj.selectionBorder.IsVisible = false;
     }
 }

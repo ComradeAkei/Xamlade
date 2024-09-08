@@ -11,13 +11,15 @@ namespace Xamlade.jClasses;
 public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     
-    public Beholder Beholder { get; set; }
-    public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
-    
     protected override Type StyleKeyOverride => typeof(Border);
     public static  int Iterator { get; set; }
     public static int ReleaseNewElement() => 
         Iterator++;
+    
+    
+    public Beholder Beholder { get; set; }
+    public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
+    
     
     private string controlType => jElementType.Border.ToString();
     public mBorder selectionBorder { get; set; }

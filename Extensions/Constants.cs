@@ -26,6 +26,7 @@ public static class Constants
         "Beholder",
         "ContainerProperties", "Properties", "SpecialSetDelegates", "_jParent", "xPropertiesGroup",
         "ContainerSetProperties",
-        "DataContext", "Parent", "VisualParent", "ActualThemeVariant", "Iterator"
+        "DataContext", "Parent", "VisualParent", "ActualThemeVariant", "Iterator", "TemplateSettings",
+         "Percentage"
     };
 }

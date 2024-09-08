@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Avalonia.Controls;
+using Xamlade.Extensions;
 using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
 
@@ -27,17 +28,14 @@ namespace Xamlade.jClasses;
 
 public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectable
 {
-    public int ID = 0;
-    
     protected override Type StyleKeyOverride => typeof(Button);
-    public static  int Iterator { get; set; }
+    private static  int Iterator { get; set; }
     public static int ReleaseNewElement() => 
         Iterator++;
     
     
     
     public mBorder selectionBorder { get; set; }
-
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
    
@@ -46,14 +44,13 @@ public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectabl
     private string controlType => jElementType.Button.ToString();
     public string Type => controlType;
     public int XAMLRating { get; set; }
-    [field: NonSerialized]
     public List<string> XAMLPiece { get; set; }
     
 
     public new bool IsPressed
     {
         get => base.IsPressed;
-        set => SetValue(IsPressedProperty, value);
+        set => Reflector.ForceSet(this,"_isPressed", value);
     }
 
     public new string? Name
@@ -77,5 +74,3 @@ public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectabl
         return;
     }
 }
-
-//Доделать

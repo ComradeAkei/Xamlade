@@ -1,7 +1,6 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:xamlade="clr-namespace:Xamlade"
-       
+
         xmlns:gif="clr-namespace:Avalonia.Gif;assembly=Avalonia.Gif"
         xmlns:jClasses="clr-namespace:Xamlade.jClasses"
         xmlns:programWindow="clr-namespace:Xamlade.ProgramWindow"
@@ -147,6 +146,9 @@
                     <jClasses:mGenButton Content="Image"
                                 Margin="10,0,10,10"
                                 Label="Image" />
+                    <jClasses:mGenButton Content="Progress"
+                                         Margin="10,0,10,10"
+                                         Label="ProgressBar" />
 
                 </StackPanel>
             </TabItem>
