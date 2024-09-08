@@ -2,6 +2,7 @@
 
 ![](Xamlade.png)
 # PLEASE CONTRIBUTE TO XAMLADE!!! (W_W)'
+ak25800852@gmail.com
 ## The project is being developed by a single person who is very eager to help the community in creating a visual XAML editor.
 
 ### You can support the project by donating to the following wallets:
