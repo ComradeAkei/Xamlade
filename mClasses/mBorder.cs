@@ -11,4 +11,6 @@ public class mBorder : Border, MControl
         master = binded;
         Name = master.Name + "_Border";
     }
+
+    public string Label { get; set; }
 }

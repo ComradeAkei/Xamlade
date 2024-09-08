@@ -20,4 +20,5 @@ public class mRowDefinition: RowDefinition, MControl
         this.Height = new GridLength(height, type);
     }
 
+    public string Label { get; set; }
 }

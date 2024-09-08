@@ -17,4 +17,6 @@ public class mColumnDefinition:ColumnDefinition, MControl
         this.Width = new GridLength(width, type);
         
     }
+
+    public string Label { get; set; }
 }

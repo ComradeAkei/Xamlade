@@ -17,6 +17,9 @@ namespace Xamlade.jClasses;
 public interface JControl : JProperties
 {
     public Beholder Beholder { get; set; }
+    
+   
+    
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public bool IsSelected => (this as JSelectable)?.selectionBorder.IsVisible ?? false;
     

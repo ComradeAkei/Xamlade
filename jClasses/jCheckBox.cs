@@ -15,7 +15,14 @@ public class jCheckBox : CheckBox, JControl, JBroadcastHandler<JControl>, JSelec
         XAMLPiece = new List<string>();
     }
 
+    
     protected override Type StyleKeyOverride => typeof(CheckBox);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
+
+    
+    
     public mBorder selectionBorder { get; set; }
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }

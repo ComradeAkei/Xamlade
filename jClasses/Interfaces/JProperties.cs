@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using Xamlade.Extensions;
@@ -55,6 +56,7 @@ namespace Xamlade.jClasses
         public void AddContainerProperties()
         {
             if ((this as JControl)?.jParent is not { } parent) return;
+            if(parent.ContainerProperties is null) return;
             foreach (var prop in parent.ContainerProperties)
                 SetProperty(prop.Item1, prop.Item2((this as JControl)!),category:"container");
         }

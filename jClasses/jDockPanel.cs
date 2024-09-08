@@ -10,6 +10,9 @@ namespace Xamlade.jClasses;
 public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler<JControl>, JSelectable, JProperties
 {
     protected override Type StyleKeyOverride => typeof(DockPanel);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }

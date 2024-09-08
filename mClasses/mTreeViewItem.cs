@@ -19,4 +19,6 @@ public class mTreeViewItem : TreeViewItem, MControl
         //Обратная связь с jElement
         element.Beholder.mTreeItem = this;
     }
+
+    public string Label { get; set; }
 }

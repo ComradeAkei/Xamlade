@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
@@ -93,6 +94,7 @@ public static class Reflector
         ForceSet(obj, $"_{name.ToLower()}", value);
     }
 
+    //Ищем поле в вышестоящих классах по цепочке наследования
     private static FieldInfo GetFieldRecursive(Type type, string name)
     {
         while (type != null)
@@ -105,7 +107,8 @@ public static class Reflector
         }
         return null;
     }
-
+    
+    //Ищем сойство в вышестоящих классах по цепочке наследования
     private static PropertyInfo GetPropertyRecursive(Type type, string name)
     {
         while (type != null)
@@ -117,6 +120,36 @@ public static class Reflector
             type = type.BaseType;
         }
         return null;
+    }
+    
+    /// <summary>
+    /// Вызывает статический метод класса объекта с помощью рефлексии.
+    /// </summary>
+    /// <param name="obj">Объект, тип которого используется для поиска метода.</param>
+    /// <param name="methodName">Имя вызываемого статического метода.</param>
+    /// <param name="parameters">Параметры, передаваемые в вызываемый метод.</param>
+    /// <returns>Результат выполнения статического метода, если метод имеет возвращаемое значение. Иначе — null.</returns>
+    /// <exception cref="ArgumentException">Выбрасывается, если метод с указанным именем не найден.</exception>
+
+    public static object StaticCall(object obj, string methodName, params object[] parameters)
+    {
+        // Поиск метода в интерфейсах объекта
+        var methodInfo = obj.GetType()
+            .GetInterfaces()
+            .Select(iface => iface.GetMethod(methodName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+            .FirstOrDefault(method => method != null);
+
+        // Если метод найден в интерфейсах, вызываем его
+        if (methodInfo != null)
+        {
+            return methodInfo.Invoke(null, parameters);
+        }
+
+        // Ищем метод в типе объекта
+        methodInfo = obj.GetType().GetMethod(methodName, BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+
+        return methodInfo?.Invoke(null, parameters)
+               ?? throw new ArgumentException($"Метод {methodName} не найден.");
     }
 }
     

@@ -13,7 +13,11 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
     
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
+    
     protected override Type StyleKeyOverride => typeof(Border);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
     
     private string controlType => jElementType.Border.ToString();
     public mBorder selectionBorder { get; set; }

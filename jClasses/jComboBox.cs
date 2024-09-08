@@ -13,12 +13,16 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
 {
     public int ID = 0;
     protected override Type StyleKeyOverride => typeof(ComboBox);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
+    
+    
     public mBorder selectionBorder { get; set; }
 
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }
-    [field: NonSerialized] public JChildContainer? jParent { get; set; }
     private string controlType => jElementType.ComboBox.ToString();
     public string Type => controlType;
     public int XAMLRating { get; set; }
@@ -67,9 +71,13 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
         
     }
 
+    static jComboBox()
+    {
+       ContainerSetProperties = new(); 
+    }
     public void InitContainerProperties()
     {
-        
+        ContainerProperties = new();
     }
 
 

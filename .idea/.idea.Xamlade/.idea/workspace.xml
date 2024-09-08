@@ -11,9 +11,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Быстрая добавка новой функциональности с контейнеров">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/mClasses/mGenButton.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Reflector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Reflector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jBorder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jCanvas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jCheckBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jCheckBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jComboBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jComboBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jComboBoxItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jComboBoxItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jDockPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jDockPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jGrid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jImage.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jStackPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jStackPanel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jTextBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jTextBlock.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jTextBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jTextBox.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/jToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/jToggleButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/Interfaces/MControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/Interfaces/MControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/mBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mBorder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/mColumnDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mColumnDefinition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/mRowDefinition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mRowDefinition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +62,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/4081939150374df08a07a87a6d2002911ad000/68/a778e465/02000037pdb259.il" root0="SKIP_HIGHLIGHTING" />
@@ -114,17 +140,21 @@
     <setting file="file://$PROJECT_DIR$/ComboboxStyle.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/Extensions/Constants.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/History.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Extensions/Utils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/jCoordinates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/Workspace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IgnoredTypeConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProgramWindow/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TestWindow.axaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="mock:///home/akei/Projects/Xamlade/Xamlade/jClasses/jCanvas.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/jCanvas.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/jClasses/jDockPanel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/jClasses/jGrid.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -347,15 +377,8 @@
       <workItem from="1725620304881" duration="12544000" />
       <workItem from="1725665091929" duration="1319000" />
       <workItem from="1725666451230" duration="1145000" />
-      <workItem from="1725733847816" duration="13388000" />
-    </task>
-    <task id="LOCAL-00014" summary="Анимация процесса компиляции XAML">
-      <option name="closed" value="true" />
-      <created>1699315278704</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1699315278704</updated>
+      <workItem from="1725733847816" duration="14167000" />
+      <workItem from="1725794557990" duration="12654000" />
     </task>
     <task id="LOCAL-00015" summary="Изменено README">
       <option name="closed" value="true" />
@@ -741,7 +764,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725751450541</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="+-">
+      <option name="closed" value="true" />
+      <created>1725753175209</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1725753175210</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -775,7 +806,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Добавлена отмена действий" />
     <MESSAGE value="Полная поддержка UNDO/REDO" />
     <MESSAGE value="Классификация" />
     <MESSAGE value="Тринадцать причин считать мандарин умнее кактуса" />
@@ -800,7 +830,8 @@
     <MESSAGE value="999" />
     <MESSAGE value="Полный переход на новую архитектуру" />
     <MESSAGE value="Быстрая добавка новой функциональности с контейнеров" />
-    <option name="LAST_COMMIT_MESSAGE" value="Быстрая добавка новой функциональности с контейнеров" />
+    <MESSAGE value="+-" />
+    <option name="LAST_COMMIT_MESSAGE" value="+-" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

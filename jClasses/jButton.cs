@@ -28,7 +28,14 @@ namespace Xamlade.jClasses;
 public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     public int ID = 0;
+    
     protected override Type StyleKeyOverride => typeof(Button);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
+    
+    
+    
     public mBorder selectionBorder { get; set; }
 
     public Beholder Beholder { get; set; }

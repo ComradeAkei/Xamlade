@@ -31,10 +31,13 @@ public class Beholder
         //Заменить на глобальный генератор
         UID = (ulong)Utils.NextgenIterator;
         mTreeItem = new mTreeViewItem(obj);
+        element.Name ??= (element.Type + Reflector.StaticCall(element, "ReleaseNewElement"));
         element.JControlInit();
         //PropListItemsInit();
-        
     }
+
+    public static Beholder NewBeholder(JControl obj) => new(obj);
+
 
     //Вызывать после присоединения объекта на контейнер
     public void PropListItemsInit()
@@ -62,16 +65,14 @@ public class Beholder
                 PropListItems.Add(item);
             }
         }
-        
-        
-        
     }
+
     public static void OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
         if (sender is null) return;
         (sender as JControl).Beholder.HandlePropertyChange(e);
         //   Console.WriteLine($"{(sender as JControl).Name} " +
-                                 // $"Свойство {e.Property.Name} изменилось с {e.OldValue} на {e.NewValue}");
+        // $"Свойство {e.Property.Name} изменилось с {e.OldValue} на {e.NewValue}");
     }
 
     private void HandlePropertyChange(AvaloniaPropertyChangedEventArgs e)
@@ -86,9 +87,10 @@ public class Beholder
         element.UpdateProperty("Name", element.Name);
         element.Beholder.UpdatePropList("Name");
     }
+
     public void UpdatePropList(string propname)
     {
-        if(PropListItems is null) return;
+        if (PropListItems is null) return;
         // Найти индекс элемента с нужным именем.
         int index = -1;
         for (int i = 0; i < PropListItems.Count; i++)
@@ -103,10 +105,9 @@ public class Beholder
         // Если элемент найден, заменить его.
         if (index != -1)
         {
-            var tmp = PropertiesControl.CreatePropItem(propname, element.GetProperty(propname));//element.xPropertiesGroup["main"][propname]);
+            var tmp = PropertiesControl.CreatePropItem(propname,
+                element.GetProperty(propname)); //element.xPropertiesGroup["main"][propname]);
             PropListItems[index] = tmp;
         }
     }
-    
-    }
-
+}

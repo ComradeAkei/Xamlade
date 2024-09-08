@@ -7,11 +7,17 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Button Name="Button0" Content="Text" Background="#ff4dff00" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="795" Canvas.Top="217" >
+<ComboBox Name="ComboBox0" MaxDropDownHeight="504" PlaceholderForeground="Black" VerticalContentAlignment="Center" SelectedIndex="2" Background="#ffe3148b" BorderBrush="#99000000" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="14" Padding="12,5,0,7" Width="120" Height="50" MinHeight="32" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="445" Canvas.Top="96" >
+<Button Name="Button0" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" >
 </Button>
-<Grid ShowGridLines="True" ColumnDefinitions="100*,50*,50*,100*" RowDefinitions="100*,100*,200*" Background="#ff923ac6" Width="400" Height="400" Name="Grid1" Canvas.Left="249" Canvas.Top="170" >
-<Button Name="Button2" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2" >
+<Canvas Background="#ff8871d3" Width="84" Height="35" Name="Canvas0" >
+<TextBox SelectionBrush="#ff0078d7" CaretBrush="Black" Text="Text" Background="Transparent" BorderBrush="#99000000" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="Blue" Padding="10,6,6,5" MinWidth="64" MinHeight="32" Name="TextBox0" Canvas.Left="-2147483648" Canvas.Top="-2147483648" >
+</TextBox>
+</Canvas>
+<Grid ShowGridLines="True" ColumnDefinitions="100*,100*" RowDefinitions="100*,100*" Background="#ffedadee" Width="84" Height="35" Name="Grid0" >
+<Button Name="Button1" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" >
 </Button>
 </Grid>
+</ComboBox>
 </Canvas>
 </Window>

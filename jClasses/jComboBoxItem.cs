@@ -14,7 +14,13 @@ namespace Xamlade.jClasses;
     public class jComboBoxItem : ComboBoxItem, JControl, JSelectable, JChildContainer, JBroadcastHandler<JControl>
     {
         private string controlType => jElementType.ComboBoxItem.ToString();
+        
+        
         protected override Type StyleKeyOverride => typeof(ComboBoxItem);
+        public static  int Iterator { get; set; }
+        public static int ReleaseNewElement() => 
+            Iterator++;
+        
         public Beholder Beholder { get; set; }
         public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
         public JChildContainer? _jParent { get; set; }
@@ -73,9 +79,13 @@ namespace Xamlade.jClasses;
             this.Content = null;
         }
 
+        static jComboBoxItem()
+        {
+            ContainerSetProperties = new();
+        }
         public void InitContainerProperties()
         {
-            
+            ContainerProperties = new();
         }
 
         public mBorder selectionBorder { get; set; }

@@ -24,7 +24,8 @@ public static class Constants
         "ItemsPanelRoot", "Items",
         "ItemsPanel", "ItemContainerGenerator", "SelectedValue", "SelectionBoxItem", "SelectedItem", "ItemCount",
         "Beholder",
-        "ContainerProperties", "Properties", "SpecialSetDelegates", "_jParent", "xPropertiesGroup", "ContainerSetProperties",
-        "DataContext","Parent", "VisualParent", "ActualThemeVariant"
+        "ContainerProperties", "Properties", "SpecialSetDelegates", "_jParent", "xPropertiesGroup",
+        "ContainerSetProperties",
+        "DataContext", "Parent", "VisualParent", "ActualThemeVariant", "Iterator"
     };
 }

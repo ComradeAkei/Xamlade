@@ -18,6 +18,9 @@ public class jTextBox : TextBox, JControl, JBroadcastHandler<JControl>, JSelecta
     }
 
     protected override Type StyleKeyOverride => typeof(TextBox);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
     public mBorder selectionBorder { get; set; }
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }

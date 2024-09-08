@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Xamlade.Extensions;
 using Xamlade.FunctionalAreas;
+using Xamlade.jClasses;
 using Xamlade.XAMLWorkers;
 
 namespace Xamlade.ProgramWindow;
@@ -74,7 +75,7 @@ public partial class MainWindow : Window
         DebugButton.Click += Utils.DEBUG;
         MainCanvas.PointerPressed += Workspace.OnjControlPressed;
         foreach (var child in GeneratorPanel.Children)
-            ((Button)child).Click += ElementGenerator.GenerateElement;
+            ((mGenButton)child).Click += ElementGenerator.GenerateElement;
 
     }
     

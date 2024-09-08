@@ -11,6 +11,10 @@ namespace Xamlade.jClasses;
 public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(Canvas);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
+    
 
     public bool IsPressed { get; set; }
     public event EventHandler<RoutedEventArgs>? Click;

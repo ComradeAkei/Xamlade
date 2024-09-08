@@ -18,23 +18,24 @@ public static class ElementGenerator
 {
     public static void GenerateElement(object? sender, RoutedEventArgs e)
     {
-        string typeName = ((Button)sender).Content.ToString();
+        var typeName = ((mGenButton)sender).Label;
+        var selectedElement = HierarchyControl.Selected.Beholder.element;
         if (typeName == "Border")
         {
             GenerateBorders();
             return;
         }
 
-        if ((HierarchyControl.Selected.Beholder.element is jBorder)) return;
-        if ((HierarchyControl.Selected.Beholder.element is jComboBox)) return;
-        if (!(HierarchyControl.Selected.Beholder.element is JChildContainer parent)) return;
+        if ((selectedElement is jBorder)) return;
+   //     if ((selectedElement is jComboBox)) return;
+        if (selectedElement is not JChildContainer parent) return;
 
 
         var elementType = Type.GetType("Xamlade.jClasses.j" + typeName);
         var element = (JControl)Activator.CreateInstance(elementType);
-        var element_beholder = new Beholder(element);
+        Beholder.NewBeholder(element);
 
-        element.Name = typeName + (Utils.NextgenIterator++);
+        //element.Name = typeName + (Utils.NextgenIterator++);
         Beholder.HandleNameUpdate(element);
         SetDefaultValues(element, parent as JControl);
         element.PointerEntered += Workspace.OnjControlPointerEntered;

@@ -11,6 +11,9 @@ namespace Xamlade.jClasses;
 public class jImage : Image, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(Image);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
     public jImage()
     {
         SpecialSetDelegates = new();

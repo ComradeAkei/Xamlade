@@ -75,7 +75,6 @@ public static class PropertiesControl
 
     public static void ShowProperties()
     {
-        
 
         //ОСТАВИТЬ ЧТОБЫ СВОЙСТВА НЕ ДЁРГАЛИСЬ
          if (PropElement != null && PropElement.Equals(HierarchyControl.Selected.Beholder.element))

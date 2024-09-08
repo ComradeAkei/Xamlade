@@ -11,6 +11,9 @@ namespace Xamlade.jClasses;
 public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHandler<JControl>
 {
     protected override Type StyleKeyOverride => typeof(Grid);
+    public static  int Iterator { get; set; }
+    public static int ReleaseNewElement() => 
+        Iterator++;
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }
