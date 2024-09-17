@@ -40,7 +40,7 @@ public partial class MainWindow : Window
     {
         
         this.Icon = new WindowIcon(@"assets/Icon.png");
-        var screen = Screens.Primary!.WorkingArea;
+        var screen = Screens.All[0].WorkingArea;
         this.WindowState = WindowState.Maximized;
         // Установить размеры окна равными размерам экрана
         this.Width = screen.Width;
@@ -59,7 +59,7 @@ public partial class MainWindow : Window
         var _initialPosition = new PixelPoint(screen.X, screen.Y);
         this.Position = _initialPosition;
         // Вернуть положение окна
-        this.PositionChanged += (_, _) => this.Position = _initialPosition;
+       // this.PositionChanged += (_, _) => this.Position = _initialPosition;
     }
 
 

@@ -29,6 +29,7 @@ namespace Xamlade.jClasses
             if(Constants.ExcludedWords.Contains(name)) return;
             if(value is not null)
                 xPropertiesGroup[category][name] = new Property(value, value.GetType());
+            
         }
         public void SetProperty<T>(string name, T value, byte flags, string category = "main" )
         {

@@ -5,7 +5,8 @@
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
-        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <AvaloniaNameGeneratorIsEnabled>false</AvaloniaNameGeneratorIsEnabled>
+        <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
         <DebugType>full</DebugType>
         <DebugSymbols>true</DebugSymbols>
     </PropertyGroup>
@@ -29,6 +30,8 @@
     <ItemGroup>
         <AdditionalFiles Include="**\*.xaml" />
         <AdditionalFiles Remove="bin\Debug\net9.0\XamladeDemo\**" />
+        <AdditionalFiles Remove="bin\Debug\**" />
+        <AdditionalFiles Remove="bin\**" />
     </ItemGroup>
     
     <ItemGroup>
@@ -40,6 +43,8 @@
       <None Remove="Xamlade2.png" />
       <None Remove="qodana.yaml" />
       <None Remove="bin\Debug\net9.0\XamladeDemo\**" />
+      <None Remove="bin\Debug\**" />
+      <None Remove="bin\**" />
     </ItemGroup>
 
 
@@ -47,6 +52,8 @@
       <AvaloniaXaml Remove="TestWindow.axaml" />
       <AvaloniaXaml Remove="ComboboxStyle.axaml" />
       <AvaloniaXaml Remove="bin\Debug\net9.0\XamladeDemo\**" />
+      <AvaloniaXaml Remove="bin\Debug\**" />
+      <AvaloniaXaml Remove="bin\**" />
     </ItemGroup>
 
 
@@ -68,6 +75,8 @@
       <Compile Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.AssemblyInfo.cs" />
       <Compile Include="bin\Debug\net9.0\XamladeDemo\Program.cs" />
       <Compile Remove="bin\Debug\net9.0\XamladeDemo\**" />
+      <Compile Remove="bin\Debug\**" />
+      <Compile Remove="bin\**" />
     </ItemGroup>
 
 
@@ -75,6 +84,8 @@
       <None Remove="RES\loading.gif" />
       <AvaloniaResource Include="RES\loading.gif" />
       <AvaloniaResource Remove="bin\Debug\net9.0\XamladeDemo\**" />
+      <AvaloniaResource Remove="bin\Debug\**" />
+      <AvaloniaResource Remove="bin\**" />
     </ItemGroup>
 
 
@@ -96,168 +107,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="bin\Debug\net9.0\XamladeDemo\.idea\.idea.XamladeDemo\.idea\.gitignore" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\.idea\.idea.XamladeDemo\.idea\avalonia.xml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\.idea\.idea.XamladeDemo\.idea\indexLayout.xml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\.idea\.idea.XamladeDemo\.idea\projectSettingsUpdater.xml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\.idea\.idea.XamladeDemo\.idea\vcs.xml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\.idea\.idea.XamladeDemo\.idea\workspace.xml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\App.axaml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\App.axaml1" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\app.manifest" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\-4sG5ytVcL4.jpg" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\debug.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\debug.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\debug.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\debug.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\debug1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\debug1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\dexamlize.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\dexamlize.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\dexamlize.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\dexamlize.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\dexamlize1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\dexamlize1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\fuck.jpg" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Icon.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Icon.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Icon.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Icon.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Icon1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Icon1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\import-export.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\import-export1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\photo_2021-12-13_00-44-53.jpg" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\redo.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\redo.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\redo1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\redo1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\remove.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\remove.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\remove.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\remove.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\remove1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\remove1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\run.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\run.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\run.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\run.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\run1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\run1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\settings.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\settings.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\settings.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\settings.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\settings1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\settings1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\shelved.patch" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\undo.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\undo.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\undo1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\undo1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo_2.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo_2.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo_2.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo_2.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo_21.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Xamlade_logo_21.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\xamlize.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\xamlize.png.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\xamlize.png1.kra" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\xamlize.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\xamlize1.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\xamlize1.png~" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Снимок экрана_2023-11-11_04-09-11.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\assets\Снимок экрана_2024-04-17_00-51-19.png" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\Avalonia.AXAML.LanguageServer.Log20240721.txt" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\Avalonia.AXAML.LanguageServer.Log20240731.txt" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\Avalonia.AXAML.LanguageServer.Log20240907.txt" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\BUILD.sh" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\global.json" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\MainWindow.axaml" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\MainWindow.axaml1" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\apphost" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\Avalonia\original.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\Avalonia\original.pdb" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\Avalonia\original.ref.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\Avalonia\references" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\Avalonia\resources" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\Avalonia\Resources.Inputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\refint\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\ref\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.AssemblyInfoInputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.assets.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.csproj.AssemblyReference.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.csproj.CopyComplete" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.csproj.CoreCompileInputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.csproj.FileListAbsolute.txt" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.GeneratedMSBuildEditorConfig.editorconfig" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.genruntimeconfig.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net7.0\XamladeDemo.pdb" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\apphost" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\Avalonia\original.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\Avalonia\original.pdb" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\Avalonia\original.ref.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\Avalonia\references" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\Avalonia\resources" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\Avalonia\Resources.Inputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\refint\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\ref\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.AssemblyInfoInputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.assets.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.csproj.AssemblyReference.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.csproj.CopyComplete" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.csproj.CoreCompileInputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.csproj.FileListAbsolute.txt" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.GeneratedMSBuildEditorConfig.editorconfig" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.genruntimeconfig.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.pdb" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net8.0\XamladeDemo.sourcelink.json" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\apphost" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\Avalonia\original.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\Avalonia\original.pdb" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\Avalonia\original.ref.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\Avalonia\references" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\Avalonia\resources" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\Avalonia\Resources.Inputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\refint\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\ref\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeD.0398BAED.Up2Date" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.AssemblyInfoInputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.assets.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.csproj.AssemblyReference.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.csproj.CoreCompileInputs.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.csproj.FileListAbsolute.txt" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.dll" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.GeneratedMSBuildEditorConfig.editorconfig" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.genruntimeconfig.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.pdb" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\Debug\net9.0\XamladeDemo.sourcelink.json" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\project.assets.json" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\project.nuget.cache" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\project.packagespec.json" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\rider.project.model.nuget.info" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\rider.project.restore.info" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\XamladeDemo.csproj.nuget.dgspec.json" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\XamladeDemo.csproj.nuget.g.props" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\obj\XamladeDemo.csproj.nuget.g.targets" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\README.md" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\RUN.sh" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\XamladeDemo.csproj" />
-      <Content Include="bin\Debug\net9.0\XamladeDemo\XamladeDemo.sln" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="bin\Debug\net9.0\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <EmbeddedResource Remove="bin\Debug\net9.0\XamladeDemo\**" />
+      <EmbeddedResource Remove="bin\Debug\**" />
+      <EmbeddedResource Remove="bin\**" />
     </ItemGroup>
     
     <Target Name="CopyAssets" BeforeTargets="Build">
