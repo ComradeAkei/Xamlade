@@ -65,11 +65,23 @@ public static class Reflector
     /// <param name="value">Новое значение</param>
     /// <typeparam name="T"> Тип поля</typeparam>
     /// <exception cref="ArgumentException">Исключение: Поле с таким именем не существует</exception>
-    public static void ForceSet<T>(object obj, string name, T value)
+    public static void ForceSet<T>(object obj, string name, T? value, bool makeNull = false) 
     {
+        
+        if (makeNull)
+        {
+            if (typeof(T).IsValueType)
+                value = default(T); // Значимый тип
+            else
+                value = default; // Ссылочный тип (null)
+        }
         // Получение типа объекта
         var type = obj.GetType();
-        
+    
+        // Если нужно установить null, то используем default(T) для значимых типов
+        if (makeNull)
+            value = default(T); // Присваиваем значение по умолчанию (например, 0 для int)
+
         // Поиск приватного поля
         var field = GetFieldRecursive(type, name);
         if (field != null)
@@ -77,21 +89,21 @@ public static class Reflector
             field.SetValue(obj, value);
             return;
         }
-        
+
         // Поиск приватного свойства
         var property = GetPropertyRecursive(type, name);
-        if (property != null && property.CanWrite)
+        if (property != null)
         {
             property.SetValue(obj, value);
             return;
         }
-        
+
         // Если имя начинается с подчеркивания
-        if (name[0] == '_') 
+        if (name[0] == '_')
             throw new ArgumentException($"No private field or property named '{name}' found in type '{type.FullName}' or its base types.");
-        
+
         // Пробуем найти поле или свойство с изменённым именем
-        ForceSet(obj, $"_{name.ToLower()}", value);
+        ForceSet(obj, $"_{name.ToLower()}", value, makeNull);
     }
 
     //Ищем поле в вышестоящих классах по цепочке наследования
@@ -99,7 +111,7 @@ public static class Reflector
     {
         while (type != null)
         {
-            var field = type.GetField(name, BindingFlags.NonPublic | BindingFlags.Instance);
+            var field = type.GetField(name, BindingFlags.Public |BindingFlags.NonPublic | BindingFlags.Instance);
             if (field != null)
                 return field;
 
@@ -113,7 +125,7 @@ public static class Reflector
     {
         while (type != null)
         {
-            var property = type.GetProperty(name, BindingFlags.NonPublic | BindingFlags.Instance);
+            var property = type.GetProperty(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (property != null)
                 return property;
 

@@ -9,9 +9,7 @@ namespace Xamlade.jClasses;
 public class jToggleButton : ToggleButton, JControl, JBroadcastHandler<JControl>, JSelectable 
 {
     protected override Type StyleKeyOverride => typeof(ToggleButton);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
+    
     public jToggleButton()
     {
         SpecialSetDelegates = new();

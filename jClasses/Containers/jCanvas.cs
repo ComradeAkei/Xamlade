@@ -11,9 +11,7 @@ namespace Xamlade.jClasses;
 public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(Canvas);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
+
     
 
     public bool IsPressed { get; set; }
@@ -30,7 +28,7 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
    // public JChildContainer? jParent { get; set; }
     public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
     public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
-    public List<JControl> jChildren { get; }
+    public List<JControl> jChildren { get; set; }
 
     static jCanvas()
     {
@@ -47,13 +45,6 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
             ("Top", Utils.ConvertGetter(GetTop)),
             ("Left", Utils.ConvertGetter(GetLeft)),
         }; 
-    }
-    public jCanvas()
-    {
-        SpecialSetDelegates = new();
-        jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
     }
 
     public static void SetTop(JControl element, int value)

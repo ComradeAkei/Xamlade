@@ -14,11 +14,6 @@ public class jProgressBar : ProgressBar, JControl, JBroadcastHandler<JControl>, 
     #region Required
 
     protected override Type StyleKeyOverride => typeof(ProgressBar);
-    private static int Iterator { get; set; }
-
-    [ReflectionCall]
-    public static int ReleaseNewElement() =>
-        Iterator++;
 
     private string controlType => jElementType.ProgressBar.ToString();
     public string Type => controlType;

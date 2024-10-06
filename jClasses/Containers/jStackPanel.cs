@@ -10,9 +10,6 @@ namespace Xamlade.jClasses;
 public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(StackPanel);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
     public mBorder selectionBorder { get; set; }
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
@@ -28,7 +25,7 @@ public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHand
     public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
     public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
 
-    public List<JControl> jChildren { get; }
+    public List<JControl> jChildren { get; set; }
 
     public jStackPanel()
     {

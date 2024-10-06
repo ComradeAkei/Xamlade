@@ -13,9 +13,7 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
 {
     public int ID = 0;
     protected override Type StyleKeyOverride => typeof(ComboBox);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
+
     
     
     public mBorder selectionBorder { get; set; }
@@ -44,18 +42,12 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
     public event EventHandler<RoutedEventArgs>? Click;
 
 
-    public jComboBox()
-    {
-        SpecialSetDelegates = new();
-        jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
-    }
+    
 
     public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
     public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
 
-    public List<JControl> jChildren { get; }
+    public List<JControl> jChildren { get; set; }
     public void AddChild(JControl child)
     {
         jChildren.Add(child);

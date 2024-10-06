@@ -12,10 +12,6 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
 {
     
     protected override Type StyleKeyOverride => typeof(Border);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
-    
     
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
@@ -34,15 +30,8 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
 
     public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
     public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
-    public List<JControl> jChildren { get; }
-
-    public jBorder()
-    {
-        SpecialSetDelegates = new();
-        jChildren = new List<JControl>();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
-    }
+    public List<JControl> jChildren { get; set; }
+    
     
     
     public void AddChild(JControl child)

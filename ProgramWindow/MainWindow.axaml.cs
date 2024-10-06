@@ -1,7 +1,9 @@
+using System;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Xamlade.Extensions;
+using Xamlade.Extensions.Atributes;
 using Xamlade.FunctionalAreas;
 using Xamlade.jClasses;
 using Xamlade.XAMLWorkers;
@@ -35,10 +37,11 @@ public partial class MainWindow : Window
         listener.KeyReleased += GlobalKeyReleased;
     }
     
+    
+    
    
     private void WindowInit()
     {
-        
         this.Icon = new WindowIcon(@"assets/Icon.png");
         var screen = Screens.All[0].WorkingArea;
         this.WindowState = WindowState.Maximized;

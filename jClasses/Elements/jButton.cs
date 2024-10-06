@@ -13,8 +13,10 @@ using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using Avalonia.Controls;
 using Xamlade.Extensions;
+using Xamlade.Extensions.Atributes;
 using Xamlade.LinkWorkers;
 using Xamlade.XAMLWorkers;
+
 
 namespace Xamlade.jClasses;
 
@@ -29,10 +31,6 @@ namespace Xamlade.jClasses;
 public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(Button);
-    private static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
-    
     
     
     public mBorder selectionBorder { get; set; }
@@ -58,14 +56,7 @@ public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectabl
         get => base.Name;
         set => SetValue(NameProperty, value);
     }
-
-    public jButton()
-    {
-        SpecialSetDelegates = new();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
-    }
-
+    
 
     public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
 

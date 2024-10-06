@@ -11,9 +11,6 @@ namespace Xamlade.jClasses;
 public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHandler<JControl>
 {
     protected override Type StyleKeyOverride => typeof(Grid);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }
@@ -27,7 +24,7 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
     public List<(string, JChildContainer.ContainerPropertyDelegate)> ContainerProperties { get; set; }
     public static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
 
-    public List<JControl> jChildren { get; }
+    public List<JControl> jChildren { get; set; }
     
     
     public jGrid()
@@ -45,7 +42,8 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
     {
         jChildren.Add(child);
         child.jParent = this;
-        Children.Add((Control)child);
+        if( (child.jParent as Control) is null)
+            Children.Add((Control)child);
     }
     
 
@@ -149,24 +147,28 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
     {
         var grid = element.jParent as jGrid;
         if (grid == null) return 0;  // Обработка null, если родитель не является grid
+        if (grid.RowDefinitions.Count == 0) return 0;
         return (int)grid.RowDefinitions[Grid.GetRow(element as Control)].Height.Value;
     }
     public static int GetRowType(JControl element)
     {
         var grid = element.jParent as jGrid;
         if (grid == null) return 0;  
+        if (grid.RowDefinitions.Count == 0) return 0;
         return (int)grid.RowDefinitions[Grid.GetRow(element as Control)].Height.GridUnitType;
     }
     public static int GetColumnWidth(JControl element)
     {
         var grid = element.jParent as jGrid;
-        if (grid == null) return 0;  
+        if (grid == null) return 0;
+        if (grid.ColumnDefinitions.Count == 0) return 0;
         return (int)grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width.Value;
     }
     public static int GetColumnType(JControl element)
     {
         var grid = element.jParent as jGrid;
         if (grid == null) return 0;
+        if (grid.ColumnDefinitions.Count == 0) return 0;
         return (int)grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width.GridUnitType;
     }
     

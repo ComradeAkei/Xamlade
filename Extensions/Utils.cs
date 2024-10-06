@@ -1,11 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Timers;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 using Xamlade.FunctionalAreas;
 using Xamlade.jClasses;
+using Xamlade.LinkWorkers;
+using Xamlade.ProgramWindow;
 
 namespace Xamlade.Extensions;
 
@@ -15,6 +19,8 @@ public static class Utils
     public static Timer DebugTimer { get; set; }
 
     private static Timer MainTimer;
+
+    
 
     public static bool isDebugPanelActive
     {
@@ -49,7 +55,10 @@ public static class Utils
 
     public static void DEBUG(object? sender, RoutedEventArgs e)
     {
+
         isDebugPanelActive = !isDebugPanelActive;
+ //       BeholderTimeAnalisys.DebugBeholder();
+        
     }
 
     public static void PrintDebugMessage(string message)
@@ -68,14 +77,13 @@ public static class Utils
             setter(element, value);
         };
 
-    public static JChildContainer.ContainerPropertyDelegate ConvertGetter<T>(Func<JControl, T> getter)
-    {
-        return element =>
+    public static JChildContainer.ContainerPropertyDelegate ConvertGetter<T>(Func<JControl, T> getter)=>
+         (element) =>
         {
             T value = getter(element);  // Получаем значение типа T
             return new Property(value);  // Заворачиваем в Property
         };
-    }
+    
     private static void Tick()
     {
         Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>

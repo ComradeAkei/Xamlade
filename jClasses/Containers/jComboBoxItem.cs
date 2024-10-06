@@ -17,9 +17,7 @@ namespace Xamlade.jClasses;
         
         
         protected override Type StyleKeyOverride => typeof(ComboBoxItem);
-        public static  int Iterator { get; set; }
-        public static int ReleaseNewElement() => 
-            Iterator++;
+
         
         public Beholder Beholder { get; set; }
         public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
@@ -38,7 +36,7 @@ namespace Xamlade.jClasses;
             set;
         }
 
-        public List<JControl> jChildren { get; }
+        public List<JControl> jChildren { get; set; }
 
         public jComboBoxItem()
         {
@@ -49,11 +47,11 @@ namespace Xamlade.jClasses;
             XAMLPiece = new List<string>();
             this.AddHandler(PointerPressedEvent, OnPointerPressed, handledEventsToo: true);
         }
-        public jComboBoxItem(string name):this()
-        {
-            Name = name;
-            Beholder.mTreeItem.Header = name;
-        }
+        // public jComboBoxItem(string name):this()
+        // {
+            // Name = name;
+            // Beholder.mTreeItem.Header = name;
+        // }
 
         private void OnPointerPressed(object sender, PointerPressedEventArgs e)
         {

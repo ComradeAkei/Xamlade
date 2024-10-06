@@ -18,10 +18,6 @@ public class jCheckBox : CheckBox, JControl, JBroadcastHandler<JControl>, JSelec
 
     
     protected override Type StyleKeyOverride => typeof(CheckBox);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
-
     
     
     public mBorder selectionBorder { get; set; }

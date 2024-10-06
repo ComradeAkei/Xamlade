@@ -18,9 +18,7 @@ public class jTextBlock : TextBlock, JControl, JBroadcastHandler<JControl>, JSel
     }
 
     protected override Type StyleKeyOverride => typeof(TextBlock);
-    public static  int Iterator { get; set; }
-    public static int ReleaseNewElement() => 
-        Iterator++;
+
     public mBorder selectionBorder { get; set; }
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }

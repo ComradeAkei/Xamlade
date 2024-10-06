@@ -33,25 +33,21 @@ public static class ElementGenerator
         var elementType = Type.GetType("Xamlade.jClasses.j" + typeName);
         var element = (JControl)Activator.CreateInstance(elementType);
         Beholder.NewBeholder(element);
-
+        JBaseStatic.Jctor(element);
         //element.Name = typeName + (Utils.NextgenIterator++);
         Beholder.HandleNameUpdate(element);
         SetDefaultValues(element, parent as JControl);
-        element.PointerEntered += Workspace.OnjControlPointerEntered;
-        element.PointerExited += Workspace.OnjControlPointerExited;
-        //  element.Click += jElementClick;
-        element.PointerPressed += Workspace.OnjControlPressed;
-        element.PointerReleased += Workspace.OnjControlReleased;
+    
+        
         //  if (element is jComboBox comboBox)
         //  comboBox.
 
         parent.AddChild(element);
-        var item = new mTreeViewItem(element);
-        HierarchyControl.Selected.Items.Add(item);
-        (((JControl)(item.Beholder.element.jParent))!).Beholder.mTreeItem.IsExpanded = true;
+        
+        HierarchyControl.Selected.Items.Add(element.Beholder.mTreeItem);
+        (((JControl)(element.jParent))!).Beholder.mTreeItem.IsExpanded = true;
         var data = new Object[] { parent, element, element.Beholder.mTreeItem };
         History.AddHistoryItem(new History.Change(element, "Created", data));
-        InitSelectionBorder(element as JSelectable);
     }
 
     //Бордюр это отдельный прикол в Avalonia
@@ -250,6 +246,9 @@ public static class ElementGenerator
 
     public static void InitSelectionBorder(JSelectable obj)
     {
+        if(obj.Equals(Workspace.SelectionCanvas)) return;
+        if(obj.Equals(Workspace.MainCanvas)) return;
+        
         obj.selectionBorder = new mBorder(obj as JControl);
         obj.selectionBorder.Background = Brushes.Transparent;
         obj.selectionBorder.BorderBrush = new SolidColorBrush(Color.Parse("#1D9627"));

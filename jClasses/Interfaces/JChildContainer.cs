@@ -12,7 +12,7 @@ public interface JChildContainer
     //Методы установки свойства на контейнере
     public static abstract Dictionary<string, ContainerSetPropertyDelegate> ContainerSetProperties { get; set; }
     
-    public List<JControl> jChildren { get; }
+    public List<JControl> jChildren { get; set; }
     public void AddChild(JControl child);
 
     public void RemoveChild(JControl child);

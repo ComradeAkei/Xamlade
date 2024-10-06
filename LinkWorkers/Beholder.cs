@@ -26,14 +26,24 @@ public class Beholder
 
     public Beholder(JControl obj)
     {
+        if(obj.Beholder is not null) return;
         element = obj;
         obj.Beholder = this;
         //Заменить на глобальный генератор
-        UID = (ulong)Utils.NextgenIterator;
-        mTreeItem = new mTreeViewItem(obj);
-        element.Name ??= (element.Type + Reflector.StaticCall(element, "ReleaseNewElement"));
+        UID = (ulong)Utils.NextgenIterator++;
+        
+        //ОТЛАДКА DEXAMLIZE
+        BeholderTimeAnalisys.Beholders.Add(this);
+        
         element.JControlInit();
-        //PropListItemsInit();
+        
+        element.PointerEntered += Workspace.OnjControlPointerEntered;
+        element.PointerExited += Workspace.OnjControlPointerExited;
+        element.PointerPressed += Workspace.OnjControlPressed;
+        element.PointerReleased += Workspace.OnjControlReleased;
+        element.Name ??= (element.Type + Statistics.GetNewElementIndex(element.Type));
+        mTreeItem = new mTreeViewItem(obj);
+        ElementGenerator.InitSelectionBorder(element as JSelectable);
     }
 
     public static Beholder NewBeholder(JControl obj) => new(obj);

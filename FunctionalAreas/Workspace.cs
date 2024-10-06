@@ -43,6 +43,8 @@ public static class Workspace
     public static void Init(jCanvas mainCanvas)
     {
         MainCanvas = mainCanvas;
+        JBaseStatic.Jctor(MainCanvas);
+        (MainCanvas as JControl).JControlInit();
         MainCanvas.Beholder = new Beholder(mainCanvas);
         MainCanvas.selectionBorder = new mBorder(MainCanvas);
         mainCanvas.PointerMoved += jCanvas_OnPointerMoved;
@@ -68,6 +70,7 @@ public static class Workspace
         SelectionCanvas.PointerPressed += OnjControlPressed;
         SelectionCanvas.PointerReleased += OnjControlReleased;
         SelectionCanvas.Beholder = new Beholder(SelectionCanvas);
+        SelectionCanvas.jChildren = new();
     }
 
     private static void InitSelectionRectangle()
@@ -95,6 +98,7 @@ public static class Workspace
 
         foreach (var child in (parentCanvas).jChildren)
         {
+            if(child is null) continue;
             var controlRect = new Rect(Canvas.GetLeft(child as Control), Canvas.GetTop(child as Control),
                 (child as Control).Bounds.Width,
                 (child as Control).Bounds.Height);

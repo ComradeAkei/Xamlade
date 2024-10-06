@@ -10,6 +10,7 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Xamlade.Extensions;
+using Xamlade.FunctionalAreas;
 using Xamlade.LinkWorkers;
 
 namespace Xamlade.jClasses;
@@ -105,6 +106,9 @@ public interface JControl : JProperties
 
     private void AfterParentSet()
     {
+        if(this.xPropertiesGroup is null)
+            (this as JProperties).InitProperties();
+        
         if ((this as JControl)?.jParent is not { } parent) return;
         xPropertiesGroup["container"].Clear();
         foreach (var kvp in ((jParent as JChildContainer).GetType()
@@ -131,14 +135,12 @@ public interface JControl : JProperties
     public void Dispose()
     {
         if (this.Name == "MainCanvas") return;
-
-        //   mTreeItem.element=null;
         this.Beholder.mTreeItem = null;
         var parent = this.jParent;
         if (jParent != null)
             jParent.RemoveChild(this);
-        Console.WriteLine(this.Name + " Disposed");
         Reflector.SetName(null, this);
+        Workspace.MainCanvas.Children.Remove((this as JSelectable).selectionBorder);
     }
 
     public string? ToString() =>
@@ -147,10 +149,16 @@ public interface JControl : JProperties
 
     public void JControlInit()
     {
+        this.SpecialSetDelegates = new();
+        this.xPropertiesGroup = new();
+        (this as JSelectable).selectionBorder = new mBorder(this);
+        
         InitProperties();
         if (this is JChildContainer container)
             container.InitContainerProperties();
         //СОБЫТИЕ ВЫЗЫВАЕТСЯ ДЛЯ БОЛЬШИНСТВА ИЗМЕНЕНИЙ ЗНАЧЕНИЙ ПОЛЕЙ AVALONIA UI! 
         this.PropertyChanged += Beholder.OnPropertyChanged;
     }
+    
+    
 }
