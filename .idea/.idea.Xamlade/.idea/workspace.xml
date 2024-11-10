@@ -11,7 +11,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Добавлены RadioButton и Slider">
       <change afterPath="$PROJECT_DIR$/jClasses/Elements/jRadioButton.cs" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/jClasses/Elements/jSlider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
@@ -20,6 +20,7 @@
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XAMLWorkers/ImportXAML.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XAMLWorkers/ImportXAML.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
@@ -430,15 +431,7 @@
       <workItem from="1731009654365" duration="709000" />
       <workItem from="1731103569832" duration="504000" />
       <workItem from="1731104112361" duration="3350000" />
-      <workItem from="1731257126891" duration="2672000" />
-    </task>
-    <task id="LOCAL-00019" summary="index.html">
-      <option name="closed" value="true" />
-      <created>1699399529244</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1699399529244</updated>
+      <workItem from="1731257126891" duration="3033000" />
     </task>
     <task id="LOCAL-00020" summary="Bugfix">
       <option name="closed" value="true" />
@@ -824,7 +817,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728234204158</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="Добавлены RadioButton и Slider">
+      <option name="closed" value="true" />
+      <created>1731260159761</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1731260159761</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -871,7 +872,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="XAMLIZE FIX" />
     <MESSAGE value="12" />
     <MESSAGE value="Более-менее стабильная версия перед рефакторингом" />
     <MESSAGE value="Start refactoring" />
@@ -896,7 +896,8 @@
     <MESSAGE value="BUXFIXES" />
     <MESSAGE value="111" />
     <MESSAGE value="Dexamlize bugfixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dexamlize bugfixes" />
+    <MESSAGE value="Добавлены RadioButton и Slider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлены RadioButton и Slider" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
