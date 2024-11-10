@@ -241,6 +241,15 @@ public static class ElementGenerator
                 stackPanel.Height = Math.Min(400, maxHeight); // Устанавливаем высоту
             }
                 break;
+            case "AvaPlot":
+            {
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
+                var randomColor = Color.Parse(randomHexColor);
+                var avaPlot = (jAvaPlot)element;
+                avaPlot.Width = Math.Min(400, maxWidth); // Устанавливаем ширину
+                avaPlot.Height = Math.Min(400, maxHeight); // Устанавливаем высоту
+            }
+                break;
         }
     }
 

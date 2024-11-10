@@ -155,6 +155,9 @@
                     <jClasses:mGenButton Content="Slider"
                                          Margin="10,0,10,10"
                                          Label="Slider" />
+                    <jClasses:mGenButton Content="AvaPlot"
+                                         Margin="10,0,10,10"
+                                         Label="AvaPlot" />
 
                 </StackPanel>
             </TabItem>

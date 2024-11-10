@@ -26,5 +26,6 @@ public enum jElementType
     ToggleButton,
     TextBlock,
     Image,
-    ComboBoxItem
+    ComboBoxItem,
+    AvaPlot
 }

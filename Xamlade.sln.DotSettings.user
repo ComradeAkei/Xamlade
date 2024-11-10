@@ -1,6 +1,7 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fakei_002FProjects_002FXamlade_002FXamlade_002FAvalonia_002EGIF_002FAvaloniaGif_002Edll/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=_002Fhome_002Fakei_002FProjects_002FXamlade_002FXamlade_002FAvalonia_002EGIF_002FAvalonia_002EGif_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAvaPlot_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003F64cf3689fc916d25ae1fac5373977d68bddea09e5b8be91826f9df70c4d543_003FAvaPlot_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACanvas_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003F4f22e2865cd38f71233eed2ac7f2d13f6627622f1af9ae152497e8f1625513_003FCanvas_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ADispatcherOperation_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003F9c6f3d1d952b72fc519f8ac31d3a042df89b729b954ce7aee668347e0f69686_003FDispatcherOperation_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AExceptionDispatchInfo_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002Econfig_003FJetBrains_003FRider2024_002E2_003Fresharper_002Dhost_003FSourcesCache_003Fbf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc_003FExceptionDispatchInfo_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -18,6 +19,7 @@
   &lt;Assembly Path="/home/akei/.nuget/packages/semi.avalonia/11.0.1/lib/net6.0/Semi.Avalonia.dll" /&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/material.avalonia/3.0.2/lib/netstandard2.0/Material.Styles.dll" /&gt;
   &lt;Assembly Path="/home/akei/.nuget/packages/avalonia.themes.fluent/11.0.5/lib/net6.0/Avalonia.Themes.Fluent.dll" /&gt;
+  &lt;Assembly Path="/home/akei/.nuget/packages/scottplot.avalonia/5.0.44/lib/net8.0/ScottPlot.Avalonia.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	
 	</wpf:ResourceDictionary>

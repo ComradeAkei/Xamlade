@@ -6,8 +6,14 @@ namespace Xamlade.jClasses;
 
 public class mGenButton:Button, MControl
 {
-    public string Label { get; set; }
-    
+    private string _label;
+
+    public string Label
+    {
+        get => _label;
+        set => _label = value.ToString();
+    }
+
     public mGenButton(string label) => Label = label;
     protected override Type StyleKeyOverride => typeof(Button);
 

@@ -11,37 +11,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Добавлены RadioButton и Slider">
-      <change afterPath="$PROJECT_DIR$/jClasses/Elements/jRadioButton.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jClasses/Elements/jSlider.cs" afterDir="false" />
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="/">
+      <change afterPath="$PROJECT_DIR$/jClasses/Containers/jAvaplot.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jClasses/Containers/jMenu.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Attributes/jClassesCounter.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XAMLWorkers/ImportXAML.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XAMLWorkers/ImportXAML.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jBorder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jComboBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jComboBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jComboBoxItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jComboBoxItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jDockPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jDockPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jGrid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jStackPanel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jStackPanel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jCheckBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jCheckBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jImage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jProgressBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jProgressBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jTextBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jTextBlock.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jTextBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jTextBox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Elements/jToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jToggleButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JSelectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JSelectable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Enums/jElementType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Enums/jElementType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/mGenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mGenButton.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +110,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5dd249ba7a29d4209fcedd2d29261a3131678151817b62d20914d1706918/RoutedEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5fda7f1253ea19edc15f91b94a33322b857f1a9319fbffea8d26e9d304178/Border.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/613e2a436d7ada457331733221dea3ab81a9222aeebc6511930c38d17a9a229/InputElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/64cf3689fc916d25ae1fac5373977d68bddea09e5b8be91826f9df70c4d543/AvaPlot.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6620d3857c4a923cd19da979c060c628b34b3f77f73a7159d7ac286e682/X11PlatformThreading.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6de65aae2b6a1179a3ccbb8d35a4706ca53c3a4b2069305b37db934e73cc39/DispatcherOperation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/76b82ac859da0786668ba3de0b326c8fe8d1d7da29fe6d26126de9b3210ea/INamespaceAmender.cs" root0="SKIP_HIGHLIGHTING" />
@@ -431,15 +411,7 @@
       <workItem from="1731009654365" duration="709000" />
       <workItem from="1731103569832" duration="504000" />
       <workItem from="1731104112361" duration="3350000" />
-      <workItem from="1731257126891" duration="3033000" />
-    </task>
-    <task id="LOCAL-00020" summary="Bugfix">
-      <option name="closed" value="true" />
-      <created>1699487049815</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1699487049815</updated>
+      <workItem from="1731257126891" duration="6394000" />
     </task>
     <task id="LOCAL-00021" summary="bugfix2">
       <option name="closed" value="true" />
@@ -825,7 +797,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731260159761</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="/">
+      <option name="closed" value="true" />
+      <created>1731260195048</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1731260195048</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -872,7 +852,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="12" />
     <MESSAGE value="Более-менее стабильная версия перед рефакторингом" />
     <MESSAGE value="Start refactoring" />
     <MESSAGE value="HOTFIX" />
@@ -897,7 +876,8 @@
     <MESSAGE value="111" />
     <MESSAGE value="Dexamlize bugfixes" />
     <MESSAGE value="Добавлены RadioButton и Slider" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлены RadioButton и Slider" />
+    <MESSAGE value="/" />
+    <option name="LAST_COMMIT_MESSAGE" value="/" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
