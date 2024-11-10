@@ -12,25 +12,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Extensions/Attributes/jClassesCounter.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Extensions/Statistics.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LinkWorkers/BeholderTimeAnalisys.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jClasses/JBaseStatic.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jClasses/Elements/jRadioButton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/jClasses/Elements/jSlider.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Atributes/ReflectionCall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Attributes/ReflectionCall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Reflector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Reflector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Attributes/jClassesCounter.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XAMLWorkers/ImportXAML.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XAMLWorkers/ImportXAML.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml1" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Containers/jBorder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jBorder.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Containers/jComboBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jComboBox.cs" afterDir="false" />
@@ -45,9 +38,9 @@
       <change beforePath="$PROJECT_DIR$/jClasses/Elements/jTextBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jTextBlock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Elements/jTextBox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jTextBox.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Elements/jToggleButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Elements/jToggleButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JSelectable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JSelectable.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,8 +66,19 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ComradeAkei&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ComradeAkei/Xamlade&quot;,
+    &quot;accountId&quot;: &quot;d52a577c-fb18-4f97-826e-b97bd0fae56b&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/4081939150374df08a07a87a6d2002911ad000/68/a778e465/02000037pdb259.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/e0282aa80cf247ce8c32680b5b4bfb387200/4c/58e50708/0200000Apdb3High.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/e0282aa80cf247ce8c32680b5b4bfb387200/4c/58e50708/0200000Apdb3Low.cs" root0="SKIP_HIGHLIGHTING" />
@@ -105,6 +109,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d8a5354b09db47eda5937b722f8095fc1ae600/75/85074fd3/InputElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db1fd93cf64a41698d9fa216e2a32dcbf5a00/77/0b712ad9/ItemCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fe7bf9cb9df14c6ab8e738e27e94952e1ea00/03/daf43b71/DrawingContextImpl.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fe7bf9cb9df14c6ab8e738e27e94952e1ea00/e6/9db7c904/SkiaGpuRenderTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/75db895618764737a8e2369d5e6dd627bac00/58/beef984d/Avalonia.Themes.Fluent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/b5abfc76e5f64806874c5378a5d3fa0923e00/04/32f4e311/Citrus.Avalonia.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1c6bef7c647807b7a913c61351aa1b7c938284a8d1236681897f3047ee75/GeneratedCodeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
@@ -125,6 +130,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5dd249ba7a29d4209fcedd2d29261a3131678151817b62d20914d1706918/RoutedEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5fda7f1253ea19edc15f91b94a33322b857f1a9319fbffea8d26e9d304178/Border.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/613e2a436d7ada457331733221dea3ab81a9222aeebc6511930c38d17a9a229/InputElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6620d3857c4a923cd19da979c060c628b34b3f77f73a7159d7ac286e682/X11PlatformThreading.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6de65aae2b6a1179a3ccbb8d35a4706ca53c3a4b2069305b37db934e73cc39/DispatcherOperation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/76b82ac859da0786668ba3de0b326c8fe8d1d7da29fe6d26126de9b3210ea/INamespaceAmender.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/78fc3767330c4c3c6dc1bde79be3d5e48aac77feb98142380abe7c730aa5f39/MaterialTheme.cs" root0="SKIP_HIGHLIGHTING" />
@@ -170,7 +176,7 @@
     <setting file="file://$PROJECT_DIR$/Extensions/jCoordinates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/Workspace.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/IgnoredTypeConverter.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/IgnoredTypeConverter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ProgramWindow/Program.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/TestWindow.axaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/App.axaml" root0="FORCE_HIGHLIGHTING" />
@@ -205,6 +211,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.30800542&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;PreRelease&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo&quot;,
@@ -213,7 +220,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;RiderDpaPageId&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -409,15 +416,21 @@
       <workItem from="1727636100636" duration="5000" />
       <workItem from="1727808991217" duration="5465000" />
       <workItem from="1727814492887" duration="1938000" />
-      <workItem from="1728231422228" duration="2554000" />
-    </task>
-    <task id="LOCAL-00018" summary="11">
-      <option name="closed" value="true" />
-      <created>1699395701676</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1699395701676</updated>
+      <workItem from="1728231422228" duration="4378000" />
+      <workItem from="1728580145666" duration="3033000" />
+      <workItem from="1729184987896" duration="178000" />
+      <workItem from="1729185510760" duration="220000" />
+      <workItem from="1730399564647" duration="1524000" />
+      <workItem from="1730807547811" duration="202000" />
+      <workItem from="1730808647454" duration="505000" />
+      <workItem from="1730809604529" duration="823000" />
+      <workItem from="1730828435651" duration="1160000" />
+      <workItem from="1730998894939" duration="792000" />
+      <workItem from="1731004091847" duration="40000" />
+      <workItem from="1731009654365" duration="709000" />
+      <workItem from="1731103569832" duration="504000" />
+      <workItem from="1731104112361" duration="3350000" />
+      <workItem from="1731257126891" duration="2672000" />
     </task>
     <task id="LOCAL-00019" summary="index.html">
       <option name="closed" value="true" />
@@ -803,7 +816,15 @@
       <option name="project" value="LOCAL" />
       <updated>1726593599255</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Dexamlize bugfixes">
+      <option name="closed" value="true" />
+      <created>1728234204158</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1728234204158</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -849,9 +870,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Selection" />
     <MESSAGE value="XAMLIZE FIX" />
     <MESSAGE value="12" />
     <MESSAGE value="Более-менее стабильная версия перед рефакторингом" />
@@ -876,7 +895,8 @@
     <MESSAGE value="Bugfixes" />
     <MESSAGE value="BUXFIXES" />
     <MESSAGE value="111" />
-    <option name="LAST_COMMIT_MESSAGE" value="111" />
+    <MESSAGE value="Dexamlize bugfixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dexamlize bugfixes" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

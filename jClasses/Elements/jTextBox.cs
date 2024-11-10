@@ -9,19 +9,14 @@ using Xamlade.XAMLWorkers;
 
 namespace Xamlade.jClasses;
 
-[TESTAttribure]
+
 public class jTextBox : TextBox, JControl, JBroadcastHandler<JControl>, JSelectable
 {
-    public jTextBox()
-    {
-        SpecialSetDelegates = new();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
-    }
+
 
     protected override Type StyleKeyOverride => typeof(TextBox);
 
-    public mBorder selectionBorder { get; set; }
+    
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }

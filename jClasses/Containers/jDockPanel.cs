@@ -78,7 +78,7 @@ public class jDockPanel: DockPanel, JControl, JChildContainer, JBroadcastHandler
     }
     
 
-    public mBorder selectionBorder { get; set; }
+    
 
     public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
 

@@ -9,13 +9,13 @@ using Xamlade.XAMLWorkers;
 namespace Xamlade.jClasses;
 
 
-public class jProgressBar : ProgressBar, JControl, JBroadcastHandler<JControl>, JSelectable
+public class jSlider : Slider, JControl, JBroadcastHandler<JControl>, JSelectable
 {
     #region Required
 
-    protected override Type StyleKeyOverride => typeof(ProgressBar);
+    protected override Type StyleKeyOverride => typeof(Slider);
 
-    private string controlType => jElementType.ProgressBar.ToString();
+    private string controlType => jElementType.Slider.ToString();
     public string Type => controlType;
 
     #endregion

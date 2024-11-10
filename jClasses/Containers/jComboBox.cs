@@ -16,7 +16,7 @@ public class jComboBox : ComboBox, JControl, JBroadcastHandler<JControl>, JSelec
 
     
     
-    public mBorder selectionBorder { get; set; }
+    
 
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }

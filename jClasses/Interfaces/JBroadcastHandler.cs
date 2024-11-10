@@ -22,7 +22,7 @@ public interface JBroadcastHandler<T>
         }
         else if (mode == 4) ImportXAML.CorrectTree(this as JControl);
         else if (mode == 5) 
-            if((this as JSelectable). selectionBorder is not null )
-                (this as JSelectable).selectionBorder.IsVisible = false;
+            if((this as JControl).Beholder.selectionBorder is not null )
+                (this as JControl).Beholder.selectionBorder.IsVisible = false;
     }
 }

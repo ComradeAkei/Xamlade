@@ -18,7 +18,7 @@ public class jBorder : Border, JChildContainer, JControl, JBroadcastHandler<JCon
     
     
     private string controlType => jElementType.Border.ToString();
-    public mBorder selectionBorder { get; set; }
+    
 
 
     public JChildContainer? _jParent { get; set; }

@@ -10,7 +10,7 @@ namespace Xamlade.jClasses;
 public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHandler<JControl>, JSelectable
 {
     protected override Type StyleKeyOverride => typeof(StackPanel);
-    public mBorder selectionBorder { get; set; }
+    
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }
@@ -65,4 +65,4 @@ public class jStackPanel : StackPanel, JControl, JChildContainer, JBroadcastHand
     {
         return;
     }
-}
+}  

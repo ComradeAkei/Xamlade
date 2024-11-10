@@ -10,15 +10,9 @@ public class jToggleButton : ToggleButton, JControl, JBroadcastHandler<JControl>
 {
     protected override Type StyleKeyOverride => typeof(ToggleButton);
     
-    public jToggleButton()
-    {
-        SpecialSetDelegates = new();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
-    }
     private string controlType => jElementType.ToggleButton.ToString();
     public string Type => controlType;
-    public mBorder selectionBorder { get; set; }
+    
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }

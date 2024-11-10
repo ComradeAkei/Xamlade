@@ -172,7 +172,7 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
         return (int)grid.ColumnDefinitions[Grid.GetColumn(element as Control)].Width.GridUnitType;
     }
     
-    public mBorder selectionBorder { get; set; }
+    
 
     public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
 

@@ -2,16 +2,14 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         mc:Ignorable="d" Width="772" Height="949"
+         mc:Ignorable="d" Width="1412" Height="1008"
          x:Class="XamladeDemo.MainWindow"
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Button Name="Button0" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="277" Canvas.Top="305" >
-</Button>
-<TextBox SelectionBrush="#ff0078d7" CaretBrush="Black" Text="Text" Background="Transparent" BorderBrush="#99000000" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="Blue" Padding="10,6,6,5" MinWidth="64" MinHeight="32" Name="TextBox0" Canvas.Left="269" Canvas.Top="245" >
-</TextBox>
-<TextBlock Background="Blue" Text="Text" FontSize="20" Foreground="White" Name="TextBlock0" Canvas.Left="282" Canvas.Top="393" >
+<Slider Value="100" Background="#66000000" FontSize="14" Foreground="#ff0078d7" Width="579" Height="61" Name="Slider0" Canvas.Left="156" Canvas.Top="525" >
+</Slider>
+<TextBlock Background="Blue" Text="{Binding #Slider0.Value}" FontSize="20" Foreground="White" Name="TextBlock0" Canvas.Left="352" Canvas.Top="510" >
 </TextBlock>
 </Canvas>
 </Window>

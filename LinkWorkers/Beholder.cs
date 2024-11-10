@@ -19,6 +19,9 @@ public class Beholder
     public JControl? element { get; set; }
     public mTreeViewItem? mTreeItem { get; set; }
     public ItemCollection? PropListItems { get; set; }
+    
+    public mBorder selectionBorder { get; set; }
+    
 
     private ulong UID { get; }
 
@@ -43,7 +46,7 @@ public class Beholder
         element.PointerReleased += Workspace.OnjControlReleased;
         element.Name ??= (element.Type + Statistics.GetNewElementIndex(element.Type));
         mTreeItem = new mTreeViewItem(obj);
-        ElementGenerator.InitSelectionBorder(element as JSelectable);
+        ElementGenerator.InitSelectionBorder(element);
     }
 
     public static Beholder NewBeholder(JControl obj) => new(obj);

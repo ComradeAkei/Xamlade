@@ -9,17 +9,9 @@ namespace Xamlade.jClasses;
 
 public class jTextBlock : TextBlock, JControl, JBroadcastHandler<JControl>, JSelectable
 {
-    public jTextBlock()
-    {
-        SpecialSetDelegates = new();
-        Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
-        XAMLPiece = new List<string>();
-   
-    }
-
     protected override Type StyleKeyOverride => typeof(TextBlock);
 
-    public mBorder selectionBorder { get; set; }
+    
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }

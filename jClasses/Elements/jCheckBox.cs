@@ -20,7 +20,7 @@ public class jCheckBox : CheckBox, JControl, JBroadcastHandler<JControl>, JSelec
     protected override Type StyleKeyOverride => typeof(CheckBox);
     
     
-    public mBorder selectionBorder { get; set; }
+    
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }
@@ -37,21 +37,6 @@ public class jCheckBox : CheckBox, JControl, JBroadcastHandler<JControl>, JSelec
     {
         get => base.IsPressed;
         set => Reflector.ForceSet(this,"_isPressed", value);
-    }
-    private void HandleBroadcast(int mode)
-    {
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this);
-        else if (mode == 3)
-        {
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this);
-        }
-        else if (mode == 4) ImportXAML.CorrectTree(this);
-        else if (mode == 5) 
-            if(selectionBorder is not null)
-                selectionBorder.IsVisible = false;
     }
 
     protected override void OnClick() {}

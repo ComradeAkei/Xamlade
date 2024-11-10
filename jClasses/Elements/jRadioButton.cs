@@ -28,9 +28,9 @@ namespace Xamlade.jClasses;
 
 //Приёмник широковещательных сообщений jObject
 
-public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectable
+public class jRadioButton : RadioButton, JControl, JBroadcastHandler<JControl>, JSelectable
 {
-    protected override Type StyleKeyOverride => typeof(Button);
+    protected override Type StyleKeyOverride => typeof(RadioButton);
     
     
 
@@ -39,7 +39,7 @@ public class jButton : Button, JControl, JBroadcastHandler<JControl>, JSelectabl
    
     public JChildContainer? _jParent { get; set; }
 
-    private string controlType => jElementType.Button.ToString();
+    private string controlType => jElementType.RadioButton.ToString();
     public string Type => controlType;
     public int XAMLRating { get; set; }
     public List<string> XAMLPiece { get; set; }

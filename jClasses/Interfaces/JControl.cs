@@ -22,7 +22,7 @@ public interface JControl : JProperties
    
     
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
-    public bool IsSelected => (this as JSelectable)?.selectionBorder.IsVisible ?? false;
+    public bool IsSelected => (this)?.Beholder.selectionBorder.IsVisible ?? false;
     
     protected JChildContainer? _jParent { get; set; }
     
@@ -140,7 +140,7 @@ public interface JControl : JProperties
         if (jParent != null)
             jParent.RemoveChild(this);
         Reflector.SetName(null, this);
-        Workspace.MainCanvas.Children.Remove((this as JSelectable).selectionBorder);
+        Workspace.MainCanvas.Children.Remove(this.Beholder.selectionBorder);
     }
 
     public string? ToString() =>
@@ -151,7 +151,7 @@ public interface JControl : JProperties
     {
         this.SpecialSetDelegates = new();
         this.xPropertiesGroup = new();
-        (this as JSelectable).selectionBorder = new mBorder(this);
+        (this).Beholder.selectionBorder = new mBorder(this);
         
         InitProperties();
         if (this is JChildContainer container)

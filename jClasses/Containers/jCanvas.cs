@@ -21,7 +21,7 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
 
 
     public List<string> XAMLPiece { get; set; }
-    public mBorder selectionBorder { get; set; }
+    
     public Beholder Beholder { get; set; }
     public Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> SpecialSetDelegates { get; set; }
     public JChildContainer? _jParent { get; set; }

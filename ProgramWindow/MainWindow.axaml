@@ -149,6 +149,12 @@
                     <jClasses:mGenButton Content="Progress"
                                          Margin="10,0,10,10"
                                          Label="ProgressBar" />
+                    <jClasses:mGenButton Content="RadioButton"
+                                         Margin="10,0,10,10"
+                                         Label="RadioButton" />
+                    <jClasses:mGenButton Content="Slider"
+                                         Margin="10,0,10,10"
+                                         Label="Slider" />
 
                 </StackPanel>
             </TabItem>

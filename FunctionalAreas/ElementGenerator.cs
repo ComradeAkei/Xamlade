@@ -83,7 +83,7 @@ public static class ElementGenerator
         element.PointerPressed += Workspace.OnjControlPressed;
         element.PointerReleased += Workspace.OnjControlReleased;
         (element as jBorder).AddChild(obj);
-        InitSelectionBorder(element as JSelectable);
+        InitSelectionBorder(element);
     }
 
     private static void SetDefaultBorderValues(JControl element)
@@ -244,17 +244,17 @@ public static class ElementGenerator
         }
     }
 
-    public static void InitSelectionBorder(JSelectable obj)
+    public static void InitSelectionBorder(JControl obj)
     {
         if(obj.Equals(Workspace.SelectionCanvas)) return;
         if(obj.Equals(Workspace.MainCanvas)) return;
         
-        obj.selectionBorder = new mBorder(obj as JControl);
-        obj.selectionBorder.Background = Brushes.Transparent;
-        obj.selectionBorder.BorderBrush = new SolidColorBrush(Color.Parse("#1D9627"));
-        obj.selectionBorder.BorderThickness = new Thickness(2);
-        Workspace.MainCanvas.Children.Add(obj.selectionBorder);
-        obj.selectionBorder.SetValue(Visual.ZIndexProperty, Int32.MaxValue);
-        obj.selectionBorder.IsVisible = false;
+        obj.Beholder.selectionBorder = new mBorder(obj as JControl);
+        obj.Beholder.selectionBorder.Background = Brushes.Transparent;
+        obj.Beholder.selectionBorder.BorderBrush = new SolidColorBrush(Color.Parse("#1D9627"));
+        obj.Beholder.selectionBorder.BorderThickness = new Thickness(2);
+        Workspace.MainCanvas.Children.Add(obj.Beholder.selectionBorder);
+        obj.Beholder.selectionBorder.SetValue(Visual.ZIndexProperty, Int32.MaxValue);
+        obj.Beholder.selectionBorder.IsVisible = false;
     }
 }
