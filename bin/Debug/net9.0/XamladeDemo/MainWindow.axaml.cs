@@ -1,5 +1,6 @@
 
 using Avalonia.Controls;
+using ScottPlot.Avalonia;
 
 namespace XamladeDemo;
 

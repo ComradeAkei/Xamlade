@@ -26,10 +26,11 @@ public static class XAMLGenerator
         foreach (var prop in props)
         {
             if ((element.Name == "MainCanvas") && prop.Name is "Width" or "Height") continue;
-            if((element.Type == "ComboBoxItem") && (element as jComboBoxItem).jChildren.Count !=0 && prop.Name is "Content") continue;
+            if ((element.Type == "ComboBoxItem") && (element as jComboBoxItem).jChildren.Count != 0 &&
+                prop.Name is "Content") continue;
             if (element.Type == "Border") continue;
-            
-            
+
+
             if (!Constants.ExcludedWords.Contains(prop.Name))
             {
                 if (prop.Name == "Source")
@@ -117,9 +118,10 @@ public static class XAMLGenerator
         string filePath = @"./XamladeDemo/MainWindow.axaml";
         var outputXAML = new List<string>();
         outputXAML.Add(@"<Window xmlns=""https://github.com/avaloniaui""
-         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml""
+         xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" 
          xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
          xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
+         xmlns=""clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia""
          mc:Ignorable=""d"" Width=""" + wWidth + @""" Height=""" + wHeight + @"""
          x:Class=""XamladeDemo.MainWindow""
          Title=""TestWindow"">");

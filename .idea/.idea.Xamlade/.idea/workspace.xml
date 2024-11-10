@@ -11,16 +11,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="/">
-      <change afterPath="$PROJECT_DIR$/jClasses/Containers/jAvaplot.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jClasses/Containers/jMenu.cs" afterDir="false" />
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Добавили ScottPlot по просьбе трудящихся">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Enums/jElementType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Enums/jElementType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mClasses/mGenButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mGenButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/XAMLWorkers/XAMLGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XAMLWorkers/XAMLGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/XamladeDemo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/XamladeDemo.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -411,15 +407,7 @@
       <workItem from="1731009654365" duration="709000" />
       <workItem from="1731103569832" duration="504000" />
       <workItem from="1731104112361" duration="3350000" />
-      <workItem from="1731257126891" duration="6394000" />
-    </task>
-    <task id="LOCAL-00021" summary="bugfix2">
-      <option name="closed" value="true" />
-      <created>1699487380118</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1699487380118</updated>
+      <workItem from="1731257126891" duration="7039000" />
     </task>
     <task id="LOCAL-00022" summary="Переписал свойства">
       <option name="closed" value="true" />
@@ -805,7 +793,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731260195048</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="Добавили ScottPlot по просьбе трудящихся">
+      <option name="closed" value="true" />
+      <created>1731267049129</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1731267049129</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -852,7 +848,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Более-менее стабильная версия перед рефакторингом" />
     <MESSAGE value="Start refactoring" />
     <MESSAGE value="HOTFIX" />
     <MESSAGE value="Мощная поддержка Grid!" />
@@ -877,7 +872,8 @@
     <MESSAGE value="Dexamlize bugfixes" />
     <MESSAGE value="Добавлены RadioButton и Slider" />
     <MESSAGE value="/" />
-    <option name="LAST_COMMIT_MESSAGE" value="/" />
+    <MESSAGE value="Добавили ScottPlot по просьбе трудящихся" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавили ScottPlot по просьбе трудящихся" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

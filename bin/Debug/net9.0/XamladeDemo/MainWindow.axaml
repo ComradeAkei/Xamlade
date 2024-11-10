@@ -1,15 +1,14 @@
 <Window xmlns="https://github.com/avaloniaui"
-         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
          mc:Ignorable="d" Width="1412" Height="1008"
          x:Class="XamladeDemo.MainWindow"
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Slider Value="100" Background="#66000000" FontSize="14" Foreground="#ff0078d7" Width="579" Height="61" Name="Slider0" Canvas.Left="156" Canvas.Top="525" >
-</Slider>
-<TextBlock Background="Blue" Text="{Binding #Slider0.Value}" FontSize="20" Foreground="White" Name="TextBlock0" Canvas.Left="352" Canvas.Top="510" >
-</TextBlock>
+<AvaPlot Name="AvaPlot0" Width="400" Height="400" Canvas.Left="406" Canvas.Top="244" >
+</AvaPlot>
 </Canvas>
 </Window>
