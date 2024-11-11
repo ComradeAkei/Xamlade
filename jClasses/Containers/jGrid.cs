@@ -33,7 +33,6 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
         jChildren = new List<JControl>();
         Broadcast.OnBroadcast += (this as JBroadcastHandler<JControl>).HandleBroadcast;
         XAMLPiece = new List<string>();
-        AddSpecialSetDelegates();
     }
 
     
@@ -178,6 +177,7 @@ public class jGrid: Grid, JControl, JChildContainer, JSelectable, JBroadcastHand
 
     public void AddSpecialProperties()
     {
+        AddSpecialSetDelegates();
         xPropertiesGroup["specials"] = new();
         xPropertiesGroup["specials"]["Rows"] = new Property(this.RowDefinitions.Count, typeof(int),2);
         xPropertiesGroup["specials"]["Columns"] = new Property(this.ColumnDefinitions.Count, typeof(int),2);

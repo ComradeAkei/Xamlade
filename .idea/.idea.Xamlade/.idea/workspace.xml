@@ -11,11 +11,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="hotfix">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/jClasses/Containers/jMenuItem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/XAMLWorkers/XAMLGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XAMLWorkers/XAMLGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
@@ -418,15 +421,8 @@
       <workItem from="1731009654365" duration="709000" />
       <workItem from="1731103569832" duration="504000" />
       <workItem from="1731104112361" duration="3350000" />
-      <workItem from="1731257126891" duration="10983000" />
-    </task>
-    <task id="LOCAL-00023" summary="Улучшена вкладка свойств">
-      <option name="closed" value="true" />
-      <created>1699573412013</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1699573412013</updated>
+      <workItem from="1731257126891" duration="11505000" />
+      <workItem from="1731345920182" duration="4546000" />
     </task>
     <task id="LOCAL-00024" summary="Улучшена работа свойств. Добавлен ToggleButton">
       <option name="closed" value="true" />
@@ -812,7 +808,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731268082439</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="hotfix2">
+      <option name="closed" value="true" />
+      <created>1731272100522</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1731272100522</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -859,7 +863,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="HOTFIX" />
     <MESSAGE value="Мощная поддержка Grid!" />
     <MESSAGE value="-_-" />
     <MESSAGE value="jComboBox" />
@@ -884,7 +887,8 @@
     <MESSAGE value="/" />
     <MESSAGE value="Добавили ScottPlot по просьбе трудящихся" />
     <MESSAGE value="hotfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="hotfix" />
+    <MESSAGE value="hotfix2" />
+    <option name="LAST_COMMIT_MESSAGE" value="hotfix2" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -914,19 +918,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs</url>
-          <line>424</line>
-          <properties documentPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" containingFunctionPresentation="Method 'SpecialPropertySet'">
-            <startOffsets>
-              <option value="14363" />
-            </startOffsets>
-            <endOffsets>
-              <option value="14407" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

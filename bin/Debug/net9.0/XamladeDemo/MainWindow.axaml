@@ -2,13 +2,35 @@
          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
+         xmlns:scott="clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia"
          mc:Ignorable="d" Width="1412" Height="1008"
          x:Class="XamladeDemo.MainWindow"
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<AvaPlot Name="AvaPlot0" Width="400" Height="400" Canvas.Left="406" Canvas.Top="244" >
-</AvaPlot>
+<Menu Name="Menu0" Background="Transparent" FontSize="14" Foreground="#ddffffff" Width="375" Height="23" Canvas.Left="521" Canvas.Top="535" >
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem4" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem5" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem6" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem7" >
+</MenuItem>
+<MenuItem StaysOpenOnClick="True" ToggleType="CheckBox" Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem3" >
+<MenuItem Header="Text" Background="#00760808" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem9" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem10" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem11" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem12" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem13" >
+</MenuItem>
+<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem14" >
+</MenuItem>
+</MenuItem>
+</Menu>
 </Canvas>
 </Window>

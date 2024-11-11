@@ -35,12 +35,26 @@ public class jAvaPlot:AvaPlot,JControl, JBroadcastHandler<JControl>, JSelectable
 
     public bool IsPressed { get; set; }
     public event EventHandler<RoutedEventArgs>? Click;
-
-
-    public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
-
+    
+        
     public void AddSpecialProperties()
     {
-        return;
+        AddSpecialSetDelegates();
+        xPropertiesGroup["specials"] = new();
+        xPropertiesGroup["specials"]["Title"] = new Property(this.Plot.Axes.Title.Label.Text, typeof(string),2);
+      //  xPropertiesGroup["specials"]["Columns"] = new Property(this.ColumnDefinitions.Count, typeof(int),2);
+        this.Beholder.UpdatePropList("Title");
+    //    this.Beholder.UpdatePropList("Columns");
     }
+
+    public void AddSpecialSetDelegates()
+    {
+       SpecialSetDelegates["Title"] = Utils.ConvertSetter<string>(SetPlotTitle);
+    //    SpecialSetDelegates["Columns"] = Utils.ConvertSetter<int>(SetColumnsCount);
+    }
+
+    void SetPlotTitle(JControl element, string name) => this.Plot.Title(name);
+    public Dictionary<string, Dictionary<string, Property>> xPropertiesGroup { get; set; }
+
+   
 }

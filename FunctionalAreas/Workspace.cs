@@ -275,7 +275,7 @@ public static class Workspace
 
     private static void DebugWorkspace(Object source, ElapsedEventArgs e) =>
         Utils.PrintDebugMessage(
-            $"Movable: {movable?.Name} Premovable: {premovable?.Name} + LShift: {State.LShiftPressed}");
+            $"Movable: {movable?.Name} Premovable: {premovable?.Name} + LShift: {State.LShiftPressed} + Selected: {HierarchyControl.Selected.Name}" );
 
 
     public static void jCanvas_OnPointerMoved(object? sender, PointerEventArgs e)

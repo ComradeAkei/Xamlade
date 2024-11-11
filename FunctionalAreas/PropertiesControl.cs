@@ -422,7 +422,7 @@ public static class PropertiesControl
     //Посылать делегат (выполнено)
     private static void SpecialPropertySet(string propName, string value)
     {
-        var element = HierarchyControl.Selected.Beholder.element as JControl;
+        var element = Workspace.movable as JControl;
         if (element == null)
             return;
 

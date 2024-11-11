@@ -27,6 +27,6 @@ public static class Constants
         "ContainerProperties", "Properties", "SpecialSetDelegates", "_jParent", "xPropertiesGroup",
         "ContainerSetProperties",
         "DataContext", "Parent", "VisualParent", "ActualThemeVariant", "Iterator", "TemplateSettings",
-         "Percentage", "CaretBlinkInterval"
+         "Percentage", "CaretBlinkInterval", "ItemContainerTheme", "IsTopLevel", "HeaderPresenter","HasSubMenu"
     };
 }

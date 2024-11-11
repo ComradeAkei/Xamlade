@@ -248,6 +248,26 @@ public static class ElementGenerator
                 var avaPlot = (jAvaPlot)element;
                 avaPlot.Width = Math.Min(400, maxWidth); // Устанавливаем ширину
                 avaPlot.Height = Math.Min(400, maxHeight); // Устанавливаем высоту
+                avaPlot.Plot.Title("Plot");
+            }
+                break;
+            case "Menu":
+            {
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
+                var randomColor = Color.Parse(randomHexColor);
+                var menu = (jMenu)element;
+                menu.Width = Math.Min(375, maxWidth); // Устанавливаем ширину
+                menu.Height = Math.Min(23, maxHeight); // Устанавливаем высоту
+            }
+                break;
+            case "MenuItem":
+            {
+                string randomHexColor = $"#{Utils.random.Next(0x1000000):X6}";
+                var randomColor = Color.Parse(randomHexColor);
+                var menuItem = (jMenuItem)element;
+                menuItem.Header = "Text";
+                menuItem.Width = Math.Min(50, maxWidth); // Устанавливаем ширину
+                menuItem.Height = Math.Min(23, maxHeight); // Устанавливаем высоту
             }
                 break;
         }

@@ -86,7 +86,9 @@ public static class XAMLGenerator
     {
         element.XAMLPiece.Clear();
         element.XAMLRating = element is JChildContainer container ? container.jChildren.Count : 0;
-        element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
+        if(element.Type == "AvaPlot")
+            element.XAMLPiece.Add($"<scott:{element.Type} {GetProperties(element)}>");
+        else element.XAMLPiece.Add($"<{element.Type} {GetProperties(element)}>");
     }
 
     public static void XAMLizeElement(JControl element)
@@ -94,7 +96,11 @@ public static class XAMLGenerator
         if (element.Name == null) return;
         if (element.XAMLRating == 0)
         {
-            element.XAMLPiece.Add($"</{element.Type}>");
+            if(element.Type == "AvaPlot")
+                element.XAMLPiece.Add($"</scott:{element.Type}>");
+            else
+                element.XAMLPiece.Add($"</{element.Type}>");
+            
             element.XAMLRating--;
             if (element.jParent is not JControl parent) return;
             parent.XAMLPiece.AddRange(element.XAMLPiece);
@@ -121,7 +127,7 @@ public static class XAMLGenerator
          xmlns:x=""http://schemas.microsoft.com/winfx/2006/xaml"" 
          xmlns:d=""http://schemas.microsoft.com/expression/blend/2008""
          xmlns:mc=""http://schemas.openxmlformats.org/markup-compatibility/2006""
-         xmlns=""clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia""
+         xmlns:scott=""clr-namespace:ScottPlot.Avalonia;assembly=ScottPlot.Avalonia""
          mc:Ignorable=""d"" Width=""" + wWidth + @""" Height=""" + wHeight + @"""
          x:Class=""XamladeDemo.MainWindow""
          Title=""TestWindow"">");
