@@ -11,25 +11,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Extensions/JCopy.cs" afterDir="false" />
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Поддержка копирования (тест кнопкой DEBUG)">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Reflector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Reflector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/JBaseStatic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/JBaseStatic.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +45,9 @@
     &quot;assignee&quot;: &quot;ComradeAkei&quot;
   }
 }</component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d52a577c-fb18-4f97-826e-b97bd0fae56b" />
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ComradeAkei/Xamlade&quot;,
@@ -208,28 +195,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.Xamlade.executor&quot;: &quot;Debug&quot;,
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.30800542&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;PreRelease&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.uml&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.Xamlade.executor": "Debug",
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "XThreadsFramesViewSplitterKey": "0.30800542",
+    "com.codeium.enabled": "true",
+    "deletionFromPopupRequiresConfirmation": "false",
+    "git-widget-placeholder": "PreRelease",
+    "last_opened_file_path": "/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="Development" />
@@ -443,15 +430,7 @@
       <workItem from="1732544130454" duration="6920000" />
       <workItem from="1732551144780" duration="6162000" />
       <workItem from="1732751273250" duration="9880000" />
-      <workItem from="1732815677266" duration="6278000" />
-    </task>
-    <task id="LOCAL-00025" summary="Возможность менять размер элементов зажатием клавиши Left_Ctrl. Удаление элементов клавишей Delete.">
-      <option name="closed" value="true" />
-      <created>1699729171913</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1699729171913</updated>
+      <workItem from="1732815677266" duration="7072000" />
     </task>
     <task id="LOCAL-00026" summary="Добавлена возможность дискретного изменения геометрических параметров">
       <option name="closed" value="true" />
@@ -837,7 +816,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731355711805</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Поддержка копирования (тест кнопкой DEBUG)">
+      <option name="closed" value="true" />
+      <created>1732822615378</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1732822615378</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -884,7 +871,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="-_-" />
     <MESSAGE value="jComboBox" />
     <MESSAGE value="Планы на 21.07" />
     <MESSAGE value="Допилены ComboBox. XAMLize/deXAMLize работают!" />
@@ -909,7 +895,8 @@
     <MESSAGE value="hotfix" />
     <MESSAGE value="hotfix2" />
     <MESSAGE value="Добавлено menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлено menu" />
+    <MESSAGE value="Поддержка копирования (тест кнопкой DEBUG)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Поддержка копирования (тест кнопкой DEBUG)" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -927,45 +914,6 @@
           </properties>
           <option name="timeStamp" value="16" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/jClasses/Containers/jCanvas.cs</url>
-          <line>107</line>
-          <properties documentPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" containingFunctionPresentation="Method 'AddChild'">
-            <startOffsets>
-              <option value="3830" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3831" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="92" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/jClasses/Containers/jCanvas.cs</url>
-          <line>106</line>
-          <properties documentPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" containingFunctionPresentation="Method 'AddChild'">
-            <startOffsets>
-              <option value="3796" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3825" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LinkWorkers/Beholder.cs</url>
-          <line>107</line>
-          <properties documentPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" containingFunctionPresentation="Method 'HandlePropertyChange'">
-            <startOffsets>
-              <option value="3436" />
-            </startOffsets>
-            <endOffsets>
-              <option value="3488" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="94" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" log-message="true" log-stack="true" type="DotNet Exception Breakpoints">
