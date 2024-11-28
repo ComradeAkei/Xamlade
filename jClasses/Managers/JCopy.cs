@@ -21,6 +21,7 @@ public static class JCopy
         
         Reflector.SetName($"{original.Name}_copy",element);
         element.Beholder.mTreeItem = new mTreeViewItem(element);
+        (newParent as JControl).Beholder.mTreeItem.Items.Add(element.Beholder.mTreeItem);
         Workspace.movable = element;
         foreach (var KVP in element.xPropertiesGroup["main"])
         {
@@ -30,6 +31,7 @@ public static class JCopy
         foreach (var KVP in element.xPropertiesGroup["container"])
                 PropertiesControl.SetPropertyValue(KVP.Key, KVP.Value.Value, element, null);
         newParent.AddChild(element);
+        
         if (original is not JChildContainer container) return element;
         foreach (var cp_child in container.jChildren)
             Copy(cp_child, (JChildContainer)element);

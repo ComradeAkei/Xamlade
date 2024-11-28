@@ -11,18 +11,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Поддержка множественного копирования">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Color/MyColorButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Color/MyColorButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Color/MyColorPickerWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Color/MyColorPickerWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/JCopy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Types/State.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/jCoordinates.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Types/jCoordinates.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/jSize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Types/jSize.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -439,15 +431,7 @@
       <workItem from="1732815677266" duration="7354000" />
       <workItem from="1732823044750" duration="49000" />
       <workItem from="1732823130340" duration="962000" />
-      <workItem from="1732826033808" duration="4485000" />
-    </task>
-    <task id="LOCAL-00027" summary="Добавлены изображения">
-      <option name="closed" value="true" />
-      <created>1699740574695</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1699740574696</updated>
+      <workItem from="1732826033808" duration="5482000" />
     </task>
     <task id="LOCAL-00028" summary="Почти работает deXAMLize">
       <option name="closed" value="true" />
@@ -833,7 +817,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732822782003</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Поддержка множественного копирования">
+      <option name="closed" value="true" />
+      <created>1732831813654</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1732831813654</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -880,7 +872,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Планы на 21.07" />
     <MESSAGE value="Допилены ComboBox. XAMLize/deXAMLize работают!" />
     <MESSAGE value="Новая архитектура" />
     <MESSAGE value="Продолжаем переезжать на новую архитектуру..." />
@@ -905,7 +896,8 @@
     <MESSAGE value="Добавлено menu" />
     <MESSAGE value="Поддержка копирования (тест кнопкой DEBUG)" />
     <MESSAGE value="Поддержка копирования" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поддержка копирования" />
+    <MESSAGE value="Поддержка множественного копирования" />
+    <option name="LAST_COMMIT_MESSAGE" value="Поддержка множественного копирования" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
