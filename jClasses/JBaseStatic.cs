@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Avalonia.Controls;
 using Xamlade.FunctionalAreas;
 using Xamlade.XAMLWorkers;
 
@@ -17,5 +18,13 @@ public static class JBaseStatic
         if (element is JChildContainer container)
             if (container.jChildren is null)
                 container.jChildren = new List<JControl>();
+    }
+
+    public static void CorrectProperties(JControl element)
+    {
+        element.UpdateProperty("Width", (element as Control).Bounds.Width);
+        element.UpdateProperty("Height", (element as Control).Bounds.Height);
+        element.Beholder.UpdatePropList("Width");
+        element.Beholder.UpdatePropList("Height");
     }
 }

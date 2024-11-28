@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using Avalonia.Controls;
 using Xamlade.Extensions;
 using Xamlade.FunctionalAreas;
 using Xamlade.LinkWorkers;
@@ -51,6 +52,7 @@ namespace Xamlade.jClasses
                 if (propValue is null) continue;
                 SetProperty(prop.Name, propValue);
             }
+            
             
         }
 

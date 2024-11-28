@@ -26,7 +26,7 @@ public class Beholder
     private ulong UID { get; }
 
     private bool isEXIST = true;
-
+    public Beholder(){}
     public Beholder(JControl obj)
     {
         if(obj.Beholder is not null) return;
@@ -82,10 +82,25 @@ public class Beholder
 
     public static void OnPropertyChanged(object? sender, AvaloniaPropertyChangedEventArgs e)
     {
-        if (sender is null) return;
-        (sender as JControl).Beholder.HandlePropertyChange(e);
-        //   Console.WriteLine($"{(sender as JControl).Name} " +
-        // $"Свойство {e.Property.Name} изменилось с {e.OldValue} на {e.NewValue}");
+        if (sender is null || e.Property is null) return;
+
+        if (sender is JControl control)
+        {
+            // Проверяем наличие свойства через рефлексию
+            var propertyExists = sender.GetType()
+                .GetProperties()
+                .Any(prop => prop.Name == e.Property.Name);
+
+            if (propertyExists)
+            {
+                control.Beholder.HandlePropertyChange(e);
+            }
+            else
+            {
+                // Игнорируем свойства, которые не существуют
+                Console.WriteLine($"Игнорировано изменение несвязанного свойства: {e.Property.Name}");
+            }
+        }
     }
 
     private void HandlePropertyChange(AvaloniaPropertyChangedEventArgs e)

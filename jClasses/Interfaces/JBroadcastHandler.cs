@@ -8,21 +8,38 @@ public interface JBroadcastHandler<T>
 {
     internal void HandleBroadcast(int mode)
     {
-        if((this as JControl).Name == null) return;
-        if((this as JControl).Name == "SelectionCanvas") return;
-        
-        if(mode == 0) XAMLGenerator.XAMLRatingInit(this as JControl);
-        else if (mode == 1) XAMLGenerator.XAMLizeElement(this as JControl);
-        else if (mode == 2) ImportXAML.CorrectLoadedjElement(this as JControl);
-        else if (mode == 3)
+        switch ((this as JControl).Name)
         {
-            if( (this as JControl).Name == "MainCanvas") return;
-            Broadcast.OnBroadcast -= HandleBroadcast; 
-            Broadcast.DisposeElement(this as JControl);
+            case null:
+            case "SelectionCanvas":
+                return;
         }
-        else if (mode == 4) ImportXAML.CorrectTree(this as JControl);
-        else if (mode == 5) 
-            if((this as JControl).Beholder.selectionBorder is not null )
-                (this as JControl).Beholder.selectionBorder.IsVisible = false;
+        switch (mode)
+        {
+            case 0:
+                XAMLGenerator.XAMLRatingInit(this as JControl);
+                break;
+            case 1:
+                XAMLGenerator.XAMLizeElement(this as JControl);
+                break;
+            case 2:
+                ImportXAML.CorrectLoadedjElement(this as JControl);
+                break;
+            case 3 when (this as JControl).Name == "MainCanvas":
+                return;
+            case 3:
+                Broadcast.OnBroadcast -= HandleBroadcast; 
+                Broadcast.DisposeElement(this as JControl);
+                break;
+            case 4:
+                ImportXAML.CorrectTree(this as JControl);
+                break;
+            case 5:
+            {
+                if((this as JControl).Beholder.selectionBorder is not null )
+                    (this as JControl).Beholder.selectionBorder.IsVisible = false;
+                break;
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
+using Avalonia.Threading;
 using Xamlade.Extensions;
 using Xamlade.FunctionalAreas;
 using Xamlade.LinkWorkers;
@@ -118,6 +119,9 @@ public interface JControl : JProperties
         AddContainerProperties();
         AddSpecialProperties();
         (this as JControl).Beholder.PropListItemsInit();
+        
+      
+        
     }
 
     public void SetParent(JChildContainer parent)

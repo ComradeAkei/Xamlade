@@ -8,29 +8,7 @@
          Title="TestWindow">
 <Canvas Background="#ff1e1e1e" Margin="2,2,2,2" Name="MainCanvas"  HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch">
-<Menu Name="Menu0" Background="Transparent" FontSize="14" Foreground="#ddffffff" Width="375" Height="23" Canvas.Left="521" Canvas.Top="535" >
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem4" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem5" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem6" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem7" >
-</MenuItem>
-<MenuItem StaysOpenOnClick="True" ToggleType="CheckBox" Header="Text" Background="Transparent" FontSize="14" Padding="12,0,12,0" Width="50" Height="16,099999999999998" Name="jMenuItem3" >
-<MenuItem Header="Text" Background="#00760808" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem9" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem10" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem11" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem12" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem13" >
-</MenuItem>
-<MenuItem Header="Text" Background="Transparent" FontSize="14" Padding="11,4,11,7" Width="35" Height="11,899999999999999" Name="jMenuItem14" >
-</MenuItem>
-</MenuItem>
-</Menu>
+<Button Name="Button0" Content="Text" Background="Blue" BorderBrush="Transparent" BorderThickness="1,1,1,1" CornerRadius="3,3,3,3" FontSize="20" Foreground="White" Padding="8,5,8,6" HorizontalAlignment="Center" VerticalAlignment="Center" Canvas.Left="235" Canvas.Top="248" >
+</Button>
 </Canvas>
 </Window>

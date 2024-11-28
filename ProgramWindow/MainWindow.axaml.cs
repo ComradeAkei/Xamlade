@@ -78,7 +78,7 @@ public partial class MainWindow : Window
         DebugButton.Click += Utils.DEBUG;
         MainCanvas.PointerPressed += Workspace.OnjControlPressed;
         foreach (var child in GeneratorPanel.Children)
-            ((mGenButton)child).Click += ElementGenerator.GenerateElement;
+            ((mGenButton)child).Click += ElementGenerator.GenerateElementButton;
 
     }
     

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Timers;
 using Avalonia;
 using Avalonia.Controls;
@@ -57,8 +58,13 @@ public static class Utils
     {
 
         isDebugPanelActive = !isDebugPanelActive;
- //       BeholderTimeAnalisys.DebugBeholder();
-        
+
+        JControl newObj = JCopy.Copy(Workspace.movable);
+
+        var parent = newObj.jParent as JControl;
+        parent.Beholder.mTreeItem.Items.Add(newObj.Beholder.mTreeItem);
+        jCanvas.SetLeft((JControl)newObj, jCanvas.GetLeft((JControl)newObj) + 10);
+
     }
 
     public static void PrintDebugMessage(string message)

@@ -8,6 +8,10 @@ namespace Xamlade.jClasses;
 //Модифицированные элементы дерева со встроенными jControl
 public class mTreeViewItem : TreeViewItem, MControl
 {
+    public mTreeViewItem()
+    {
+    }
+
     protected override Type StyleKeyOverride => typeof(TreeViewItem);
 
     // public JControl element { get; set; }

@@ -94,7 +94,7 @@ public static class Reflector
         var property = GetPropertyRecursive(type, name);
         if (property != null)
         {
-            property.SetValue(obj, value);
+           Reflector.ForceSet(obj, property.Name, value);
             return;
         }
 

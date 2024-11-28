@@ -12,19 +12,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/jClasses/Containers/jMenuItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extensions/JCopy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Constants.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Constants.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/App.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Reflector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Reflector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/XAMLWorkers/XAMLGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/XAMLWorkers/XAMLGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Xamlade.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/MainWindow.axaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jGrid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/ScottPlot/jAvaplot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/ScottPlot/jAvaplot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net9.0/XamladeDemo/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JBroadcastHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/JBaseStatic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/JBaseStatic.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/mClasses/mTreeViewItem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +68,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/4081939150374df08a07a87a6d2002911ad000/68/a778e465/02000037pdb259.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/5528f26ab6044649b1c05b529b31f57c10ac00/02/80debbb3/02000049pdb303.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/e0282aa80cf247ce8c32680b5b4bfb387200/4c/58e50708/0200000Apdb3High.cs" root0="SKIP_HIGHLIGHTING" />
@@ -98,12 +105,15 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fe7bf9cb9df14c6ab8e738e27e94952e1ea00/e6/9db7c904/SkiaGpuRenderTarget.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/75db895618764737a8e2369d5e6dd627bac00/58/beef984d/Avalonia.Themes.Fluent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/metadata/b5abfc76e5f64806874c5378a5d3fa0923e00/04/32f4e311/Citrus.Avalonia.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1c3f7d5c03bf77051eb8a758fb3549c4e2d4cb3dc6f6d567a94a315044961e/List.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1c6bef7c647807b7a913c61351aa1b7c938284a8d1236681897f3047ee75/GeneratedCodeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/23405ca730adfd17d34adfee81444aec315bbc4ab37ee66b7dc8452dc222c4d/InputElement.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/24f68234bec81db605e6692ab59cb4d7e81c91e298b636253856aff710e0ba/MethodInvokerCommon.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/29ba861a88c4a75221c6eb5ae01048244e784bbcf3983f5c5d3cadebb7519a1/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/314af8a5ba96d3b6aeaad61d17179d9662f828477067bba9a4eb876bedef/Dispatcher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31509088a1f615f34535e46cdcad04cd44748a922ddb45f709eb4d65ee64062/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3712a13b205a97fe0e8afddc0cf36f285106f97dd7e3f21a120e9f6bbdd124/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3cc366334cc52275393f9def48cfcbccc8382175579fbd4f75b8c0e4bf33/AvaloniaList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/411b36bee4759072d550e73ef588d1ed84f557569559acbf149ec121af3f8/MethodBaseInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/423ed9e2e7a85ce008e8cbc50d69057e07186dfbfe070cec5a9a3e093f613b/FluentTheme.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/445391d577645511db491c2726c85cf27298a4ee9b5bda45623edaedc67d7/MaterialToolKit.xaml.cs" root0="SKIP_HIGHLIGHTING" />
@@ -119,17 +129,19 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5fda7f1253ea19edc15f91b94a33322b857f1a9319fbffea8d26e9d304178/Border.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/613e2a436d7ada457331733221dea3ab81a9222aeebc6511930c38d17a9a229/InputElement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/64cf3689fc916d25ae1fac5373977d68bddea09e5b8be91826f9df70c4d543/AvaPlot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6620d3857c4a923cd19da979c060c628b34b3f77f73a7159d7ac286e682/X11PlatformThreading.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6620d3857c4a923cd19da979c060c628b34b3f77f73a7159d7ac286e682/X11PlatformThreading.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6de65aae2b6a1179a3ccbb8d35a4706ca53c3a4b2069305b37db934e73cc39/DispatcherOperation.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/76b82ac859da0786668ba3de0b326c8fe8d1d7da29fe6d26126de9b3210ea/INamespaceAmender.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/78fc3767330c4c3c6dc1bde79be3d5e48aac77feb98142380abe7c730aa5f39/MaterialTheme.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7d69a271cd41a361ba95c16d47b2ab9ad9ec/Xamlade.ProgramWindow.MainWindow.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/82dd6f3d605d4311c562873113a7bf8386626b59cabd9e38911fa1d1e5f8425/SharedArrayPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8c617dc7621c7154add4c519bea9e15369a105c4eb4333f87ca4ff0da60e7e9/TimerQueue.Portable.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/91e1808e96bf3c47c67094995d2c7c3c22a44234aad11037accab93917a/AttributeUsageAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98328db94c61dd534adcd0b4d19137ff28bb929936612258ca6e4e3393cb4a/FieldInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/98818dbfcab8662feaf274b6fc9af75484524f7bedc5dbdbbd3b289792846e8/ComboBoxAssist.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9a64357ccf6e3349d098262337b4a821dfc37ed653d94ada0a8859c6dde/Activator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9aab9a86833ea4a1fe3fd7c9f813efc7ed6f4739c9a8fd822538610368ea020/Plot.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9aede36cd2349b1a308d73777728aad0fbe898ea96f916cfec341c6f8189c5f3/AvaloniaObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9b699722324e3615b57977447b25bf953fccb2d6e912ae584f16b7e691ad9d3/Panel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9c6f3d1d952b72fc519f8ac31d3a042df89b729b954ce7aee668347e0f69686/DispatcherOperation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a14d5242afbdd0cf6172e25c2df0bdabaffe53dae711dac153118bf1d63f2b/ToggleButton.cs" root0="SKIP_HIGHLIGHTING" />
@@ -137,16 +149,18 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a71c5a8b25a0ce435d89cf944d56bedaf3cb2856b67c281ce8c1e978815c38e/ContentControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aaf3416d24ffbce13fd14dfa985b6919a44bb1d6bf304afd42388db3e2f0cf/Dispatcher.MainLoop.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/adfed46a88f1bcc62f67b1ed1d16753e683417286f09818ffc419be424ce/Thickness.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b06c2ce0981bf6e5989cda2e3e737e53c2d54ee6ae7e7ce318d378f52e5f66/StyledElement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b06c2ce0981bf6e5989cda2e3e737e53c2d54ee6ae7e7ce318d378f52e5f66/StyledElement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b1658ee51bb73ff4d4b62ae5d767e8a309baf525b49a5455ef7cb391ca7e5da/IProjectAmender.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b37524611a9f813f6be592ce199934f5d555cc52d0784c85b69cc96d5054e25a/RuntimeType.CoreCLR.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ba3dc2cf8c3b7f63e09e91fc46f566b970695b3556535ef56d897fd6f866dd/TextBox.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/baf2eef7c7bbea3742b74ee71fe7168c3a8c2269a1ce22d51333175656840/RuntimeType.CoreCLR.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c2f6475524d844411f342ebac3dc9fdcc985293c63097183568b465a768cd5/StackPanel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c48a1448d594fce4e6c2f33b72109dbcc54ce6f34f26858504961c3746764/ItemCollection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cc84c38d8785b88e166e6741b6a4c0dfa09eaf6e41eb151b255817e11f27570/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cd894a7e5e5fafa8a68b2e26724cc93ab936b5e988402ed3fa78ab48cd1b/CornerRadius.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d353812a25ccb01c976d5736f96d253a77e8709c72e6d8bea392613eb64c3/Visual.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d6b757e154dd7f8c23e0e785431c97a76e4b9c6bdae38b978238421dbab55d/MethodBaseInvoker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a5354b09db47eda5937b722f8095fc1ae600/_0a183/StretchDirection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d8a5354b09db47eda5937b722f8095fc1ae600/_33f11/INamed.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/daecd2c969a878deba19ca8a5810acaaba2b5062894eacbc9526a838ad87cac1/InputElement.cs" root0="SKIP_HIGHLIGHTING" />
@@ -157,6 +171,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e6b24a7365a5fec4eddd993bb1fc2eba51d14d6329d1648dbf94306f9a1c/IPlotMenu.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e72510d0c1f17b6e4e3d720938453a1192e9495bf69667235cc8566474/TreeViewItem.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e7cf72f0f87a08df08cebc13458f11814b177be536bdd1c1ac37eed619923/RuntimePropertyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ebc38fb05775fc3882ab81e1e2d2135f3a35d59f16dd8fad649dbcf1ce1797/RuntimeType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ed4f6e4567a93817d254abbcccb30784a5a4e65c01c7b6ca08ca4a9369e9959/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/eecfe7fcb95caaf3978fdce4ae36e346b34986d1d844b0dce2fcb67e5952c/Decorator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4233131c6be12e7e37462c8dda8bed719550781131b741946f6de2c02cf8/INamed.cs" root0="SKIP_HIGHLIGHTING" />
@@ -422,15 +437,13 @@
       <workItem from="1731103569832" duration="504000" />
       <workItem from="1731104112361" duration="3350000" />
       <workItem from="1731257126891" duration="11505000" />
-      <workItem from="1731345920182" duration="4546000" />
-    </task>
-    <task id="LOCAL-00024" summary="Улучшена работа свойств. Добавлен ToggleButton">
-      <option name="closed" value="true" />
-      <created>1699665051915</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1699665051915</updated>
+      <workItem from="1731345920182" duration="4693000" />
+      <workItem from="1731430620931" duration="3223000" />
+      <workItem from="1731955748574" duration="1271000" />
+      <workItem from="1732544130454" duration="6920000" />
+      <workItem from="1732551144780" duration="6162000" />
+      <workItem from="1732751273250" duration="9880000" />
+      <workItem from="1732815677266" duration="6278000" />
     </task>
     <task id="LOCAL-00025" summary="Возможность менять размер элементов зажатием клавиши Left_Ctrl. Удаление элементов клавишей Delete.">
       <option name="closed" value="true" />
@@ -816,7 +829,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731272100522</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Добавлено menu">
+      <option name="closed" value="true" />
+      <created>1731355711805</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1731355711805</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -863,7 +884,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Мощная поддержка Grid!" />
     <MESSAGE value="-_-" />
     <MESSAGE value="jComboBox" />
     <MESSAGE value="Планы на 21.07" />
@@ -888,7 +908,8 @@
     <MESSAGE value="Добавили ScottPlot по просьбе трудящихся" />
     <MESSAGE value="hotfix" />
     <MESSAGE value="hotfix2" />
-    <option name="LAST_COMMIT_MESSAGE" value="hotfix2" />
+    <MESSAGE value="Добавлено menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено menu" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -907,17 +928,43 @@
           <option name="timeStamp" value="16" />
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/LinkWorkers/BeholderTimeAnalisys.cs</url>
-          <line>17</line>
-          <properties documentPath="$PROJECT_DIR$/LinkWorkers/BeholderTimeAnalisys.cs" containingFunctionPresentation="Method 'DebugBeholder'">
+          <url>file://$PROJECT_DIR$/jClasses/Containers/jCanvas.cs</url>
+          <line>107</line>
+          <properties documentPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" containingFunctionPresentation="Method 'AddChild'">
             <startOffsets>
-              <option value="369" />
+              <option value="3830" />
             </startOffsets>
             <endOffsets>
-              <option value="389" />
+              <option value="3831" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="24" />
+          <option name="timeStamp" value="92" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/jClasses/Containers/jCanvas.cs</url>
+          <line>106</line>
+          <properties documentPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" containingFunctionPresentation="Method 'AddChild'">
+            <startOffsets>
+              <option value="3796" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3825" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/LinkWorkers/Beholder.cs</url>
+          <line>107</line>
+          <properties documentPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" containingFunctionPresentation="Method 'HandlePropertyChange'">
+            <startOffsets>
+              <option value="3436" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3488" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -938,6 +985,7 @@
         <PinnedItemInfo parentTag="Type#System.Collections.Generic.DebugViewDictionaryItem`2" memberName="Value" />
         <PinnedItemInfo parentTag="Type#Avalonia.StyledElement" memberName="Name" />
         <PinnedItemInfo parentTag="Frame#Xamlade.LinkWorkers.Beholder.UpdatePropList" memberName="propname" />
+        <PinnedItemInfo parentTag="Type#Xamlade.jClasses.jStackPanel" memberName="xPropertiesGroup" />
         <PinnedItemInfo parentTag="Type#Avalonia.AvaloniaObject" memberName="_propertyChanged" />
       </pinned-members>
     </pin-to-top-manager>

@@ -256,10 +256,10 @@ public static class PropertiesControl
                 break;
         }
 
-        ChangePropiertyFocus(index);
+        ChangePropertyFocus(index);
     }
 
-    private static async void ChangePropiertyFocus(int index)
+    private static async void ChangePropertyFocus(int index)
     {
         if (index < 0) return;
         if (index >= PropListBox.Items.Count) return;
@@ -269,7 +269,7 @@ public static class PropertiesControl
         var dockPanel = visualChild?.Child as DockPanel;
         if (dockPanel.Children.Count < 2)
         {
-            ChangePropiertyFocus(index++);
+            ChangePropertyFocus(index++);
             return;
         }
 
@@ -386,7 +386,7 @@ public static class PropertiesControl
         var textBox = (TextBox)sender;
         var propName = ((TextBlock)((DockPanel)textBox.Parent).Children[0]).Text;
 
-        SetPropertyValue(propName, textBox.Text, textBox);
+        SetPropertyValue(propName, textBox.Text, null,textBox);
     }
 
     private static async void OnChooseImageClick(object sender, RoutedEventArgs e)
@@ -480,9 +480,10 @@ public static class PropertiesControl
         SetPropertyValue(propName, checkBox.IsChecked);
     }
 
-    private static void SetPropertyValue(string propName, object value, TextBox textBox = null)
+    public static void SetPropertyValue(string propName, object value, JControl copyObject = null, TextBox textBox = null)
     {
-        var element = HierarchyControl.Selected.Beholder.element;
+        
+        var element = (copyObject is null) ? HierarchyControl.Selected.Beholder.element:copyObject;
 
         PropertyInfo? prop;
         try
@@ -500,8 +501,8 @@ public static class PropertiesControl
             SpecialPropertySet(propName, value.ToString());
             return;
         }
-
-        object convertedValue = ConvertValue(prop.PropertyType, value);
+        
+        object convertedValue = (copyObject is null) ? ConvertValue(prop.PropertyType, value) : value;
         if (convertedValue == null && textBox != null)
         {
             textBox.Text = "Некорректное значение";

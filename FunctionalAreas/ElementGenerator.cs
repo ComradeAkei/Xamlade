@@ -8,15 +8,27 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
+using Avalonia.Threading;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
 using Xamlade.LinkWorkers;
+using Xamlade.ProgramWindow;
 
 namespace Xamlade.FunctionalAreas;
 
 public static class ElementGenerator
 {
-    public static void GenerateElement(object? sender, RoutedEventArgs e)
+    public static JControl GenerateElement(Type elementType, JChildContainer parent)
+    {
+        var element = (JControl)Activator.CreateInstance(elementType);
+        Beholder.NewBeholder(element);
+        JBaseStatic.Jctor(element);
+        //element.Name = typeName + (Utils.NextgenIterator++);
+        Beholder.HandleNameUpdate(element);
+        SetDefaultValues(element, parent as JControl);
+        return element;
+    }
+    public static void GenerateElementButton(object? sender, RoutedEventArgs e)
     {
         var typeName = ((mGenButton)sender).Label;
         var selectedElement = HierarchyControl.Selected.Beholder.element;
@@ -28,26 +40,28 @@ public static class ElementGenerator
 
         if ((selectedElement is jBorder)) return;
         if (selectedElement is not JChildContainer parent) return;
-
-
+        
         var elementType = Type.GetType("Xamlade.jClasses.j" + typeName);
-        var element = (JControl)Activator.CreateInstance(elementType);
-        Beholder.NewBeholder(element);
-        JBaseStatic.Jctor(element);
-        //element.Name = typeName + (Utils.NextgenIterator++);
-        Beholder.HandleNameUpdate(element);
-        SetDefaultValues(element, parent as JControl);
-    
+
+        var element = GenerateElement(elementType, parent);
         
         //  if (element is jComboBox comboBox)
         //  comboBox.
 
         parent.AddChild(element);
+
+
+        Dispatcher.UIThread.InvokeAsync(() =>
+        {
+            JBaseStatic.CorrectProperties(element);
+        });
+        
         
         HierarchyControl.Selected.Items.Add(element.Beholder.mTreeItem);
         (((JControl)(element.jParent))!).Beholder.mTreeItem.IsExpanded = true;
         var data = new Object[] { parent, element, element.Beholder.mTreeItem };
         History.AddHistoryItem(new History.Change(element, "Created", data));
+        
     }
 
     //Бордюр это отдельный прикол в Avalonia
