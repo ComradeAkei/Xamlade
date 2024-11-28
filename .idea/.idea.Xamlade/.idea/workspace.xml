@@ -11,9 +11,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Поддержка копирования (тест кнопкой DEBUG)">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color/MyColorButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Color/MyColorButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Color/MyColorPickerWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Color/MyColorPickerWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/JCopy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/State.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Types/State.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/jCoordinates.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Types/jCoordinates.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/jSize.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Types/jSize.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LinkWorkers/Beholder.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JProperties.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,18 +54,13 @@
     &quot;assignee&quot;: &quot;ComradeAkei&quot;
   }
 }</component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="d52a577c-fb18-4f97-826e-b97bd0fae56b" />
-  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ComradeAkei/Xamlade&quot;,
-    &quot;accountId&quot;: &quot;d52a577c-fb18-4f97-826e-b97bd0fae56b&quot;
+    &quot;accountId&quot;: &quot;30eefa89-6dc0-447a-8fd4-6763151bf53f&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/4081939150374df08a07a87a6d2002911ad000/68/a778e465/02000037pdb259.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/5528f26ab6044649b1c05b529b31f57c10ac00/02/80debbb3/02000049pdb303.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/e0282aa80cf247ce8c32680b5b4bfb387200/4c/58e50708/0200000Apdb3High.cs" root0="SKIP_HIGHLIGHTING" />
@@ -101,6 +105,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31509088a1f615f34535e46cdcad04cd44748a922ddb45f709eb4d65ee64062/Button.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3712a13b205a97fe0e8afddc0cf36f285106f97dd7e3f21a120e9f6bbdd124/List.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3cc366334cc52275393f9def48cfcbccc8382175579fbd4f75b8c0e4bf33/AvaloniaList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3d3c05e1e8f6f7c5ab8e02dd2ea46a9b319ead0b78ac66959d0d71ce56def2b/Visual.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/411b36bee4759072d550e73ef588d1ed84f557569559acbf149ec121af3f8/MethodBaseInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/423ed9e2e7a85ce008e8cbc50d69057e07186dfbfe070cec5a9a3e093f613b/FluentTheme.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/445391d577645511db491c2726c85cf27298a4ee9b5bda45623edaedc67d7/MaterialToolKit.xaml.cs" root0="SKIP_HIGHLIGHTING" />
@@ -165,8 +170,8 @@
     <setting file="file://$PROJECT_DIR$/App.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/ComboboxStyle.axaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/History.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Extensions/Types/jCoordinates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/Utils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Extensions/jCoordinates.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/PropertiesControl.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/FunctionalAreas/Workspace.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/IgnoredTypeConverter.cs" root0="SKIP_HIGHLIGHTING" />
@@ -195,31 +200,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Xamlade.executor": "Debug",
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "XThreadsFramesViewSplitterKey": "0.30800542",
-    "com.codeium.enabled": "true",
-    "deletionFromPopupRequiresConfirmation": "false",
-    "git-widget-placeholder": "PreRelease",
-    "last_opened_file_path": "/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Xamlade.executor&quot;: &quot;Debug&quot;,
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.30800542&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PreRelease&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="Development" />
+      <force-push-target remote-path="origin" branch="PreRelease" />
     </force-push-targets>
   </component>
   <component name="QodanaIsSelectedPersistenceService">
@@ -430,15 +436,10 @@
       <workItem from="1732544130454" duration="6920000" />
       <workItem from="1732551144780" duration="6162000" />
       <workItem from="1732751273250" duration="9880000" />
-      <workItem from="1732815677266" duration="7072000" />
-    </task>
-    <task id="LOCAL-00026" summary="Добавлена возможность дискретного изменения геометрических параметров">
-      <option name="closed" value="true" />
-      <created>1699732382957</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1699732382957</updated>
+      <workItem from="1732815677266" duration="7354000" />
+      <workItem from="1732823044750" duration="49000" />
+      <workItem from="1732823130340" duration="962000" />
+      <workItem from="1732826033808" duration="4485000" />
     </task>
     <task id="LOCAL-00027" summary="Добавлены изображения">
       <option name="closed" value="true" />
@@ -824,7 +825,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732822615378</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="Поддержка копирования">
+      <option name="closed" value="true" />
+      <created>1732822782003</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1732822782003</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -871,7 +880,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="jComboBox" />
     <MESSAGE value="Планы на 21.07" />
     <MESSAGE value="Допилены ComboBox. XAMLize/deXAMLize работают!" />
     <MESSAGE value="Новая архитектура" />
@@ -896,7 +904,8 @@
     <MESSAGE value="hotfix2" />
     <MESSAGE value="Добавлено menu" />
     <MESSAGE value="Поддержка копирования (тест кнопкой DEBUG)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поддержка копирования (тест кнопкой DEBUG)" />
+    <MESSAGE value="Поддержка копирования" />
+    <option name="LAST_COMMIT_MESSAGE" value="Поддержка копирования" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">

@@ -69,11 +69,11 @@ namespace Xamlade.jClasses
         protected abstract void AddSpecialProperties();
 
        
-        public void UpdateProperty(string name, object? value)
+        public void UpdateProperty(string name, object? value, string category = "main")
         {
            
             //ОПТИМИЗИРОВАТЬ!
-            SetProperty(name,value);
+            SetProperty(name,value,category);
         }
     }
 

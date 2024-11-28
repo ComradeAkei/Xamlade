@@ -90,22 +90,18 @@ public class Beholder
             var propertyExists = sender.GetType()
                 .GetProperties()
                 .Any(prop => prop.Name == e.Property.Name);
-
+            var specialPropertyExists = control.xPropertiesGroup["container"].ContainsKey(e.Property.Name);
             if (propertyExists)
-            {
                 control.Beholder.HandlePropertyChange(e);
-            }
-            else
-            {
-                // Игнорируем свойства, которые не существуют
-                Console.WriteLine($"Игнорировано изменение несвязанного свойства: {e.Property.Name}");
-            }
+            else if(specialPropertyExists)
+                control.Beholder.HandlePropertyChange(e, "container");
+          
         }
     }
 
-    private void HandlePropertyChange(AvaloniaPropertyChangedEventArgs e)
+    private void HandlePropertyChange(AvaloniaPropertyChangedEventArgs e,string category = "main")
     {
-        element.UpdateProperty(e.Property.Name, e.NewValue);
+        element.UpdateProperty(e.Property.Name, e.NewValue, category);
         UpdatePropList(e.Property.Name);
     }
 

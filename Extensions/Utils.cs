@@ -59,11 +59,11 @@ public static class Utils
 
         isDebugPanelActive = !isDebugPanelActive;
 
-        JControl newObj = JCopy.Copy(Workspace.movable);
+        JControl newObj = JCopy.Copy(Workspace.movable,Workspace.movable.jParent);
 
         var parent = newObj.jParent as JControl;
         parent.Beholder.mTreeItem.Items.Add(newObj.Beholder.mTreeItem);
-        jCanvas.SetLeft((JControl)newObj, jCanvas.GetLeft((JControl)newObj) + 10);
+        jCanvas.SetLeft((JControl)newObj, jCanvas.GetLeft((JControl)newObj) + (int)(parent.Bounds.Width/4.5f));
 
     }
 
