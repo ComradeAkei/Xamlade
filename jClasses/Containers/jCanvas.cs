@@ -121,6 +121,7 @@ public class jCanvas : Canvas, JChildContainer, JControl, JBroadcastHandler<JCon
     {
         jChildren.Remove(child);
         Children.Remove((Control)child);
+        child.jParent = null;
     }
 
     public int XAMLRating { get; set; }

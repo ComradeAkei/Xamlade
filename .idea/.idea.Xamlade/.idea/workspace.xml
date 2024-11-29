@@ -11,9 +11,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="Поддержка множественного копирования">
+    <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/FunctionalAreas/WorkspaceManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -92,6 +98,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/1c6bef7c647807b7a913c61351aa1b7c938284a8d1236681897f3047ee75/GeneratedCodeAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/23405ca730adfd17d34adfee81444aec315bbc4ab37ee66b7dc8452dc222c4d/InputElement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/24f68234bec81db605e6692ab59cb4d7e81c91e298b636253856aff710e0ba/MethodInvokerCommon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/27ae489434beae76aaf09c2d5c76c5d26f9b7301cbc7ba4cbc68b5e8c6dccd/Layoutable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/29ba861a88c4a75221c6eb5ae01048244e784bbcf3983f5c5d3cadebb7519a1/Extensions.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/314af8a5ba96d3b6aeaad61d17179d9662f828477067bba9a4eb876bedef/Dispatcher.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/31509088a1f615f34535e46cdcad04cd44748a922ddb45f709eb4d65ee64062/Button.cs" root0="SKIP_HIGHLIGHTING" />
@@ -431,15 +438,8 @@
       <workItem from="1732815677266" duration="7354000" />
       <workItem from="1732823044750" duration="49000" />
       <workItem from="1732823130340" duration="962000" />
-      <workItem from="1732826033808" duration="5482000" />
-    </task>
-    <task id="LOCAL-00028" summary="Почти работает deXAMLize">
-      <option name="closed" value="true" />
-      <created>1699831339563</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1699831339563</updated>
+      <workItem from="1732826033808" duration="5881000" />
+      <workItem from="1732890100850" duration="14170000" />
     </task>
     <task id="LOCAL-00029" summary="почти работает deXAMLize">
       <option name="closed" value="true" />
@@ -825,7 +825,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732831813654</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="bugfix">
+      <option name="closed" value="true" />
+      <created>1732832762683</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1732832762683</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -872,7 +880,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Допилены ComboBox. XAMLize/deXAMLize работают!" />
     <MESSAGE value="Новая архитектура" />
     <MESSAGE value="Продолжаем переезжать на новую архитектуру..." />
     <MESSAGE value="Продолжаем обновлять архитектуру" />
@@ -897,7 +904,8 @@
     <MESSAGE value="Поддержка копирования (тест кнопкой DEBUG)" />
     <MESSAGE value="Поддержка копирования" />
     <MESSAGE value="Поддержка множественного копирования" />
-    <option name="LAST_COMMIT_MESSAGE" value="Поддержка множественного копирования" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -933,6 +941,7 @@
         <PinnedItemInfo parentTag="Type#Avalonia.Controls.TextBox" memberName="Text" />
         <PinnedItemInfo parentTag="Type#System.Collections.Generic.DebugViewDictionaryItem`2" memberName="Value" />
         <PinnedItemInfo parentTag="Type#Avalonia.StyledElement" memberName="Name" />
+        <PinnedItemInfo parentTag="Type#Avalonia.Visual" memberName="Bounds" />
         <PinnedItemInfo parentTag="Frame#Xamlade.LinkWorkers.Beholder.UpdatePropList" memberName="propname" />
         <PinnedItemInfo parentTag="Type#Xamlade.jClasses.jStackPanel" memberName="xPropertiesGroup" />
         <PinnedItemInfo parentTag="Type#Avalonia.AvaloniaObject" memberName="_propertyChanged" />

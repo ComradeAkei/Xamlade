@@ -11,6 +11,7 @@ using Avalonia.Media;
 using Xamlade.Extensions;
 using Xamlade.jClasses;
 using Xamlade.LinkWorkers;
+using Xamlade.ProgramWindow;
 using static System.Int32;
 
 namespace Xamlade.FunctionalAreas;
@@ -19,7 +20,7 @@ public static class Workspace
 {
     public static jCanvas MainCanvas { get; set; }
 
-    private static List<JControl> SelectedList = new List<JControl>();
+    public static List<JControl> SelectedList = new List<JControl>();
 
     public static jCanvas SelectionCanvas { get; set; }
 
@@ -114,10 +115,11 @@ public static class Workspace
         parentCanvas.Beholder.selectionBorder.IsVisible = false;
         SelectedList.Remove(parentCanvas);
         ApplySelectionCanvas();
+        InitMovable(SelectionCanvas);
     }
 
     //Поместить выделенные элементы на метаканвас
-    private static void ApplySelectionCanvas()
+    public static void ApplySelectionCanvas()
     {
         SelectionCanvas.IsVisible = true;
         if (SelectedList.Count < 2)

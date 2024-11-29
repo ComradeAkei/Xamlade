@@ -51,10 +51,7 @@ public static class ElementGenerator
         parent.AddChild(element);
 
 
-        Dispatcher.UIThread.InvokeAsync(() =>
-        {
-            JBaseStatic.CorrectProperties(element);
-        });
+        WorkspaceManager.CorrectProperties(element);
         
         
         HierarchyControl.Selected.Items.Add(element.Beholder.mTreeItem);

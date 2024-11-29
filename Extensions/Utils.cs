@@ -26,13 +26,7 @@ public static class Utils
     public static bool isDebugPanelActive
     {
         get => DebugPanel.IsVisible;
-        set
-        {
-            if (value)
-                DebugPanel.IsVisible = true;
-            else
-                DebugPanel.IsVisible = false;
-        }
+        set { DebugPanel.IsVisible = value; }
     }
 
     //Отладочный итератор
@@ -60,9 +54,9 @@ public static class Utils
         isDebugPanelActive = !isDebugPanelActive;
 
         JControl newObj = JCopy.Copy(Workspace.movable,Workspace.movable.jParent);
-
-        var parent = newObj.jParent as JControl;
-        jCanvas.SetLeft((JControl)newObj, jCanvas.GetLeft((JControl)newObj) + (int)(parent.Bounds.Width/4.5f));
+        
+        jCanvas.SetLeft((JControl)newObj, jCanvas.GetLeft((JControl)newObj) + (int)(newObj.Bounds.Width));
+        jCanvas.SetTop((JControl)newObj, jCanvas.GetTop((JControl)newObj) + (int)(newObj.Bounds.Height));
 
     }
 

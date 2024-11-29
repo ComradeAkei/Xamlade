@@ -25,6 +25,7 @@ public partial class MainWindow : Window
 
         
         Utils.Init(DebugPanel);
+        Utils.isDebugPanelActive = true;
         Workspace.Init(MainCanvas);
         HierarchyControl.Init(MainHierarchyTree);
         PropertiesControl.Init(PropListBox);
