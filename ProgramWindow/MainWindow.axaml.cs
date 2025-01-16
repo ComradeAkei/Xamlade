@@ -6,6 +6,7 @@ using Xamlade.Extensions;
 using Xamlade.Extensions.Atributes;
 using Xamlade.FunctionalAreas;
 using Xamlade.jClasses;
+using Xamlade.SettingsWorkers;
 using Xamlade.XAMLWorkers;
 
 namespace Xamlade.ProgramWindow;
@@ -30,6 +31,7 @@ public partial class MainWindow : Window
         HierarchyControl.Init(MainHierarchyTree);
         PropertiesControl.Init(PropListBox);
         TestWindow.Init(LoadingGif);
+        SettingsModule.Init();
         
         ButtonEventsInit();
         

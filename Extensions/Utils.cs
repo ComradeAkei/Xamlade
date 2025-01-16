@@ -11,6 +11,7 @@ using Xamlade.FunctionalAreas;
 using Xamlade.jClasses;
 using Xamlade.LinkWorkers;
 using Xamlade.ProgramWindow;
+using Xamlade.SettingsWorkers.SettingsTypes;
 
 namespace Xamlade.Extensions;
 
@@ -21,7 +22,6 @@ public static class Utils
 
     private static Timer MainTimer;
 
-    
 
     public static bool isDebugPanelActive
     {
@@ -50,14 +50,23 @@ public static class Utils
 
     public static void DEBUG(object? sender, RoutedEventArgs e)
     {
-
         isDebugPanelActive = !isDebugPanelActive;
+        //   (Workspace.movable as JChildContainer).RemoveChild((Workspace.movable as JChildContainer).jChildren[0]);
 
-        JControl newObj = JCopy.Copy(Workspace.movable,Workspace.movable.jParent);
-        
+        #region CopyExperimental
+
+        /*
+        JControl newObj = JCopy.Copy(Workspace.movable, Workspace.movable.jParent);
+
         jCanvas.SetLeft((JControl)newObj, jCanvas.GetLeft((JControl)newObj) + (int)(newObj.Bounds.Width));
         jCanvas.SetTop((JControl)newObj, jCanvas.GetTop((JControl)newObj) + (int)(newObj.Bounds.Height));
+        */
 
+        #endregion
+
+        var test = (jButton)Activator.CreateInstance(Type.GetType("Xamlade.jClasses.jButton"));
+        JControlDefaults.InitDefaults(test);
+        
     }
 
     public static void PrintDebugMessage(string message)
@@ -76,13 +85,13 @@ public static class Utils
             setter(element, value);
         };
 
-    public static JChildContainer.ContainerPropertyDelegate ConvertGetter<T>(Func<JControl, T> getter)=>
-         (element) =>
+    public static JChildContainer.ContainerPropertyDelegate ConvertGetter<T>(Func<JControl, T> getter) =>
+        (element) =>
         {
-            T value = getter(element);  // Получаем значение типа T
-            return new Property(value);  // Заворачиваем в Property
+            T value = getter(element); // Получаем значение типа T
+            return new Property(value); // Заворачиваем в Property
         };
-    
+
     private static void Tick()
     {
         Avalonia.Threading.Dispatcher.UIThread.InvokeAsync(() =>

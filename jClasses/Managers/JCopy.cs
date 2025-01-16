@@ -13,95 +13,145 @@ namespace Xamlade.Extensions;
 
 public static class JCopy
 {
+   
     public static JControl Copy(JControl original, JChildContainer newParent)
     {
-        var parent = original.jParent;
-        var elementType = Type.GetType("Xamlade.jClasses.j" + original.Type);
-        var element = ElementGenerator.GenerateElement(elementType, parent);
-        element.xPropertiesGroup = new Dictionary<string, Dictionary<string, Property>>(original.xPropertiesGroup);
-        element.SpecialSetDelegates =
-            new Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>(original.SpecialSetDelegates);
+        var element = CreateElement(original, newParent);
 
-        Reflector.SetName($"{original.Name}_copy", element);
-        element.Beholder.mTreeItem = new mTreeViewItem(element);
-        (newParent as JControl).Beholder.mTreeItem.Items.Add(element.Beholder.mTreeItem);
+        if (original is JChildContainer container)
+            CopyChildren(container, (JChildContainer)element);
+
+        if (original.Name == "SelectionCanvas")
+            return HandleSelectionCanvas((JChildContainer)element);
+
+        return element;
+    }
+
+    private static JControl CreateElement(JControl source, JChildContainer parent)
+    {
+        var elementType = Type.GetType("Xamlade.jClasses.j" + source.Type);
+        var element = ElementGenerator.GenerateElement(elementType, source.jParent);
+
+        // Копирование свойств
+        element.xPropertiesGroup = CloneProperties(source.xPropertiesGroup);
+        element.SpecialSetDelegates = CloneDelegates(source.SpecialSetDelegates);
+
+        Reflector.SetName($"{source.Name}_copy", element);
+        InitializeBeholder(element, parent);
         Workspace.movable = element;
-        foreach (var KVP in element.xPropertiesGroup["main"])
+
+        SetPropertiesFromGroups(element, "main");
+        SetPropertiesFromGroups(element, "container");
+
+        parent.AddChild(element);
+        return element;
+    }
+
+    private static void CopyChildren(JChildContainer source, JChildContainer target)
+    {
+        foreach (var child in source.jChildren)
+            Copy(child, target);
+    }
+
+    private static JControl HandleSelectionCanvas(JChildContainer element)
+    {
+        var parent = element.jParent;
+        var selectedList = new List<JControl>(element.jChildren);
+
+        var bounds = CalculateBounds(selectedList);
+        RelocateChildren(selectedList, element, parent, bounds);
+
+        // Обновление интерфейса
+        CleanupAndRestoreSelectionCanvas(element, parent, selectedList);
+        return Workspace.SelectionCanvas;
+    }
+
+    private static Dictionary<string, Dictionary<string, Property>> CloneProperties(
+        Dictionary<string, Dictionary<string, Property>> source)
+    {
+        return source.ToDictionary(
+            group => group.Key,
+            group => group.Value.ToDictionary(kvp => kvp.Key, kvp => kvp.Value));
+    }
+
+    private static Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> CloneDelegates(
+        Dictionary<string, JChildContainer.ContainerSetPropertyDelegate> source)
+    {
+        return new Dictionary<string, JChildContainer.ContainerSetPropertyDelegate>(source);
+    }
+
+    private static void InitializeBeholder(JControl element, JChildContainer parent)
+    {
+        element.Beholder.mTreeItem = new mTreeViewItem(element);
+        (parent as JControl).Beholder.mTreeItem.Items.Add(element.Beholder.mTreeItem);
+    }
+
+    private static void SetPropertiesFromGroups(JControl element, string groupName)
+    {
+        if (!element.xPropertiesGroup.ContainsKey(groupName)) return;
+
+        foreach (var kvp in element.xPropertiesGroup[groupName])
         {
-            if (KVP.Key != "Name")
-                PropertiesControl.SetPropertyValue(KVP.Key, KVP.Value.Value, element, null);
+            if (kvp.Key != "Name")
+                PropertiesControl.SetPropertyValue(kvp.Key, kvp.Value.Value, element, null);
+        }
+    }
+
+    private static (double MinX, double MinY, double MaxX, double MaxY) CalculateBounds(IEnumerable<JControl> controls)
+    {
+        double minX = double.MaxValue, minY = double.MaxValue;
+        double maxX = double.MinValue, maxY = double.MinValue;
+
+        foreach (var obj in controls)
+        {
+            var bounds = obj.Bounds;
+            minX = Math.Min(minX, bounds.X);
+            minY = Math.Min(minY, bounds.Y);
+            maxX = Math.Max(maxX, bounds.X + bounds.Width);
+            maxY = Math.Max(maxY, bounds.Y + bounds.Height);
         }
 
-        foreach (var KVP in element.xPropertiesGroup["container"])
-            PropertiesControl.SetPropertyValue(KVP.Key, KVP.Value.Value, element, null);
-        newParent.AddChild(element);
+        return (minX, minY, maxX, maxY);
+    }
 
-        if (original is not JChildContainer container) return element;
-        foreach (var cp_child in container.jChildren)
-            Copy(cp_child, (JChildContainer)element);
-        if (original.Name != "SelectionCanvas")
-            return element;
-        else
+    private static void RelocateChildren(IEnumerable<JControl> children, JChildContainer source, JChildContainer target,
+        (double MinX, double MinY, double MaxX, double MaxY) bounds)
+    {
+        foreach (var child in children)
         {
-            var p_parent = element.jParent;
-            var SelectedList = new List<JControl>((element as JChildContainer).jChildren);
+            var absX = Canvas.GetLeft(child as Control);
+            var absY = Canvas.GetTop(child as Control);
 
-            // Найти границы (минимальные и максимальные координаты) всех элементов в SelectedList
-            double minX = double.MaxValue, minY = double.MaxValue;
-            double maxX = double.MinValue, maxY = double.MinValue;
+            source.RemoveChild(child);
+            target.AddChild(child);
 
-            for (var index = 0; index < SelectedList.Count; index++)
-            {
-                var obj = SelectedList[index];
-                var bounds = obj.Bounds;
-                minX = Math.Min(minX, bounds.X);
-                minY = Math.Min(minY, bounds.Y);
-                maxX = Math.Max(maxX, bounds.X + bounds.Width);
-                maxY = Math.Max(maxY, bounds.Y + bounds.Height);
-            }
+            source.Beholder.mTreeItem.Items.Remove(child.Beholder.mTreeItem);
+            target.Beholder.mTreeItem.Items.Add(child.Beholder.mTreeItem);
 
-            foreach (var obj in SelectedList)
-            {
-                var absX = Canvas.GetLeft(obj as Control);
-                var absY = Canvas.GetTop(obj as Control);
-                (element as JChildContainer).RemoveChild(obj);
-                p_parent.AddChild(obj);
-                element.Beholder.mTreeItem.Items.Remove(obj.Beholder.mTreeItem);
-                (p_parent as JControl).Beholder.mTreeItem.Items.Add(obj.Beholder.mTreeItem);
-                Canvas.SetLeft(obj as Control, absX - minX);
-                Canvas.SetTop(obj as Control, absY - minY);
-            }
-
-            (p_parent as JControl).Beholder.mTreeItem.Items.Remove(element.Beholder.mTreeItem);
-            
-            (p_parent as Control).UpdateLayout();
-            foreach (var jControl in SelectedList)
-                (jControl as Control).UpdateLayout();
-            
-            Workspace.RestoreSelectionCanvas();
-            Workspace.SelectedList.Clear();
-            foreach (var jControl in SelectedList)
-            {
-                Workspace.SelectedList.Add(jControl);
-                Workspace.BindSelectionBorder(jControl);
-            }
-
-
-            Workspace.ApplySelectionCanvas();
-            Workspace.InitMovable(Workspace.SelectionCanvas);
-
-            
-            
-       //     Workspace.RestoreSelectionCanvas();
-
-
-          /*  Workspace.movable = element;
-            HierarchyControl.Selected.Beholder.element = element;
-            Workspace.RemoveSelectedjElement();
-            element.Dispose();
-*/
-            return Workspace.SelectionCanvas;
+            Canvas.SetLeft(child as Control, absX - bounds.MinX);
+            Canvas.SetTop(child as Control, absY - bounds.MinY);
         }
+    }
+
+    private static void CleanupAndRestoreSelectionCanvas(JChildContainer element, JChildContainer parent, List<JControl> selectedList)
+    {
+        parent.Beholder.mTreeItem.Items.Remove(element.Beholder.mTreeItem);
+        (parent as Control).UpdateLayout();
+
+        foreach (var control in selectedList)
+            (control as Control).UpdateLayout();
+
+        Workspace.RestoreSelectionCanvas();
+        Workspace.SelectedList.Clear();
+
+        foreach (var control in selectedList)
+        {
+            Workspace.SelectedList.Add(control);
+            Workspace.BindSelectionBorder(control);
+        }
+
+        Workspace.ApplySelectionCanvas();
+        Workspace.InitMovable(Workspace.SelectionCanvas);
     }
 
     public static void CopySelection(JChildContainer selectionCanvas, JChildContainer newParent)
@@ -109,4 +159,5 @@ public static class JCopy
         foreach (var cp_child in selectionCanvas.jChildren)
             Copy(cp_child, (JChildContainer)newParent);
     }
+    
 }

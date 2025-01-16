@@ -4,6 +4,7 @@ using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 using Microsoft.Diagnostics.Runtime;
+using Xamlade.Extensions.Atributes;
 using Xamlade.jClasses;
 
 namespace Xamlade.Extensions;
@@ -11,7 +12,8 @@ namespace Xamlade.Extensions;
 
 
 /// <summary>
-/// Освобождение от оков
+/// Освобождение от оков. Или изъяны реализации.
+/// Каждый метод, использующий рефлексию, ОБЯЗАТЕЛЬНО помечать атрибутом ReflectionCall 
 /// </summary>
 public static class Reflector
 {
@@ -20,6 +22,7 @@ public static class Reflector
     /// </summary>
     /// <param name="name"></param>
     /// <param name="element"></param>
+    [ReflectionCall]
     public static void SetName(string? name, JControl element)
     {
         var privateField =
@@ -27,7 +30,7 @@ public static class Reflector
         privateField?.SetValue(element, name);
     }
     
-    
+    [ReflectionCall]
     public static void PrintFieldsForType(ClrRuntime runtime, string targetType)
     {
         int i = 0;
@@ -40,10 +43,10 @@ public static class Reflector
                 i++;
             }
         }
-        Console.WriteLine(targetType+": "+i);
+        Console.WriteLine($"{targetType} :  {i}");
     }
 
-    
+    [ReflectionCall]
     public static void SetXYBoundsZero(Control control)
     {
         var boundsField = typeof(Visual).GetField("_bounds", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -64,67 +67,55 @@ public static class Reflector
     /// <param name="name">Имя приватного поля</param>
     /// <param name="value">Новое значение</param>
     /// <typeparam name="T"> Тип поля</typeparam>
+    /// <typeparam name="makeNull"> Обнуление поля (игнор value)</typeparam>
     /// <exception cref="ArgumentException">Исключение: Поле с таким именем не существует</exception>
-    public static void ForceSet<T>(object obj, string name, T? value, bool makeNull = false) 
+    [ReflectionCall]
+    public static void ForceSet<T>(object obj, string name, T? value, bool makeNull = false)
     {
-        
+        if (obj == null)
+            throw new ArgumentNullException(nameof(obj));
+
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Имя не может быть пустым", nameof(name));
+
+        // Если требуется установка в null
         if (makeNull)
-        {
-            if (typeof(T).IsValueType)
-                value = default(T); // Значимый тип
-            else
-                value = default; // Ссылочный тип (null)
-        }
-        // Получение типа объекта
-        var type = obj.GetType();
-    
-        // Если нужно установить null, то используем default(T) для значимых типов
-        if (makeNull)
-            value = default(T); // Присваиваем значение по умолчанию (например, 0 для int)
+            value = default;
 
-        // Поиск приватного поля
-        var field = GetFieldRecursive(type, name);
-        if (field != null)
-        {
-            field.SetValue(obj, value);
-            return;
-        }
+        Type type = obj.GetType();
 
-        // Поиск приватного свойства
-        var property = GetPropertyRecursive(type, name);
-        if (property != null)
+        // Проверяем все возможные варианты имени
+        string[] possibleNames = { name, "_" + name, name.ToLower(), "_" + name.ToLower() };
+
+        foreach (string n in possibleNames)
         {
-           Reflector.ForceSet(obj, property.Name, value);
-            return;
+            var member = GetMemberRecursive(type, n);
+            if (member is FieldInfo field)
+            {
+                field.SetValue(obj, value);
+                return;
+            }
+            if (member is PropertyInfo property && property.CanWrite)
+            {
+                property.SetValue(obj, value);
+                return;
+            }
         }
 
-        // Если имя начинается с подчеркивания
-        if (name[0] == '_')
-            throw new ArgumentException($"No private field or property named '{name}' found in type '{type.FullName}' or its base types.");
-
-        // Пробуем найти поле или свойство с изменённым именем
-        ForceSet(obj, $"_{name.ToLower()}", value, makeNull);
+        throw new ArgumentException($"Поле или свойство '{name}' не найдено в типе '{type.FullName}' и его базовых классах.");
     }
 
-    //Ищем поле в вышестоящих классах по цепочке наследования
-    private static FieldInfo GetFieldRecursive(Type type, string name)
+    [ReflectionCall]
+    private static MemberInfo GetMemberRecursive(Type type, string name)
     {
         while (type != null)
         {
-            var field = type.GetField(name, BindingFlags.Public |BindingFlags.NonPublic | BindingFlags.Instance);
+            // Ищем сначала поле
+            var field = type.GetField(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (field != null)
                 return field;
 
-            type = type.BaseType;
-        }
-        return null;
-    }
-    
-    //Ищем сойство в вышестоящих классах по цепочке наследования
-    private static PropertyInfo GetPropertyRecursive(Type type, string name)
-    {
-        while (type != null)
-        {
+            // Затем ищем свойство
             var property = type.GetProperty(name, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
             if (property != null)
                 return property;
@@ -142,7 +133,7 @@ public static class Reflector
     /// <param name="parameters">Параметры, передаваемые в вызываемый метод.</param>
     /// <returns>Результат выполнения статического метода, если метод имеет возвращаемое значение. Иначе — null.</returns>
     /// <exception cref="ArgumentException">Выбрасывается, если метод с указанным именем не найден.</exception>
-
+    [ReflectionCall]
     public static object StaticCall(object obj, string methodName, params object[] parameters)
     {
         // Поиск метода в интерфейсах объекта
@@ -162,6 +153,26 @@ public static class Reflector
 
         return methodInfo?.Invoke(null, parameters)
                ?? throw new ArgumentException($"Метод {methodName} не найден.");
+    }
+    [ReflectionCall]
+    public static Type? VerifyExistance(object obj, string fieldName)
+    {
+        if (obj == null)
+            throw new ArgumentNullException(nameof(obj));
+
+        var type = obj.GetType();
+
+        // Проверяем наличие свойства
+        var property = type.GetProperty(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if (property != null)
+            return property.PropertyType;
+
+        // Проверяем наличие поля
+        var field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+        if (field != null)
+            return field.FieldType;
+
+        return null;
     }
 }
     

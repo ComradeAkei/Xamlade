@@ -12,14 +12,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FunctionalAreas/WorkspaceManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Reflection/JTypeInfo.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Reflection/TypeCast.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SettingsWorkers/FilesystemService/JSONBus.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsModule.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/Settings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Attributes/ReflectionCall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Attributes/ReflectionCall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/Reflector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/Reflector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/ElementGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" beforeDir="false" afterPath="$PROJECT_DIR$/FunctionalAreas/Workspace.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Containers/jCanvas.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,6 +121,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/48e16746e724dd49522e198c1f89f3e38eeff68e5e16a6a6bfff78d69d921d/ClassicDesktopStyleApplicationLifetime.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4f22e2865cd38f71233eed2ac7f2d13f6627622f1af9ae152497e8f1625513/Canvas.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/52a3c8d1e7b7843f3435153d7a2ce3954f7c3c67c577737bf8426815ab945bb/IPlotInteraction.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/59f631113f17ac94cc3be6eec4183079ff7d2fc8231ddd6ba46e049bcb66f/ClassicDesktopStyleApplicationLifetime.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5cd4ba5323b61664e562bbef179646ffc13e5128ab302fabc11822da1c7ab44e/ItemsControl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5dd249ba7a29d4209fcedd2d29261a3131678151817b62d20914d1706918/RoutedEventArgs.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/5fda7f1253ea19edc15f91b94a33322b857f1a9319fbffea8d26e9d304178/Border.cs" root0="SKIP_HIGHLIGHTING" />
@@ -138,7 +145,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a14d5242afbdd0cf6172e25c2df0bdabaffe53dae711dac153118bf1d63f2b/ToggleButton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a57f99df49c0708426537f51c93f3948f7232788dd228c42c759f32b78e6d64/FieldInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a71c5a8b25a0ce435d89cf944d56bedaf3cb2856b67c281ce8c1e978815c38e/ContentControl.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aaf3416d24ffbce13fd14dfa985b6919a44bb1d6bf304afd42388db3e2f0cf/Dispatcher.MainLoop.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/aaf3416d24ffbce13fd14dfa985b6919a44bb1d6bf304afd42388db3e2f0cf/Dispatcher.MainLoop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/adfed46a88f1bcc62f67b1ed1d16753e683417286f09818ffc419be424ce/Thickness.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b06c2ce0981bf6e5989cda2e3e737e53c2d54ee6ae7e7ce318d378f52e5f66/StyledElement.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b1658ee51bb73ff4d4b62ae5d767e8a309baf525b49a5455ef7cb391ca7e5da/IProjectAmender.cs" root0="SKIP_HIGHLIGHTING" />
@@ -211,13 +218,13 @@
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
     &quot;deletionFromPopupRequiresConfirmation&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;PreRelease&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/akei/Projects/Xamlade/Xamlade/bin/Debug/net9.0/XamladeDemo&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/akei/Загрузки/IntelliJ_Icons-1.0.2.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -439,15 +446,14 @@
       <workItem from="1732823044750" duration="49000" />
       <workItem from="1732823130340" duration="962000" />
       <workItem from="1732826033808" duration="5881000" />
-      <workItem from="1732890100850" duration="14170000" />
-    </task>
-    <task id="LOCAL-00029" summary="почти работает deXAMLize">
-      <option name="closed" value="true" />
-      <created>1699831896344</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1699831896344</updated>
+      <workItem from="1732890100850" duration="15426000" />
+      <workItem from="1732923265509" duration="1197000" />
+      <workItem from="1732924481114" duration="866000" />
+      <workItem from="1733937094142" duration="108000" />
+      <workItem from="1733944758339" duration="474000" />
+      <workItem from="1734369495538" duration="5659000" />
+      <workItem from="1735752885368" duration="5011000" />
+      <workItem from="1737002342981" duration="9223000" />
     </task>
     <task id="LOCAL-00030" summary="Добавлена возможность импорта XAML">
       <option name="closed" value="true" />
@@ -833,7 +839,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732832762683</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Улучшено копирование">
+      <option name="closed" value="true" />
+      <created>1732909860415</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1732909860416</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -880,7 +894,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Новая архитектура" />
     <MESSAGE value="Продолжаем переезжать на новую архитектуру..." />
     <MESSAGE value="Продолжаем обновлять архитектуру" />
     <MESSAGE value="95% обновление архитектуры" />
@@ -905,7 +918,8 @@
     <MESSAGE value="Поддержка копирования" />
     <MESSAGE value="Поддержка множественного копирования" />
     <MESSAGE value="bugfix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
+    <MESSAGE value="Улучшено копирование" />
+    <option name="LAST_COMMIT_MESSAGE" value="Улучшено копирование" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -923,6 +937,19 @@
           </properties>
           <option name="timeStamp" value="16" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs</url>
+          <line>68</line>
+          <properties documentPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs" containingFunctionPresentation="Method 'InitDefaults'">
+            <startOffsets>
+              <option value="2694" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2714" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" log-message="true" log-stack="true" type="DotNet Exception Breakpoints">
@@ -944,6 +971,7 @@
         <PinnedItemInfo parentTag="Type#Avalonia.Visual" memberName="Bounds" />
         <PinnedItemInfo parentTag="Frame#Xamlade.LinkWorkers.Beholder.UpdatePropList" memberName="propname" />
         <PinnedItemInfo parentTag="Type#Xamlade.jClasses.jStackPanel" memberName="xPropertiesGroup" />
+        <PinnedItemInfo parentTag="Type#System.Collections.Generic.DebugViewDictionaryItem`2" memberName="Key" />
         <PinnedItemInfo parentTag="Type#Avalonia.AvaloniaObject" memberName="_propertyChanged" />
       </pinned-members>
     </pin-to-top-manager>
