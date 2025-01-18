@@ -48,18 +48,11 @@ public class JControlDefaults
             var targetType = Reflector.VerifyExistance(element, prop.Key);
             if (targetType != null)
             {
-                if (prop.Value.Contains("RandomColor"))
-                {
-                    Reflector.ForceSet(element, prop.Key, $"#{Utils.random.Next(0x1000000):X6}");
-                }
-                else
-                {
-                    var method = typeof(TypeCast).GetMethod(nameof(TypeCast.CastValue))
-                        ?.MakeGenericMethod(targetType); // Создаём CastValue<TargetType>
-
-                    var convertedValue = method?.Invoke(null, new object[] { prop.Value }); // Вызываем CastValue<T>()
-                    Reflector.ForceSet(element, prop.Key, convertedValue);
-                }
+                var method = typeof(TypeCast).GetMethod(nameof(TypeCast.CastValue))
+                    ?.MakeGenericMethod(targetType); // Создаём CastValue<TargetType>
+                var convertedValue = method?.Invoke(null, new object[] { prop.Value }); // Вызываем CastValue<T>()
+                
+                Reflector.ForceSet(element, prop.Key, convertedValue);
             }
             else
             {

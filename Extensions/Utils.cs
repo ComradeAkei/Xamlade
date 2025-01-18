@@ -64,7 +64,7 @@ public static class Utils
 
         #endregion
 
-        var test = (jButton)Activator.CreateInstance(Type.GetType("Xamlade.jClasses.jButton"));
+        var test = (jGrid)Activator.CreateInstance(Type.GetType("Xamlade.jClasses.jGrid"));
         JControlDefaults.InitDefaults(test);
         
     }

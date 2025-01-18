@@ -12,7 +12,8 @@ public static class TypeCast
     {
         if (string.IsNullOrWhiteSpace(colorName))
             throw new ArgumentNullException(nameof(colorName));
-
+        if (colorName == "RandomColor")
+            colorName = $"#{Utils.random.Next(0x1000000):X6}";
         // Попробуем получить цвет из Brushes (предопределенные цвета)
         var property = typeof(Brushes).GetProperty(colorName);
         if (property != null && property.GetValue(null) is IBrush brush)
@@ -21,7 +22,7 @@ public static class TypeCast
         // Пробуем распарсить строку в Color
         if (Color.TryParse(colorName, out var color))
             return new SolidColorBrush(color);
-
+        
         throw new ArgumentException($"Не удалось преобразовать '{colorName}' в IBrush.");
     }
     

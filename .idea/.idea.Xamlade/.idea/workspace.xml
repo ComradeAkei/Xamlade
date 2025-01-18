@@ -12,21 +12,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db44ba7a-fd05-4d84-a2dc-f5459a949749" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Reflection/JTypeInfo.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Reflection/TypeCast.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SettingsWorkers/FilesystemService/JSONBus.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsModule.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/Settings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Xamlade/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Attributes/ReflectionCall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Attributes/ReflectionCall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/Reflector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/Reflector.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Extensions/Utils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/Utils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ProgramWindow/MainWindow.axaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reflection/TypeCast.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Reflection/TypeCast.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs" beforeDir="false" afterPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Xamlade.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Interfaces/JChildContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/jClasses/Managers/JCopy.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +51,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/ComradeAkei/Xamlade&quot;,
-    &quot;accountId&quot;: &quot;30eefa89-6dc0-447a-8fd4-6763151bf53f&quot;
+    &quot;accountId&quot;: &quot;8580f85d-204e-46ac-a322-4994cf03b51e&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -114,6 +104,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/411b36bee4759072d550e73ef588d1ed84f557569559acbf149ec121af3f8/MethodBaseInvoker.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/423ed9e2e7a85ce008e8cbc50d69057e07186dfbfe070cec5a9a3e093f613b/FluentTheme.xaml.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/445391d577645511db491c2726c85cf27298a4ee9b5bda45623edaedc67d7/MaterialToolKit.xaml.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/45c62c1f9af1eb2248ec17220752868b3b6728095879e849b6ea733ef7f5ff/CastHelpers.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/464024d8e91e660fcbe9942872cf3d84b04dbfcadedcbcdd57704c14b0e6/CastHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/46c73e495c10cebaff7ff53b6924a65af27378c69184ba9582781e5c6848887b/InvalidOperationException.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4743f513c7ddc8411223a46f0ca426ed929391acebcff993721dff2f0c6b34/ThrowHelper.cs" root0="FORCE_HIGHLIGHTING" />
@@ -213,6 +204,7 @@
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;XThreadsFramesViewSplitterKey&quot;: &quot;0.30800542&quot;,
     &quot;com.codeium.enabled&quot;: &quot;true&quot;,
@@ -224,7 +216,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -453,15 +445,9 @@
       <workItem from="1733944758339" duration="474000" />
       <workItem from="1734369495538" duration="5659000" />
       <workItem from="1735752885368" duration="5011000" />
-      <workItem from="1737002342981" duration="9223000" />
-    </task>
-    <task id="LOCAL-00030" summary="Добавлена возможность импорта XAML">
-      <option name="closed" value="true" />
-      <created>1699874041942</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1699874041943</updated>
+      <workItem from="1737002342981" duration="9962000" />
+      <workItem from="1737081701772" duration="47000" />
+      <workItem from="1737081801949" duration="439000" />
     </task>
     <task id="LOCAL-00031" summary="Обновление">
       <option name="closed" value="true" />
@@ -847,7 +833,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732909860416</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Парсинг JSON настроек по-умолчанию">
+      <option name="closed" value="true" />
+      <created>1737017106659</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1737017106660</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -894,7 +888,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Продолжаем переезжать на новую архитектуру..." />
     <MESSAGE value="Продолжаем обновлять архитектуру" />
     <MESSAGE value="95% обновление архитектуры" />
     <MESSAGE value="98% NEW ARCHITECTURE" />
@@ -919,7 +912,8 @@
     <MESSAGE value="Поддержка множественного копирования" />
     <MESSAGE value="bugfix" />
     <MESSAGE value="Улучшено копирование" />
-    <option name="LAST_COMMIT_MESSAGE" value="Улучшено копирование" />
+    <MESSAGE value="Парсинг JSON настроек по-умолчанию" />
+    <option name="LAST_COMMIT_MESSAGE" value="Парсинг JSON настроек по-умолчанию" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -939,16 +933,16 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs</url>
-          <line>68</line>
+          <line>50</line>
           <properties documentPath="$PROJECT_DIR$/SettingsWorkers/SettingsTypes/JControlDefaults.cs" containingFunctionPresentation="Method 'InitDefaults'">
             <startOffsets>
-              <option value="2694" />
+              <option value="1950" />
             </startOffsets>
             <endOffsets>
-              <option value="2714" />
+              <option value="2070" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="28" />
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
